@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NKG48CVDG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4NKG48CVDG');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Datos y bases de datos</title>
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+    crossorigin="anonymous"
+  />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <!-- Font Awesome 6 Free CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <!-- Tom-Select CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tom-select@2.5.1/dist/css/tom-select.css" rel="stylesheet">
+  <!-- GridJS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+  <!-- Firebase UI -->
+  <link rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.css">
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="css/estilos-202610041725.min.css">
+    <script src="https://cdn.userway.org/widget.js" data-account="YxU09HPa9Z"></script>
+    <script
+      src="https://js.sentry-cdn.com/39ad5fd34ee63ef87f9d96cec708a316.min.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+
+<body class="modulo-datos">
+
+  <!-- Barra superior GOV.CO (patrón diseñador gov-bar) -->
+  <div class="gov-bar border-bottom">
+    <div class="container-fluid-md container-lg d-flex justify-content-between align-items-center">
+      <div class="govco-top-logo">
+        <a href="https://www.gov.co/" target="_blank" rel="noopener noreferrer">
+          <img src="https://cdn.www.gov.co/assets/images/logo.png" alt="Logo Gov.co" height="30" class="logo-gov-co">
+        </a>
+      </div>
+      <div class="d-flex justify-content-center gap-2 my-1">
+        <a href="https://www.gov.co/" target="_blank" rel="noopener noreferrer" class="govco-top-link-a">Ir a Govco</a>
+        <div class="d-flex gap-2 notranslate">
+          <button type="button" class="btn btn-lang active" data-lang="es">Es</button>
+          <button type="button" class="btn btn-lang" data-lang="en">In</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar principal (patrón diseñador navbar) -->
+  <nav class="navbar navbar-expand-lg flex-wrap p-0 sticky-top" aria-label="Navegación principal">
+    <div class="bg-light w-100">
+      <div class="container-fluid-md container-lg position-relative d-flex flex-wrap justify-content-between align-items-center my-2">
+        <div class="navbar-header justify-content-between d-flex align-items-center gap-3">
+          <a href="../index.html" class="navbar-brand p-0 m-0">
+            <img src="images/logo-ideca.svg" alt="Inicio">
+          </a>
+          <img class="logo-alcaldia" src="images/logo-alcaldia.svg" alt="Logo Alcaldía Mayor de Bogotá">
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2 user-space">
+            <div id="div-logo-entidad-login" class="oculto"></div>
+            <span id="nombre-usuario-header" class="user-field me-2 text-start lh-sm">
+              <img id="foto-usuario-header" src="" alt="" class="oculto rounded-circle me-1" width="24" height="24">
+              <div id="texto-nombre-usuario" class="fw-semibold user-name text-secondary"></div>
+            </span>
+            <button id="btn-cerrar-sesion" type="button"
+              class="border border-2 border-danger bg-transparent rounded-circle text-danger shadow-none oculto"
+              aria-label="Cerrar sesión" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cerrar sesión">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+            <button id="btn-login" type="button" class="p-0 border-0 bg-transparent" aria-label="Iniciar sesión"
+              data-bs-toggle="modal" data-bs-target="#modalLogin" title="Iniciar sesión">
+              <img src="images/user.svg" alt="">
+            </button>
+          </div>
+          <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Menú de navegación">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container-md-fluid container-lg px-0 mx-0 px-lg-3 mx-md-auto">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav w-100 text-center">
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Inicio</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Quiénes somos</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link active" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Recursos</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Herramientas</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Uso de datos</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Aprendizaje</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Actualidad</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.catastrobogota.gov.co/" target="_blank" rel="noopener noreferrer">Catastro</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Ayuda</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner hero (patrón diseñador breadcrumb-container) -->
+  <div class="breadcrumb-container d-flex align-items-center mt-2 mx-2 p-0"
+       style="background: url('images/ide_bogota.png') center/cover no-repeat;">
+    <div class="container-md-fluid container-lg breadcrumb-content w-100 py-3">
+      <div class="col-md-7">
+        <h1 class="breadcrumb-title mb-1 h4">Datos y bases de datos</h1>
+        <b class="text-white fw-light">
+          Consulta y accede a conjuntos de datos y a bases de datos catastrales
+        </b>
+      </div>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item">
+            <a id="breadcrumb-link-dominio" href="https://www.ideca.gov.co/"><i class="fa-solid fa-house"></i></a>
+          </li>
+          <li class="breadcrumb-item">
+            <a id="breadcrumb-link-raiz" href="../index.html">Recursos</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <main id="vista-principal">
+    <div class="container mt-3">
+      <h2 class="fs-3 text-secondary">Datos geográficos y sus estándares</h2>
+      <p>Inventario estructurado que organiza, describe y centraliza los datos geográficos abiertos, cerrados, compartidos y sus estándares, dispuestos por las entidades distritales, en la Infraestructura de Datos Espaciales para el Distrito Capital (Ideca).</p>
+      <!-- Buscador y filtros -->
+      <div class="container">
+        <div class="search-filters-section rounded mb-3 row py-2 d-flex justify-content-center align-items-end bg-softgray">
+          <div class="col-md-6">
+            <div class="search-input-group position-relative">
+              <input type="text" id="search-main" class="form-control rounded-pill border" placeholder="Buscar datos" autocomplete="off">
+              <button class="btn position-absolute end-0 top-0" aria-label="Buscar" tabindex="-1">
+                <i class="fa-solid fa-search"></i>
+              </button>
+              <button id="btn-clear-search" class="btn position-absolute search-clear-btn d-none"
+                aria-label="Limpiar búsqueda" tabindex="-1">
+                <i class="fa-solid fa-times"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="filters-section col-md-6">
+            <div class="row">
+              <div class="col filtro-col">
+              </div>
+              <div class="col filtro-col">
+              </div>
+            </div>
+            <div class="align-items-center d-flex gap-3">
+              <select id="filter-sector" multiple class="form-select">
+              </select>
+              <select id="filter-entidad" multiple class="form-select">
+              </select>
+              <button id="btn-quitar-filtro-registro" type="button"
+                class="btn btn-sm btn-outline-danger btn-icon d-none"
+                title="Limpiar filtros">
+                <i class="fa-solid fa-broom"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row my-3">
+        <div class="col-md-12 text-end">
+          <button id="btn-export-csv" class="btn btn-primary">Exportar CSV</button>
+        </div>
+      </div> -->
+
+      <!-- Contenedor principal de resultados -->
+      <div class="results-container row">
+        <!-- Lista de datos consultados -->
+        <div id="datos-consultados-section" class="col-md-3 data-section d-flex flex-column">
+          <div class="d-flex mb-3 align-items-center justify-content-between">
+            <h3 class="mb-0 fs-6 fw-bold text-secondary">Datos Consultados</h3>
+            <button id="btn-refresh" class="btn btn-sm" title="Refrescar datos">
+              <i class="fa-solid fa-sync-alt"></i>
+            </button>
+          </div>
+          <div class="card-body p-0">
+            <div id="lista-resultados" class="results-list">
+              <!-- Los resultados se cargarán dinámicamente aquí con GridJS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Detalle del dato seleccionado (inicialmente oculto) -->
+        <div id="detalle-dato-section" class="col-md-9 data-section d-none">
+          <div class="pb-3 d-flex justify-content-between align-items-center">
+            <h3 class="mb-0 fs-5 fw-bold text-secondary" id="detalle-titulo">Nombre del dato geográfico</h3>
+            <span class="text-muted" id="detalle-id-dato"></span>
+          </div>
+          <!-- Accordion de descripción -->
+          <div class="accordion mb-4" id="accordion-descripcion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button id="accordion-btn-descripcion" class="accordion-button py-2 text-secondary" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapse-descripcion" aria-expanded="true">
+                  Descripción del dato geográfico
+                </button>
+              </h2>
+              <div id="collapse-descripcion" class="accordion-collapse collapse show">
+                <div class="accordion-body" id="detalle-descripcion">
+                  <!-- Descripción se cargará aquí -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabla de información -->
+          <div class="table-responsive">
+            <table class="table">
+              <ul id="detalle-lista-info" class="list-unstyled">
+                <!-- Los elementos se generarán dinámicamente -->
+              </ul>
+            </table>
+          </div>
+
+          <!-- Sección de estándares geográficos -->
+          <div class="mt-4">
+            <div class="title">
+              <h3 class="mb-2 fs-6 fw-bold text-secondary">
+                Estándares geográficos
+                <button
+                  type="button"
+                  class="btn btn-sm p-0 ms-1"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title="Un estándar geográfico es un conjunto de reglas comunes que permite crear, compartir y usar información de forma compatible y confiable."
+                  aria-label="Información sobre estándares geográficos">
+                  <i class="fa-regular fa-circle-question text-secondary"></i>
+                </button>
+              </h3>
+            </div>
+            <p class="">Haz clic para ver los detalles de cada estándar disponible.</p>
+            <div class="table-responsive">
+              <table class="table standards-table">
+                <tbody>
+                  <tr>
+                    <td class="text-start">Registro de Items</td>
+                    <td><span id="standard-items" class="">-</span></td>
+                  </tr>
+                  <tr>
+                    <td class="text-start">Diccionario de Conceptos y Catálogo de Objetos</td>
+                    <td><span id="standard-catalogo" class="">-</span></td>
+                  </tr>
+                  <tr>
+                    <td class="text-start">Reporte de Calidad</td>
+                    <td><span id="standard-calidad" class="">-</span></td>
+                  </tr>
+                  <tr>
+                    <td class="text-start">Especificación Técnica</td>
+                    <td><span id="standard-especificacion" class="">-</span></td>
+                  </tr>
+                  <tr>
+                    <td class="text-start">Catálogo de Representación</td>
+                    <td><span id="standard-representacion" class="">-</span></td>
+                  </tr>
+                  <tr>
+                    <td class="text-start">Metadatos</td>
+                    <td><span id="standard-metadatos" class="">-</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <br>
+            <p class="mt-3"><i>Si eres miembro de Ideca y tienes permisos para gestionar estándares de los datos geográficos de tu entidad ingresa a las siguientes enlaces.</i></p>
+            <div class="row end-buttons g-3">
+              <div class="col-12 col-md-4">
+                <a
+                  href="https://catalogo.ideca.gov.co/hiee/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn bg-softgray w-100 h-100 rounded-4 fw-semibold text-secondary d-flex align-items-center justify-content-center"
+                  style="min-height: 50px;"
+                >
+                  Herramienta Integral de<br class="d-none d-lg-block">
+                  Estándares
+                </a>
+              </div>
+              <div class="col-12 col-md-4">
+                <a
+                  href="https://geoitems.ideca.gov.co/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn bg-softgray w-100 h-100 rounded-4 fw-semibold text-secondary d-flex align-items-center justify-content-center"
+                  style="min-height: 50px;"
+                >
+                  Sistema de Registro de Ítems Geográficos
+                </a>
+              </div>
+              <div class="col-12 col-md-4">
+                <a
+                  href="https://metadatos.ideca.gov.co/srv/spa/catalog.search#/home"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn bg-softgray w-100 h-100 rounded-4 fw-semibold text-secondary d-flex align-items-center justify-content-center"
+                  style="min-height: 50px;"
+                >
+                  Sistema de Gestión de Metadatos Geográficos
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer institucional (patrón diseñador footer) -->
+  <footer class="footer">
+    <div class="px-2 px-md-0">
+      <div class="container-fluid container-md border rounded-20 p-4 pt-5 pb-3 mb-3 bg-light">
+        <div class="row">
+          <div class="col-md-6">
+            <h2 class="h5 fw-bold">Unidad Administrativa Especial de Catastro Distrital</h2>
+            <p>Ideca: Infraestructura de Datos Espaciales para el Distrito Capital</p>
+            <address class="mb-2">
+              Dirección: Av. Carrera 30 No. 25 - 90, Torre B Piso 2 <br>
+              Código postal: 111311 <br>
+              Horario de atención: Lunes a Viernes de 8:00 am a 4:30 pm <br>
+              Teléfono conmutador: +57 601 234 7600<br>
+              Línea de servicio a la ciudadanía: +57 601 234 7600 - Ext. 7600 <br>
+              Línea Gratuita Nacional: 01 8000 9104887 <br>
+              Notificaciones judiciales:
+              <a href="mailto:notificaciones@catastrobogota.gov.co">notificaciones@catastrobogota.gov.co</a>
+            </address>
+          </div>
+          <div class="col-md-6 d-flex flex-wrap justify-content-md-end gap-4 mb-3 footer-logos mt-0">
+            <img src="images/logo-ideca.svg" alt="Logo Ideca" class="footer-logo">
+            <img src="images/logo-alcaldia.svg" alt="Logo Alcaldía Mayor de Bogotá" class="footer-logo">
+          </div>
+        </div>
+        <nav aria-label="Redes sociales" class="mb-3">
+          <ul class="list-inline footer-social">
+            <li class="list-inline-item">
+              <a href="https://www.instagram.com/catastrobogota_" target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="images/icons/instagram.svg" alt=""> @catastrobogota_
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.facebook.com/CatastroBogota/" target="_blank" rel="noopener noreferrer"
+                aria-label="Facebook Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="images/icons/facebook.svg" alt=""> @CatastroBogota
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://twitter.com/CatastroBogota" target="_blank" rel="noopener noreferrer"
+                aria-label="X (Twitter) Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="images/icons/twitter.svg" alt=""> @CatastroBogota
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.youtube.com/@catastrobogota3985" target="_blank" rel="noopener noreferrer"
+                aria-label="YouTube Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="images/icons/youtube.svg" alt=""> Catastro Bogotá
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <nav aria-label="Enlaces institucionales" class="mb-3">
+          <ul class="list-inline footer-links flex-wrap">
+            <li class="list-inline-item me-3"><a href="https://www.ideca.gov.co/sitemap" rel="noopener noreferrer">Mapa del sitio</a></li>
+            <li class="list-inline-item me-3"><a href="https://outlook.office.com/owa/" target="_blank" rel="noopener noreferrer">Correo institucional</a></li>
+            <li class="list-inline-item me-3"><a href="http://intranet.catastrobogota.gov.co/" target="_blank" rel="noopener noreferrer">Intranet</a></li>
+            <li class="list-inline-item me-3"><a href="https://mesadeservicio.catastrobogota.gov.co/CAisd/pdmweb.exe" target="_blank" rel="noopener noreferrer">Mesa de servicio</a></li>
+            <li class="list-inline-item me-3"><a href="https://www.catastrobogota.gov.co/declaracion-de-accesibilidad" target="_blank" rel="noopener noreferrer">Accesibilidad</a></li>
+            <li class="list-inline-item w-100"><a href="http://www.catastrobogota.gov.co/contacto/politicas-de-seguridad-privacidad-condiciones-de-uso-y-proteccion-de-datos-personales" target="_blank" rel="noopener noreferrer">Políticas de seguridad, privacidad, condiciones de uso y protección de datos personales</a></li>
+            <li class="list-inline-item"><a href="http://www.catastrobogota.gov.co/transparencia-y-acceso-a-la-informacion-publica" target="_blank" rel="noopener noreferrer">Transparencia y acceso a la información pública</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="container d-flex gap-2 justify-content-between align-items-center py-2">
+        <div class="d-flex gap-2 align-items-center">
+          <img src="https://cdn.www.gov.co/assets/images/logo.png" style="width: 112px;" alt="Logo GOV.CO" class="footer-bottom-logo">
+          <img src="images/logo-colombia.svg" style="width: 40px;" alt="Logo Colombia" class="footer-bottom-logo">
+        </div>
+        <p class="d-flex justify-content-md-end text-start text-white mb-0">
+          &copy; <span id="current-year" class="me-1"></span> Ideca. Todos los derechos reservados.
+        </p>
+        <script>
+          document.getElementById("current-year").textContent = new Date().getFullYear();
+        </script>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="modalLogin" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Botón de cerrar -->
+        <button type="button" class="btn p-0 position-absolute end-0 m-3" data-bs-dismiss="modal" aria-label="Cerrar">
+          <i class="fa-solid fa-xmark fs-3"></i>
+        </button>
+
+        <div class="d-flex py-4 justify-content-center flex-column align-items-center">
+          <div class="col-8">
+
+            <div id="loginContainer">
+              <h2 class="fw-bold text-center mb-4">Catálogo de Recursos Geográficos</h2>
+              <h5 class="text-muted mb-3">
+                Unidad Administrativa Especial de <br> Catastro Distrital
+              </h5>
+
+              <div id="aviso-verificacion" class="alert alert-warning oculto" role="alert">
+                <p id="texto-aviso-verificacion" class="mb-3"></p>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                  <button type="button" id="btn-reenviar-verificacion" class="btn btn-sm btn-verificacion-secundario">
+                    Reenviar correo
+                  </button>
+                  <button type="button" id="btn-ya-valide" class="btn btn-sm btn-verificacion-principal">
+                    Ya validé mi correo
+                  </button>
+                </div>
+              </div>
+              <div id="firebaseui-auth-container"></div>
+
+              <div class="terminos-login">
+                <p class="small text-muted mb-0">
+                  Con el inicio de sesión acepto términos y condiciones...
+                  <a href="https://www.catastrobogota.gov.co/contacto/politicas-de-seguridad-privacidad-condiciones-de-uso-y-proteccion-de-datos-personales"
+                    target="_blank">Ver más.</a>
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Tom-Select JS -->
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.5.1/dist/js/tom-select.complete.min.js"></script>
+  <!-- GridJS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth__es_419.js"></script>
+  <script src="js/app-202610041725.min.js"></script>
+</body>
+
+</html>

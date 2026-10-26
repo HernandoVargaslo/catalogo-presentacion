@@ -1,0 +1,372 @@
+<div id="rc_div_formcontainer_[ID_REGISTRO]" name="rc_div_formcontainer_[ID_REGISTRO]" class="reportecalidad-container">
+  <!-- Inputs hidden para mantener referencias -->
+  <input type="hidden" id="rc_input_hieeSrigId_[ID_REGISTRO]" name="rc_input_hieeSrigId_[ID_REGISTRO]"
+    class="hiee-srig-id" value="[SRIG_ID]">
+  <input type="hidden" id="rc_input_hieeIdRegistro_[ID_REGISTRO]" name="rc_input_hieeIdRegistro_[ID_REGISTRO]"
+    class="hiee-id-registro" value="[ID_REGISTRO]">
+
+  <!-- Campo IDENTIFICADOR_PADRE para registros hijo -->
+  <input type="hidden" id="rc_input_identificadorPadre_[ID_REGISTRO]" name="IDENTIFICADOR_PADRE">
+
+  <div class="hiee-contenedor-botones-rc">
+    <!-- Botones Reporte de Calidad -->
+    <div class="form-buttons reportecalidad-buttons">
+      <div class="tools gap-2 align-items-center">
+        <span class="span-validacion" id="rc_span_validacionCaptura_[ID_REGISTRO]"
+          data-id-registro="[ID_REGISTRO]"></span>
+        <span class="span-validacion" id="rc_span_validacionPersistencia_[ID_REGISTRO]"
+          data-id-registro="[ID_REGISTRO]"></span>
+        <!-- Switch Vista Previa / Editar -->
+        <div class="edit-mode-switch-container d-flex align-items-center">
+          <div class="form-check form-switch">
+            <input class="form-check-input edit-mode-switch" type="checkbox" id="rc_input_switchEditar_[ID_REGISTRO]"
+              data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]" data-no-preview="true">
+          </div>
+          <label class="switch-label ms-2" id="rc_lbl_editar_[ID_REGISTRO]">Entrar en edición</label>
+        </div>
+        <button type="button" id="rc_btn_publicar_[ID_REGISTRO]" data-srig-id="[SRIG_ID]"
+          data-id-registro="[ID_REGISTRO]" class="btn btn-success rounded-pill btn-lg oculto">
+          <i class="fa-solid fa-upload"></i> Publicar
+        </button>
+        <button type="button" id="rc_btn_guardar_[ID_REGISTRO]" data-srig-id="[SRIG_ID]"
+          data-id-registro="[ID_REGISTRO]" class="btn btn-lg edit-mode-button rounded-pill oculto">
+          <i class="fa-solid fa-save"></i> Guardar
+        </button>
+        <button type="button" id="rc_btn_pdf_[ID_REGISTRO]" data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]"
+          class="btn btn-secondary rounded-pill btn-lg">
+          <i class="fa-solid fa-file"></i> PDF
+        </button>
+        <button type="button" id="rc_btn_resetearFormulario_[ID_REGISTRO]" data-srig-id="[SRIG_ID]"
+          data-id-registro="[ID_REGISTRO]" class="btn btn-sm btn-outline-danger edit-mode-button oculto"
+          title="Limpiar formulario">
+          <i class="fa-solid fa-broom"></i>
+        </button>
+        <button type="button" data-test="btn-colapsar-formularios-rc-[ID_REGISTRO]" class="btn btn-sm"
+          title="Colapsar formularios">
+          <div class="collapseall">
+            <img src="./assets/icons/collapseall.svg" alt="">
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Acordeones para todos los elementos -->
+  <div class="contenedor-acordeones">
+    <div class="accordion" id="rc_acordeon_[ID_REGISTRO]">
+
+      <!-- Acordeón Información Básica -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button py-2 bg-softgray" data-test="btn-acordeon-infobasica-[ID_REGISTRO]" type="button"
+            data-bs-toggle="collapse" data-bs-target="#rc_acordeon_informacionBasica_[ID_REGISTRO]">
+            Información básica del Reporte de Calidad
+          </button>
+        </h2>
+        <div id="rc_acordeon_informacionBasica_[ID_REGISTRO]" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            <!-- Campos readOnly como etiquetas con inputs hidden -->
+            <div class="row mb-3">
+              <!-- Campo ID oculto pero mantiene input hidden para funcionalidad -->
+              <input type="hidden" id="rc_input_id_[ID_REGISTRO]" name="ID">
+
+              <div class="col-md-6">
+                <label class="form-label">Nombre del objeto</label>
+                <span id="rc_nombre_[ID_REGISTRO]" class="form-control-plaintext">-</span>
+              </div>
+              <div class="col-md-6 d-none">
+                <label class="form-label">Código identificador del objeto</label>
+                <span id="rc_identificadorRecursoUniforme_[ID_REGISTRO]" class="form-control-plaintext">-</span>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="rc_fechaDatosEvaluar_[ID_REGISTRO]" class="form-label">Fecha de los datos evaluados <span
+                    class="text-danger">*</span></label>
+                <span class="form-control-plaintext fecha-display"
+                  id="rc_fechaDatosEvaluar_display_[ID_REGISTRO]">—</span>
+                <input type="date" class="form-control fecha-display-input d-none" autocomplete="off"
+                  id="rc_fechaDatosEvaluar_[ID_REGISTRO]" name="fechaDatosEvaluar" title="Fecha de los datos evaluados"
+                  required>
+              </div>
+              <div class="col-md-4">
+                <label for="rc_numeroRegistrosObjeto_[ID_REGISTRO]" class="form-label">Número de registros en el objeto
+                  <span class="text-danger">*</span></label>
+                <input type="text" class="form-control solo-entero" autocomplete="off"
+                  id="rc_numeroRegistrosObjeto_[ID_REGISTRO]" name="numeroRegistrosObjeto"
+                  title="Número de registros en el objeto geográfico" pattern="[0-9]*" inputmode="numeric" required>
+              </div>
+              <div class="col-md-4">
+                <label for="rc_version_[ID_REGISTRO]" class="form-label">Versión del documento
+                  <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" autocomplete="off" id="rc_version_[ID_REGISTRO]"
+                  name="version" title="Versión del documento" required>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Acordeón Factores de Calidad -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button py-2 bg-softgray collapsed" data-test="btn-acordeon-factores-[ID_REGISTRO]" type="button"
+            data-bs-toggle="collapse" data-bs-target="#rc_acordeon_seccionFactoresCalidad_[ID_REGISTRO]">
+            Factores de calidad
+            <span class="badge bg-secondary ms-2" id="rc_badge_factoresCalidad_[ID_REGISTRO]">0</span>
+          </button>
+        </h2>
+        <div id="rc_acordeon_seccionFactoresCalidad_[ID_REGISTRO]" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            <!-- Template de factor de calidad para generar dinámicamente -->
+            <template id="template-factorCalidad">
+              <div class="accordion-item" data-index="">
+                <h2 class="accordion-header d-flex">
+                  <button class="accordion-button py-2 bg-softgray collapsed flex-grow-1" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#rc_acordeon_factorCalidad_[ID_REGISTRO]">
+                    <span class="me-2">
+                      <i class="fa-solid fa-chart-bar me-1"></i>Factor de calidad #<span class="item-number"></span>
+                    </span>
+                    <span class="badge bg-warning ms-2 factor-calidad-alcance-badge">Sin alcance</span>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-danger ms-2 my-1 me-1 edit-mode-element"
+                    data-form="rc" data-srig="[SRIG_ID]" data-test="btn-eliminar-factor-[ID_REGISTRO]"
+                    title="Eliminar factor de calidad">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </h2>
+                <div id="rc_acordeon_factorCalidad_[ID_REGISTRO]" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+
+                    <div class="row mb-3">
+                      <div class="col-md-5">
+                        <label class="form-label">Alcance del factor de calidad (seleccione uno del listado dando clic
+                          en él)<span class="text-danger">*</span></label>
+                        <select size="1" class="form-select" id="rc_factoresCalidad_alcanceFactorCalidad_[ID_REGISTRO]"
+                          name="factoresCalidad[][alcanceFactorCalidad]" title="Alcance del factor de calidad" required>
+                        </select>
+                      </div>
+                      <div class="col-md-5 atributo-field d-none">
+                        <label class="form-label">Atributo <span class="text-danger atributo-required">*</span></label>
+                        <div class="single-attribute-picker" data-test="single-attribute-picker-rc-[ID_REGISTRO]_"
+                          data-field="factoresCalidad[][atributo]">
+                          <select class="attribute-select edit-mode-element"
+                            data-test="input-buscar-atributos-single-rc-[ID_REGISTRO]_"
+                            placeholder="Seleccionar atributo..."></select>
+                          <div class="attribute-preview preview-mode-element text-muted fst-italic">—</div>
+                          <input type="hidden" id="rc_factoresCalidad_atributo_[ID_REGISTRO]"
+                            name="factoresCalidad[][atributo]">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label class="form-label">Elemento <span class="text-danger">*</span></label>
+                        <select class="form-select" id="rc_select_elemento_[ID_REGISTRO]"
+                          name="factoresCalidad[][elemento]" title="Elemento" required>
+                          <option value="">Seleccione...</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Subelemento <span class="text-danger">*</span></label>
+                        <select class="form-select" id="rc_select_subelemento_[ID_REGISTRO]"
+                          name="factoresCalidad[][subelemento]" title="Subelemento" required>
+                          <option value="">Seleccione...</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <div class="col-md-12">
+                        <label class="form-label">Prueba a realizar <span class="text-danger">*</span></label>
+                        <select class="form-select" id="rc_factoresCalidad_catalogoMedida_[ID_REGISTRO]"
+                          name="factoresCalidad[][catalogoMedida]" title="Medida" required>
+                          <option value="">Seleccione...</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Método de evaluación -->
+                    <div class="border rounded p-3 mb-3 bg-light">
+                      <h6 class="mb-3"><i class="fa-solid fa-microscope me-1"></i>Método de evaluación</h6>
+
+                      <div class="row mb-3">
+                        <div class="col-md-7">
+                          <label class="form-label">Descripción del método <span class="text-danger">*</span></label>
+                          <textarea class="form-control"
+                            id="rc_factoresCalidad_metodoEvaluacion_descripcion_[ID_REGISTRO]"
+                            name="factoresCalidad[][metodoEvaluacion][descripcion]" rows="2"
+                            title="Descripción del método" maxlength="900" required></textarea>
+                        </div>
+                        <div class="col-md-3">
+                          <label class="form-label">Tipo método de evaluación <span class="text-danger">*</span></label>
+                          <select class="form-select"
+                            id="rc_factoresCalidad_metodoEvaluacion_tipoMetodoEvaluacion_[ID_REGISTRO]"
+                            name="factoresCalidad[][metodoEvaluacion][tipoMetodoEvaluacion]"
+                            title="Tipo método de evaluación" required>
+                            <option value="">Seleccione...</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-md-6">
+                          <label class="form-label">Citación del procedimiento de evaluación<span
+                              class="edit-mode-element d-none text-success"> (En la pestaña Citaciones, puede crear nuevas referencias)</span></label>
+                          <div class="citation-picker"
+                            data-field="factoresCalidad[][metodoEvaluacion][procedimientosMetodo]"
+                            data-base-name="factoresCalidad[][metodoEvaluacion][procedimientosMetodo]">
+                            <div class="citation-search-container position-relative edit-mode-element">
+                              <input type="text" class="form-control citation-search" autocomplete="off"
+                                data-test="input-buscar-citaciones-rc-procedimiento-[ID_REGISTRO]"
+                                placeholder="Buscar y seleccionar citaciones...">
+                              <div class="citation-dropdown"></div>
+                            </div>
+                            <div class="mt-2">
+                              <span class="citation-count">0 citaciones seleccionadas</span>
+                            </div>
+                            <div class="selected-citations mt-2"></div>
+                            <div class="citation-inputs"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label">Tipo de inspección <span class="text-danger">*</span></label>
+                          <select class="form-select tipo-inspeccion"
+                            id="rc_factoresCalidad_metodoEvaluacion_tipoInspeccion_[ID_REGISTRO]"
+                            name="factoresCalidad[][metodoEvaluacion][tipoInspeccion]" title="Tipo de inspección"
+                            required>
+                            <option value="">Seleccione...</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Campos condicionales según tipo de inspección -->
+
+                      <!-- Campo para inspección muestreo: Descripción del subconjunto -->
+                      <div class="row mb-3 inspeccion-muestreo-field">
+                        <div class="col-md-12">
+                          <label class="form-label">Descripción del subconjunto</label>
+                          <textarea class="form-control"
+                            id="rc_factoresCalidad_metodoEvaluacion_descripcionSubconjunto_[ID_REGISTRO]"
+                            name="factoresCalidad[][metodoEvaluacion][descripcionSubconjunto]" rows="2"
+                            title="Descripción del subconjunto" maxlength="850"></textarea>
+                        </div>
+                      </div>
+
+                      <!-- Campos específicos para Inspección muestreo: Esquema y Radio -->
+                      <div class="row mb-3 inspeccion-muestreo-field">
+                        <div class="col-md-12">
+                          <label class="form-label">Esquema de muestreo</label>
+                          <input type="text" class="form-control" autocomplete="off"
+                            id="rc_factoresCalidad_metodoEvaluacion_esquemaMuestreo_[ID_REGISTRO]"
+                            name="factoresCalidad[][metodoEvaluacion][esquemaMuestreo]" title="Esquema de muestreo"
+                            maxlength="850">
+                        </div>
+                        <div class="col-md-12 margin-top-10">
+                          <label class="form-label">Radio de muestreo: <output
+                              id="rc_factoresCalidad_metodoEvaluacion_radioMuestreo_output_[ID_REGISTRO]">0%</output></label>
+                          <input type="range" class="form-range edit-mode-element" min="0" max="100" step="1" value="0"
+                            id="rc_factoresCalidad_metodoEvaluacion_radioMuestreo_[ID_REGISTRO]"
+                            name="factoresCalidad[][metodoEvaluacion][radioMuestreo]" title="Radio de muestreo"
+                            oninput="this.previousElementSibling.querySelector('output').textContent = this.value + '%'; this.style.setProperty('--range-pct', this.value + '%')">
+                        </div>
+                      </div>
+
+                      <!-- Fuente deductiva: SIEMPRE visible (no depende de tipo de inspección) -->
+                      <div class="row mb-3">
+                        <div class="col-md-12">
+                          <label class="form-label">Fuente deductiva</label>
+                          <input type="text" class="form-control" autocomplete="off"
+                            id="rc_factoresCalidad_metodoEvaluacion_fuenteDeductiva_[ID_REGISTRO]"
+                            name="factoresCalidad[][metodoEvaluacion][fuenteDeductiva]" title="Fuente deductiva"
+                            maxlength="500">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Resultado de calidad -->
+                    <div class="border rounded p-3 mb-3 bg-opacity-10">
+                      <h6 class="mb-3"><i class="fa-solid fa-chart-line me-1"></i>Resultado de calidad</h6>
+
+                      <div class="row mb-3">
+                        <div class="col-md-5">
+                          <label class="form-label">Número de errores <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control solo-entero" autocomplete="off"
+                            id="rc_factoresCalidad_resultadoCalidad_numeroErrores_[ID_REGISTRO]"
+                            name="factoresCalidad[][resultadoCalidad][numeroErrores]" title="Número de errores"
+                            pattern="[0-9]*" inputmode="numeric" required>
+                        </div>
+                        <div class="col-md-5">
+                          <label class="form-label fw-bold"
+                            for="rc_factoresCalidad_resultadoCalidad_esConforme_[ID_REGISTRO]">
+                            Es conforme <span class="text-danger">*</span>
+                          </label>
+                          <div class="form-check form-switch edit-mode-element">
+                            <input class="form-check-input" type="checkbox"
+                              id="rc_factoresCalidad_resultadoCalidad_esConforme_[ID_REGISTRO]"
+                              name="factoresCalidad[][resultadoCalidad][esConforme]" value="true" role="switch">
+                          </div>
+                          <span id="rc_factoresCalidad_resultadoCalidad_esConforme_display_[ID_REGISTRO]"
+                            class="form-control-plaintext preview-mode-element">—</span>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-md-7">
+                          <label class="form-label">Explicación de conformidad<span class="text-danger">*</span></label>
+                          <textarea class="form-control"
+                            id="rc_factoresCalidad_resultadoCalidad_explicacionConformidad_[ID_REGISTRO]"
+                            name="factoresCalidad[][resultadoCalidad][explicacionConformidad]" rows="2"
+                            title="Explicación de conformidad" maxlength="900" required></textarea>
+                        </div>
+                        <div class="col-md-5">
+                          <label class="form-label">Nivel de conformidad <span class="text-danger">*</span></label>
+                          <textarea type="text" class="form-control"
+                            id="rc_factoresCalidad_resultadoCalidad_nivelConformidad_[ID_REGISTRO]"
+                            name="factoresCalidad[][resultadoCalidad][nivelConformidad]" rows="2"
+                            title="Nivel de conformidad" maxlength="850" required></textarea>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-md-4">
+                          <label class="form-label">Valor obtenido</label>
+                          <input type="text" class="form-control" autocomplete="off"
+                            id="rc_factoresCalidad_resultadoCalidad_valor_[ID_REGISTRO]"
+                            name="factoresCalidad[][resultadoCalidad][valor]" title="Valor obtenido">
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">Unidad de valor</label>
+                          <input type="text" class="form-control" autocomplete="off"
+                            id="rc_factoresCalidad_resultadoCalidad_unidadValor_[ID_REGISTRO]"
+                            name="factoresCalidad[][resultadoCalidad][unidadValor]" title="Unidad de valor">
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">Declaración</label>
+                          <textarea class="form-control"
+                            id="rc_factoresCalidad_resultadoCalidad_declaracion_[ID_REGISTRO]"
+                            name="factoresCalidad[][resultadoCalidad][declaracion]" rows="2" title="Declaración"
+                            maxlength="900"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </template>
+            <div id="rc_factoresCalidad_[ID_REGISTRO]" class="accordion items-container"></div>
+            <div class="mt-3 text-center">
+              <button type="button" class="btn btn-sm btn-success rounded-pill edit-mode-button" data-form="rc" data-srig="[SRIG_ID]"
+                data-test="btn-agregar-factor-[ID_REGISTRO]">
+                <i class="fa-solid fa-plus"></i> Agregar factor de calidad
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

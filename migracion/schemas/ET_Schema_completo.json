@@ -1,0 +1,3231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "EspecificacionTecnica",
+  "description": "Especificación Técnica",
+  "version": "1.0.0",  
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "ID",
+      "description": "Id del Objeto",
+      "readOnly": true
+    },
+    "identificadorRecursoUniforme": {
+      "type": "string",
+      "title": "Identificador del objeto",
+      "description": "Identificador del objeto",
+      "format": "uri",
+      "maxLength": 2083,
+      "readOnly": true
+    },
+    "nivelAlcance": {
+      "type": "string",
+      "title": "Alcance de la Especificación Técnica",
+      "description": "Alcance de la Especificación Técnica",
+      "default": "objeto",
+      "readOnly": true
+    },
+    "nombre": {
+      "type": "string",
+      "title": "Nombre del Objeto",
+      "description": "Nombre del Objeto",
+      "readOnly": true
+    },
+    "nombreAlternativo": {
+      "type": "string",
+      "title": "Nombre Alternativo",
+      "description": "Nombre Alternativo",
+      "readOnly": true
+    },
+    "nombreEspecificacion": {
+      "type": "string",
+      "title": "Nombre de la especificación",
+      "description": "Nombre de la especificación"
+    },
+    "version": {
+      "type": ["string", "null"],
+      "title": "Versión Especificación",
+      "description": "Versión Especificación"
+    },
+    "fechaVersionET": {
+      "type": "string",
+      "title": "Fecha de Versión",
+      "description": "Fecha de Versión",
+      "format": "date"
+    },
+    "autor": {
+      "type": "string",
+      "title": "Autor",
+      "description": "Autor"
+    },
+    "controlcambio": {
+      "type": ["string", "null"],
+      "title": "Cambio efectuado",
+      "description": "Cambio efectuado"
+    },
+    "entidad": {
+      "type": "string",
+      "title": "Entidad",
+      "description": "Entidad",
+      "readOnly": true
+    },
+    "dependencia": {
+      "type": "string",
+      "title": "Dependecia",
+      "description": "Dependecia"
+    },
+    "direccion": {
+      "type": "string",
+      "title": "Dirección",
+      "description": "Dirección",
+      "readOnly": true
+    },
+    "email": {
+      "type": ["string", "null"],
+      "title": "Correo electrónico",
+      "description": "Correo electrónico",
+      "format": "email",
+      "readOnly": true
+    },
+    "telefono": {
+      "type": ["string", "null"],
+      "title": "Teléfonos de Contacto",
+      "description": "Teléfonos de Contacto",
+      "readOnly": true
+    },
+    "idioma": {
+      "type": "string",
+      "title": "Idioma",
+      "description": "Idioma",
+      "$ref": "#/$defs/etIdioma"
+    },
+    "restriccionUso": {
+      "type": "string",
+      "title": "Restricción de Uso",
+      "description": "Restricción de Uso",
+      "$ref": "#/$defs/etRestriccionUso"
+    },
+    "terminosDefiniciones": {
+      "type": "array",
+      "title": "Términos y definiciones",
+      "description": "Términos y definiciones",
+      "items": {
+        "$ref": "#/$defs/etTerminosDefiniciones"
+      }
+    },
+    "abreviaturas": {
+      "type": "array",
+      "title": "Abreviaturas",
+      "description": "Abreviaturas",
+      "items": {
+        "$ref": "#/$defs/etAbreviaturas"
+      }
+    },
+    "vision": {
+      "type": "string",
+      "title": "Descripción Informal / Visión general de la Especificación Técnica",
+      "description": "Descripción Informal / Visión general de la Especificación Técnica"
+    },
+    "identificacion": {
+      "type": "object",
+      "title": "Identificación",
+      "description": "Identificación",
+      "$ref": "#/$defs/etIdentificacion"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "etFrecMantenimiento": {
+      "oneOf": [
+        {
+          "const": "anual",
+          "title": "anual"
+        },
+        {
+          "const": "bianual",
+          "title": "bianual"
+        },
+        {
+          "const": "continua",
+          "title": "continua"
+        },
+        {
+          "const": "desconocida",
+          "title": "desconocida"
+        },
+        {
+          "const": "diaria",
+          "title": "diaria"
+        },
+        {
+          "const": "irregular",
+          "title": "irregular"
+        },
+        {
+          "const": "mensual",
+          "title": "mensual"
+        },
+        {
+          "const": "no planteada",
+          "title": "no planteada"
+        },
+        {
+          "const": "periódica",
+          "title": "periódica"
+        },
+        {
+          "const": "quincenal",
+          "title": "quincenal"
+        },
+        {
+          "const": "según necesidad",
+          "title": "según necesidad"
+        },
+        {
+          "const": "semanal",
+          "title": "semanal"
+        },
+        {
+          "const": "semestral",
+          "title": "semestral"
+        },
+        {
+          "const": "semimensual",
+          "title": "semimensual"
+        },
+        {
+          "const": "trimestral",
+          "title": "trimestral"
+        }
+      ]
+    },
+    "etLicenciaUso": {
+      "oneOf": [
+        {
+          "const": "attribution",
+          "title": "attribution"
+        },
+        {
+          "const": "cc0",
+          "title": "cc0"
+        },
+        {
+          "const": "ccby 4.0",
+          "title": "ccby 4.0"
+        },
+        {
+          "const": "ccby_nc 4.0",
+          "title": "ccby_nc 4.0"
+        },
+        {
+          "const": "ccby_nc_nd 4.0",
+          "title": "ccby_nc_nd 4.0"
+        },
+        {
+          "const": "ccby_nc_sa 4.0",
+          "title": "ccby_nc_sa 4.0"
+        },
+        {
+          "const": "ccby_nd 4.0",
+          "title": "ccby_nd 4.0"
+        },
+        {
+          "const": "ccby_sa 4.0",
+          "title": "ccby_sa 4.0"
+        },
+        {
+          "const": "confidencial",
+          "title": "confidencial"
+        },
+        {
+          "const": "copyright",
+          "title": "copyright"
+        },
+        {
+          "const": "derechos Propiedad Intelectual",
+          "title": "derechos Propiedad Intelectual"
+        },
+        {
+          "const": "distribuidor Licencias",
+          "title": "distribuidor Licencias"
+        },
+        {
+          "const": "estatutario",
+          "title": "estatutario"
+        },
+        {
+          "const": "gnu_free",
+          "title": "gnu_free"
+        },
+        {
+          "const": "irrestricto",
+          "title": "irrestricto"
+        },
+        {
+          "const": "licencia",
+          "title": "licencia"
+        },
+        {
+          "const": "licencia Sin Restricciones",
+          "title": "licencia Sin Restricciones"
+        },
+        {
+          "const": "marca Comercial",
+          "title": "marcaComercial"
+        },
+        {
+          "const": "nonCommercial",
+          "title": "nonCommercial"
+        },
+        {
+          "const": "notOpen",
+          "title": "notOpen"
+        },
+        {
+          "const": "odc_odl",
+          "title": "odc_odl"
+        },
+        {
+          "const": "odc_pddl",
+          "title": "odc_pddl"
+        },
+        {
+          "const": "odcby",
+          "title": "odcby"
+        },
+        {
+          "const": "ogl",
+          "title": "ogl"
+        },
+        {
+          "const": "open",
+          "title": "open"
+        },
+        {
+          "const": "otras Restricciones",
+          "title": "otras Restricciones"
+        },
+        {
+          "const": "patente",
+          "title": "patente"
+        },
+        {
+          "const": "patente Pendiente",
+          "title": "patente Pendiente"
+        },
+        {
+          "const": "privado",
+          "title": "privado"
+        },
+        {
+          "const": "publicDomain",
+          "title": "publicDomain"
+        },
+        {
+          "const": "restringido",
+          "title": "restringido"
+        },
+        {
+          "const": "sensible Sin Clasificar",
+          "title": "sensible Sin Clasificar"
+        },
+        {
+          "const": "usuario Final Licencia",
+          "title": "usuario Final Licencia"
+        }
+      ]
+    },
+    "etRestriccionUso": {
+      "oneOf": [
+        {
+          "const": "confidencial",
+          "title": "confidencial"
+        },
+        {
+          "const": "distribución Limitada",
+          "title": "distribución Limitada"
+        },
+        {
+          "const": "máximo Secreto",
+          "title": "maximo Secreto"
+        },
+        {
+          "const": "no Clasificado",
+          "title": "no Clasificado"
+        },
+        {
+          "const": "protegido",
+          "title": "protegido"
+        },
+        {
+          "const": "restringido",
+          "title": "restringido"
+        },
+        {
+          "const": "secreto",
+          "title": "secreto"
+        },
+        {
+          "const": "sensible Sin Clasificar",
+          "title": "sensible Sin Clasificar"
+        },
+        {
+          "const": "uso Oficial",
+          "title": "uso Oficial"
+        }
+      ]
+    },
+    "etSistemaReferenciaEspacial": {
+      "oneOf": [
+        {
+          "const": "epsg21818",
+          "title": "Bogotá 1975 / UTM zone 18N -21818"
+        },
+        {
+          "const": "epsg21896",
+          "title": "Bogotá 1975 / Colombia West zone -21896"
+        },
+        {
+          "const": "epsg21897",
+          "title": "Bogotá 1975 / Colombia Bogotá zone-21897"
+        },
+        {
+          "const": "epsg21898",
+          "title": "Bogotá 1975 / Colombia East Central zone -21898"
+        },
+        {
+          "const": "epsg21899",
+          "title": "Bogotá 1975 / Colombia East-21899"
+        },
+        {
+          "const": "epsg3114",
+          "title": "MAGNA-SIRGAS / Colombia Far West zone -3114"
+        },
+        {
+          "const": "epsg3115",
+          "title": "MAGNA-SIRGAS / Colombia West zone-3115"
+        },
+        {
+          "const": "epsg3116",
+          "title": "MAGNA-SIRGAS / Colombia Bogotá zone -3116"
+        },
+        {
+          "const": "epsg3117",
+          "title": "MAGNA-SIRGAS / Colombia East Central zone -3117"
+        },
+        {
+          "const": "epsg3118",
+          "title": "MAGNA-SIRGAS / Colombia East zone-3118"
+        },
+        {
+          "const": "epsg32617",
+          "title": "WGS 84 / UTM zone 17N -32617"
+        },
+        {
+          "const": "epsg32618",
+          "title": "WGS 84 / UTM zone 18N -32618"
+        },
+        {
+          "const": "epsg32619",
+          "title": "WGS 84 / UTM zone 19N-32619"
+        },
+        {
+          "const": "epsg32718",
+          "title": "WGS 84 / UTM zone 18S -32718"
+        },
+        {
+          "const": "epsg32719",
+          "title": "WGS 84 / UTM zone 19S -32719"
+        },
+        {
+          "const": "epsg4326",
+          "title": "WGS 84 (geographic 2D)-4326"
+        },
+        {
+          "const": "epsg4674",
+          "title": "SIRGAS 2000 (geographic 2D)-4674"
+        },
+        {
+          "const": "epsg4686",
+          "title": "MAGNA-SIRGAS (geographic 2D)-4686"
+        },
+        {
+          "const": "epsg4988",
+          "title": "SIRGAS 2000 (geocentric)-4988"
+        },
+        {
+          "const": "epsg4989",
+          "title": "SIRGAS 2000 (geographic 3D)-4989"
+        },
+        {
+          "const": "epsg4996",
+          "title": "MAGNA-SIRGAS (geocentric)-4996"
+        },
+        {
+          "const": "epsg4997",
+          "title": "MAGNA-SIRGAS (geographic 3D)-4997"
+        }
+      ]
+    },
+    "etSistemaReferenciaTemporal": {
+      "oneOf": [
+        {
+          "const": "Gregoriano",
+          "title": "Gregoriano"
+        },
+        {
+          "const": "Otro",
+          "title": "Otro"
+        }
+      ]
+    },
+    "meRepresentacionEspacial": {
+      "oneOf": [
+        {
+          "const": "modelo Estereoscópico",
+          "title": "modelo Estereoscópico"
+        },
+        {
+          "const": "raster",
+          "title": "raster"
+        },
+        {
+          "const": "tabla Texto",
+          "title": "tabla Texto"
+        },
+        {
+          "const": "tin",
+          "title": "tin"
+        },
+        {
+          "const": "vector",
+          "title": "vector"
+        },
+        {
+          "const": "video",
+          "title": "video"
+        }
+      ]
+    },
+    "etIdioma": {
+      "oneOf": [
+        {
+          "const": "Spanish - spa",
+          "title": "Spanish - spa"
+        },
+        {
+          "const": "English - eng",
+          "title": "English - eng"
+        },
+        {
+          "const": "French - fre/fra",
+          "title": "French - fre/fra"
+        },
+        {
+          "const": "German - ger/deu",
+          "title": "German - ger/deu"
+        },
+        {
+          "const": "Portuguese - por",
+          "title": "Portuguese - por"
+        },
+        {
+          "const": "Abkhazian - abk",
+          "title": "Abkhazian - abk"
+        },
+        {
+          "const": "Achinese - ace",
+          "title": "Achinese - ace"
+        },
+        {
+          "const": "Acoli - ach",
+          "title": "Acoli - ach"
+        },
+        {
+          "const": "Adangme - ada",
+          "title": "Adangme - ada"
+        },
+        {
+          "const": "Adygei - ady",
+          "title": "Adygei - ady"
+        },
+        {
+          "const": "Adyghe - ady",
+          "title": "Adyghe - ady"
+        },
+        {
+          "const": "Afar - aar",
+          "title": "Afar - aar"
+        },
+        {
+          "const": "Afrihili - afh",
+          "title": "Afrihili - afh"
+        },
+        {
+          "const": "Afrikaans - afr",
+          "title": "Afrikaans - afr"
+        },
+        {
+          "const": "Afro-Asiatic languages - afa",
+          "title": "Afro-Asiatic languages - afa"
+        },
+        {
+          "const": "Ainu - ain",
+          "title": "Ainu - ain"
+        },
+        {
+          "const": "Akan - aka",
+          "title": "Akan - aka"
+        },
+        {
+          "const": "Akkadian - akk",
+          "title": "Akkadian - akk"
+        },
+        {
+          "const": "Albanian - alb/sqi",
+          "title": "Albanian - alb/sqi"
+        },
+        {
+          "const": "Alemannic - gsw",
+          "title": "Alemannic - gsw"
+        },
+        {
+          "const": "Aleut - ale",
+          "title": "Aleut - ale"
+        },
+        {
+          "const": "Algonquian languages - alg",
+          "title": "Algonquian languages - alg"
+        },
+        {
+          "const": "Alsatian - gsw",
+          "title": "Alsatian - gsw"
+        },
+        {
+          "const": "Altaic languages - tut",
+          "title": "Altaic languages - tut"
+        },
+        {
+          "const": "Amharic - amh",
+          "title": "Amharic - amh"
+        },
+        {
+          "const": "Angika - anp",
+          "title": "Angika - anp"
+        },
+        {
+          "const": "Apache languages - apa",
+          "title": "Apache languages - apa"
+        },
+        {
+          "const": "Arabic - ara",
+          "title": "Arabic - ara"
+        },
+        {
+          "const": "Aragonese - arg",
+          "title": "Aragonese - arg"
+        },
+        {
+          "const": "Arapaho - arp",
+          "title": "Arapaho - arp"
+        },
+        {
+          "const": "Arawak - arw",
+          "title": "Arawak - arw"
+        },
+        {
+          "const": "Armenian - arm/hye",
+          "title": "Armenian - arm/hye"
+        },
+        {
+          "const": "Aromanian - rup",
+          "title": "Aromanian - rup"
+        },
+        {
+          "const": "Artificial languages - art",
+          "title": "Artificial languages - art"
+        },
+        {
+          "const": "Arumanian - rup",
+          "title": "Arumanian - rup"
+        },
+        {
+          "const": "Assamese - asm",
+          "title": "Assamese - asm"
+        },
+        {
+          "const": "Asturian - ast",
+          "title": "Asturian - ast"
+        },
+        {
+          "const": "Asturleonese - ast",
+          "title": "Asturleonese - ast"
+        },
+        {
+          "const": "Athapascan languages - ath",
+          "title": "Athapascan languages - ath"
+        },
+        {
+          "const": "Australian languages - aus",
+          "title": "Australian languages - aus"
+        },
+        {
+          "const": "Austronesian languages - map",
+          "title": "Austronesian languages - map"
+        },
+        {
+          "const": "Avaric - ava",
+          "title": "Avaric - ava"
+        },
+        {
+          "const": "Avestan - ave",
+          "title": "Avestan - ave"
+        },
+        {
+          "const": "Awadhi - awa",
+          "title": "Awadhi - awa"
+        },
+        {
+          "const": "Aymara - aym",
+          "title": "Aymara - aym"
+        },
+        {
+          "const": "Azerbaijani - aze",
+          "title": "Azerbaijani - aze"
+        },
+        {
+          "const": "Bable - ast",
+          "title": "Bable - ast"
+        },
+        {
+          "const": "Balinese - ban",
+          "title": "Balinese - ban"
+        },
+        {
+          "const": "Baltic languages - bat",
+          "title": "Baltic languages - bat"
+        },
+        {
+          "const": "Baluchi - bal",
+          "title": "Baluchi - bal"
+        },
+        {
+          "const": "Bambara - bam",
+          "title": "Bambara - bam"
+        },
+        {
+          "const": "Bamileke languages - bai",
+          "title": "Bamileke languages - bai"
+        },
+        {
+          "const": "Banda languages - bad",
+          "title": "Banda languages - bad"
+        },
+        {
+          "const": "Bantu languages - bnt",
+          "title": "Bantu languages - bnt"
+        },
+        {
+          "const": "Basa - bas",
+          "title": "Basa - bas"
+        },
+        {
+          "const": "Bashkir - bak",
+          "title": "Bashkir - bak"
+        },
+        {
+          "const": "Basque - baq/eus",
+          "title": "Basque - baq/eus"
+        },
+        {
+          "const": "Batak languages - btk",
+          "title": "Batak languages - btk"
+        },
+        {
+          "const": "Bedawiyet - bej",
+          "title": "Bedawiyet - bej"
+        },
+        {
+          "const": "Beja - bej",
+          "title": "Beja - bej"
+        },
+        {
+          "const": "Belarusian - bel",
+          "title": "Belarusian - bel"
+        },
+        {
+          "const": "Bemba - bem",
+          "title": "Bemba - bem"
+        },
+        {
+          "const": "Bengali - ben",
+          "title": "Bengali - ben"
+        },
+        {
+          "const": "Berber languages - ber",
+          "title": "Berber languages - ber"
+        },
+        {
+          "const": "Bhojpuri - bho",
+          "title": "Bhojpuri - bho"
+        },
+        {
+          "const": "Bihari languages - bih",
+          "title": "Bihari languages - bih"
+        },
+        {
+          "const": "Bikol - bik",
+          "title": "Bikol - bik"
+        },
+        {
+          "const": "Bilin - byn",
+          "title": "Bilin - byn"
+        },
+        {
+          "const": "Bini - bin",
+          "title": "Bini - bin"
+        },
+        {
+          "const": "Bislama - bis",
+          "title": "Bislama - bis"
+        },
+        {
+          "const": "Blin - byn",
+          "title": "Blin - byn"
+        },
+        {
+          "const": "Bliss - zbl",
+          "title": "Bliss - zbl"
+        },
+        {
+          "const": "Blissymbolics - zbl",
+          "title": "Blissymbolics - zbl"
+        },
+        {
+          "const": "Blissymbols - zbl",
+          "title": "Blissymbols - zbl"
+        },
+        {
+          "const": "Bokmål, Norwegian - nob",
+          "title": "Bokmål, Norwegian - nob"
+        },
+        {
+          "const": "Bosnian - bos",
+          "title": "Bosnian - bos"
+        },
+        {
+          "const": "Braj - bra",
+          "title": "Braj - bra"
+        },
+        {
+          "const": "Breton - bre",
+          "title": "Breton - bre"
+        },
+        {
+          "const": "Buginese - bug",
+          "title": "Buginese - bug"
+        },
+        {
+          "const": "Bulgarian - bul",
+          "title": "Bulgarian - bul"
+        },
+        {
+          "const": "Buriat - bua",
+          "title": "Buriat - bua"
+        },
+        {
+          "const": "Burmese - bur/mya",
+          "title": "Burmese - bur/mya"
+        },
+        {
+          "const": "Caddo - cad",
+          "title": "Caddo - cad"
+        },
+        {
+          "const": "Castilian - spa",
+          "title": "Castilian - spa"
+        },
+        {
+          "const": "Catalan - cat",
+          "title": "Catalan - cat"
+        },
+        {
+          "const": "Caucasian languages - cau",
+          "title": "Caucasian languages - cau"
+        },
+        {
+          "const": "Cebuano - ceb",
+          "title": "Cebuano - ceb"
+        },
+        {
+          "const": "Celtic languages - cel",
+          "title": "Celtic languages - cel"
+        },
+        {
+          "const": "Central American Indian languages - cai",
+          "title": "Central American Indian languages - cai"
+        },
+        {
+          "const": "Central Khmer - khm",
+          "title": "Central Khmer - khm"
+        },
+        {
+          "const": "Chagatai - chg",
+          "title": "Chagatai - chg"
+        },
+        {
+          "const": "Chamic languages - cmc",
+          "title": "Chamic languages - cmc"
+        },
+        {
+          "const": "Chamorro - cha",
+          "title": "Chamorro - cha"
+        },
+        {
+          "const": "Chechen - che",
+          "title": "Chechen - che"
+        },
+        {
+          "const": "Cherokee - chr",
+          "title": "Cherokee - chr"
+        },
+        {
+          "const": "Chewa - nya",
+          "title": "Chewa - nya"
+        },
+        {
+          "const": "Cheyenne - chy",
+          "title": "Cheyenne - chy"
+        },
+        {
+          "const": "Chibcha - chb",
+          "title": "Chibcha - chb"
+        },
+        {
+          "const": "Chichewa - nya",
+          "title": "Chichewa - nya"
+        },
+        {
+          "const": "Chinese - chi/zho",
+          "title": "Chinese - chi/zho"
+        },
+        {
+          "const": "Chinook jargon - chn",
+          "title": "Chinook jargon - chn"
+        },
+        {
+          "const": "Chipewyan - chp",
+          "title": "Chipewyan - chp"
+        },
+        {
+          "const": "Choctaw - cho",
+          "title": "Choctaw - cho"
+        },
+        {
+          "const": "Chuang - zha",
+          "title": "Chuang - zha"
+        },
+        {
+          "const": "Church Slavic - chu",
+          "title": "Church Slavic - chu"
+        },
+        {
+          "const": "Church Slavonic - chu",
+          "title": "Church Slavonic - chu"
+        },
+        {
+          "const": "Chuukese - chk",
+          "title": "Chuukese - chk"
+        },
+        {
+          "const": "Chuvash - chv",
+          "title": "Chuvash - chv"
+        },
+        {
+          "const": "Classical Nepal Bhasa - nwc",
+          "title": "Classical Nepal Bhasa - nwc"
+        },
+        {
+          "const": "Classical Newari - nwc",
+          "title": "Classical Newari - nwc"
+        },
+        {
+          "const": "Classical Syriac - syc",
+          "title": "Classical Syriac - syc"
+        },
+        {
+          "const": "Cook Islands Maori - rar",
+          "title": "Cook Islands Maori - rar"
+        },
+        {
+          "const": "Coptic - cop",
+          "title": "Coptic - cop"
+        },
+        {
+          "const": "Cornish - cor",
+          "title": "Cornish - cor"
+        },
+        {
+          "const": "Corsican - cos",
+          "title": "Corsican - cos"
+        },
+        {
+          "const": "Cree - cre",
+          "title": "Cree - cre"
+        },
+        {
+          "const": "Creek - mus",
+          "title": "Creek - mus"
+        },
+        {
+          "const": "Creoles and pidgins - crp",
+          "title": "Creoles and pidgins - crp"
+        },
+        {
+          "const": "Creoles and pidgins, English based - cpe",
+          "title": "Creoles and pidgins, English based - cpe"
+        },
+        {
+          "const": "Creoles and pidgins, French-based - cpf",
+          "title": "Creoles and pidgins, French-based - cpf"
+        },
+        {
+          "const": "Creoles and pidgins, Portuguese-based - cpp",
+          "title": "Creoles and pidgins, Portuguese-based - cpp"
+        },
+        {
+          "const": "Crimean Tatar - crh",
+          "title": "Crimean Tatar - crh"
+        },
+        {
+          "const": "Crimean Turkish - crh",
+          "title": "Crimean Turkish - crh"
+        },
+        {
+          "const": "Croatian - hrv",
+          "title": "Croatian - hrv"
+        },
+        {
+          "const": "Cushitic languages - cus",
+          "title": "Cushitic languages - cus"
+        },
+        {
+          "const": "Czech - cze/ces",
+          "title": "Czech - cze/ces"
+        },
+        {
+          "const": "Dakota - dak",
+          "title": "Dakota - dak"
+        },
+        {
+          "const": "Danish - dan",
+          "title": "Danish - dan"
+        },
+        {
+          "const": "Dargwa - dar",
+          "title": "Dargwa - dar"
+        },
+        {
+          "const": "Delaware - del",
+          "title": "Delaware - del"
+        },
+        {
+          "const": "Dene Suline - chp",
+          "title": "Dene Suline - chp"
+        },
+        {
+          "const": "Dhivehi - div",
+          "title": "Dhivehi - div"
+        },
+        {
+          "const": "Dimili - zza",
+          "title": "Dimili - zza"
+        },
+        {
+          "const": "Dimli - zza",
+          "title": "Dimli - zza"
+        },
+        {
+          "const": "Dinka - din",
+          "title": "Dinka - din"
+        },
+        {
+          "const": "Divehi - div",
+          "title": "Divehi - div"
+        },
+        {
+          "const": "Dogri - doi",
+          "title": "Dogri - doi"
+        },
+        {
+          "const": "Dogrib - dgr",
+          "title": "Dogrib - dgr"
+        },
+        {
+          "const": "Dravidian languages - dra",
+          "title": "Dravidian languages - dra"
+        },
+        {
+          "const": "Duala - dua",
+          "title": "Duala - dua"
+        },
+        {
+          "const": "Dutch - dut/nld",
+          "title": "Dutch - dut/nld"
+        },
+        {
+          "const": "Dutch, Middle (ca.1050-1350) - dum",
+          "title": "Dutch, Middle (ca.1050-1350) - dum"
+        },
+        {
+          "const": "Dyula - dyu",
+          "title": "Dyula - dyu"
+        },
+        {
+          "const": "Dzongkha - dzo",
+          "title": "Dzongkha - dzo"
+        },
+        {
+          "const": "Eastern Frisian - frs",
+          "title": "Eastern Frisian - frs"
+        },
+        {
+          "const": "Edo - bin",
+          "title": "Edo - bin"
+        },
+        {
+          "const": "Efik - efi",
+          "title": "Efik - efi"
+        },
+        {
+          "const": "Egyptian (Ancient) - egy",
+          "title": "Egyptian (Ancient) - egy"
+        },
+        {
+          "const": "Ekajuk - eka",
+          "title": "Ekajuk - eka"
+        },
+        {
+          "const": "Elamite - elx",
+          "title": "Elamite - elx"
+        },
+        {
+          "const": "English, Middle (1100-1500) - enm",
+          "title": "English, Middle (1100-1500) - enm"
+        },
+        {
+          "const": "English, Old (ca.450-1100) - ang",
+          "title": "English, Old (ca.450-1100) - ang"
+        },
+        {
+          "const": "Erzya - myv",
+          "title": "Erzya - myv"
+        },
+        {
+          "const": "Esperanto - epo",
+          "title": "Esperanto - epo"
+        },
+        {
+          "const": "Estonian - est",
+          "title": "Estonian - est"
+        },
+        {
+          "const": "Ewe - ewe",
+          "title": "Ewe - ewe"
+        },
+        {
+          "const": "Ewondo - ewo",
+          "title": "Ewondo - ewo"
+        },
+        {
+          "const": "Fang - fan",
+          "title": "Fang - fan"
+        },
+        {
+          "const": "Fanti - fat",
+          "title": "Fanti - fat"
+        },
+        {
+          "const": "Faroese - fao",
+          "title": "Faroese - fao"
+        },
+        {
+          "const": "Fijian - fij",
+          "title": "Fijian - fij"
+        },
+        {
+          "const": "Filipino - fil",
+          "title": "Filipino - fil"
+        },
+        {
+          "const": "Finnish - fin",
+          "title": "Finnish - fin"
+        },
+        {
+          "const": "Finno-Ugrian languages - fiu",
+          "title": "Finno-Ugrian languages - fiu"
+        },
+        {
+          "const": "Flemish - dut/nld",
+          "title": "Flemish - dut/nld"
+        },
+        {
+          "const": "Fon - fon",
+          "title": "Fon - fon"
+        },
+        {
+          "const": "French, Middle (ca.1400-1600) - frm",
+          "title": "French, Middle (ca.1400-1600) - frm"
+        },
+        {
+          "const": "French, Old (842-ca.1400) - fro",
+          "title": "French, Old (842-ca.1400) - fro"
+        },
+        {
+          "const": "Friulian - fur",
+          "title": "Friulian - fur"
+        },
+        {
+          "const": "Fulah - ful",
+          "title": "Fulah - ful"
+        },
+        {
+          "const": "Ga - gaa",
+          "title": "Ga - gaa"
+        },
+        {
+          "const": "Gaelic - gla",
+          "title": "Gaelic - gla"
+        },
+        {
+          "const": "Galibi Carib - car",
+          "title": "Galibi Carib - car"
+        },
+        {
+          "const": "Galician - glg",
+          "title": "Galician - glg"
+        },
+        {
+          "const": "Ganda - lug",
+          "title": "Ganda - lug"
+        },
+        {
+          "const": "Gayo - gay",
+          "title": "Gayo - gay"
+        },
+        {
+          "const": "Gbaya - gba",
+          "title": "Gbaya - gba"
+        },
+        {
+          "const": "Geez - gez",
+          "title": "Geez - gez"
+        },
+        {
+          "const": "Georgian - geo/kat",
+          "title": "Georgian - geo/kat"
+        },
+        {
+          "const": "German, Low - nds",
+          "title": "German, Low - nds"
+        },
+        {
+          "const": "German, Middle High (ca.1050-1500) - gmh",
+          "title": "German, Middle High (ca.1050-1500) - gmh"
+        },
+        {
+          "const": "German, Old High (ca.750-1050) - goh",
+          "title": "German, Old High (ca.750-1050) - goh"
+        },
+        {
+          "const": "Germanic languages - gem",
+          "title": "Germanic languages - gem"
+        },
+        {
+          "const": "Gikuyu - kik",
+          "title": "Gikuyu - kik"
+        },
+        {
+          "const": "Gilbertese - gil",
+          "title": "Gilbertese - gil"
+        },
+        {
+          "const": "Gondi - gon",
+          "title": "Gondi - gon"
+        },
+        {
+          "const": "Gorontalo - gor",
+          "title": "Gorontalo - gor"
+        },
+        {
+          "const": "Gothic - got",
+          "title": "Gothic - got"
+        },
+        {
+          "const": "Grebo - grb",
+          "title": "Grebo - grb"
+        },
+        {
+          "const": "Greek, Ancient (to 1453) - grc",
+          "title": "Greek, Ancient (to 1453) - grc"
+        },
+        {
+          "const": "Greek, Modern (1453-) - gre/ell",
+          "title": "Greek, Modern (1453-) - gre/ell"
+        },
+        {
+          "const": "Greenlandic - kal",
+          "title": "Greenlandic - kal"
+        },
+        {
+          "const": "Guarani - grn",
+          "title": "Guarani - grn"
+        },
+        {
+          "const": "Gujarati - guj",
+          "title": "Gujarati - guj"
+        },
+        {
+          "const": "Gwich'in - gwi",
+          "title": "Gwich'in - gwi"
+        },
+        {
+          "const": "Haida - hai",
+          "title": "Haida - hai"
+        },
+        {
+          "const": "Haitian - hat",
+          "title": "Haitian - hat"
+        },
+        {
+          "const": "Haitian Creole - hat",
+          "title": "Haitian Creole - hat"
+        },
+        {
+          "const": "Hausa - hau",
+          "title": "Hausa - hau"
+        },
+        {
+          "const": "Hawaiian - haw",
+          "title": "Hawaiian - haw"
+        },
+        {
+          "const": "Hebrew - heb",
+          "title": "Hebrew - heb"
+        },
+        {
+          "const": "Herero - her",
+          "title": "Herero - her"
+        },
+        {
+          "const": "Hiligaynon - hil",
+          "title": "Hiligaynon - hil"
+        },
+        {
+          "const": "Himachali languages - him",
+          "title": "Himachali languages - him"
+        },
+        {
+          "const": "Hindi - hin",
+          "title": "Hindi - hin"
+        },
+        {
+          "const": "Hiri Motu - hmo",
+          "title": "Hiri Motu - hmo"
+        },
+        {
+          "const": "Hittite - hit",
+          "title": "Hittite - hit"
+        },
+        {
+          "const": "Hmong - hmn",
+          "title": "Hmong - hmn"
+        },
+        {
+          "const": "Hungarian - hun",
+          "title": "Hungarian - hun"
+        },
+        {
+          "const": "Hupa - hup",
+          "title": "Hupa - hup"
+        },
+        {
+          "const": "Iban - iba",
+          "title": "Iban - iba"
+        },
+        {
+          "const": "Icelandic - ice/isl",
+          "title": "Icelandic - ice/isl"
+        },
+        {
+          "const": "Ido - ido",
+          "title": "Ido - ido"
+        },
+        {
+          "const": "Igbo - ibo",
+          "title": "Igbo - ibo"
+        },
+        {
+          "const": "Ijo languages - ijo",
+          "title": "Ijo languages - ijo"
+        },
+        {
+          "const": "Iloko - ilo",
+          "title": "Iloko - ilo"
+        },
+        {
+          "const": "Imperial Aramaic (700-300 BCE) - arc",
+          "title": "Imperial Aramaic (700-300 BCE) - arc"
+        },
+        {
+          "const": "Inari Sami - smn",
+          "title": "Inari Sami - smn"
+        },
+        {
+          "const": "Indic languages - inc",
+          "title": "Indic languages - inc"
+        },
+        {
+          "const": "Indo-European languages - ine",
+          "title": "Indo-European languages - ine"
+        },
+        {
+          "const": "Indonesian - ind",
+          "title": "Indonesian - ind"
+        },
+        {
+          "const": "Ingush - inh",
+          "title": "Ingush - inh"
+        },
+        {
+          "const": "Interlingua (International Auxiliary Language Association) - ina",
+          "title": "Interlingua (International Auxiliary Language Association) - ina"
+        },
+        {
+          "const": "Interlingue - ile",
+          "title": "Interlingue - ile"
+        },
+        {
+          "const": "Inuktitut - iku",
+          "title": "Inuktitut - iku"
+        },
+        {
+          "const": "Inupiaq - ipk",
+          "title": "Inupiaq - ipk"
+        },
+        {
+          "const": "Iranian languages - ira",
+          "title": "Iranian languages - ira"
+        },
+        {
+          "const": "Irish - gle",
+          "title": "Irish - gle"
+        },
+        {
+          "const": "Irish, Middle (900-1200) - mga",
+          "title": "Irish, Middle (900-1200) - mga"
+        },
+        {
+          "const": "Irish, Old (to 900) - sga",
+          "title": "Irish, Old (to 900) - sga"
+        },
+        {
+          "const": "Iroquoian languages - iro",
+          "title": "Iroquoian languages - iro"
+        },
+        {
+          "const": "Italian - ita",
+          "title": "Italian - ita"
+        },
+        {
+          "const": "Japanese - jpn",
+          "title": "Japanese - jpn"
+        },
+        {
+          "const": "Javanese - jav",
+          "title": "Javanese - jav"
+        },
+        {
+          "const": "Jingpho - kac",
+          "title": "Jingpho - kac"
+        },
+        {
+          "const": "Judeo-Arabic - jrb",
+          "title": "Judeo-Arabic - jrb"
+        },
+        {
+          "const": "Judeo-Persian - jpr",
+          "title": "Judeo-Persian - jpr"
+        },
+        {
+          "const": "Kabardian - kbd",
+          "title": "Kabardian - kbd"
+        },
+        {
+          "const": "Kabyle - kab",
+          "title": "Kabyle - kab"
+        },
+        {
+          "const": "Kachin - kac",
+          "title": "Kachin - kac"
+        },
+        {
+          "const": "Kalaallisut - kal",
+          "title": "Kalaallisut - kal"
+        },
+        {
+          "const": "Kalmyk - xal",
+          "title": "Kalmyk - xal"
+        },
+        {
+          "const": "Kamba - kam",
+          "title": "Kamba - kam"
+        },
+        {
+          "const": "Kannada - kan",
+          "title": "Kannada - kan"
+        },
+        {
+          "const": "Kanuri - kau",
+          "title": "Kanuri - kau"
+        },
+        {
+          "const": "Kapampangan - pam",
+          "title": "Kapampangan - pam"
+        },
+        {
+          "const": "Kara-Kalpak - kaa",
+          "title": "Kara-Kalpak - kaa"
+        },
+        {
+          "const": "Karachay-Balkar - krc",
+          "title": "Karachay-Balkar - krc"
+        },
+        {
+          "const": "Karelian - krl",
+          "title": "Karelian - krl"
+        },
+        {
+          "const": "Karen languages - kar",
+          "title": "Karen languages - kar"
+        },
+        {
+          "const": "Kashmiri - kas",
+          "title": "Kashmiri - kas"
+        },
+        {
+          "const": "Kashubian - csb",
+          "title": "Kashubian - csb"
+        },
+        {
+          "const": "Kawi - kaw",
+          "title": "Kawi - kaw"
+        },
+        {
+          "const": "Kazakh - kaz",
+          "title": "Kazakh - kaz"
+        },
+        {
+          "const": "Khasi - kha",
+          "title": "Khasi - kha"
+        },
+        {
+          "const": "Khoisan languages - khi",
+          "title": "Khoisan languages - khi"
+        },
+        {
+          "const": "Khotanese - kho",
+          "title": "Khotanese - kho"
+        },
+        {
+          "const": "Kikuyu - kik",
+          "title": "Kikuyu - kik"
+        },
+        {
+          "const": "Kimbundu - kmb",
+          "title": "Kimbundu - kmb"
+        },
+        {
+          "const": "Kinyarwanda - kin",
+          "title": "Kinyarwanda - kin"
+        },
+        {
+          "const": "Kirdki - zza",
+          "title": "Kirdki - zza"
+        },
+        {
+          "const": "Kirghiz - kir",
+          "title": "Kirghiz - kir"
+        },
+        {
+          "const": "Kirmanjki - zza",
+          "title": "Kirmanjki - zza"
+        },
+        {
+          "const": "Klingon - tlh",
+          "title": "Klingon - tlh"
+        },
+        {
+          "const": "Komi - kom",
+          "title": "Komi - kom"
+        },
+        {
+          "const": "Kongo - kon",
+          "title": "Kongo - kon"
+        },
+        {
+          "const": "Konkani - kok",
+          "title": "Konkani - kok"
+        },
+        {
+          "const": "Korean - kor",
+          "title": "Korean - kor"
+        },
+        {
+          "const": "Kosraean - kos",
+          "title": "Kosraean - kos"
+        },
+        {
+          "const": "Kpelle - kpe",
+          "title": "Kpelle - kpe"
+        },
+        {
+          "const": "Kru languages - kro",
+          "title": "Kru languages - kro"
+        },
+        {
+          "const": "Kuanyama - kua",
+          "title": "Kuanyama - kua"
+        },
+        {
+          "const": "Kumyk - kum",
+          "title": "Kumyk - kum"
+        },
+        {
+          "const": "Kurdish - kur",
+          "title": "Kurdish - kur"
+        },
+        {
+          "const": "Kurukh - kru",
+          "title": "Kurukh - kru"
+        },
+        {
+          "const": "Kutenai - kut",
+          "title": "Kutenai - kut"
+        },
+        {
+          "const": "Kwanyama - kua",
+          "title": "Kwanyama - kua"
+        },
+        {
+          "const": "Kyrgyz - kir",
+          "title": "Kyrgyz - kir"
+        },
+        {
+          "const": "Ladino - lad",
+          "title": "Ladino - lad"
+        },
+        {
+          "const": "Lahnda - lah",
+          "title": "Lahnda - lah"
+        },
+        {
+          "const": "Lamba - lam",
+          "title": "Lamba - lam"
+        },
+        {
+          "const": "Land Dayak languages - day",
+          "title": "Land Dayak languages - day"
+        },
+        {
+          "const": "Lao - lao",
+          "title": "Lao - lao"
+        },
+        {
+          "const": "Latin - lat",
+          "title": "Latin - lat"
+        },
+        {
+          "const": "Latvian - lav",
+          "title": "Latvian - lav"
+        },
+        {
+          "const": "Leonese - ast",
+          "title": "Leonese - ast"
+        },
+        {
+          "const": "Letzeburgesch - ltz",
+          "title": "Letzeburgesch - ltz"
+        },
+        {
+          "const": "Lezghian - lez",
+          "title": "Lezghian - lez"
+        },
+        {
+          "const": "Limburgan - lim",
+          "title": "Limburgan - lim"
+        },
+        {
+          "const": "Limburger - lim",
+          "title": "Limburger - lim"
+        },
+        {
+          "const": "Limburgish - lim",
+          "title": "Limburgish - lim"
+        },
+        {
+          "const": "Lingala - lin",
+          "title": "Lingala - lin"
+        },
+        {
+          "const": "Lithuanian - lit",
+          "title": "Lithuanian - lit"
+        },
+        {
+          "const": "Lojban - jbo",
+          "title": "Lojban - jbo"
+        },
+        {
+          "const": "Low German - nds",
+          "title": "Low German - nds"
+        },
+        {
+          "const": "Low Saxon - nds",
+          "title": "Low Saxon - nds"
+        },
+        {
+          "const": "Lower Sorbian - dsb",
+          "title": "Lower Sorbian - dsb"
+        },
+        {
+          "const": "Lozi - loz",
+          "title": "Lozi - loz"
+        },
+        {
+          "const": "Luba-Katanga - lub",
+          "title": "Luba-Katanga - lub"
+        },
+        {
+          "const": "Luba-Lulua - lua",
+          "title": "Luba-Lulua - lua"
+        },
+        {
+          "const": "Luiseno - lui",
+          "title": "Luiseno - lui"
+        },
+        {
+          "const": "Lule Sami - smj",
+          "title": "Lule Sami - smj"
+        },
+        {
+          "const": "Lunda - lun",
+          "title": "Lunda - lun"
+        },
+        {
+          "const": "Luo (Kenya and Tanzania) - luo",
+          "title": "Luo (Kenya and Tanzania) - luo"
+        },
+        {
+          "const": "Lushai - lus",
+          "title": "Lushai - lus"
+        },
+        {
+          "const": "Luxembourgish - ltz",
+          "title": "Luxembourgish - ltz"
+        },
+        {
+          "const": "Macedo-Romanian - rup",
+          "title": "Macedo-Romanian - rup"
+        },
+        {
+          "const": "Macedonian - mac/mkd",
+          "title": "Macedonian - mac/mkd"
+        },
+        {
+          "const": "Madurese - mad",
+          "title": "Madurese - mad"
+        },
+        {
+          "const": "Magahi - mag",
+          "title": "Magahi - mag"
+        },
+        {
+          "const": "Maithili - mai",
+          "title": "Maithili - mai"
+        },
+        {
+          "const": "Makasar - mak",
+          "title": "Makasar - mak"
+        },
+        {
+          "const": "Malagasy - mlg",
+          "title": "Malagasy - mlg"
+        },
+        {
+          "const": "Malay - may/msa",
+          "title": "Malay - may/msa"
+        },
+        {
+          "const": "Malayalam - mal",
+          "title": "Malayalam - mal"
+        },
+        {
+          "const": "Maldivian - div",
+          "title": "Maldivian - div"
+        },
+        {
+          "const": "Maltese - mlt",
+          "title": "Maltese - mlt"
+        },
+        {
+          "const": "Manchu - mnc",
+          "title": "Manchu - mnc"
+        },
+        {
+          "const": "Mandar - mdr",
+          "title": "Mandar - mdr"
+        },
+        {
+          "const": "Mandingo - man",
+          "title": "Mandingo - man"
+        },
+        {
+          "const": "Manipuri - mni",
+          "title": "Manipuri - mni"
+        },
+        {
+          "const": "Manobo languages - mno",
+          "title": "Manobo languages - mno"
+        },
+        {
+          "const": "Manx - glv",
+          "title": "Manx - glv"
+        },
+        {
+          "const": "Maori - mao/mri",
+          "title": "Maori - mao/mri"
+        },
+        {
+          "const": "Mapuche - arn",
+          "title": "Mapuche - arn"
+        },
+        {
+          "const": "Mapudungun - arn",
+          "title": "Mapudungun - arn"
+        },
+        {
+          "const": "Marathi - mar",
+          "title": "Marathi - mar"
+        },
+        {
+          "const": "Mari - chm",
+          "title": "Mari - chm"
+        },
+        {
+          "const": "Marshallese - mah",
+          "title": "Marshallese - mah"
+        },
+        {
+          "const": "Marwari - mwr",
+          "title": "Marwari - mwr"
+        },
+        {
+          "const": "Masai - mas",
+          "title": "Masai - mas"
+        },
+        {
+          "const": "Mayan languages - myn",
+          "title": "Mayan languages - myn"
+        },
+        {
+          "const": "Mende - men",
+          "title": "Mende - men"
+        },
+        {
+          "const": "Mi'kmaq - mic",
+          "title": "Mi'kmaq - mic"
+        },
+        {
+          "const": "Micmac - mic",
+          "title": "Micmac - mic"
+        },
+        {
+          "const": "Minangkabau - min",
+          "title": "Minangkabau - min"
+        },
+        {
+          "const": "Mirandese - mwl",
+          "title": "Mirandese - mwl"
+        },
+        {
+          "const": "Mohawk - moh",
+          "title": "Mohawk - moh"
+        },
+        {
+          "const": "Moksha - mdf",
+          "title": "Moksha - mdf"
+        },
+        {
+          "const": "Moldavian - rum/ron",
+          "title": "Moldavian - rum/ron"
+        },
+        {
+          "const": "Moldovan - rum/ron",
+          "title": "Moldovan - rum/ron"
+        },
+        {
+          "const": "Mon-Khmer languages - mkh",
+          "title": "Mon-Khmer languages - mkh"
+        },
+        {
+          "const": "Mong - hmn",
+          "title": "Mong - hmn"
+        },
+        {
+          "const": "Mongo - lol",
+          "title": "Mongo - lol"
+        },
+        {
+          "const": "Mongolian - mon",
+          "title": "Mongolian - mon"
+        },
+        {
+          "const": "Montenegrin - cnr",
+          "title": "Montenegrin - cnr"
+        },
+        {
+          "const": "Mossi - mos",
+          "title": "Mossi - mos"
+        },
+        {
+          "const": "Multiple languages - mul",
+          "title": "Multiple languages - mul"
+        },
+        {
+          "const": "Munda languages - mun",
+          "title": "Munda languages - mun"
+        },
+        {
+          "const": "N'Ko - nqo",
+          "title": "N'Ko - nqo"
+        },
+        {
+          "const": "Nahuatl languages - nah",
+          "title": "Nahuatl languages - nah"
+        },
+        {
+          "const": "Nauru - nau",
+          "title": "Nauru - nau"
+        },
+        {
+          "const": "Navaho - nav",
+          "title": "Navaho - nav"
+        },
+        {
+          "const": "Navajo - nav",
+          "title": "Navajo - nav"
+        },
+        {
+          "const": "Ndebele, North - nde",
+          "title": "Ndebele, North - nde"
+        },
+        {
+          "const": "Ndebele, South - nbl",
+          "title": "Ndebele, South - nbl"
+        },
+        {
+          "const": "Ndonga - ndo",
+          "title": "Ndonga - ndo"
+        },
+        {
+          "const": "Neapolitan - nap",
+          "title": "Neapolitan - nap"
+        },
+        {
+          "const": "Nepal Bhasa - new",
+          "title": "Nepal Bhasa - new"
+        },
+        {
+          "const": "Nepali - nep",
+          "title": "Nepali - nep"
+        },
+        {
+          "const": "Newari - new",
+          "title": "Newari - new"
+        },
+        {
+          "const": "Nias - nia",
+          "title": "Nias - nia"
+        },
+        {
+          "const": "Niger-Kordofanian languages - nic",
+          "title": "Niger-Kordofanian languages - nic"
+        },
+        {
+          "const": "Nilo-Saharan languages - ssa",
+          "title": "Nilo-Saharan languages - ssa"
+        },
+        {
+          "const": "Niuean - niu",
+          "title": "Niuean - niu"
+        },
+        {
+          "const": "No linguistic content - zxx",
+          "title": "No linguistic content - zxx"
+        },
+        {
+          "const": "Nogai - nog",
+          "title": "Nogai - nog"
+        },
+        {
+          "const": "Norse, Old - non",
+          "title": "Norse, Old - non"
+        },
+        {
+          "const": "North American Indian languages - nai",
+          "title": "North American Indian languages - nai"
+        },
+        {
+          "const": "North Ndebele - nde",
+          "title": "North Ndebele - nde"
+        },
+        {
+          "const": "Northern Frisian - frr",
+          "title": "Northern Frisian - frr"
+        },
+        {
+          "const": "Northern Sami - sme",
+          "title": "Northern Sami - sme"
+        },
+        {
+          "const": "Northern Sotho - nso",
+          "title": "Northern Sotho - nso"
+        },
+        {
+          "const": "Norwegian - nor",
+          "title": "Norwegian - nor"
+        },
+        {
+          "const": "Norwegian Bokmål - nob",
+          "title": "Norwegian Bokmål - nob"
+        },
+        {
+          "const": "Norwegian Nynorsk - nno",
+          "title": "Norwegian Nynorsk - nno"
+        },
+        {
+          "const": "Not applicable - zxx",
+          "title": "Not applicable - zxx"
+        },
+        {
+          "const": "Nubian languages - nub",
+          "title": "Nubian languages - nub"
+        },
+        {
+          "const": "Nuosu - iii",
+          "title": "Nuosu - iii"
+        },
+        {
+          "const": "Nyamwezi - nym",
+          "title": "Nyamwezi - nym"
+        },
+        {
+          "const": "Nyanja - nya",
+          "title": "Nyanja - nya"
+        },
+        {
+          "const": "Nyankole - nyn",
+          "title": "Nyankole - nyn"
+        },
+        {
+          "const": "Nynorsk, Norwegian - nno",
+          "title": "Nynorsk, Norwegian - nno"
+        },
+        {
+          "const": "Nyoro - nyo",
+          "title": "Nyoro - nyo"
+        },
+        {
+          "const": "Nzima - nzi",
+          "title": "Nzima - nzi"
+        },
+        {
+          "const": "Occidental - ile",
+          "title": "Occidental - ile"
+        },
+        {
+          "const": "Occitan (post 1500) - oci",
+          "title": "Occitan (post 1500) - oci"
+        },
+        {
+          "const": "Occitan, Old (to 1500) - pro",
+          "title": "Occitan, Old (to 1500) - pro"
+        },
+        {
+          "const": "Official Aramaic (700-300 BCE) - arc",
+          "title": "Official Aramaic (700-300 BCE) - arc"
+        },
+        {
+          "const": "Oirat - xal",
+          "title": "Oirat - xal"
+        },
+        {
+          "const": "Ojibwa - oji",
+          "title": "Ojibwa - oji"
+        },
+        {
+          "const": "Old Bulgarian - chu",
+          "title": "Old Bulgarian - chu"
+        },
+        {
+          "const": "Old Church Slavonic - chu",
+          "title": "Old Church Slavonic - chu"
+        },
+        {
+          "const": "Old Newari - nwc",
+          "title": "Old Newari - nwc"
+        },
+        {
+          "const": "Old Slavonic - chu",
+          "title": "Old Slavonic - chu"
+        },
+        {
+          "const": "Oriya - ori",
+          "title": "Oriya - ori"
+        },
+        {
+          "const": "Oromo - orm",
+          "title": "Oromo - orm"
+        },
+        {
+          "const": "Osage - osa",
+          "title": "Osage - osa"
+        },
+        {
+          "const": "Ossetian - oss",
+          "title": "Ossetian - oss"
+        },
+        {
+          "const": "Ossetic - oss",
+          "title": "Ossetic - oss"
+        },
+        {
+          "const": "Otomian languages - oto",
+          "title": "Otomian languages - oto"
+        },
+        {
+          "const": "Pahlavi - pal",
+          "title": "Pahlavi - pal"
+        },
+        {
+          "const": "Palauan - pau",
+          "title": "Palauan - pau"
+        },
+        {
+          "const": "Pali - pli",
+          "title": "Pali - pli"
+        },
+        {
+          "const": "Pampanga - pam",
+          "title": "Pampanga - pam"
+        },
+        {
+          "const": "Pangasinan - pag",
+          "title": "Pangasinan - pag"
+        },
+        {
+          "const": "Panjabi - pan",
+          "title": "Panjabi - pan"
+        },
+        {
+          "const": "Papiamento - pap",
+          "title": "Papiamento - pap"
+        },
+        {
+          "const": "Papuan languages - paa",
+          "title": "Papuan languages - paa"
+        },
+        {
+          "const": "Pashto - pus",
+          "title": "Pashto - pus"
+        },
+        {
+          "const": "Pedi - nso",
+          "title": "Pedi - nso"
+        },
+        {
+          "const": "Persian - per/fas",
+          "title": "Persian - per/fas"
+        },
+        {
+          "const": "Persian, Old (ca.600-400 B.C.) - peo",
+          "title": "Persian, Old (ca.600-400 B.C.) - peo"
+        },
+        {
+          "const": "Philippine languages - phi",
+          "title": "Philippine languages - phi"
+        },
+        {
+          "const": "Phoenician - phn",
+          "title": "Phoenician - phn"
+        },
+        {
+          "const": "Pilipino - fil",
+          "title": "Pilipino - fil"
+        },
+        {
+          "const": "Pohnpeian - pon",
+          "title": "Pohnpeian - pon"
+        },
+        {
+          "const": "Polish - pol",
+          "title": "Polish - pol"
+        },
+        {
+          "const": "Prakrit languages - pra",
+          "title": "Prakrit languages - pra"
+        },
+        {
+          "const": "Provençal, Old (to 1500) - pro",
+          "title": "Provençal, Old (to 1500) - pro"
+        },
+        {
+          "const": "Punjabi - pan",
+          "title": "Punjabi - pan"
+        },
+        {
+          "const": "Pushto - pus",
+          "title": "Pushto - pus"
+        },
+        {
+          "const": "Quechua - que",
+          "title": "Quechua - que"
+        },
+        {
+          "const": "Rajasthani - raj",
+          "title": "Rajasthani - raj"
+        },
+        {
+          "const": "Rapanui - rap",
+          "title": "Rapanui - rap"
+        },
+        {
+          "const": "Rarotongan - rar",
+          "title": "Rarotongan - rar"
+        },
+        {
+          "const": "Reserved for local use - qaa-qtz",
+          "title": "Reserved for local use - qaa-qtz"
+        },
+        {
+          "const": "Romance languages - roa",
+          "title": "Romance languages - roa"
+        },
+        {
+          "const": "Romanian - rum/ron",
+          "title": "Romanian - rum/ron"
+        },
+        {
+          "const": "Romansh - roh",
+          "title": "Romansh - roh"
+        },
+        {
+          "const": "Romany - rom",
+          "title": "Romany - rom"
+        },
+        {
+          "const": "Rundi - run",
+          "title": "Rundi - run"
+        },
+        {
+          "const": "Russian - rus",
+          "title": "Russian - rus"
+        },
+        {
+          "const": "Sakan - kho",
+          "title": "Sakan - kho"
+        },
+        {
+          "const": "Salishan languages - sal",
+          "title": "Salishan languages - sal"
+        },
+        {
+          "const": "Samaritan Aramaic - sam",
+          "title": "Samaritan Aramaic - sam"
+        },
+        {
+          "const": "Sami languages - smi",
+          "title": "Sami languages - smi"
+        },
+        {
+          "const": "Samoan - smo",
+          "title": "Samoan - smo"
+        },
+        {
+          "const": "Sandawe - sad",
+          "title": "Sandawe - sad"
+        },
+        {
+          "const": "Sango - sag",
+          "title": "Sango - sag"
+        },
+        {
+          "const": "Sanskrit - san",
+          "title": "Sanskrit - san"
+        },
+        {
+          "const": "Santali - sat",
+          "title": "Santali - sat"
+        },
+        {
+          "const": "Sardinian - srd",
+          "title": "Sardinian - srd"
+        },
+        {
+          "const": "Sasak - sas",
+          "title": "Sasak - sas"
+        },
+        {
+          "const": "Saxon, Low - nds",
+          "title": "Saxon, Low - nds"
+        },
+        {
+          "const": "Scots - sco",
+          "title": "Scots - sco"
+        },
+        {
+          "const": "Scottish Gaelic - gla",
+          "title": "Scottish Gaelic - gla"
+        },
+        {
+          "const": "Selkup - sel",
+          "title": "Selkup - sel"
+        },
+        {
+          "const": "Semitic languages - sem",
+          "title": "Semitic languages - sem"
+        },
+        {
+          "const": "Sepedi - nso",
+          "title": "Sepedi - nso"
+        },
+        {
+          "const": "Serbian - srp",
+          "title": "Serbian - srp"
+        },
+        {
+          "const": "Serer - srr",
+          "title": "Serer - srr"
+        },
+        {
+          "const": "Shan - shn",
+          "title": "Shan - shn"
+        },
+        {
+          "const": "Shona - sna",
+          "title": "Shona - sna"
+        },
+        {
+          "const": "Sichuan Yi - iii",
+          "title": "Sichuan Yi - iii"
+        },
+        {
+          "const": "Sicilian - scn",
+          "title": "Sicilian - scn"
+        },
+        {
+          "const": "Sidamo - sid",
+          "title": "Sidamo - sid"
+        },
+        {
+          "const": "Sign Languages - sgn",
+          "title": "Sign Languages - sgn"
+        },
+        {
+          "const": "Siksika - bla",
+          "title": "Siksika - bla"
+        },
+        {
+          "const": "Sindhi - snd",
+          "title": "Sindhi - snd"
+        },
+        {
+          "const": "Sinhala - sin",
+          "title": "Sinhala - sin"
+        },
+        {
+          "const": "Sinhalese - sin",
+          "title": "Sinhalese - sin"
+        },
+        {
+          "const": "Sino-Tibetan languages - sit",
+          "title": "Sino-Tibetan languages - sit"
+        },
+        {
+          "const": "Siouan languages - sio",
+          "title": "Siouan languages - sio"
+        },
+        {
+          "const": "Skolt Sami - sms",
+          "title": "Skolt Sami - sms"
+        },
+        {
+          "const": "Slave (Athapascan) - den",
+          "title": "Slave (Athapascan) - den"
+        },
+        {
+          "const": "Slavic languages - sla",
+          "title": "Slavic languages - sla"
+        },
+        {
+          "const": "Slovak - slo/slk",
+          "title": "Slovak - slo/slk"
+        },
+        {
+          "const": "Slovenian - slv",
+          "title": "Slovenian - slv"
+        },
+        {
+          "const": "Sogdian - sog",
+          "title": "Sogdian - sog"
+        },
+        {
+          "const": "Somali - som",
+          "title": "Somali - som"
+        },
+        {
+          "const": "Songhai languages - son",
+          "title": "Songhai languages - son"
+        },
+        {
+          "const": "Soninke - snk",
+          "title": "Soninke - snk"
+        },
+        {
+          "const": "Sorbian languages - wen",
+          "title": "Sorbian languages - wen"
+        },
+        {
+          "const": "Sotho, Northern - nso",
+          "title": "Sotho, Northern - nso"
+        },
+        {
+          "const": "Sotho, Southern - sot",
+          "title": "Sotho, Southern - sot"
+        },
+        {
+          "const": "South American Indian languages - sai",
+          "title": "South American Indian languages - sai"
+        },
+        {
+          "const": "South Ndebele - nbl",
+          "title": "South Ndebele - nbl"
+        },
+        {
+          "const": "Southern Altai - alt",
+          "title": "Southern Altai - alt"
+        },
+        {
+          "const": "Southern Sami - sma",
+          "title": "Southern Sami - sma"
+        },
+        {
+          "const": "Sranan Tongo - srn",
+          "title": "Sranan Tongo - srn"
+        },
+        {
+          "const": "Standard Moroccan Tamazight - zgh",
+          "title": "Standard Moroccan Tamazight - zgh"
+        },
+        {
+          "const": "Sukuma - suk",
+          "title": "Sukuma - suk"
+        },
+        {
+          "const": "Sumerian - sux",
+          "title": "Sumerian - sux"
+        },
+        {
+          "const": "Sundanese - sun",
+          "title": "Sundanese - sun"
+        },
+        {
+          "const": "Susu - sus",
+          "title": "Susu - sus"
+        },
+        {
+          "const": "Swahili - swa",
+          "title": "Swahili - swa"
+        },
+        {
+          "const": "Swati - ssw",
+          "title": "Swati - ssw"
+        },
+        {
+          "const": "Swedish - swe",
+          "title": "Swedish - swe"
+        },
+        {
+          "const": "Swiss German - gsw",
+          "title": "Swiss German - gsw"
+        },
+        {
+          "const": "Syriac - syr",
+          "title": "Syriac - syr"
+        },
+        {
+          "const": "Tagalog - tgl",
+          "title": "Tagalog - tgl"
+        },
+        {
+          "const": "Tahitian - tah",
+          "title": "Tahitian - tah"
+        },
+        {
+          "const": "Tai languages - tai",
+          "title": "Tai languages - tai"
+        },
+        {
+          "const": "Tajik - tgk",
+          "title": "Tajik - tgk"
+        },
+        {
+          "const": "Tamashek - tmh",
+          "title": "Tamashek - tmh"
+        },
+        {
+          "const": "Tamil - tam",
+          "title": "Tamil - tam"
+        },
+        {
+          "const": "Tatar - tat",
+          "title": "Tatar - tat"
+        },
+        {
+          "const": "Telugu - tel",
+          "title": "Telugu - tel"
+        },
+        {
+          "const": "Tereno - ter",
+          "title": "Tereno - ter"
+        },
+        {
+          "const": "Tetum - tet",
+          "title": "Tetum - tet"
+        },
+        {
+          "const": "Thai - tha",
+          "title": "Thai - tha"
+        },
+        {
+          "const": "Tibetan - tib/bod",
+          "title": "Tibetan - tib/bod"
+        },
+        {
+          "const": "Tigre - tig",
+          "title": "Tigre - tig"
+        },
+        {
+          "const": "Tigrinya - tir",
+          "title": "Tigrinya - tir"
+        },
+        {
+          "const": "Timne - tem",
+          "title": "Timne - tem"
+        },
+        {
+          "const": "Tiv - tiv",
+          "title": "Tiv - tiv"
+        },
+        {
+          "const": "tlhIngan-Hol - tlh",
+          "title": "tlhIngan-Hol - tlh"
+        },
+        {
+          "const": "Tlingit - tli",
+          "title": "Tlingit - tli"
+        },
+        {
+          "const": "Tok Pisin - tpi",
+          "title": "Tok Pisin - tpi"
+        },
+        {
+          "const": "Tokelau - tkl",
+          "title": "Tokelau - tkl"
+        },
+        {
+          "const": "Tonga (Nyasa) - tog",
+          "title": "Tonga (Nyasa) - tog"
+        },
+        {
+          "const": "Tonga (Tonga Islands) - ton",
+          "title": "Tonga (Tonga Islands) - ton"
+        },
+        {
+          "const": "Tsimshian - tsi",
+          "title": "Tsimshian - tsi"
+        },
+        {
+          "const": "Tsonga - tso",
+          "title": "Tsonga - tso"
+        },
+        {
+          "const": "Tswana - tsn",
+          "title": "Tswana - tsn"
+        },
+        {
+          "const": "Tumbuka - tum",
+          "title": "Tumbuka - tum"
+        },
+        {
+          "const": "Tupi languages - tup",
+          "title": "Tupi languages - tup"
+        },
+        {
+          "const": "Turkish - tur",
+          "title": "Turkish - tur"
+        },
+        {
+          "const": "Turkish, Ottoman (1500-1928) - ota",
+          "title": "Turkish, Ottoman (1500-1928) - ota"
+        },
+        {
+          "const": "Turkmen - tuk",
+          "title": "Turkmen - tuk"
+        },
+        {
+          "const": "Tuvalu - tvl",
+          "title": "Tuvalu - tvl"
+        },
+        {
+          "const": "Tuvinian - tyv",
+          "title": "Tuvinian - tyv"
+        },
+        {
+          "const": "Twi - twi",
+          "title": "Twi - twi"
+        },
+        {
+          "const": "Udmurt - udm",
+          "title": "Udmurt - udm"
+        },
+        {
+          "const": "Ugaritic - uga",
+          "title": "Ugaritic - uga"
+        },
+        {
+          "const": "Uighur - uig",
+          "title": "Uighur - uig"
+        },
+        {
+          "const": "Ukrainian - ukr",
+          "title": "Ukrainian - ukr"
+        },
+        {
+          "const": "Umbundu - umb",
+          "title": "Umbundu - umb"
+        },
+        {
+          "const": "Uncoded languages - mis",
+          "title": "Uncoded languages - mis"
+        },
+        {
+          "const": "Undetermined - und",
+          "title": "Undetermined - und"
+        },
+        {
+          "const": "Upper Sorbian - hsb",
+          "title": "Upper Sorbian - hsb"
+        },
+        {
+          "const": "Urdu - urd",
+          "title": "Urdu - urd"
+        },
+        {
+          "const": "Uyghur - uig",
+          "title": "Uyghur - uig"
+        },
+        {
+          "const": "Uzbek - uzb",
+          "title": "Uzbek - uzb"
+        },
+        {
+          "const": "Vai - vai",
+          "title": "Vai - vai"
+        },
+        {
+          "const": "Valencian - cat",
+          "title": "Valencian - cat"
+        },
+        {
+          "const": "Venda - ven",
+          "title": "Venda - ven"
+        },
+        {
+          "const": "Vietnamese - vie",
+          "title": "Vietnamese - vie"
+        },
+        {
+          "const": "Volapük - vol",
+          "title": "Volapük - vol"
+        },
+        {
+          "const": "Votic - vot",
+          "title": "Votic - vot"
+        },
+        {
+          "const": "Wakashan languages - wak",
+          "title": "Wakashan languages - wak"
+        },
+        {
+          "const": "Walloon - wln",
+          "title": "Walloon - wln"
+        },
+        {
+          "const": "Waray - war",
+          "title": "Waray - war"
+        },
+        {
+          "const": "Washo - was",
+          "title": "Washo - was"
+        },
+        {
+          "const": "Welsh - wel/cym",
+          "title": "Welsh - wel/cym"
+        },
+        {
+          "const": "Western Frisian - fry",
+          "title": "Western Frisian - fry"
+        },
+        {
+          "const": "Western Pahari languages - him",
+          "title": "Western Pahari languages - him"
+        },
+        {
+          "const": "Wolaitta - wal",
+          "title": "Wolaitta - wal"
+        },
+        {
+          "const": "Wolaytta - wal",
+          "title": "Wolaytta - wal"
+        },
+        {
+          "const": "Wolof - wol",
+          "title": "Wolof - wol"
+        },
+        {
+          "const": "Xhosa - xho",
+          "title": "Xhosa - xho"
+        },
+        {
+          "const": "Yakut - sah",
+          "title": "Yakut - sah"
+        },
+        {
+          "const": "Yao - yao",
+          "title": "Yao - yao"
+        },
+        {
+          "const": "Yapese - yap",
+          "title": "Yapese - yap"
+        },
+        {
+          "const": "Yiddish - yid",
+          "title": "Yiddish - yid"
+        },
+        {
+          "const": "Yoruba - yor",
+          "title": "Yoruba - yor"
+        },
+        {
+          "const": "Yupik languages - ypk",
+          "title": "Yupik languages - ypk"
+        },
+        {
+          "const": "Zande languages - znd",
+          "title": "Zande languages - znd"
+        },
+        {
+          "const": "Zapotec - zap",
+          "title": "Zapotec - zap"
+        },
+        {
+          "const": "Zaza - zza",
+          "title": "Zaza - zza"
+        },
+        {
+          "const": "Zazaki - zza",
+          "title": "Zazaki - zza"
+        },
+        {
+          "const": "Zenaga - zen",
+          "title": "Zenaga - zen"
+        },
+        {
+          "const": "Zhuang - zha",
+          "title": "Zhuang - zha"
+        },
+        {
+          "const": "Zulu - zul",
+          "title": "Zulu - zul"
+        },
+        {
+          "const": "Zuni - zun",
+          "title": "Zuni - zun"
+        }
+      ]
+    },
+    "citacion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "nombre": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,      
+      "required": [
+        "id",
+        "nombre"
+      ]
+    },
+    "etTerminosDefiniciones": {
+      "type": "object",
+      "title": "Términos y definiciones",
+      "description": "Términos y definiciones",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "ID",
+          "description": "ID",
+          "readOnly": true,
+          "minimum": 1
+        },
+        "termino": {
+          "type": "string",
+          "title": "Término",
+          "description": "Término"
+        },
+        "definicionTermino": {
+          "type": "string",
+          "title": "Definición del término",
+          "description": "Definición del término"
+        },
+        "citaciones": {
+          "type": "array",
+          "title": "Citación de Términos",
+          "description": "Citación de Términos",
+          "items": {
+            "$ref": "#/$defs/citacion"
+          },
+          "uniqueItemProperties": [
+            "id",
+            "nombre"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "termino",
+        "definicionTermino"
+      ]
+    },
+    "etAbreviaturas": {
+      "type": "object",
+      "title": "Abreviaturas",
+      "description": "Abreviaturas",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "ID",
+          "description": "ID",
+          "readOnly": true,
+          "minimum": 1
+        },
+        "abreviatura": {
+          "type": "string",
+          "title": "Abreviatura",
+          "description": "Abreviatura"
+        },
+        "definicionAbreviatura": {
+          "type": "string",
+          "title": "Definición",
+          "description": "Definición"
+        },
+        "citaciones": {
+          "type": "array",
+          "title": "Citaciones",
+          "description": "Citaciones",
+          "items": {
+            "$ref": "#/$defs/citacion"
+          }
+        }
+      },
+      "additionalProperties": false,      
+      "required": [
+        "id",
+        "abreviatura",
+        "definicionAbreviatura"
+      ]
+    },
+    "etIdentificacion": {
+      "type": "object",
+      "title": "Identificación",
+      "description": "Identificación",
+      "properties": {
+        "resumen": {
+          "type": "string",
+          "title": "Resumen del Objeto",
+          "description": "Resumen del Objeto"
+        },
+        "proposito": {
+          "type": "string",
+          "title": "Propósito del Objeto",
+          "description": "Propósito del Objeto"
+        },
+        "representacionEspacial": {
+          "type": "string",
+          "title": "Representación Espacial",
+          "description": "Representación Espacial",
+          "$ref": "#/$defs/meRepresentacionEspacial"
+        },
+        "resolucionEspacial": {
+          "type": ["string", "null"],
+          "title": "Resolución Espacial",
+          "description": "Resolución Espacial"
+        },
+        "resolucionEspectral": {
+          "type": ["string", "null"],
+          "title": "Resolución Espectral",
+          "description": "Resolución Espectral"
+        },
+        "resolucionRadiometrica": {
+          "type": ["string", "null"],
+          "title": "Resolución Radiométrica",
+          "description": "Resolución Radiométrica"
+        },
+        "escala": {
+          "type": ["string", "null"],
+          "title": "Escala",
+          "description": "Escala"
+        },
+        "palabrasClave": {
+          "type": "array",
+          "title": "Palabras Clave",
+          "description": "Palabras Clave",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "licenciaUso": {
+          "type": "string",
+          "title": "Licencia de Uso",
+          "description": "Licencia de Uso",
+          "$ref": "#/$defs/etLicenciaUso"
+        },
+        "otrasRestricciones": {
+          "type": ["string", "null"],
+          "title": "Otras restricciones",
+          "description": "Otras restricciones"
+        },
+        "extent": {
+          "type": "string",
+          "title": "Extensión",
+          "description": "Extensión"
+        },
+        "sistemasReferenciaEspacial": {
+          "type": "string",
+          "title": "Sistema de Referencia Espacial",
+          "description": "Sistema de Referencia Espacial",
+          "$ref": "#/$defs/etSistemaReferenciaEspacial"
+        },
+        "sistemaReferenciaTemporal": {
+          "type": "string",
+          "title": "Sistema de Referencia Temporal",
+          "description": "Sistema de Referencia Temporal",
+          "$ref": "#/$defs/etSistemaReferenciaTemporal"
+        },
+        "declaracionCaptura": {
+          "type": ["string", "null"],
+          "title": "Declaración de Captura/Producción",
+          "description": "Declaración de Captura/Producción"
+        },
+        "citaciones": {
+          "type": "array",
+          "title": "Citación de Captura/Producción",
+          "description": "Citación de Captura/Producción",
+          "items": {
+            "$ref": "#/$defs/citacion"
+          }
+        },
+        "frecuenciaMantenimiento": {
+          "type": "string",
+          "title": "Frecuencia",
+          "description": "Frecuencia",
+          "$ref": "#/$defs/etFrecMantenimiento"
+        },
+        "declaracionMantenimiento": {
+          "type": ["string", "null"],
+          "title": "Declaración de Mantenimiento",
+          "description": "Declaración de Mantenimiento"
+        },
+        "descripcionModelo": {
+          "type": ["string", "null"],
+          "title": "Descripción del Modelo de Datos",
+          "description": "Descripción del Modelo de Datos"
+        },
+        "enlace": {
+          "type": "string",
+          "title": "Enlace a Catalogación de Objetos",
+          "description": "Enlace a Catalogación de Objetos"
+        },
+        "calidadDatos": {
+          "type": "array",
+          "title": "Calidad de Datos",
+          "description": "Calidad de Datos",
+          "items": {
+            "$ref": "#/$defs/etCalidadDatos"
+          }
+        },
+        "perfilMetadatoIdeca": {
+          "type": "boolean",
+          "title": "Utilización Perfil IDECA",
+          "description": "Utilización Perfil IDECA"
+        },
+        "perfilMetadatoUtilizado": {
+          "type": ["string", "null"],
+          "title": "Perfil de Metadato Utilizado",
+          "description": "Perfil de Metadato Utilizado"
+        },
+        "informacionAdicional": {
+          "type": ["string", "null"],
+          "title": "Información Adicional",
+          "description": "Información Adicional"
+        },
+        "distribuciones": {
+          "type": "array",
+          "title": "Distribución",
+          "description": "Distribución",
+          "items": {
+            "$ref": "#/$defs/etDistribucion"
+          }
+        }
+      },
+      "additionalProperties": false,      
+      "required": [
+        "resumen",
+        "proposito",
+        "representacionEspacial",
+        "extent",
+        "sistemasReferenciaEspacial",
+        "sistemaReferenciaTemporal",
+        "frecuenciaMantenimiento",
+        "perfilMetadatoIdeca"
+      ]
+    },
+    "etDistribucion": {
+      "type": "object",
+      "title": "Distribución",
+      "description": "Distribución",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "ID",
+          "description": "ID",
+          "readOnly": true,
+          "minimum": 1
+        },
+        "formato": {
+          "type": "string",
+          "title": "Nombre del formato",
+          "description": "Nombre del formato"
+        },
+        "version": {
+          "type": ["string", "null"],
+          "title": "Versión del Formato",
+          "description": "Versión del Formato"
+        },
+        "estructuraFormato": {
+          "type": ["string", "null"],
+          "title": "Estructura del Formato",
+          "description": "Estructura del Formato"
+        },
+        "conjuntoCaracteres": {
+          "type": ["string", "null"],
+          "title": "Conjunto de Caracteres",
+          "description": "Conjunto de Caracteres",
+          "default": "UTF-8"
+        },
+        "mediosDistribucion": {
+          "type": "array",
+          "title": "Medio de Distribución",
+          "description": "Medio de Distribución",
+          "items": {
+            "$ref": "#/$defs/etMedioDistribucion"
+          }
+        }
+      },
+      "additionalProperties": false,      
+      "required": [
+        "id",
+        "formato"
+      ]
+    },
+    "etMedioDistribucion": {
+      "type": "object",
+      "title": "Medio de Distribución",
+      "description": "Medio de Distribución",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "ID",
+          "description": "ID",
+          "readOnly": true,
+          "minimum": 1
+        },
+        "unidadDistribucion": {
+          "type": ["string", "null"],
+          "title": "Unidad de Distribución",
+          "description": "Unidad de Distribución"
+        },
+        "tamanoTransferencia": {
+          "type": ["string", "null"],
+          "title": "Tamaño de la Transferencia",
+          "description": "Tamaño de la Transferencia"
+        },
+        "informacionAdicional": {
+          "type": ["string", "null"],
+          "title": "Información Adicional",
+          "description": "Información Adicional"
+        },
+        "distribucionEnLinea": {
+          "type": "boolean",
+          "title": "¿La distribución será en línea?:",
+          "description": "¿La distribución será en línea?:"
+        },
+        "serviciosDistribucion": {
+          "type": "array",
+          "title": "Servicio de Distribución",
+          "description": "Servicio de Distribución",
+          "items": {
+            "$ref": "#/$defs/etServicioDistribucion"
+          }
+        }
+      },
+      "additionalProperties": false,      
+      "required": [
+        "id",
+        "distribucionEnLinea"
+      ]
+    },
+    "etServicioDistribucion": {
+      "type": "object",
+      "title": "Servicio de Distribución",
+      "description": "Servicio de Distribución",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "ID",
+          "description": "ID",
+          "readOnly": true,
+          "minimum": 1
+        },
+        "urlServicio": {
+          "type": "string",
+          "title": "URL del Servicio de Distribución",
+          "description": "URL del Servicio de Distribución",
+          "format": "uri",
+          "maxLength": 2083
+        },
+        "capacidadServicio": {
+          "type": ["string", "null"],
+          "title": "Capacidades del Servicio de Distribución",
+          "description": "Capacidades del Servicio de Distribución"
+        }
+      },
+      "additionalProperties": false,      
+      "required": [
+        "id",
+        "urlServicio"
+      ]
+    },
+    "etCalidadDatos": {
+      "type": "object",
+      "title": "Calidad de los datos",
+      "description": "Calidad de los datos",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "ID",
+          "description": "ID",
+          "readOnly": true,
+          "minimum": 1
+        },
+        "alcanceFactorCalidad": {
+          "type": "string",
+          "title": "Alcance de la prueba",
+          "description": "Alcance de la prueba",
+          "readOnly": true
+        },
+        "atributo": {
+          "type": ["string", "null"],
+          "title": "Atributo a Evaluar",
+          "description": "Atributo a Evaluar",
+          "readOnly": true
+        },
+        "prueba": {
+          "type": "string",
+          "title": "Prueba a realizar",
+          "description": "Prueba a realizar",
+          "readOnly": true
+        },
+        "nivelConformidad": {
+          "type": "string",
+          "title": "Nivel de Conformidad",
+          "description": "Nivel de Conformidad",
+          "readOnly": true
+        }
+      },
+      "if": {
+        "properties": {
+          "alcanceFactorCalidad": {
+            "const": "atributo"
+          }
+        }
+      },
+      "then":{
+        "required": [
+          "id",
+          "alcanceFactorCalidad",
+          "atributo"
+        ]
+      },
+      "else":{
+        "required": [
+          "id",
+          "alcanceFactorCalidad"
+        ]
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "identificadorRecursoUniforme",
+    "nivelAlcance",
+    "nombre",
+    "nombreEspecificacion",
+    "autor",
+    "entidad",
+    "dependencia",
+    "idioma",
+    "vision",
+    "identificacion"
+  ]
+}

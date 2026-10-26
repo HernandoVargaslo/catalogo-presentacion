@@ -1,0 +1,202 @@
+
+/* Variables de colores */
+:root {
+  --color-primary: #0d6efd;
+  --color-primary-dark: #053a5b;
+  --color-success: #198754;
+  --color-danger: #dc3545;
+  --color-warning: #ffc107;
+  --color-info: #0dcaf0;
+  --color-light: #f8f9fa;
+  --color-dark: #212529;
+  --color-muted: #6c757d;
+  --color-white: #ffffff;
+}
+
+/* Estilos generales */
+* {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  background-color: var(--color-light);
+  margin: 0;
+}
+
+a,
+.nav-link {
+  color: #003A5B;
+}
+
+/* Encabezados */
+h1 {
+  font-size: 6.5rem;
+  line-height: 6rem;
+  font-weight: 300 !important;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3.7em !important;
+    line-height: normal;
+  }
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 500 !important;
+}
+
+/* Texto */
+strong {
+  font-weight: 500 !important;
+}
+
+p {
+  line-height: normal !important;
+}
+
+/* Contenedores */
+.constrained-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Estilos de encabezado */
+.header-container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.menu--top {
+  background-color: #3366cc;
+  color: white;
+  height: 35px;
+}
+
+.p-header-gov-co {
+  margin: 0;
+}
+
+.logo-gov-co {
+  height: 24px;
+}
+
+#cabecera-app {
+  background-color: var(--color-white) !important;
+  padding: 8px 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+#logo-ideca {
+  height: 45px;
+  margin-right: 15px;
+}
+
+
+
+
+
+.rounded-20 {
+  border-radius: 20px;
+}
+
+
+.card-destacado .card-body p {
+  color: #003A5B;
+}
+
+.card-img-top-container.aspect {
+  overflow: hidden;
+  aspect-ratio: 16/5;
+}
+
+@media (max-width: 1024px) {
+  .card-img-top-container.aspect {
+    overflow: hidden;
+    aspect-ratio: inherit;
+  }
+}
+
+
+.card-default {
+  border-color: #ddd;
+  background-color: #fff;
+  margin-bottom: 24px;
+  box-shadow: 0px 4px 0px #d0d0d0;
+  box-shadow: 0px 4px 0px #a9b5bb;
+}
+
+.card-default.card-destacado:hover {
+  transform: translateY(-4%);
+}
+
+.card.card-default.card-destacado {
+  -webkit-transition: all 0.5s ease-in-out;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 4px 0px #d0d0d0 !important;
+  border-radius: 0px 0px 5px 5px;
+}
+
+/* Skeleton loader para tarjetas */
+.skeleton-box {
+  background: linear-gradient(90deg, #e8e8e8 25%, #f5f5f5 50%, #e8e8e8 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s infinite;
+  border-radius: 4px;
+  display: block;
+}
+
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.ideca--btn {
+  color: #fff !important;
+  background-color: #003A5B;
+  border-color: #003A5B;
+  padding: 8px 21px;
+  font-size: 0.9em;
+}
+
+.ideca--btn:hover,
+.ideca--btn:active {
+  background-color: #003a5ccc !important;
+  border-color: #003a5ccc !important;
+  color: white !important;
+}
+
+
+.oculto {
+  display: none !important;
+}
+
+.btn-sesion:hover {
+  color: #003A5B !important;
+  opacity: 0.9;
+}
+
+.btn-sesion:active {
+  border: 0;
+  color: #003A5B !important;
+  opacity: 0.9;
+}
+
+.btn-outline-danger:hover {
+  color: #dc3545 !important;
+  opacity: 0.9;
+}
+
+.btn-outline-danger:active {
+  border: 0;
+  color: #dc3545 !important;
+  opacity: 0.9;
+}

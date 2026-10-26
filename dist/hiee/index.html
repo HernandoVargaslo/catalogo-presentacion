@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-78SNKD131L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-78SNKD131L');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>HIEE - Catálogo de Recursos Geográficos</title>
+  <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+    crossorigin="anonymous"
+  />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <!-- Font Awesome 6 Free CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- FirebaseUI CSS -->
+  <link rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.css" />
+
+  <!-- Tom Select CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tom-select@2.5.1/dist/css/tom-select.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/flatpickr/flatpickr.min.css">
+  <script src="assets/flatpickr/flatpickr.min.js"></script>
+  <script src="assets/flatpickr/es.js"></script>
+
+  <!-- MapLibre GL JS -->
+  <link href='https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.css' rel='stylesheet' />
+
+  <!-- Tus estilos personalizados -->
+  <link rel="stylesheet" href="css/estilos-202610041725.min.css">
+    <script src="https://cdn.userway.org/widget.js" data-account="YxU09HPa9Z"></script>
+    <script
+      src="https://js.sentry-cdn.com/39ad5fd34ee63ef87f9d96cec708a316.min.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+
+<body>
+  <!-- Modal de reautenticación (overlay, no destruye la UI actual) -->
+  <div class="modal fade" id="modal-reauth" tabindex="-1" aria-labelledby="modal-reauth-label" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-reauth-label">Reautenticación requerida</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-3">
+            Tu sesión necesita reautenticación para continuar. No perderás tu trabajo; al iniciar sesión se reintentará
+            automáticamente la acción.
+          </p>
+          <div id="firebaseui-auth-container-reauth"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Importar CSV Valores de Dominio -->
+  <div class="modal fade" id="modal-importar-csv" tabindex="-1" aria-labelledby="modal-importar-csv-label"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-importar-csv-label">
+            <i class="fa-solid fa-file-csv me-2"></i>Importar valores de dominio desde CSV
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+
+          <!-- Reglas del CSV -->
+          <div class="csv-import-info mb-3">
+            <div class="csv-import-info-header">
+              <i class="fa-solid fa-circle-info me-1"></i>Formato esperado del CSV
+            </div>
+            <ul class="mb-0">
+              <li>El archivo debe tener <strong>3 columnas</strong> en este orden: <code>Código</code>,
+                <code>Etiqueta</code>, <code>Definición</code></li>
+              <li>El separador se detecta automáticamente: coma <code>,</code>, punto y coma <code>;</code>, pipe
+                <code>|</code> o tabulador</li>
+              <li>Los campos que contengan el separador utilizado deben ir entre comillas dobles:
+                <code>"valor, con coma"</code></li>
+              <li>Codificación recomendada: <strong>UTF-8</strong></li>
+              <li>El campo <strong>código</strong> debe ser <strong>único</strong> y no debe estar
+                <strong>vacio</strong></li>
+              <li>Ejemplo: <code>001;Urbano;Área clasificada como suelo urbano</code></li>
+            </ul>
+          </div>
+
+          <!-- Switch header -->
+          <div class="csv-header-switch-wrapper mb-3">
+            <input class="form-check-input" type="checkbox" id="csv-tiene-header" role="switch" checked>
+            <label for="csv-tiene-header">El CSV tiene fila de encabezado <strong>(omitir primera fila)</strong></label>
+          </div>
+
+          <!-- Zona de carga / drag & drop -->
+          <div id="csv-drop-zone" class="csv-drop-zone mb-3">
+            <input type="file" accept=".csv" id="csv-modal-file-input" class="csv-drop-zone-input">
+            <div id="csv-drop-zone-content">
+              <i class="fa-solid fa-cloud-arrow-up csv-drop-zone-icon"></i>
+              <p class="mb-1">Arrastra tu archivo CSV aquí o haz clic para seleccionar</p>
+              <p class="csv-drop-zone-hint mb-0">Solo archivos .csv</p>
+            </div>
+          </div>
+
+          <!-- Previsualización -->
+          <div id="csv-preview-container" class="d-none">
+            <div class="csv-preview-header mb-2">
+              <span class="csv-preview-title">
+                <i class="fa-solid fa-table me-1"></i>Previsualización
+                <span class="badge csv-preview-badge ms-1" id="csv-preview-count">0</span> filas
+              </span>
+              <button type="button" class="btn btn-sm btn-outline-secondary" id="csv-cambiar-archivo">
+                <i class="fa-solid fa-rotate me-1"></i>Cambiar archivo
+              </button>
+            </div>
+            <div class="csv-preview-table-wrapper">
+              <table class="table table-sm table-bordered table-striped align-middle mb-0">
+                <thead class="csv-preview-thead">
+                  <tr>
+                    <th class="text-center" style="width:5%">#</th>
+                    <th style="width:15%">Código</th>
+                    <th style="width:30%">Etiqueta</th>
+                    <th>Definición</th>
+                  </tr>
+                </thead>
+                <tbody id="csv-preview-tbody"></tbody>
+              </table>
+            </div>
+            <div id="csv-preview-warnings" class="mt-2"></div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" id="btn-confirmar-importar-csv" disabled>
+            <i class="fa-solid fa-upload me-1"></i>Cargar <span id="btn-confirmar-csv-count"></span> valores
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="header-container">
+    <!-- Barra superior GOV.CO (patrón diseñador gov-bar) -->
+    <div class="gov-bar border-bottom">
+      <div class="container-fluid-md container-lg d-flex justify-content-between align-items-center">
+          <div class="govco-top-logo">
+              <a href="https://www.gov.co/" target="_blank" rel="noopener noreferrer">
+                  <img src="https://cdn.www.gov.co/assets/images/logo.png" alt="Logo Gov.co" height="30" class="logo-gov-co" />
+              </a>
+          </div>
+      </div>
+  </div>
+
+    <!-- Navbar principal (patrón diseñador navbar) — logos + sesión -->
+    <nav id="cabecera-app" class="navbar navbar-expand-lg flex-wrap p-0 sticky-top" aria-label="Navegación principal">
+      <div class="bg-light w-100">
+        <div class="container-fluid-md container-lg position-relative d-flex flex-wrap justify-content-between align-items-center my-2">
+          <div
+              class="navbar-logos d-flex align-items-center justify-content-between justify-content-m-start gap-3 mb-2 mb-md-2 mb-lg-0"
+          >
+              <a href="../index.html" class="navbar-brand p-0 m-0">
+                  <img src="./assets/img/logo-ideca.svg" alt="IDE Bogotá - Ir a la página de inicio">
+              </a>
+              <img class="logo-alcaldia" src="./assets/img/logo-alcaldia.svg" alt="Logo Alcaldía Mayor de Bogotá" aria-hidden="true">
+          </div>
+          <!-- <section
+              class="buscadorHeader position-absolute top-50 start-50 translate-middle w-40"
+              role="search"
+              aria-label="Buscador del sitio"
+          >
+              <form class="search-bottom" method="get">
+                  <div class="position-relative">
+                      <input
+                          type="search"
+                          class="form-control rounded-pill pe-5"
+                          placeholder="Buscador inteligente"
+                          aria-label="Buscador inteligente"
+                          aria-controls="searchPanel"
+                          aria-expanded="false"
+                      />
+                      <i class="fas fa-search position-absolute top-50 end-0 translate-middle-y me-3" aria-hidden="true"></i>
+                  </div>
+              </form>
+          </section> -->
+          <div class="d-flex align-items-center gap-2 flex-wrap user-space">
+            <!-- Nombre del usuario (oculto hasta validar sesión) -->
+            <div id="nombre-usuario-header" class="user-field me-2 text-start lh-sm oculto">
+              <div class="fw-semibold user-name text-secondary" id="texto-nombre-usuario"></div>
+              <div class="user-company" id="texto-nombre-entidad"></div>
+            </div>
+            <!-- botón Administración (oculto hasta validar rol) -->
+            <button id="btn-admin-header" class="btn btn-primary btn-info btn-admin oculto" title="Administración">
+              Administración
+            </button>
+            <!-- botón para iniciar login -->
+            <button id="btn-login-desplegar" class="btn btn-outline-primary oculto" title="Iniciar sesión">
+              <i class="fa-solid fa-sign-in-alt me-1"></i>
+              Iniciar sesión
+            </button>
+            <!-- botón para testing: invalidar token (REMOVER EN PRODUCCIÓN) -->
+            <button id="btn-token-vencido-test" class="btn btn-outline-warning oculto me-2 d-none"
+              title="Invalidar token para testing">
+              <i class="fa-solid fa-clock me-1"></i>
+              Invalidar Token
+            </button>
+            <!-- botón para testing: simular pérdida irrecuperable de sesión (REMOVER EN PRODUCCIÓN) -->
+            <button id="btn-sesion-irrecuperable-test" class="btn btn-outline-danger oculto me-2"
+              title="Simular pérdida irrecuperable de sesión (requiere reautenticación)">
+              <i class="fa-solid fa-triangle-exclamation me-1"></i>
+              Sesión Irrecuperable
+            </button>
+            <!-- botón para testing: renovación silenciosa (REMOVER EN PRODUCCIÓN) -->
+            <button id="btn-renovacion-silenciosa-test" class="btn btn-outline-info oculto me-2"
+              title="Probar renovación silenciosa de token">
+              <i class="fa-solid fa-refresh me-1"></i>
+              Renovar Token
+            </button>
+            <!-- botón para cerrar sesión -->
+            <button id="btn-cerrar-sesion" type="button"
+              class="border border-2 border-danger bg-transparent rounded-circle text-danger shadow-none oculto"
+              aria-label="Cerrar sesión" title="Cerrar sesión">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+              aria-label="Menú de navegación">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="navbarMenuOverlay" class="container-md-fluid container-lg px-0 mx-0 px-lg-3 mx-md-auto">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav w-100 text-center">
+                <li class="nav-item flex-fill">
+                    <a class="nav-link" href="https://www.ideca.gov.co/" aria-current="page"> Inicio </a>
+                </li>
+                <li class="nav-item flex-fill dropdown">
+                    <a class="nav-link" href="https://www.ideca.gov.co/que-es-ideca" role="button" aria-expanded="false"> Quiénes somos </a>
+                    <button
+                        class="nav-dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="submenu-quienes-somos"
+                        aria-label="Expandir Quiénes somos"
+                    >
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <ul id="submenu-quienes-somos" class="dropdown-menu dropdown-menu-columns">
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/que-es-ideca">Qué es Ideca</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/estrategia-ideca">Estrategia Ideca</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/estructura-ideca">Estructura Ideca</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/normatividad-ideca">Normatividad Ideca</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/gestion-indicadores">Gestión e indicadores</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/hacia-una-infraestructura-de-conocimiento"
+                                >Hacia una infraestructura de conocimiento</a
+                            >
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item flex-fill dropdown">
+                    <a class="nav-link" href="https://www.ideca.gov.co/recursos" role="button" aria-expanded="false"> Recursos </a>
+                    <button
+                        class="nav-dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="submenu-recursos"
+                        aria-label="Expandir Recursos"
+                    >
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+
+                    <ul id="submenu-recursos" class="dropdown-menu dropdown-menu-columns">
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/recursos/los-mas-consultados">Los más consultados</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/mapas">Mapas e Imágenes</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/recursos/datos-mas-consultados">Datos y Bases de datos</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/recursos/analitica">Analítica</a>
+                        </li>
+                        <li><a class="dropdown-item" href="https://metadatos.ideca.gov.co/">Metadato</a></li>
+                        <li>
+                            <a class="dropdown-item" href="https://geoitems.ideca.gov.co/">Registro de ítems</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/recursos/proyectos">Proyectos</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/recursos/aplicaciones">Aplicaciones</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/ideca/catalogo-recursos/servicios-web">Servicios web geo</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/recursos/directorio-de-actores">Directorio de actores</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/recursos/instrumentos-tecnicos-y-juridicos/aspectos-generales"
+                                >Instrumentos técnicos y jurídicos</a
+                            >
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item flex-fill">
+                    <a class="nav-link active" href="https://www.ideca.gov.co/herramientas"> Herramientas </a>
+                </li>
+                <li class="nav-item flex-fill dropdown">
+                    <a
+                        class="nav-link"
+                        href="https://www.ideca.gov.co/uso-de-datos/contexto-del-dato-a-la-decision"
+                        role="button"
+                        aria-expanded="false"
+                    >
+                        Uso de datos
+                    </a>
+                    <button
+                        class="nav-dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="submenu-uso-datos"
+                        aria-label="Expandir Uso de datos"
+                    >
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+
+                    <ul id="submenu-uso-datos" class="dropdown-menu dropdown-menu-columns">
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/uso-de-datos/contexto-del-dato-a-la-decision"
+                                >Contexto: Del dato a la decisión</a
+                            >
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/uso-de-datos/inspirate-casos-e-historias-con-datos"
+                                >Inspírate: casos e historias con datos</a
+                            >
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/uso-de-datos/inspirate/cocreacion-ciudadana"
+                                >Súmate: Co-creación ciudadana</a
+                            >
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/uso-de-datos/como-puedo-usar-los-datos"
+                                >¿Cómo puedo usar los datos?</a
+                            >
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/uso-de-datos/fuentes-de-datos">Fuentes de datos</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/uso-de-datos/aprende-a-usar-datos">Aprende a usar datos</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item flex-fill dropdown">
+                    <a class="nav-link" href="https://www.ideca.gov.co/aprendizaje" role="button" aria-expanded="false"> Aprendizaje </a>
+                    <button
+                        class="nav-dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="submenu-aprendizaje"
+                        aria-label="Expandir Aprendizaje"
+                    >
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+
+                    <ul id="submenu-aprendizaje" class="dropdown-menu dropdown-menu-columns">
+                        <li><a class="dropdown-item" href="https://www.ideca.gov.co/aprendizaje">Cursos</a></li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/capsulas-de-conocimiento">Cápsulas de Conocimiento</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/documentos-de-aprendizaje">Documentos de Aprendizaje</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/glosario-geoespacial">Glosario Geoespacial</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/eres-nina-o-aprende-aqui">¿Eres niña/o? ¡Aprende aquí!</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item flex-fill dropdown">
+                    <a class="nav-link" href="https://www.ideca.gov.co/actualidad" role="button" aria-expanded="false"> Actualidad </a>
+                    <button
+                        class="nav-dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="submenu-actualidad"
+                        aria-label="Expandir Actualidad"
+                    >
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+
+                    <ul id="submenu-actualidad" class="dropdown-menu dropdown-left dropdown-menu-columns">
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/actualidad">Noticias</a>
+                        </li>
+                        <li><a class="dropdown-item" href="https://www.ideca.gov.co/eventos">Eventos</a></li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/convocatorias">Convocatorias</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item flex-fill">
+                    <a class="nav-link" href="https://www.catastrobogota.gov.co/"> Catastro </a>
+                </li>
+                <li class="nav-item flex-fill dropdown">
+                    <a class="nav-link" href="https://www.ideca.gov.co/ayuda" role="button" aria-expanded="false"> Ayuda </a>
+                    <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls="submenu-ayuda" aria-label="Expandir Ayuda">
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+
+                    <ul id="submenu-ayuda" class="dropdown-menu dropdown-left dropdown-menu-columns">
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/ayuda">Guía rápida: qué hay y dónde está</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/ayuda/preguntas-frecuentes">Preguntas frecuentes (FAQ)</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/ayuda/soporte-y-contacto">Soporte y contacto</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://www.ideca.gov.co/ayuda/manuales-de-uso">Manuales de uso</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Banner hero (patrón diseñador breadcrumb-container) -->
+  <div class="breadcrumb-container d-flex align-items-center mt-1 mx-2 mb-1 py-4 z-0"
+       style="background: url('./assets/img/ide_bogota.png') center/cover no-repeat;">
+    <div class="breadcrumb-content container-md-fluid container-lg px-0 mx-0 px-lg-3 mx-md-auto">
+      <div class="col-md-8">
+        <h1 id="span_titulo_aplicacion" class="breadcrumb-title">
+          Herramienta Integral de Estándares (2026)
+        </h1>
+      </div>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="https://www.ideca.gov.co/herramientas"><i class="fa-solid fa-house"></i></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Catálogo de recursos</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <span id="appVersionBadge">v2.08.01</span>
+
+  <div id="tab-menu" class="container">
+    <ul class="nav mb-2 mt-2 gap-1 custom-tabs border-bottom" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="btn border py-1 nav-link active" id="link-inicio" data-bs-toggle="tab" data-bs-target="#tab-inicio"
+          type="button" role="tab" aria-controls="tab-inicio" aria-selected="true">HIE</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="btn border py-1 nav-link" id="link-citaciones" data-bs-toggle="tab" data-bs-target="#tab-citaciones"
+          type="button" role="tab" aria-controls="tab-citaciones" aria-selected="false">Citaciones</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="btn border py-1 nav-link" id="link-acerca" data-bs-toggle="tab" data-bs-target="#tab-acerca" type="button"
+          role="tab" aria-controls="tab-acerca" aria-selected="false">Acerca de</button>
+      </li>
+    </ul>
+  </div>
+  <div class="container-fluid position-relative">
+    <aside id="div-contenedor-botones-items-y-chat" class="sidebar-botones d-none" aria-label="Panel de navegación lateral">
+      <div class="sidebar-header">
+        <button id="btn-mostrar-items" class="btn boton-sidebar" title="Ítems Geográficos">
+          <img src="./assets/icons/items_geograficos.svg" alt="" class="sidebar-icon"><span class="sidebar-text">Ítems Geográficos</span>
+        </button>
+        <button id="btn-mostrar-chat" class="btn boton-sidebar oculto" title="Buzón de Acompañamiento">
+          <img src="./assets/icons/buzon_acompanamiento.svg" alt="" class="sidebar-icon"><span class="sidebar-text">Buzón de Acompañamiento</span>
+        </button>
+        <button id="btn-mostrar-validaciones" class="btn boton-sidebar d-flex align-items-center gap-2 oculto" title="Validaciones pendientes para poder publicar">
+          <i class="fa-solid fa-exclamation-triangle sidebar-icon"></i><span class="sidebar-text">Validaciones</span>
+        </button>
+      </div>
+    </aside>
+    <main id="vista-principal">
+      <div class="tab-content" id="mainTabContent">
+        <!-- Tab Inicio -->
+        <div class="tab-pane fade show active" id="tab-inicio" role="tabpanel" aria-labelledby="link-inicio">
+          <div id="dashboardContainer">
+            <!-- Contenedor principal con dos columnas -->
+            <div class="container-fluid">
+              <div id="div-contenedor-items-secciones-hiee" class="row-secciones">
+                <!-- Columna izquierda: Gestión de datos geográficos (SRIG) - inicialmente 100% -->
+                <div id="div-contenedor-items-y-chat" class="container d-flex gap-2">
+                  <div id="div-contenedor-contenedores-items-y-chat" class="card p-2 d-flex flex-column">
+                    <div id="div-contenedor-items">
+                      <div id="div-contenedor-cajitas-items-geograficos">
+                        <div class="d-flex justify-content-between align-items-center header-seccion-srig mb-2 px-2">
+                          <h5 class="mb-0 fw-bold me-2 fs-5 text-secondary align-items-center">
+                            <img src="./assets/icons/items_geograficos.svg" alt="">Ítems Geográficos
+                            <span id="entidad-items-geograficos" class="fw-normal small"></span>
+                          </h5>
+                          <div class="d-flex align-items-center gap-2">
+                            <button type="button" id="btn-actualizar-listado" class="btn btn-sm btn-outline-primary d-flex align-items-center py-2"
+                              title="Actualizar listado de ítems geográficos">
+                              <i class="fa-solid fa-sync-alt"></i>
+                            </button>
+                            <div class="btn-group" role="group">
+                              <button type="button" id="btn-ordenar-asc" class="btn btn-sm"
+                                title="Ordenar por nombre ascendente">
+                                <i class="fa-solid fa-arrow-up"></i>
+                              </button>
+                              <button type="button" id="btn-ordenar-desc" class="btn btn-sm"
+                                title="Ordenar por nombre descendente">
+                                <i class="fa-solid fa-arrow-down"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Filtros de búsqueda -->
+                        <div class="filters-header card-body border-0 p-2 pb-0 bg-softgray mb-3">
+                          <div class="row m-0 flex-wrap align-items-center">
+                            <!-- Filtro por texto -->
+                            <div class="col col-md-9 mb-2 ps-0">
+                              <div class="input-group position-relative bg-white rounded-pill border">
+                                <input type="text" id="filtro-srig" class="form-control border-0 bg-transparent" autocomplete="off"
+                                  placeholder="Buscar por ID, SRIG, entidad o nombre (mín. 3 caracteres)..."
+                                  aria-label="Filtrar datos geográficos">
+                                <button id="btn-limpiar-filtro-srig" class="btn bg-transparent d-flex align-items-center border-0 d-none"
+                                  type="button" title="Limpiar filtro">
+                                  <i class="fa-solid fa-xmark fs-6"></i>
+                                </button>
+                                <span class="input-group-text bg-transparent border-0"><i class="fa-solid fa-search"></i></span>
+                              </div>
+                            </div>
+
+                            <!-- Filtro por estado de diligenciamiento (solo para usuarios autenticados no-ENTIDAD) -->
+                            <div id="filtro-estado-container" class="col position-relative col-md-3 mb-2 pe-0">
+                              <select id="filtro-estado-srig" class="form-select form-select-sm">
+                                <option value="todos">Mostrar todos</option>
+                                <option value="con-registro">Mostrar ítems con registro de estándares</option>
+                                <option value="sin-registro">Mostrar ítems sin registro de estándares</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Grid de tarjetas para datos geográficos -->
+                        <div id="contenedor-srig" class="srig-grid">
+                          <!-- Las tarjetas se cargarán dinámicamente desde la API -->
+                        </div>
+
+                        <!-- Mensaje cuando no hay resultados -->
+                        <div id="sin-resultados-srig" class="alert alert-info mt-3 d-none">
+                          No se encontraron ítems geográficos que coincidan con el filtro.
+                        </div>
+                      </div>
+                    </div>
+                    <div id="div-contenedor-chat" class="d-none">
+                      <div class="card-header p-0 text-secondary d-flex align-items-center mb-2 pb-2">
+                        <h5 class="mb-0 fw-bold fs-5"><img src="./assets/icons/buzon_acompanamiento.svg" alt="">Buzón de Acompañamiento</h5>
+                      </div>
+                      <div class="card border-0">
+                        <div class="card-body p-0">
+                          <!-- Aquí va el contenido del chat -->
+                        </div>
+                      </div>
+                    </div>
+                    <div id="div-contenedor-validaciones" class="d-none">
+                      <h5 class="mb-2 fs-5 text-secondary">
+                        <i class="fa-solid fa-exclamation-triangle me-2"></i>Validaciones del formulario
+                        <span id="formulario-validacion-activo" class="text-secondary"></span>
+                      </h5>
+                      <div class="p-0" id="contenedor-lista-validaciones"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Columna derecha: Contenedor para las secciones dinámicas HIEE - inicialmente oculta -->
+                <div id="contenedor-secciones-hiee" class="col-0">
+                  <!-- Aquí se insertarán dinámicamente las secciones HIEE -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Citaciones (sin animación fade para mejor rendimiento) -->
+        <div class="tab-pane pb-3" id="tab-citaciones" role="tabpanel" aria-labelledby="link-citaciones">
+          <div class="container">
+            <div class="card-header text-secondary">
+              <h5 class="mb-2 fs-5">
+                <i class="fa-solid fa-book me-2"></i>Gestión de Citaciones
+                <span id="contador-citaciones" class="text-secondary fw-normal small ms-2"></span>
+              </h5>
+            </div>
+            <div class="card-body position-relative">
+              <!-- Input básico de prueba -->
+              <!-- <div class="mb-2">
+                <input type="text" id="input-prueba-basico" placeholder="Input básico de prueba">
+              </div> -->
+
+              <!-- Filtro de búsqueda y botón nueva citación -->
+              <div id="citaciones-filter" class="bg-softgray rounded p-2 mb-2 d-flex align-items-center gap-2 sticky-top">
+                <div class="border-end pe-2 d-flex w-100 gap-2">
+                  <div class="input-group position-relative bg-white rounded-pill border">
+                    <!-- Input oculto para fix de rendimiento en Firefox -->
+                    <input type="text" tabindex="-1" aria-hidden="true" class="visually-hidden" autocomplete="off">
+                    <input type="text" id="filtro-citaciones" class="form-control bg-transparent border-0" autocomplete="off"
+                      placeholder="Buscar por título, autor o entidad..." aria-label="Filtrar citaciones">
+                    <button id="btn-limpiar-filtro-citaciones" class="btn bg-transparent align-items-center border-0 d-none"
+                      type="button" title="Limpiar filtro">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <span class="input-group-text bg-transparent border-0">
+                      <i class="fa-solid fa-search"></i>
+                    </span>
+                  </div>
+                  <select id="sel-orden-citaciones" class="form-select form-select-sm w-auto">
+                    <option value="nombre-asc">Nombre A→Z</option>
+                    <option value="nombre-desc">Nombre Z→A</option>
+                    <option value="fecha-asc">Fecha creación más antigua</option>
+                    <option value="fecha-desc">Fecha creación más reciente</option>
+                  </select>
+                </div>
+
+                <div class="d-flex align-items-center gap-1">
+                  <span class="text-muted small me-1">Vista:</span>
+                  <div class="btn-group btn-group-sm" role="group" aria-label="Vista">
+                    <button type="button" id="btn-vista-grilla3" class="btn btn-outline-secondary active"
+                      title="Grilla 3 columnas">
+                      <i class="fa-solid fa-grip"></i>
+                    </button>
+                    <button type="button" id="btn-vista-grilla2" class="btn btn-outline-secondary"
+                      title="Grilla 2 columnas">
+                      <i class="fa-solid fa-table-columns"></i>
+                    </button>
+                    <button type="button" id="btn-vista-lista" class="btn btn-outline-secondary"
+                      title="Lista">
+                      <i class="fa-solid fa-list"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                  <button type="button" id="btn-refrescar-citaciones" class="btn btn-outline-primary btn-sm"
+                    title="Refrescar listado de citaciones">
+                    <i class="fa-solid fa-sync"></i>
+                  </button>
+
+                  <button type="button" id="btn-nueva-citacion" class="btn btn-primary btn-sm rounded-pill"
+                    title="Crear nueva citación">
+                    <i class="fa-solid fa-plus"></i> Nueva Citación
+                  </button>
+                </div>
+              </div>
+
+              <!-- Contenedor de tarjetas de citaciones con scroll -->
+              <div class="card p-3 border-0 bg-softgray">
+                <div id="contenedor-citaciones" class="row">
+                  <!-- Las tarjetas se generarán dinámicamente aquí -->
+                </div>
+
+                <nav id="paginacion-citaciones" class="d-none mt-3" aria-label="Paginación de citaciones">
+                  <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+                    <span id="rango-citaciones" class="small text-muted" aria-live="polite"></span>
+                    <ul id="controles-paginacion-citaciones" class="pagination pagination-sm mb-0" aria-label="Páginas de citaciones"></ul>
+                  </div>
+                </nav>
+              </div>
+
+              <!-- Mensaje cuando no hay citaciones -->
+              <div id="sin-citaciones" class="alert alert-info d-none">
+                No se encontraron citaciones.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Acerca de -->
+        <div class="tab-pane fade" id="tab-acerca" role="tabpanel" aria-labelledby="link-acerca">
+          <section class="container acerca-de">
+            <div class="m-auto rounded-2">
+
+              <h1 class="fs-5 text-secondary border-bottom pb-2 mb-0">
+                Herramienta Integral de Estándares - IDECA
+              </h1>
+              <div class="content">
+                <div class="content-text">
+                  <p>
+                    La Herramienta Integral de Estándares de la Infraestructura de Datos Espaciales para el Distrito Capital
+                    - <strong>IDECA</strong> es una aplicación web desarrollada como parte del proceso de automatización en
+                    la gestión de la documentación de los datos geográficos producidos por las entidades que conforman
+                    IDECA.
+                  </p>
+
+                  <p>
+                    Esta herramienta hace parte del <strong>Módulo de datos del Catálogo de Recursos Geográficos</strong> y
+                    busca facilitar las actividades de creación, publicación y mantenimiento de los siguientes estándares
+                    geográficos en el marco de la implementación de la Política de Gestión de Información Geográfica del
+                    Distrito:
+                  </p>
+                </div>
+
+                <ul class="row list-unstyled">
+                  <li class="col-md-4 mb-3">
+                    <div>
+                      <div class="card-body">
+                        <i class="bi bi-bookmark-check-fill text-primary fs-5"></i>
+                        <strong class="text-secondary">Diccionario de conceptos:</strong>
+                        <div>
+                          ISO 19126:2021 "Geographic information — Feature concept dictionaries and registers"
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="col-md-4 mb-3">
+                    <div>
+                      <div class="card-body">
+                        <i class="bi bi-bookmark-check-fill text-primary fs-5"></i>
+                        <strong class="text-secondary">Catálogo de objetos:</strong>
+                        <div>
+                          ISO 19110:2016 "Geographic information — Methodology for feature cataloguing"
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="col-md-4 mb-3">
+                    <div>
+                      <div class="card-body">
+                        <i class="bi bi-bookmark-check-fill text-primary fs-5"></i>
+                        <strong class="text-secondary">Reporte de calidad:</strong>
+                        <div>
+                          ISO 19157:2013 "Geographic information — Data quality"
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="col-md-4 mb-3">
+                    <div>
+                      <div class="card-body">
+                        <i class="bi bi-bookmark-check-fill text-primary fs-5"></i>
+                        <strong class="text-secondary">Especificación técnica:</strong>
+                        <div>
+                          ISO 19131:2007 "Geographic information — Data product specifications"
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="col-md-4 mb-3">
+                    <div>
+                      <div class="card-body">
+                        <i class="bi bi-bookmark-check-fill text-primary fs-5"></i>
+                        <strong class="text-secondary">Catálogo de representación:</strong>
+                        <div>
+                          ISO 19117:2012 "Geographic information — Portrayal"
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Template para secciones HIEE (se clonará dinámicamente) -->
+  <template id="template-seccion-hiee">
+    <div class="seccion-hiee" data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]"
+      id="seccion-hiee-[ID_REGISTRO]">
+      <!-- Inputs hidden para mantener referencias -->
+      <input type="hidden" class="hiee-srig-id" value="[SRIG_ID]">
+      <input type="hidden" class="hiee-id-registro" value="[ID_REGISTRO]">
+
+      <div class="d-flex mb-1 justify-content-between align-items-center panel-bg-blanco-z10">
+        <div class="d-flex">
+          <h4 class="mb-0 fs-5 text-secondary fw-bold">Estándares: <span id="nombre-srig-[ID_REGISTRO]" class="nombre-srig"></span></h4>
+          <div class="id-registro-container">
+            <label class="form-label mb-0 me-2 fw-bold"><strong>ID Registro:</strong></label>
+            <span id="global-id-registro-display-[ID_REGISTRO]" class="badge bg-secondary fw-bold">-</span>
+            <input type="hidden" id="global-id-registro-[ID_REGISTRO]" name="global_id_registro" class="fw-bold">
+          </div>
+        </div>
+        <div class="d-flex align-items-stretch gap-2">
+          <!-- Switch de vista previa (solo para usuarios autenticados) -->
+          <div class="form-check form-switch d-flex preview-toggle-container">
+            <label class="form-check-label" for="preview-mode-toggle-[ID_REGISTRO]">
+              <small>Vista previa</small>
+            </label>
+            <input class="form-check-input" type="checkbox" id="preview-mode-toggle-[ID_REGISTRO]">
+          </div>
+          <button class="btn-maximizar-hiee btn btn-sm btn-outline-primary align-items-center" title="Maximizar sección">
+            <i class="bi bi-fullscreen"></i>
+          </button>
+          <button class="btn-restaurar-hiee btn btn-sm btn-outline-primary bg-primary text-white d-none align-items-center" title="Restaurar sección">
+            <i class="bi bi-fullscreen-exit"></i>
+          </button>
+          <button class="btn-cerrar-hiee btn btn-sm btn-outline-secondary d-flex align-items-center">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Navegación por pestañas -->
+      <ul class="nav nav-tabs hiee-tabs gap-1 border-0">
+        <li class="nav-item pestana-et" id="pestana_et_[ID_REGISTRO]" data-id-registro="[ID_REGISTRO]">
+          <a class="nav-link py-1 border active" data-tab="especificacion-tecnica" data-test="nav-link-et-[ID_REGISTRO]"
+            data-form="especificaciontecnica">
+            <div id="estado_et_[ID_REGISTRO]_pestana" class="estado-estandar me-2" title="Especificación Técnica">ET
+            </div>
+            <span>Especificación Técnica</span>
+          </a>
+        </li>
+        <li class="nav-item pestana-co" id="pestana_co_[ID_REGISTRO]" data-id-registro="[ID_REGISTRO]">
+          <a class="nav-link py-1 border" data-tab="diccionario" data-test="nav-link-co-[ID_REGISTRO]" data-form="catalogacion">
+            <div id="estado_co_[ID_REGISTRO]_pestana" class="estado-estandar me-2" title="Catalogación">CO</div>
+            <span>Catalogación</span>
+          </a>
+        </li>
+        <li class="nav-item pestana-rc" id="pestana_rc_[ID_REGISTRO]" data-id-registro="[ID_REGISTRO]">
+          <a class="nav-link py-1 border" data-tab="reporte-calidad" data-test="nav-link-rc-[ID_REGISTRO]"
+            data-form="reportecalidad">
+            <div id="estado_rc_[ID_REGISTRO]_pestana" class="estado-estandar me-2" title="Reporte de Calidad">RC</div>
+            <span>Reporte de Calidad</span>
+          </a>
+        </li>
+        <li class="nav-item pestana-cr" id="pestana_cr_[ID_REGISTRO]" data-id-registro="[ID_REGISTRO]">
+          <a class="nav-link py-1 border" data-tab="catalogo-representacion" data-test="nav-link-cr-[ID_REGISTRO]"
+            data-form="catalogorepresentacion">
+            <div id="estado_cr_[ID_REGISTRO]_pestana" class="estado-estandar me-2" title="Catálogo de Representación">
+              CR</div>
+            <span>Catálogo de Representación</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Contenido de las pestañas -->
+      <div class="hiee-tab-content card">
+        <div class="card-body">
+          <!-- 1. Pestaña Especificación Técnica -->
+          <div class="hiee-tab-pane active" data-tab-content="especificacion-tecnica">
+            <form class="hiee-form" id="form-especificacion-tecnica-[ID_REGISTRO]"
+              name="form-especificacion-tecnica-[ID_REGISTRO]" autocomplete="off">
+              <!-- El contenido se carga dinámicamente aquí -->
+            </form>
+          </div>
+
+          <!-- 2. Pestaña Catalogación -->
+          <div class="hiee-tab-pane" data-tab-content="diccionario">
+            <form class="hiee-form" id="form-catalogo-objetos-[ID_REGISTRO]" name="form-catalogo-objetos-[ID_REGISTRO]"
+              autocomplete="off">
+              <!-- El contenido se carga dinámicamente aquí -->
+            </form>
+          </div>
+
+          <!-- 3. Pestaña Reporte de Calidad -->
+          <div class="hiee-tab-pane" data-tab-content="reporte-calidad">
+            <form class="hiee-form" id="form-reporte-calidad-[ID_REGISTRO]" name="form-reporte-calidad-[ID_REGISTRO]"
+              autocomplete="off">
+              <!-- El contenido se carga dinámicamente aquí -->
+            </form>
+          </div>
+
+
+          <!-- 4. Pestaña Catálogo de Representación -->
+          <div class="hiee-tab-pane" data-tab-content="catalogo-representacion">
+            <form class="hiee-form" id="form-catalogo-representacion-[ID_REGISTRO]"
+              name="form-catalogo-representacion-[ID_REGISTRO]" autocomplete="off">
+              <!-- El contenido se carga dinámicamente aquí -->
+            </form>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    </div>
+  </template>
+
+
+
+  <!-- Avisos tipo "toast" -->
+  <div id="aviso-global" class="oculto"></div>
+
+  <div id="backDropForms" class="modal-backdrop modal fade d-none"></div>
+
+  <!-- Footer institucional (patrón diseñador footer) -->
+  <footer class="footer">
+    <div class="px-2 px-md-0">
+      <div class="container-fluid container-md border rounded-20 p-4 pt-5 pb-3 mb-3 bg-light">
+        <div class="row">
+          <div class="col-md-6">
+            <h2 class="h5 fw-bold">Unidad Administrativa Especial de Catastro Distrital</h2>
+            <p>Ideca: Infraestructura de Datos Espaciales para el Distrito Capital</p>
+            <address class="mb-2">
+              Dirección: Av. Carrera 30 No. 25 - 90, Torre B Piso 2 <br>
+              Código postal: 111311 <br>
+              Horario de atención: Lunes a Viernes de 8:00 am a 4:30 pm <br>
+              Teléfono conmutador: +57 601 234 7600<br>
+              Línea de servicio a la ciudadanía: +57 601 234 7600 - Ext. 7600 <br>
+              Línea Gratuita Nacional: 01 8000 9104887 <br>
+              Información general: Línea 195 <br>
+              Notificaciones judiciales:
+              <a href="mailto:notificaciones@catastrobogota.gov.co">notificaciones@catastrobogota.gov.co</a>
+            </address>
+          </div>
+          <div class="col-md-6 d-flex flex-wrap justify-content-md-end gap-4 mb-3 footer-logos mt-0">
+            <img src="./assets/img/logo.svg" alt="Logo Ideca" class="footer-logo">
+          </div>
+        </div>
+        <nav aria-label="Redes sociales" class="mb-3">
+          <ul class="list-inline footer-social">
+            <li class="list-inline-item">
+              <a href="https://www.instagram.com/catastrobogota_" target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/img/instagram.svg" alt=""> @catastrobogota_
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.facebook.com/CatastroBogota/" target="_blank" rel="noopener noreferrer"
+                aria-label="Facebook Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/img/facebook.svg" alt=""> @CatastroBogota
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://twitter.com/CatastroBogota" target="_blank" rel="noopener noreferrer"
+                aria-label="X (Twitter) Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/img/twitter.svg" alt=""> @CatastroBogota
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.youtube.com/@catastrobogota3985" target="_blank" rel="noopener noreferrer"
+                aria-label="YouTube Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/img/youtube.svg" alt=""> Catastro Bogotá
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <nav aria-label="Enlaces institucionales" class="mb-3">
+          <ul class="list-inline footer-links flex-wrap">
+            <li class="list-inline-item me-3"><a href="/sitemap">Mapa del sitio</a></li>
+            <li class="list-inline-item me-3"><a href="https://outlook.office.com/owa/" target="_blank" rel="noopener noreferrer">Correo institucional</a></li>
+            <li class="list-inline-item me-3"><a href="http://intranet.catastrobogota.gov.co/" target="_blank" rel="noopener noreferrer">Intranet</a></li>
+            <li class="list-inline-item me-3"><a href="https://mesadeservicio.catastrobogota.gov.co/CAisd/pdmweb.exe" target="_blank" rel="noopener noreferrer">Mesa de servicio</a></li>
+            <li class="list-inline-item me-3"><a href="https://www.catastrobogota.gov.co/declaracion-de-accesibilidad" target="_blank" rel="noopener noreferrer">Accesibilidad</a></li>
+            <li class="list-inline-item w-100"><a href="http://www.catastrobogota.gov.co/contacto/politicas-de-seguridad-privacidad-condiciones-de-uso-y-proteccion-de-datos-personales" target="_blank" rel="noopener noreferrer">Políticas de seguridad, privacidad, condiciones de uso y protección de datos personales</a></li>
+            <li class="list-inline-item w-100"><a href="http://www.catastrobogota.gov.co/transparencia-y-acceso-a-la-informacion-publica" target="_blank" rel="noopener noreferrer">Transparencia y acceso a la información pública</a></li>
+            <li class="list-inline-item"><a href="https://mesacomisionideca.gitbook.io/manual-de-usuario-pig/" target="_blank" rel="noopener noreferrer">Manual de usuario de la Plataforma de Información</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="container d-flex gap-2 justify-content-between align-items-center py-2">
+        <div class="d-flex gap-2 align-items-center">
+          <img src="https://cdn.www.gov.co/assets/images/logo.png" style="width: 112px;" alt="Logo GOV.CO" class="footer-bottom-logo">
+          <img src="./assets/img/logo-colombia.svg" style="width: 40px;" alt="Logo Colombia" class="footer-bottom-logo">
+        </div>
+        <p class="d-flex justify-content-md-end text-start text-white mb-0">
+          &copy; <span id="current-year" class="me-1"></span> Ideca. Todos los derechos reservados.
+        </p>
+        <script>
+          document.getElementById("current-year").textContent = new Date().getFullYear();
+        </script>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Firebase, Bootstrap, tu app.js -->
+
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth__es_419.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.17.1/ajv2020.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.5.1/dist/js/tom-select.complete.min.js"></script>
+  <script src="https://unpkg.com/maplibre-gl@5.8.0/dist/maplibre-gl.js"></script>
+
+
+  <script src="js/app-202610041725.min.js"></script>
+
+
+  <!-- Loading Backdrop con logo IDECA -->
+  <div id="loading-backdrop" class="loading-backdrop">
+    <div class="logo-container">
+      <img src="assets/img/loader.gif" alt="Logo IDECA" />
+    </div>
+    <div class="loading-text" id="loading-message">
+      Cargando estándares HIEE...
+    </div>
+  </div>
+
+  <!-- Modal para crear hijo - Oculto para implementación futura -->
+  <!--
+  <div id="modal-crear-hijo" class="modal fade" tabindex="-1" role="dialog"
+       aria-labelledby="modalCrearHijoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCrearHijoLabel">
+            <i class="fa-solid fa-plus-circle me-2"></i>Crear Hijo
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="form-crear-hijo" autocomplete="off">
+
+            <input type="hidden" id="crear-hijo-identificador-srig" name="IDENTIFICADOR_SRIG">
+
+            <input type="hidden" id="crear-hijo-id-registro" name="ID_REGISTRO">
+
+
+            <input type="hidden" id="crear-hijo-nombre-original" name="nombre_original">
+            <input type="hidden" id="crear-hijo-nombre-alternativo-original" name="nombresAlternativos_original">
+            <input type="hidden" id="crear-hijo-definicion-original" name="definicion_original">
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="crear-hijo-nombre" class="form-label">Nombre del Objeto <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="crear-hijo-nombre" name="nombre" required>
+              </div>
+              <div class="col-md-6">
+                <label for="crear-hijo-nombre-alternativo" class="form-label">Nombre Alternativo</label>
+                <input type="text" class="form-control" id="crear-hijo-nombre-alternativo" name="nombresAlternativos">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label for="crear-hijo-definicion" class="form-label">Definición <span class="text-danger">*</span></label>
+                <textarea class="form-control" id="crear-hijo-definicion" name="definicion" rows="4" required></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" id="btn-modal-crear-hijo">
+            <i class="fa-solid fa-plus-circle me-1"></i>Crear Hijo
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  -->
+
+</body>
+
+</html>

@@ -1,0 +1,940 @@
+<div id="formcontainer_et_[ID_REGISTRO]" class="especificaciontecnica-container">
+  <!-- Inputs hidden para mantener referencias -->
+  <input type="hidden" id="hiee-srig-id-et-[ID_REGISTRO]" name="hiee-srig-id-et-[ID_REGISTRO]" class="hiee-srig-id" value="[SRIG_ID]">
+  <input type="hidden" id="hiee-id-registro-et-[ID_REGISTRO]" name="hiee-id-registro-et-[ID_REGISTRO]" class="hiee-id-registro" value="[ID_REGISTRO]">
+
+  <!-- Campo IDENTIFICADOR_PADRE para registros hijo -->
+  <input type="hidden" id="et_[ID_REGISTRO]_IDENTIFICADOR_PADRE" name="IDENTIFICADOR_PADRE">
+
+  <div class="hiee-contenedor-botones-et">
+    <!-- Botones Especificación Técnica -->
+    <div class="form-buttons especificaciontecnica-buttons">
+      <div class="tools">
+        <span class="span-validacion" id="span-validacion-captura-et-[ID_REGISTRO]" data-id-registro="[ID_REGISTRO]"></span>
+        <span class="span-validacion" id="span-validacion-persistencia-et-[ID_REGISTRO]" data-id-registro="[ID_REGISTRO]"></span>
+        <!-- Switch Vista Previa / Editar -->
+        <div class="edit-mode-switch-container d-flex align-items-center">
+          <label class="switch-label me-2" id="lbl-vista-previa-et-[ID_REGISTRO]">Vista Previa</label>
+          <div class="form-check form-switch">
+            <input class="form-check-input edit-mode-switch" type="checkbox"
+                    id="switch-editar-especificaciontecnica-[ID_REGISTRO]"
+                    data-srig-id="[SRIG_ID]"
+                    data-id-registro="[ID_REGISTRO]"
+                    data-no-preview="true">
+          </div>
+          <label class="switch-label ms-2" id="lbl-editar-et-[ID_REGISTRO]">Editar</label>
+        </div>
+        <button type="button" id="btn-publicar-especificaciontecnica-[ID_REGISTRO]" data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]" class="btn btn-success btn-lg preview-mode-button d-none">
+          <i class="fa-solid fa-upload"></i> Publicar
+        </button>
+        <button type="button" id="btn-guardar-especificaciontecnica-[ID_REGISTRO]" data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]"
+          class="btn btn-lg edit-mode-button oculto">
+          <i class="fa-solid fa-save"></i> Guardar
+        </button>
+        <button type="button" id="btn-pdf-especificaciontecnica-[ID_REGISTRO]" data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-file"></i> PDF
+        </button>
+        <button type="button" id="btn-resetearformulario-especificaciontecnica-[ID_REGISTRO]" data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]"
+          class="btn btn-sm btn-outline-danger edit-mode-button oculto" title="Limpiar formulario">
+          <i class="fa-solid fa-broom"></i>
+        </button>
+        <button type="button" data-test="btn-colapsar-formularios-et-[ID_REGISTRO]" onclick="cerrarAcordeonesDeTabActivo()" class="btn btn-sm"
+          title="Colapsar formularios">
+          <div class="collapseall">
+            <img src="./assets/icons/collapseall.svg" alt="">
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Acordeones para todos los elementos -->
+  <div class="contenedor-acordeones">
+    <div class="accordion" id="acordeonEspecificacionTecnica">
+
+      <!-- Acordeón Información Básica -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" data-test="btn-acordeon-infobasica-[ID_REGISTRO]" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse-informacionBasica">
+            Información Básica de la Especificación Técnica
+          </button>
+        </h2>
+        <div id="collapse-informacionBasica" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            <!-- Campos readOnly como etiquetas con inputs hidden -->
+            <div class="row mb-3">
+              <!-- Campo ID oculto pero mantiene input hidden para funcionalidad -->
+              <input type="hidden" id="et_[ID_REGISTRO]_id" name="id">
+
+              <div class="col-md-6" style="display: none;">
+                <label class="form-label">Identificador del objeto</label>
+                <span id="et_[ID_REGISTRO]_identificadorRecursoUniforme_display" class="form-control-plaintext">-</span>
+                <input type="hidden" id="et_[ID_REGISTRO]_identificadorRecursoUniforme"
+                  name="identificadorRecursoUniforme">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Alcance de la Especificación Técnica</label>
+                <select class="form-select" id="et_[ID_REGISTRO]_nivelAlcance" name="nivelAlcance" title="Alcance de la Especificación Técnica">
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label class="form-label">Nombre del Objeto</label>
+                <span id="et_[ID_REGISTRO]_nombre_display" class="form-control-plaintext">-</span>
+                <input type="hidden" id="et_[ID_REGISTRO]_nombre" name="nombre">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Nombre Alternativo</label>
+                <span id="et_[ID_REGISTRO]_nombreAlternativo_display" class="form-control-plaintext">-</span>
+                <input type="hidden" id="et_[ID_REGISTRO]_nombreAlternativo" name="nombreAlternativo">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Entidad</label>
+                <span id="et_[ID_REGISTRO]_entidad_display" class="form-control-plaintext">-</span>
+                <input type="hidden" id="et_[ID_REGISTRO]_entidad" name="entidad">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label class="form-label">Dirección</label>
+                <span id="et_[ID_REGISTRO]_direccion_display" class="form-control-plaintext">-</span>
+                <input type="hidden" id="et_[ID_REGISTRO]_direccion" name="direccion">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Correo electrónico</label>
+                <span id="et_[ID_REGISTRO]_email_display" class="form-control-plaintext">-</span>
+                <input type="hidden" id="et_[ID_REGISTRO]_email" name="email">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Teléfonos de Contacto</label>
+                <span id="et_[ID_REGISTRO]_telefono_display" class="form-control-plaintext">-</span>
+                <input type="hidden" id="et_[ID_REGISTRO]_telefono" name="telefono">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Acordeón Información de la Especificación -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-test="btn-acordeon-informacionEspecificacion-[ID_REGISTRO]" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse-informacionEspecificacion">
+            Información de la Especificación
+          </button>
+        </h2>
+        <div id="collapse-informacionEspecificacion" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="et_[ID_REGISTRO]_nombreEspecificacion" class="form-label">Nombre de la especificación <span
+                    class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="et_[ID_REGISTRO]_nombreEspecificacion"
+                  name="nombreEspecificacion" title="Nombre de la especificación" required>
+              </div>
+              <div class="col-md-3">
+                <label for="et_[ID_REGISTRO]_version" class="form-label">Versión Especificación <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="et_[ID_REGISTRO]_version" name="version"
+                  title="Versión Especificación">
+              </div>
+              <div class="col-md-3">
+                <label for="et_[ID_REGISTRO]_fechaVersionET" class="form-label">Fecha de Versión <span class="text-danger">*</span></label>
+                <input type="text" class="form-control fecha-restringida" id="et_[ID_REGISTRO]_fechaVersionET"
+                  name="fechaVersionET" title="Fecha de Versión" placeholder="dd/mm/yyyy">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="et_[ID_REGISTRO]_autor" class="form-label">Autor <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="et_[ID_REGISTRO]_autor" name="autor" title="Autor" required>
+              </div>
+              <div class="col-md-4">
+                <label for="et_[ID_REGISTRO]_dependencia" class="form-label">Dependecia <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="et_[ID_REGISTRO]_dependencia" name="dependencia"
+                  title="Dependecia">
+              </div>
+              <div class="col-md-4">
+                <label for="et_[ID_REGISTRO]_controlcambio" class="form-label">Cambio efectuado</label>
+                <input type="text" class="form-control" id="et_[ID_REGISTRO]_controlcambio" name="controlcambio"
+                  title="Cambio efectuado">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="et_[ID_REGISTRO]_idioma_label" class="form-label">Idioma <span
+                    class="text-danger">*</span></label>
+                <select class="form-select" id="et_[ID_REGISTRO]_idioma" name="idioma" title="Idioma" required>
+                  <option value="">Seleccione...</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="et_[ID_REGISTRO]_restriccionUso" class="form-label">Restricción de Uso</label>
+                <select class="form-select" id="et_[ID_REGISTRO]_restriccionUso" name="restriccionUso"
+                  title="Restricción de Uso">
+                  <option value="">Seleccione...</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label for="et_[ID_REGISTRO]_vision" class="form-label">Descripción Informal / Visión general de la
+                  Especificación Técnica <span class="text-danger">*</span></label>
+                <textarea class="form-control" id="et_[ID_REGISTRO]_vision" name="vision" rows="3"
+                  title="Descripción Informal / Visión general de la Especificación Técnica" required></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Acordeón Identificación -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-test="btn-acordeon-identificacion-[ID_REGISTRO]" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse-identificacion">
+            Identificación
+          </button>
+        </h2>
+        <div id="collapse-identificacion" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            <!-- Todo el contenido existente de la sección Identificación -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="et_[ID_REGISTRO]_identificacion_resumen" class="form-label">Resumen del Objeto <span
+                    class="text-danger">*</span></label>
+                <textarea class="form-control" id="et_[ID_REGISTRO]_identificacion_resumen" name="identificacion[resumen]"
+                  rows="3" title="Resumen del Objeto" required></textarea>
+              </div>
+              <div class="col-md-6">
+                <label for="et_[ID_REGISTRO]_identificacion_proposito" class="form-label">Propósito del Objeto <span
+                    class="text-danger">*</span></label>
+                <textarea class="form-control" id="et_[ID_REGISTRO]_identificacion_proposito"
+                  name="identificacion[proposito]" rows="3" title="Propósito del Objeto" required></textarea>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="et_[ID_REGISTRO]_identificacion_representacionEspacial" class="form-label">Representación
+                  Espacial <span class="text-danger">*</span></label>
+                <select class="form-select" id="et_[ID_REGISTRO]_identificacion_representacionEspacial"
+                  name="identificacion[representacionEspacial]" title="Representación Espacial" required>
+                  <option value="">Seleccione...</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="et_[ID_REGISTRO]_identificacion_resolucionEspacial" class="form-label">Resolución
+                  Espacial</label>
+                <input type="text" class="form-control" id="et_[ID_REGISTRO]_identificacion_resolucionEspacial"
+                  name="identificacion[resolucionEspacial]" title="Resolución Espacial">
+              </div>
+              <div class="col-md-4">
+                <label for="et_[ID_REGISTRO]_identificacion_escala" class="form-label">Escala</label>
+                <input type="text" class="form-control" id="et_[ID_REGISTRO]_identificacion_escala"
+                  name="identificacion[escala]" title="Escala">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="et_[ID_REGISTRO]_identificacion_resolucionEspectral" class="form-label">Resolución
+                  Espectral</label>
+                <input type="text" class="form-control" id="et_[ID_REGISTRO]_identificacion_resolucionEspectral"
+                  name="identificacion[resolucionEspectral]" title="Resolución Espectral">
+              </div>
+              <div class="col-md-6">
+                <label for="et_[ID_REGISTRO]_identificacion_resolucionRadiometrica" class="form-label">Resolución
+                  Radiométrica</label>
+                <input type="text" class="form-control" id="et_[ID_REGISTRO]_identificacion_resolucionRadiometrica"
+                  name="identificacion[resolucionRadiometrica]" title="Resolución Radiométrica">
+              </div>
+            </div>
+
+            <!-- Palabras Clave -->
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label for="et_[ID_REGISTRO]_identificacion_palabrasClave" class="form-label">Palabras Clave</label>
+                <div class="palabras-clave-container">
+                  <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="et_[ID_REGISTRO]_identificacion_palabrasClave_input"
+                      placeholder="Escriba una palabra clave y presione Enter">
+                    <button type="button" class="btn btn-outline-primary" data-form="et" data-srig="[SRIG_ID]" data-test="btn-agregar-palabra-[ID_REGISTRO]"
+                      onclick="EspecificacionTecnicaModule.agregarPalabraClave('[ID_REGISTRO]')">
+                      <i class="fa-solid fa-plus"></i>
+                    </button>
+                  </div>
+                  <div id="et_[ID_REGISTRO]_identificacion_palabrasClave_container" class="keywords-container"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Licencia y Restricciones -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="et_[ID_REGISTRO]_identificacion_licenciaUso" class="form-label">Licencia de Uso</label>
+                <select class="form-select" id="et_[ID_REGISTRO]_identificacion_licenciaUso"
+                  name="identificacion[licenciaUso]" title="Licencia de Uso">
+                  <option value="">Seleccione...</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="et_[ID_REGISTRO]_identificacion_otrasRestricciones" class="form-label">Otras
+                  restricciones</label>
+                <input type="text" class="form-control" id="et_[ID_REGISTRO]_identificacion_otrasRestricciones"
+                  name="identificacion[otrasRestricciones]" title="Otras restricciones">
+              </div>
+            </div>
+
+            <!-- Extensión y Sistemas de Referencia -->
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="et_[ID_REGISTRO]_identificacion_extent" class="form-label">Extensión <span
+                    class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="et_[ID_REGISTRO]_identificacion_extent"
+                  name="identificacion[extent]" title="Extensión" required>
+              </div>
+              <div class="col-md-4">
+                <label for="et_[ID_REGISTRO]_identificacion_sistemasReferenciaEspacial" class="form-label">Sistema de
+                  Referencia Espacial <span class="text-danger">*</span></label>
+                <select class="form-select" id="et_[ID_REGISTRO]_identificacion_sistemasReferenciaEspacial"
+                  name="identificacion[sistemasReferenciaEspacial]" title="Sistema de Referencia Espacial" required>
+                  <option value="">Seleccione...</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="et_[ID_REGISTRO]_identificacion_sistemaReferenciaTemporal" class="form-label">Sistema de
+                  Referencia Temporal <span class="text-danger">*</span></label>
+                <select class="form-select" id="et_[ID_REGISTRO]_identificacion_sistemaReferenciaTemporal"
+                  name="identificacion[sistemaReferenciaTemporal]" title="Sistema de Referencia Temporal" required>
+                  <option value="">Seleccione...</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Declaraciones -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="et_[ID_REGISTRO]_identificacion_declaracionCaptura" class="form-label">Declaración de
+                  Captura/Producción</label>
+                <textarea class="form-control" id="et_[ID_REGISTRO]_identificacion_declaracionCaptura"
+                  name="identificacion[declaracionCaptura]" rows="3" title="Declaración de Captura/Producción"></textarea>
+              </div>
+              <div class="col-md-6">
+                <label for="et_[ID_REGISTRO]_identificacion_declaracionMantenimiento" class="form-label">Declaración de
+                  Mantenimiento</label>
+                <textarea class="form-control" id="et_[ID_REGISTRO]_identificacion_declaracionMantenimiento"
+                  name="identificacion[declaracionMantenimiento]" rows="3"
+                  title="Declaración de Mantenimiento"></textarea>
+              </div>
+            </div>
+
+            <!-- Citación de Captura/Producción -->
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label class="form-label">Citación de Captura/Producción</label>
+                <div class="citation-picker" data-field="identificacion[citaciones]"
+                  data-base-name="identificacion[citaciones]">
+                  <div class="citation-search-container position-relative">
+                    <input type="text" class="form-control citation-search"
+                      data-test="input-buscar-citaciones-et-identificacion-[ID_REGISTRO]"
+                      placeholder="Buscar y seleccionar citaciones...">
+                    <div class="citation-dropdown"></div>
+                  </div>
+                  <div class="mt-2">
+                    <span class="citation-count">0 citaciones seleccionadas</span>
+                  </div>
+                  <div class="selected-citations mt-2"></div>
+                  <div class="citation-inputs"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mantenimiento -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="et_[ID_REGISTRO]_identificacion_frecuenciaMantenimiento" class="form-label">Frecuencia <span
+                    class="text-danger">*</span></label>
+                <select class="form-select" id="et_[ID_REGISTRO]_identificacion_frecuenciaMantenimiento"
+                  name="identificacion[frecuenciaMantenimiento]" title="Frecuencia" required>
+                  <option value="">Seleccione...</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="et_[ID_REGISTRO]_identificacion_descripcionModelo" class="form-label">Descripción del Modelo
+                  de Datos</label>
+                <textarea class="form-control" id="et_[ID_REGISTRO]_identificacion_descripcionModelo"
+                  name="identificacion[descripcionModelo]" rows="3" title="Descripción del Modelo de Datos"></textarea>
+              </div>
+            </div>
+
+            <!-- Enlaces -->
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label for="et_[ID_REGISTRO]_identificacion_enlace" class="form-label">Enlace a Catalogación de
+                  Objetos <span class="text-danger">*</span></label>
+                <input type="url" class="form-control" id="et_[ID_REGISTRO]_identificacion_enlace"
+                  name="identificacion[enlace]" title="Enlace a Catalogación de Objetos">
+              </div>
+            </div>
+
+            <!-- Calidad de Datos -->
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label class="form-label">Factores de Calidad</label>
+                <div id="contenedor-et-calidad-datos_[ID_REGISTRO]" class="border rounded p-3 bg-light">
+                  <!-- Template de calidad de datos para la sección identificación -->
+                  <template id="template-identificacion-calidadDatos">
+                    <div class="accordion-item" data-calidad-index="" data-index="">
+                      <h2 class="accordion-header" id="headingFactor_[ID_REGISTRO]_">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseFactor_[ID_REGISTRO]_" aria-expanded="false"
+                          aria-controls="collapseFactor_[ID_REGISTRO]_">
+                          <span class="me-2">
+                            <i class="fa-solid fa-chart-line me-1"></i>Factor de Calidad #<span
+                              class="calidad-number"></span>
+                          </span>
+                          <span class="badge bg-info ms-2"
+                            title="Sincronizado automáticamente desde Reporte de Calidad">🔄 Sincronizado</span>
+                        </button>
+                      </h2>
+                      <div id="collapseFactor_[ID_REGISTRO]_" class="accordion-collapse collapse"
+                        aria-labelledby="headingFactor_[ID_REGISTRO]_">
+                        <div class="accordion-body">
+
+                          <div class="row mb-3">
+                            <div class="col-md-2 oculto">
+                              <input type="hidden" id="et_[ID_REGISTRO]_identificacion_calidadDatos_id_"
+                                name="identificacion[calidadDatos][][id]">
+                              <span class="form-control-plaintext small">ID: <span
+                                  id="et_[ID_REGISTRO]_identificacion_calidadDatos_id_display_">-</span></span>
+                            </div>
+                            <div class="col-md-5">
+                              <label class="form-label">Alcance de la prueba</label>
+                              <span id="et_[ID_REGISTRO]_identificacion_calidadDatos_alcanceFactorCalidad_display_"
+                                class="form-control-plaintext">-</span>
+                              <input type="hidden" id="et_[ID_REGISTRO]_identificacion_calidadDatos_alcanceFactorCalidad_"
+                                name="identificacion[calidadDatos][][alcanceFactorCalidad]">
+                            </div>
+                            <div class="col-md-5">
+                              <label class="form-label">Atributo a Evaluar</label>
+                              <span id="et_[ID_REGISTRO]_identificacion_calidadDatos_atributo_display_"
+                                class="form-control-plaintext">-</span>
+                              <input type="hidden" id="et_[ID_REGISTRO]_identificacion_calidadDatos_atributo_"
+                                name="identificacion[calidadDatos][][atributo]">
+                            </div>
+                          </div>
+
+                          <div class="row mb-3">
+                            <div class="col-md-6">
+                              <label class="form-label">Prueba a Realizar</label>
+                              <span id="et_[ID_REGISTRO]_identificacion_calidadDatos_prueba_display_"
+                                class="form-control-plaintext">-</span>
+                              <input type="hidden" id="et_[ID_REGISTRO]_identificacion_calidadDatos_prueba_"
+                                name="identificacion[calidadDatos][][prueba]">
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label">Nivel de Conformidad</label>
+                              <span id="et_[ID_REGISTRO]_identificacion_calidadDatos_nivelConformidad_display_"
+                                class="form-control-plaintext">-</span>
+                              <input type="hidden" id="et_[ID_REGISTRO]_identificacion_calidadDatos_nivelConformidad_"
+                                name="identificacion[calidadDatos][][nivelConformidad]">
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+
+                  <div id="et_[ID_REGISTRO]_identificacion_calidadDatos" class="calidad-datos-container accordion"></div>
+                  <div class="mt-3 text-center">
+                    <div class="alert alert-info small mb-0">
+                      <i class="fa-solid fa-info-circle me-1"></i>
+                      Los factores de calidad se sincronizan automáticamente desde el formulario de Reporte de Calidad.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Metadatos -->
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label class="form-label">Perfil de Metadato Utilizado</label>
+              </div>
+            </div>
+
+            <!-- Perfil IDECA -->
+            <div class="row mb-3">
+              <div class="d-flex mb-2 gap-3">
+                <div class="form-check d-flex align-items-end gap-2">
+                  <div class="d-flex">
+                    <label class="form-check-label fw-bold" for="et_[ID_REGISTRO]_identificacion_perfilMetadatoIdeca">
+                      Utilización Perfil IDECA
+                    </label>
+                    <span class="text-danger">*</span>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input edit-mode-switch" checked type="checkbox"
+                      id="et_[ID_REGISTRO]_identificacion_perfilMetadatoIdeca" name="identificacion[perfilMetadatoIdeca]"
+                      title="Utilización Perfil IDECA">
+                  </div>
+                </div>
+                <div class="col">
+                  <label for="et_[ID_REGISTRO]_identificacion_perfilMetadatoUtilizado" class="form-label fw-normal">Especifique el
+                    perfil de metadato utilizado</label>
+                  <input type="text" class="form-control" id="et_[ID_REGISTRO]_identificacion_perfilMetadatoUtilizado"
+                    name="identificacion[perfilMetadatoUtilizado]"
+                    title="Por favor especifique el perfil de metadato utilizado">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label for="et_[ID_REGISTRO]_identificacion_informacionAdicional" class="form-label fw-normal">Información
+                  Adicional</label>
+                <textarea class="form-control" id="et_[ID_REGISTRO]_identificacion_informacionAdicional"
+                  name="identificacion[informacionAdicional]" rows="3" title="Información Adicional"></textarea>
+              </div>
+            </div>
+
+            <!-- Distribución -->
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <label class="form-label mb-0">Distribución</label>
+                  <button type="button" data-test="btn-colapsar-distribuciones-[ID_REGISTRO]" onclick="cerrarAcordeonesEspecificosD(this)" class="btn btn-sm mb-0" title="Colapsar formularios">
+                    <div class="collapseall">
+                      <img src="./assets/icons/collapseall.svg" alt="">
+                    </div>
+                  </button>
+                </div>
+                <div class="border rounded p-3 bg-light">
+
+                  <!-- Template de distribución para generar dinámicamente -->
+                  <template id="template-distribucion">
+                    <div class="accordion-item" data-index="">
+                      <h2 class="accordion-header d-flex" id="et_[ID_REGISTRO]_acordeon_distribucion_header_">
+                        <button class="accordion-button collapsed flex-grow-1" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#et_[ID_REGISTRO]_acordeon_distribucion_" aria-expanded="false"
+                          aria-controls="et_[ID_REGISTRO]_acordeon_distribucion_">
+                          <span class="me-2">
+                            <i class="fa-solid fa-share-alt me-1"></i>Distribución #<span class="item-number"></span>
+                          </span>
+                          <span class="badge bg-primary ms-2 distribucion-summary">Sin configurar</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger ms-2 my-1 me-1" data-form="et" data-srig="[SRIG_ID]" data-test="btn-eliminar-distribucion-[ID_REGISTRO]"
+                          onclick="EspecificacionTecnicaModule.eliminarItem(this.closest('[data-index]').id, 'distribuciones')">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </h2>
+                      <div id="et_[ID_REGISTRO]_acordeon_distribucion_" class="accordion-collapse collapse"
+                        aria-labelledby="et_[ID_REGISTRO]_acordeon_distribucion_header_">
+                        <div class="accordion-body">
+
+                      <div class="row mb-3">
+                        <div class="col-md-2 oculto">
+                          <input type="hidden" id="et_[ID_REGISTRO]_identificacion_distribuciones_id_"
+                            name="identificacion[distribuciones][][id]">
+                          <span class="form-control-plaintext small">ID: <span
+                              id="et_[ID_REGISTRO]_identificacion_distribuciones_id_display_">-</span></span>
+                        </div>
+                        <div class="col-md-5">
+                          <label class="form-label">Nombre del formato <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control"
+                            id="et_[ID_REGISTRO]_identificacion_distribuciones_formato_"
+                            name="identificacion[distribuciones][][formato]" title="Nombre del formato" required>
+                        </div>
+                        <div class="col-md-5">
+                          <label class="form-label">Versión del Formato</label>
+                          <input type="text" class="form-control"
+                            id="et_[ID_REGISTRO]_identificacion_distribuciones_version_"
+                            name="identificacion[distribuciones][][version]" title="Versión del Formato">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-md-6">
+                          <label class="form-label">Estructura del Formato</label>
+                          <textarea class="form-control"
+                            id="et_[ID_REGISTRO]_identificacion_distribuciones_estructuraFormato_"
+                            name="identificacion[distribuciones][][estructuraFormato]" rows="2"
+                            title="Estructura del Formato"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label">Conjunto de Caracteres</label>
+                          <input type="text" class="form-control"
+                            id="et_[ID_REGISTRO]_identificacion_distribuciones_conjuntoCaracteres_"
+                            name="identificacion[distribuciones][][conjuntoCaracteres]" value="UTF-8"
+                            title="Conjunto de Caracteres">
+                        </div>
+                      </div>
+
+                      <!-- Medios de Distribución (nested array) -->
+                      <div class="row mb-3">
+                        <div class="col-md-12">
+                          <h6>Medios de Distribución</h6>
+                          <div class="border rounded p-2 bg-light">
+                            <div id="et_[ID_REGISTRO]_identificacion_distribuciones_mediosDistribucion_"
+                              class="medios-container accordion"></div>
+                            <div class="mt-2">
+                              <button type="button" class="btn btn-sm btn-secondary" data-test="btn-agregar-medio-[ID_REGISTRO]"
+                                onclick="EspecificacionTecnicaModule.agregarMedioDistribucion(this.closest('[data-index]').dataset.index, '[ID_REGISTRO]')">
+                                <i class="fa-solid fa-plus"></i> Agregar Medio
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+
+                  <!-- Template de medio de distribución -->
+                  <template id="template-medioDistribucion">
+                    <div class="accordion-item" data-medio-index="">
+                      <h2 class="accordion-header d-flex" id="et_[ID_REGISTRO]_acordeon_medio_header___">
+                        <button class="accordion-button collapsed flex-grow-1" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#et_[ID_REGISTRO]_acordeon_medio___" aria-expanded="false"
+                          aria-controls="et_[ID_REGISTRO]_acordeon_medio___">
+                          <span class="me-2">
+                            <i class="fa-solid fa-hard-drive me-1"></i><span class="medio-number"></span>
+                          </span>
+                          <span class="badge bg-success ms-2 medio-summary">Sin configurar</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger ms-2 my-1 me-1" data-test="btn-eliminar-medio-[ID_REGISTRO]"
+                          onclick="EspecificacionTecnicaModule.eliminarMedioDistribucion(this.closest('[data-medio-index]'))">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </h2>
+                      <div id="et_[ID_REGISTRO]_acordeon_medio___" class="accordion-collapse collapse"
+                        aria-labelledby="et_[ID_REGISTRO]_acordeon_medio_header___">
+                        <div class="accordion-body">
+
+                      <div class="row mb-2">
+                        <div class="col-md-2 oculto">
+                          <input type="hidden" id="et_[ID_REGISTRO]_identificacion_distribuciones_mediosDistribucion_id__"
+                            name="identificacion[distribuciones][][mediosDistribucion][][id]">
+                          <span class="form-control-plaintext small"
+                            id="et_[ID_REGISTRO]_identificacion_distribuciones_mediosDistribucion_id_display__">-</span>
+                        </div>
+                        <div class="col-md-5">
+                          <div class="form-check mt-4 d-flex">
+                            <label class="form-check-label fw-bold small"
+                              for="et_[ID_REGISTRO]_identificacion_distribuciones_mediosDistribucion_distribucionEnLinea__">
+                              ¿La distribución será en línea? <span class="text-danger">*</span>
+                            </label>
+                            <div class="form-check form-switch">
+                              <input class="form-check-input edit-mode-switch" type="checkbox"
+                                id="et_[ID_REGISTRO]_identificacion_distribuciones_mediosDistribucion_distribucionEnLinea__"
+                                name="identificacion[distribuciones][][mediosDistribucion][][distribucionEnLinea]"
+                                title="¿La distribución será en línea?">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-5">
+                          <label class="form-label fw-normal small">Unidad de Distribución</label>
+                          <input type="text" class="form-control form-control-sm"
+                            id="et_[ID_REGISTRO]_identificacion_distribuciones_mediosDistribucion_unidadDistribucion__"
+                            name="identificacion[distribuciones][][mediosDistribucion][][unidadDistribucion]"
+                            title="Unidad de Distribución">
+                        </div>
+
+                      </div>
+                      <div class="row mb-2">
+                        <div class="col-md-5">
+                          <label class="form-label fw-normal small">Tamaño de la Transferencia</label>
+                          <input type="text" class="form-control form-control-sm"
+                            id="et_[ID_REGISTRO]_identificacion_distribuciones_mediosDistribucion_tamanoTransferencia__"
+                            name="identificacion[distribuciones][][mediosDistribucion][][tamanoTransferencia]"
+                            title="Tamaño de la Transferencia">
+                        </div>
+                        <div class="col-md-5">
+                          <label class="form-label fw-normal small">Información Adicional</label>
+                          <textarea class="form-control form-control-sm"
+                            id="et_[ID_REGISTRO]_identificacion_distribuciones_mediosDistribucion_informacionAdicional__"
+                            name="identificacion[distribuciones][][mediosDistribucion][][informacionAdicional]" rows="1"
+                            title="Información Adicional"></textarea>
+                        </div>
+
+                      </div>
+
+                      <!-- Servicios de Distribución (nested array) -->
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="d-flex justify-content-between align-items-center mb-3">
+                            <label class="form-label small">Servicios de Distribución</label>
+                            <button type="button" data-test="btn-colapsar-servicios-[ID_REGISTRO]" onclick="cerrarAcordeonesEspecificosD(this)" class="btn btn-sm mb-0" title="Colapsar formularios">
+                              <div class="collapseall">
+                                <img src="./assets/icons/collapseall.svg" alt="">
+                              </div>
+                            </button>
+                          </div>
+                          <div class="border rounded p-1 bg-light">
+                            <div
+                              id="et_[ID_REGISTRO]_identificacion_distribuciones_mediosDistribucion_serviciosDistribucion__"
+                              class="servicios-container"></div>
+                            <div class="mt-1">
+                              <button type="button" class="btn shadow-box btn-sm btn-outline-secondary" data-test="btn-agregar-servicio-[ID_REGISTRO]"
+                                onclick="EspecificacionTecnicaModule.agregarServicioDistribucion(this.closest('[data-medio-index]').dataset.medioIndex, this.closest('[data-index]').dataset.index, '[ID_REGISTRO]')">
+                                <i class="fa-solid fa-plus"></i> Agregar Servicio
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+
+                  <!-- Template de servicio de distribución -->
+                  <template id="template-servicioDistribucion">
+                    <div class="accordion-item" data-servicio-index="">
+                      <h2 class="accordion-header d-flex" id="et_[ID_REGISTRO]_acordeon_servicio_header___">
+                        <button class="accordion-button collapsed flex-grow-1" type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#et_[ID_REGISTRO]_acordeon_servicio___"
+                          aria-expanded="false"
+                          aria-controls="et_[ID_REGISTRO]_acordeon_servicio___">
+                          <span class="me-2">
+                            <i class="fa-solid fa-globe me-1"></i><span class="servicio-number"></span>
+                          </span>
+                          <span class="badge bg-info ms-2 servicio-summary">Sin configurar</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger ms-2 my-1 me-1" data-test="btn-eliminar-servicio-[ID_REGISTRO]"
+                          onclick="EspecificacionTecnicaModule.eliminarServicioDistribucion(this.closest('[data-servicio-index]'))">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </h2>
+                      <div id="et_[ID_REGISTRO]_acordeon_servicio___"
+                        class="accordion-collapse collapse"
+                        aria-labelledby="et_[ID_REGISTRO]_acordeon_servicio_header___">
+                        <div class="accordion-body">
+                          <div class="row mb-1">
+                            <div class="col-md-2 oculto">
+                              <input type="hidden"
+                                id="et_[ID_REGISTRO]_identificacion_distribuciones_mediosDistribucion_serviciosDistribucion_id___"
+                                name="identificacion[distribuciones][][mediosDistribucion][][serviciosDistribucion][][id]">
+                              <span class="form-control-plaintext small" style="font-size: 0.75rem;">ID: <span
+                                  id="et_[ID_REGISTRO]_identificacion_distribuciones_mediosDistribucion_serviciosDistribucion_id_display___">-</span></span>
+                            </div>
+                            <div class="col-md-5">
+                              <label for="et_[ID_REGISTRO]_identificacion_distribuciones_mediosDistribucion_serviciosDistribucion_urlServicio___" class="form-label small">URL del Servicio <span class="text-danger">*</span></label>
+                              <input type="url" class="form-control form-control-sm"
+                                id="et_[ID_REGISTRO]_identificacion_distribuciones_mediosDistribucion_serviciosDistribucion_urlServicio___"
+                                name="identificacion[distribuciones][][mediosDistribucion][][serviciosDistribucion][][urlServicio]"
+                                title="URL del Servicio de Distribución" required>
+                            </div>
+                            <div class="col-md-5">
+                              <label class="form-label small">Capacidades del Servicio</label>
+                              <textarea class="form-control form-control-sm"
+                                id="et_[ID_REGISTRO]_identificacion_distribuciones_mediosDistribucion_serviciosDistribucion_capacidadServicio___"
+                                name="identificacion[distribuciones][][mediosDistribucion][][serviciosDistribucion][][capacidadServicio]"
+                                rows="1" title="Capacidades del Servicio de Distribución"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+
+                  <div id="et_[ID_REGISTRO]_identificacion_distribuciones" class="distribuciones-container accordion especificaciontecnica-container"></div>
+                  <div class="mt-3 text-center">
+                    <button type="button" class="btn btn-sm btn-success" data-form="et" data-srig="[SRIG_ID]" data-test="btn-agregar-distribucion-[ID_REGISTRO]"
+                      onclick="EspecificacionTecnicaModule.agregarDistribucion('[ID_REGISTRO]')">
+                      <i class="fa-solid fa-plus"></i> Agregar Distribución
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Acordeón Términos y Definiciones -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-test="btn-acordeon-terminosDefiniciones-[ID_REGISTRO]" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse-terminosDefiniciones">
+            Términos y definiciones
+            <span class="badge bg-secondary ms-2" id="badge-[ID_REGISTRO]-terminosDefiniciones">0</span>
+          </button>
+        </h2>
+        <div id="collapse-terminosDefiniciones" class="accordion-collapse collapse">
+          <div class="accordion-body">
+
+            <!-- Template de término para generar dinámicamente -->
+            <template id="template-terminoDefinicion">
+              <div class="accordion-item" data-index="">
+                <h2 class="accordion-header d-flex">
+                  <button class="accordion-button collapsed flex-grow-1" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-[ID_REGISTRO]-terminoDefinicion-">
+                    <span class="me-2">
+                      <i class="fa-solid fa-book me-1"></i>Término #<span class="item-number"></span>
+                    </span>
+                    <span class="badge bg-primary ms-2 termino-badge">Sin término</span>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-danger ms-2 my-1 me-1" data-form="et"
+                    data-srig="global" data-test="btn-eliminar-termino-[ID_REGISTRO]"
+                    onclick="EspecificacionTecnicaModule.eliminarItem(this.closest('[data-index]').id, 'terminosDefiniciones')">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </h2>
+                <div id="collapse-[ID_REGISTRO]-terminoDefinicion-" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+
+                    <div class="row mb-3">
+                      <div class="col-md-2 oculto">
+                        <label class="form-label">ID</label>
+                        <input type="hidden" id="et_[ID_REGISTRO]_terminosDefiniciones_id_"
+                          name="terminosDefiniciones[][id]">
+                        <span class="form-control-plaintext"
+                          id="et_[ID_REGISTRO]_terminosDefiniciones_id_display_">-</span>
+                      </div>
+                      <div class="col-md-5">
+                        <label class="form-label">Término <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="et_[ID_REGISTRO]_terminosDefiniciones_termino_"
+                          name="terminosDefiniciones[][termino]" title="Término" required>
+                      </div>
+                      <div class="col-md-5">
+                        <label class="form-label">Definición del Término <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="et_[ID_REGISTRO]_terminosDefiniciones_definicionTermino_"
+                          name="terminosDefiniciones[][definicionTermino]" rows="2" title="Citaciones"
+                          required></textarea>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <div class="col-md-12">
+                        <label class="form-label">Citación de Términos</label>
+                        <div class="citation-picker" data-field="terminosDefiniciones[][citaciones]"
+                          data-base-name="terminosDefiniciones[][citaciones]">
+                          <div class="citation-search-container position-relative">
+                            <input type="text" class="form-control citation-search"
+                              data-test="input-buscar-citaciones-et-termino-[ID_REGISTRO]"
+                              placeholder="Buscar y seleccionar citaciones...">
+                            <div class="citation-dropdown"></div>
+                          </div>
+                          <div class="mt-2">
+                            <span class="citation-count">0 citaciones seleccionadas</span>
+                          </div>
+                          <div class="selected-citations mt-2"></div>
+                          <div class="citation-inputs"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </template>
+
+            <div id="et_[ID_REGISTRO]_terminosDefiniciones" class="accordion items-container"></div>
+            <div class="mt-3 text-center">
+              <button type="button" class="btn btn-sm btn-success" data-form="et" data-srig="global" data-test="btn-agregar-termino-[ID_REGISTRO]"
+                onclick="EspecificacionTecnicaModule.agregarTerminoDefinicion([ID_REGISTRO])">
+                <i class="fa-solid fa-plus"></i> Agregar Término
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Acordeón Abreviaturas -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-test="btn-acordeon-abreviaturas-[ID_REGISTRO]" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse-abreviaturas">
+            Abreviaturas
+            <span class="badge bg-secondary ms-2" id="badge-[ID_REGISTRO]-abreviaturas">0</span>
+          </button>
+        </h2>
+        <div id="collapse-abreviaturas" class="accordion-collapse collapse">
+          <div class="accordion-body">
+
+            <!-- Template de abreviatura para generar dinámicamente -->
+            <template id="template-abreviatura">
+              <div class="accordion-item" data-index="">
+                <h2 class="accordion-header d-flex">
+                  <button class="accordion-button collapsed flex-grow-1" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-[ID_REGISTRO]-abreviatura-">
+                    <span class="me-2">
+                      <i class="fa-solid fa-font me-1"></i>Abreviatura #<span class="item-number"></span>
+                    </span>
+                    <span class="badge bg-info ms-2 abreviatura-badge">Sin abreviatura</span>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-danger ms-2 my-1 me-1" data-form="et"
+                    data-srig="global" data-test="btn-eliminar-abreviatura-[ID_REGISTRO]"
+                    onclick="EspecificacionTecnicaModule.eliminarItem(this.closest('[data-index]').id, 'abreviaturas')">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </h2>
+                <div id="collapse-[ID_REGISTRO]-abreviatura-" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+
+                    <div class="row mb-3">
+                      <div class="col-md-2 oculto">
+                        <label class="form-label">ID</label>
+                        <input type="hidden" id="et_[ID_REGISTRO]_abreviatura_id_" name="abreviatura[][id]">
+                        <span class="form-control-plaintext" id="et_[ID_REGISTRO]_abreviatura_id_display_">-</span>
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label">Abreviatura <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="et_[ID_REGISTRO]_abreviatura_abreviatura_"
+                          name="abreviatura[][abreviatura]" title="Abreviatura" required>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Definición <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="et_[ID_REGISTRO]_abreviatura_definicionAbreviatura_"
+                          name="abreviatura[][definicionAbreviatura]" rows="2" title="Definición" required></textarea>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <div class="col-md-12">
+                        <label class="form-label">Citaciones</label>
+                        <div class="citation-picker" data-field="abreviatura[][citaciones]"
+                          data-base-name="abreviatura[][citaciones]">
+                          <div class="citation-search-container position-relative">
+                            <input type="text" class="form-control citation-search"
+                              data-test="input-buscar-citaciones-et-abreviatura-[ID_REGISTRO]"
+                              placeholder="Buscar y seleccionar citaciones...">
+                            <div class="citation-dropdown"></div>
+                          </div>
+                          <div class="mt-2">
+                            <span class="citation-count">0 citaciones seleccionadas</span>
+                          </div>
+                          <div class="selected-citations mt-2"></div>
+                          <div class="citation-inputs"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </template>
+
+            <div id="et_[ID_REGISTRO]_abreviatura" class="accordion items-container"></div>
+            <div class="mt-3 text-center">
+              <button type="button" class="btn btn-sm btn-success" data-form="et" data-srig="global" data-test="btn-agregar-abreviatura-[ID_REGISTRO]"
+                onclick="EspecificacionTecnicaModule.agregarAbreviatura([ID_REGISTRO])">
+                <i class="fa-solid fa-plus"></i> Agregar Abreviatura
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "InventarioServicio",
+  "description": "Payload para crear o actualizar un inventario de servicio web geográfico",
+  "additionalProperties": false,
+  "properties": {
+    "FECHA_REGISTRO": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Fecha de registro",
+      "description": "Fecha en la que se creó el registro por primera vez en el sistema. Se estampa automáticamente al crear (no es un campo del formulario) y se conserva sin cambios en cada actualización posterior."
+    },
+    "NOMBRE": {
+      "type": "string",
+      "title": "Nombre del servicio",
+      "maxLength": 200,
+      "description": "Registra el nombre para el servicio web geográfico tal como aparece en la URL con la cual fue publicado. Este nombre facilita la identificación del servicio en el catálogo. Ejemplo: \"Uso_Suelo_Bogotá_2024\""
+    },
+    "SECTOR_DISTRITAL": {
+      "type": "string",
+      "title": "Sector Distrital",
+      "description": "Sector al cual pertenece la Entidad"
+    },
+    "UBICACION": {
+      "type": "string",
+      "title": "Infraestructura de Disposición",
+      "description": "Especifica si el servicio web geográfico está publicado desde servidores propios de la entidad productora, o si es dispuesto desde la infraestructura tecnológica facilitada por IDECA."
+    },
+    "DIRECTORIO_SERVICIOS": {
+      "type": "string",
+      "title": "Directorio de servicios",
+      "description": "Este campo registra la dirección web desde la cual se puede acceder al directorio de servicios, correspondiente al servicio web geográfico. Ejemplo: https://serviciosgis.catastrobogota.gov.co/arcgis/rest/services"
+    },
+    "CERTIFICACION_MINTIC": {
+      "type": "string",
+      "title": "Nivel de certificación ante MINTIC",
+      "description": "Registra el nivel de certificación alcanzado con MINTIC, para la notificación de interoperabilidad del servicio web geográfico."
+    },
+    "ACOMPANAMIENTO_IDECA": {
+      "type": "string",
+      "title": "Acompañamiento IDECA",
+      "enum": ["SI", "NO"],
+      "description": "Registra si el servicio web geográfico contó con el acompañamiento técnico y revisión parte de IDECA."
+    },
+    "CAPACIDADES": {
+      "type": "string",
+      "title": "Capacidades",
+      "description": "Indica los formatos de capacidad con los que el servicio cuenta. Se registran tantos formatos como sean necesarios.",
+      "example": "[{\"FORMATO\":\"WMS\",\"URL\":\"https://ejemplo.com/wms\"},{\"FORMATO\":\"WFS\",\"URL\":\"https://ejemplo.com/wfs\"}]"
+    },
+    "OBSERVACIONES_RETIRO": {
+      "type": "string",
+      "title": "Observaciones del retiro",
+      "maxLength": 1000,
+      "description": "Ingrese cualquier información adicional, aclaración o detalle relevante sobre el retiro del servicio web geográfico."
+    },
+    "ACCIONES": {
+      "type": "string",
+      "title": "Acciones",
+      "description": "Historial de acciones realizadas sobre el servicio (publicación, detención, republicación, eliminación), con su fecha. La primera acción (PUBLICACION) se crea automáticamente al publicar el servicio por primera vez.",
+      "example": "[{\"ACCION\":\"PUBLICACION\",\"FECHA\":\"2026-07-28T10:00:00.000Z\"},{\"ACCION\":\"DETENIDO\",\"FECHA\":\"2026-07-29T10:00:00.000Z\"}]"
+    }
+  },
+  "required": [
+    "NOMBRE",
+    "SECTOR_DISTRITAL",
+    "UBICACION",
+    "CERTIFICACION_MINTIC",
+    "ACOMPANAMIENTO_IDECA",
+    "CAPACIDADES"
+  ]
+}

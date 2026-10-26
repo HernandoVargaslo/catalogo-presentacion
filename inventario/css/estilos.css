@@ -1,0 +1,1356 @@
+
+* { font-family: "Nunito Sans", sans-serif; }
+
+/* --- Bootstrap --- */
+/* --- Texto --- */
+.fs-7 {
+    font-size: 0.9rem; /* 14px */
+}
+
+.fs-8 {
+    font-size: 0.75rem; /* 12px */
+}
+
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
+.text-secondary {
+  color: var(--color-secondary) !important;
+}
+
+.text-success {
+  color: var(--color-success) !important;
+}
+
+.text-danger {
+  color: var(--color-danger) !important;
+}
+
+.text-dark {
+  color: var(--color-black) !important;
+}
+
+.text-light {
+  color: var(--color-soft-gray) !important;
+}
+
+.text-white {
+  color: var(--color-white) !important;
+}
+
+.text-gray {
+  color: var(--color-gray) !important;
+}
+
+/* Sobrescribir bordes Bootstrap */
+.border-primary {
+  border-color: var(--color-primary) !important;
+}
+
+.border-secondary {
+  border-color: var(--color-secondary) !important;
+}
+
+.border-success {
+  border-color: var(--color-success) !important;
+}
+
+.border-danger {
+  border-color: var(--color-danger) !important;
+}
+
+.border-dark {
+  border-color: var(--color-black) !important;
+}
+
+.border-light {
+  border-color: var(--color-soft-gray) !important;
+}
+
+.border-white {
+  border-color: var(--color-white) !important;
+}
+
+.border-gray {
+  border-color: var(--color-gray) !important;
+}
+
+/* backgrounds */
+.bg-secondary {
+  background-color: var(--color-secondary) !important;
+}
+
+.bg-success {
+  background-color: var(--color-success) !important;
+}
+
+.bg-danger {
+  background-color: var(--color-danger) !important;
+}
+
+.bg-white {
+  background-color: var(--color-white) !important;
+}
+
+.bg-softblack {
+  background-color: var(--color-soft-black) !important;
+}
+
+.bg-gray {
+  background-color: var(--color-gray) !important;
+}
+
+.bg-softgray {
+  background-color: var(--color-soft-gray) !important;
+}
+
+.bg-darkgray {
+  background-color: #e9ecef !important;
+}
+
+.bg-gray-lighter {
+  background-color: rgb(233, 242, 245) !important;
+}
+
+/* textos */
+.text-primary {
+  color: var(--color-primary) !important;
+}
+.text-secondary {
+  color: var(--color-secondary) !important;
+}
+.text-success {
+  color: var(--color-success) !important;
+}
+.text-danger {
+  color: var(--color-danger) !important;
+}
+.text-gray {
+  color: var(--color-gray) !important;
+}
+
+.alert i.text-warning,
+.alert i.text-primary {
+  -webkit-text-stroke: 2px var(--color-secondary);
+  paint-order: stroke fill;
+  font-size: 16px;
+  padding-left: 2px;
+  text-shadow: 0px 0 2px var(--color-secondary);
+}
+
+/* botones */
+.btn-outline {
+  color: var(--color-white);
+  border: 1px solid var(--color-white) !important;
+}
+
+.btn-outline-primary {
+  color: var(--color-secondary);
+  border: 1px solid var(--color-primary) !important;
+}
+
+.btn-outline-primary:hover {
+  color: var(--color-white) !important;
+  background: var(--color-secondary);
+}
+
+.btn-outline-primary:active {
+  color: var(--color-white) !important;
+  background: var(--color-secondary) !important;
+}
+
+.btn-outline-secondary {
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary) !important;
+}
+
+.btn-outline-secondary:hover {
+  color: var(--color-white) !important;
+  background: var(--color-secondary);
+}
+
+.btn-primary {
+  color: var(--color-secondary);
+  background: var(--color-primary);
+  border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+  color: var(--color-secondary) !important;
+  background: inherit;
+  border: 1px solid var(--color-secondary) !important;
+}
+
+.text-white .btn-primary:hover {
+  color: var(--color-white);
+  background: inherit;
+  border: 1px solid var(--color-primary) !important;
+}
+
+.btn-secondary {
+  color: var(--color-white);
+  background: var(--color-secondary);
+  border: 1px solid transparent;
+}
+
+.btn-secondary:hover {
+  color: var(--color-secondary);
+  background: inherit;
+  border: 1px solid var(--color-secondary);
+}
+
+.btn-tertiary {
+  color: var(--color-black);
+  background: var(--color-soft-gray);
+}
+
+.btn-tertiary:hover {
+  color: var(--color-secondary);
+  background: var(--color-gray);
+  border: 1px solid var(--color-secondary);
+}
+
+.btn-success {
+  color: var(--color-white);
+  background: var(--color-success);
+  border: 1px solid transparent;
+}
+
+.btn-success:hover {
+  color: var(--color-success);
+  background: transparent !important;
+  border: 1px solid var(--color-success);
+}
+
+.btn-danger {
+  color: var(--color-white);
+  background: var(--color-danger);
+  border: 1px solid transparent;
+}
+
+.btn-danger:hover {
+  color: var(--color-danger);
+  background: inherit;
+  border: 1px solid var(--color-danger);
+}
+
+.btn-warning {
+  color: var(--color-secondary);
+  background: var(--color-primary);
+  border: 1px solid transparent;
+}
+
+.btn-warning:hover {
+  color: var(--color-secondary) !important;
+  background: inherit !important;
+  border: 1px solid var(--color-primary) !important;
+}
+
+body { background-color: #f8f9fa; color: #444; }
+
+a, .nav-link { color: #003A5B; }
+
+.constrained-content { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
+
+
+/* FILTROS */
+.search-filters-section {
+    background: #F2F2F2; border-radius: 6px; padding: 8px; margin-bottom: 1rem; gap: 1.5rem;
+}
+.search-filters-sticky {
+    position: sticky; top: var(--form-toolbar-top, 0px); z-index: 20;
+}
+.form-select, .form-control { font-size: 0.875rem; border-color: #ced4da; }
+.form-select:focus, .form-control:focus { border-color: #003A5B; box-shadow: 0 0 0 0.2rem rgba(0,58,91,0.15); }
+
+.search-input-group { position: relative; width: 100%; }
+.search-input-group .form-control { padding-left: 2.5rem; padding-right: 2.5rem; border-radius: 50px; height: 40px; font-size: 0.875rem; border: 1px solid #DEE2E6; }
+.search-input-group .btn { z-index: 5; color: #595C5F; position: absolute; }
+.search-input-group .btn.start-0 { left: 0.25rem; top: 50%; transform: translateY(-50%); }
+.search-clear-btn { right: 0.25rem; top: 50%; transform: translateY(-50%); }
+
+.search-box-wrap { flex: 1 1 auto; min-width: 0; }
+
+.filtros-collapse { flex: 1 1 100%; }
+@media (min-width: 768px) {
+    .filtros-collapse { flex: 1 1 0; min-width: 0; }
+}
+
+.filter-select-wrap { max-width: 200px; flex: 1; }
+.filter-select-wrap .form-select { font-size: 0.875rem; border-radius: 10px; height: 40px; color: #595C5F; border: 1px solid #DEE2E6; padding: 2px 10px; }
+.btn-icon { width: 38px; height: 38px; padding: 0; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.filters-actions-wrap .btn { flex-shrink: 0; white-space: nowrap; }
+
+/* Filtros específicos por tipo — dentro de cada seccion-lista del acordeón (ver
+   FILTROS_ESPECIFICOS, app.js). Estilo deliberadamente distinto de .item-lista (fondo azulado,
+   borde izquierdo de acento, ícono + título) para que se lea como un bloque de control,
+   no como un ítem más de la lista. */
+.filtro-especifico-wrap {
+    padding: 0.6rem 0.3rem;
+    border-bottom: 1px solid #dee2e6;
+    border-left: 3px solid #003A5B;
+    background: #EAF1F5;
+}
+.filtro-especifico-titulo {
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em;
+    color: #003A5B; margin-bottom: 0.4rem;
+    display: flex; align-items: center; gap: 0.35rem;
+}
+.filtro-especifico-titulo i { font-size: 0.7rem; }
+.filtro-especifico-selects { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.filtro-especifico-selects .form-select,
+.filtro-especifico-selects .form-control { flex: 1 1 140px; min-width: 120px; }
+.filtro-especifico-wrap .form-select,
+.filtro-especifico-wrap .form-control { font-size: 0.8rem; border-radius: 10px; color: #595C5F; border: 1px solid #DEE2E6; }
+
+/* PANEL PRINCIPAL */
+.results-container { min-height: 600px; display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.panel-izquierdo, .panel-derecho { flex: 0 0 100%; min-height: 600px; }
+
+/* ACORDEÓN */
+.seccion-tipo { border: 0; border-bottom: 1px solid #dee2e6; }
+.seccion-tipo:last-child { border-bottom: none; }
+
+.seccion-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.6rem 1rem; user-select: none;
+    font-size: 0.875rem; font-weight: 600; color: #ffffff;
+    background-color: var(--color-secondary-op) !important;
+    backdrop-filter: blur(10px);
+}
+.seccion-header:hover { background: #e9ecef; }
+
+.seccion-label-wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    flex: 1; cursor: pointer; gap: 0.5rem;
+}
+.seccion-label { flex: 1; }
+.seccion-count { font-weight: 400; color: #ffffff; }
+.seccion-chevron {
+    font-size: 0.75rem;
+    color: #ffffff;
+    transition: transform 0.25s ease;
+}
+.seccion-chevron-abierto { transform: rotate(180deg); }
+
+.seccion-btn-crear {
+    flex-shrink: 0; border: none; border-radius: 50px;
+    background-color: #FEBD20; color: #003A5C; font-size: 0.75rem; font-weight: 700;
+    padding: 3px 10px; display: flex; align-items: center; gap: 0.35rem;
+    transition: background-color 0.15s;
+}
+.seccion-btn-crear:hover { background-color: #e5a800; color: #003A5C; }
+
+/* Colapsado por defecto (max-height 0 + opacity 0); al abrir, transiciona a un alto generoso
+   (más que suficiente para 10 ítems + paginación) — no se anima a "auto" porque esa propiedad
+   no es animable en CSS, por eso el valor fijo. */
+.seccion-lista {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+}
+.seccion-lista-abierta {
+    max-height: 700px;
+    opacity: 1;
+    overflow-y: auto;
+}
+
+/* =====================================================================================================
+   TRANSICIONES COMPARTIDAS — ver cruzarVistas() en utils.js
+   ===================================================================================================== */
+/* Cruce entre dos vistas grandes (acordeón <-> formulario): fade simple, sin mover layout. */
+.vista-fade { transition: opacity 0.2s ease; }
+.vista-fade.vista-oculta { opacity: 0; }
+
+/* Cruce tipo "paso de página" (ver cruzarVistas en utils.js): además del fade, la vista que
+   sale se desplaza levemente hacia un lado y la que entra viene del lado contrario — misma
+   sensación de avanzar/retroceder que animarEntradaSeccionHIEE/animarSalidaSeccionHIEE en
+   hiee/js/animaciones.js, pero con CSS puro (esa función también cae a CSS si GSAP no está). */
+.vista-paso {
+    transition: opacity 0.28s ease, transform 0.28s ease;
+}
+.vista-paso.vista-oculta.vista-izq { opacity: 0; transform: translateX(-28px); }
+.vista-paso.vista-oculta.vista-der { opacity: 0; transform: translateX(28px); }
+
+/* Toast: fade + leve desplazamiento vertical. */
+.toast-anim { transition: opacity 0.25s ease, transform 0.25s ease; }
+.toast-anim.toast-oculto { opacity: 0; transform: translateY(-10px); }
+
+/* Panel de detalle: fade corto al cambiar de ítem seleccionado (no bloquea la lectura, solo
+   suaviza el reemplazo instantáneo de innerHTML). */
+/* Duración alineada con DURACION_FADE_VISTA_MS (utils.js) — seleccionarItem() espera este
+   mismo tiempo antes de reemplazar el contenido, para que el fade-out se vea completo. */
+#detalle-contenido { transition: opacity 0.2s ease; }
+#detalle-contenido.detalle-oculto { opacity: 0; }
+
+/* Campos condicionales del formulario (Temáticas/Sensores al marcar "Sí"): mismo patrón de
+   colapso que el acordeón (ver .seccion-lista), altura fija generosa en vez de "auto". */
+.campo-condicional {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.25s ease;
+}
+.campo-condicional-abierto {
+    max-height: 300px;
+    opacity: 1;
+}
+
+.item-lista {
+    padding: 0.5rem 1rem; font-size: 0.8rem; cursor: pointer;
+    border-bottom: 1px solid #f0f0f0; color: #333;
+    transition: background-color 0.1s;
+    position: relative;
+    display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+}
+/* Wrap en vez de truncar: el panel no debe ensancharse con nombres largos (ver min-width: 0
+   en .panel-izquierdo) — el texto pasa a una segunda línea en su lugar. min-width: 0 acá
+   también, porque es un flex item de .item-lista y sin esto no se achica para envolver. */
+.item-lista-nombre {
+    white-space: normal; overflow-wrap: break-word; min-width: 0;
+}
+.item-lista .badge { flex-shrink: 0; min-width: 70px;}
+.item-lista:hover,
+.item-lista.selected {
+    transition: all 0.2s ease;
+    background-color: var(--color-soft-gray) !important;
+    border-left: 5px solid var(--color-primary);
+}
+
+.msg-sin-resultados { padding: 0.75rem 1rem; font-size: 0.8rem; color: #6c757d; font-style: italic; }
+
+/* Paginación simple acordeón — arriba de la lista (ver renderSeccionAcordeon, app.js): con el
+   wrap de nombres largos, la altura de cada ítem varía, y abajo la paginación se movía. */
+.paginacion-simple {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.5rem; padding: 0.4rem; font-size: 0.75rem; color: #6c757d;
+    border-bottom: 1px solid #dee2e6;
+}
+.btn-pag {
+    width: 24px; height: 24px; border: 1px solid #dee2e6; background: white;
+    border-radius: 50%; font-size: 0.75rem; color: #003A5B;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.btn-pag:first-child,
+.btn-pag:last-child {
+    font-size: 1.3rem;
+    background: transparent;
+    border: 0;
+}
+.btn-pag:disabled { color: #ccc; cursor: default; border-color: #eee; }
+.btn-pag:not(:disabled):hover { background: #FEB400; border-color: #FEB400; }
+
+/* DETALLE */
+.detalle-card { border: 1px solid #dee2e6; border-radius: 6px; background: white; margin-bottom: 1rem; }
+.detalle-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 0.875rem 1rem 0.5rem; border-bottom: 1px solid #f0f0f0;
+}
+.detalle-nombre { font-size: 1rem; font-weight: 600; color: #003A5B; margin: 0; }
+.detalle-body { padding: 0.75rem 1rem; }
+
+.info-row {
+    display: flex; flex-direction: column; padding: 0.3rem 0; border-bottom: 1px solid #F6F6F6;
+}
+.info-row:last-child { border-bottom: none; }
+.info-label { font-weight: 700; color: #003A5B; margin-bottom: 0.25rem; }
+.info-value { color: #444444; word-break: break-word; border: 1px solid #CCCCCC; border-radius: 5px; padding: 0.5rem 0.75rem; background: #fff; font-size: 0.9rem;}
+.table th {
+  background: var(--color-secondary) !important;
+  font-size: 0.9rem;
+}
+.info-value a { color: #003A5B; text-decoration: underline; }
+
+.seccion-tabla { color: #003A5B; font-weight: 600; border-left: 3px solid #FEB400; padding-left: 0.5rem; }
+
+/* Tablas */
+.tabla-header { background-color: #003A5B; }
+.tabla-header th { color: white; font-weight: 600; font-size: 0.8rem; }
+
+.tabla-estandares th, .tabla-estandares td { text-align: center; font-size: 0.8rem; }
+
+/* BADGES */
+.badge-publicado { background-color: transparent; border: 1px solid var(--color-success); color: var(--color-success); }
+.badge-borrador { background-color: transparent; border: 1px solid var(--color-primary); color: var(--color-primary); }
+.badge-migrado { background-color: #003A5B; color: white; }
+.badge-retirado { background-color: #E87722; color: white; }
+.badge-eliminado { background-color: #E3192F; color: white; }
+.badge-no-inv { background-color: #EAEAEA; color: #444; }
+
+table .badge-publicado,
+table .badge-borrador,
+table .badge-migrado,
+table .badge-retirado,
+table .badge-eliminado,
+table .badge-no-inv {
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+/* ESTÁNDARES HIEE — círculos ET/CO/RC/CR del listado de Datos (ver
+   js/datos-hiee.js#renderPillsListaDatos) y badges de la grilla del detalle (ver
+   js/datos-hiee.js#renderEstandaresDatos). Mismos 4 colores EXACTOS que hiee/css/estilos.css
+   #.estado-estandar-{CREADO,BORRADOR,MIGRADO,PUBLICADO} (gris/amarillo/naranja/verde) — no se
+   reutilizan badge-borrador/badge-migrado/badge-publicado de arriba porque tienen otra paleta
+   (son para el ESTADO de negocio de Aplicaciones/Servicios/Proyectos, no para HIEE). Sin clase
+   de estado (estándar sin crear, o ítem sin registro HIEE) = solo borde, sin relleno. */
+.datos-hiee-circulo {
+    width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.55rem; font-weight: 600;
+    border: 1px solid #CCCCCC; color: #6c757d; background-color: transparent;
+}
+.datos-hiee-estado-creado { background-color: rgb(184, 184, 184); border-color: rgb(184, 184, 184); color: #000; }
+.datos-hiee-estado-borrador { background-color: #ffc107; border-color: #ffc107; color: #000; }
+.datos-hiee-estado-migrado { background-color: #ff7000; border-color: #ff7000; color: #fff; }
+.datos-hiee-estado-publicado { background-color: #198754; border-color: #198754; color: #fff; }
+
+/* Ítem de un array dentro del modal de trazabilidad HIEE (ver datos-hiee.js#renderValorConEsquema) —
+   borde izquierdo + sangría para distinguirlo visualmente de las filas .info-row de su alrededor. */
+.hiee-subitem {
+    border-left: 2px solid #CCCCCC; padding-left: 0.6rem; margin: 0.35rem 0;
+}
+.hiee-subitem .info-row:last-child { border-bottom: none; }
+
+/* BOTONES */
+.btn-primary { background-color: #FEBD20; color: #003A5C; border: none; font-weight: 800; font-size: 1rem; padding: 8px 20px; }
+.btn-primary:hover { background-color: #e5a800; color: #003A5C; }
+.btn-outline-secondary:hover { background-color: #f8f9fa; }
+
+/* MODALES */
+.modal-header { background-color: #C8C8C8; padding: 0.6rem 1rem; }
+.modal-title { font-size: 0.95rem; font-weight: 600; }
+
+/* LOADING / ERROR / EMPTY */
+.loading-state, .error-state, .empty-state {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; padding: 3rem 1rem; color: #6c757d; text-align: center;
+}
+.loading-state .spinner-border { width: 2rem; height: 2rem; color: #003A5B; }
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .panel-izquierdo, .panel-derecho { min-height: auto; }
+    .panel-derecho { margin-top: 1rem; }
+    .info-label { min-width: 140px; }
+}
+
+@media (min-width: 768px) {
+    /* min-width: 0 — sin esto, un ítem con texto largo (ej. nombres de DATOS) fuerza el panel
+       más ancho que su flex-basis: los flex items miden mínimo su min-content por defecto. */
+    .panel-izquierdo { flex: 0 0 max(25%, 320px); min-width: 0; }
+    .panel-derecho { flex: 1 1 0; min-width: 0; }
+    .search-box-wrap { flex: 0 0 max(25%, 320px); }
+}
+
+/* =====================================================================================================
+   APLICACIONES (CRUD) — portado de aplicaciones/css/estilos.css, clases prefijadas aps-*
+   ===================================================================================================== */
+/* ===================================
+   BASE
+=================================== */
+* {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #444;
+}
+
+a,
+.nav-link {
+    color: #003A5B;
+}
+
+.search-input-group .form-control {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    border-radius: 50px;
+    height: 40px;
+    font-size: 0.875rem;
+    border: 1px solid #DEE2E6;
+}
+
+.search-input-group .btn {
+    z-index: 5;
+    color: #595C5F;
+}
+
+.search-input-group .btn.start-0 {
+    left: 0.25rem;
+}
+
+.filter-select-wrap .form-select {
+    font-size: 0.875rem;
+    border-radius: 10px;
+    height: 40px;
+    color: #595C5F;
+    border: 1px solid #DEE2E6;
+    padding: 2px 10px;
+}
+
+/* ===================================
+   TOM-SELECT — Overrides IDECA (base: tema bootstrap5)
+=================================== */
+
+/* Ancho completo dentro del wrapper */
+.filter-select-wrap .ts-wrapper {
+    width: 100%;
+}
+
+/* Fuente y forma consistente con tokens Figma — aplica tanto a los filtros genéricos de la
+   barra superior (.filter-select-wrap) como a los específicos por sección (.filtro-especifico-selects) */
+.filter-select-wrap .ts-wrapper .ts-control,
+.filtro-especifico-selects .ts-wrapper .ts-control {
+    font-size: 0.8rem;
+    font-family: "Nunito Sans", sans-serif;
+    border-radius: 10px;
+    min-height: 40px;
+    border: 1px solid #DEE2E6;
+    color: #595C5F;
+    padding: 2px 10px;
+    padding-right: 25px !important;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+/* Todos los TomSelect de filtro usan dropdownParent:"body" (ver inicializarTomSelectFiltro,
+   app.js) para no recortarse contra el overflow de sus contenedores — el dropdown queda
+   colgando de <body>, fuera de .filter-select-wrap/.filtro-especifico-selects, por eso se
+   engancha por su clase de base ".ts-dropdown" sin anidar (NO redefinir dropdownClass en el
+   JS: su default es justo "ts-dropdown", el mismo selector que usa el tema vendor para el
+   layout/posición del dropdown — pisarlo lo deja sin esos estilos). */
+.ts-dropdown {
+    font-size: 0.8rem;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+/* Focus — color IDECA */
+.filter-select-wrap .ts-wrapper.focus .ts-control,
+.filtro-especifico-selects .ts-wrapper.focus .ts-control {
+    border-color: #003A5B;
+    box-shadow: 0 0 0 0.2rem rgba(0, 58, 91, 0.15);
+}
+
+/* Tags seleccionados — azul IDECA */
+.filter-select-wrap .ts-wrapper.multi .ts-control .item,
+.filtro-especifico-selects .ts-wrapper.multi .ts-control .item {
+    background-color: #003A5B;
+    border-color: #003A5B;
+    color: #fff;
+    font-size: 0.72rem;
+}
+
+.filter-select-wrap .ts-wrapper.multi .ts-control .item .remove,
+.filtro-especifico-selects .ts-wrapper.multi .ts-control .item .remove {
+    border-left-color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Opción activa/hover en dropdown — azul IDECA */
+.ts-dropdown .option.active {
+    background-color: #003A5B;
+    color: #fff;
+}
+
+/* .text-muted trae color !important de Bootstrap: sin este override la descripción
+   queda gris sobre el fondo azul oscuro del hover/active, ilegible. */
+.ts-dropdown .option.active .text-muted {
+    color: #fff !important;
+}
+
+/* Checkbox + label de cada opción: fuente reducida y layout que evita que el checkbox quede
+   descuadrado cuando el texto envuelve a una segunda línea (ej. "OGC API Coverages"). */
+.ts-dropdown .option {
+    font-size: 0.78rem;
+    line-height: 1.25;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+}
+
+.ts-dropdown .option input[type="checkbox"] {
+    accent-color: #003A5B;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+/* Dropdown max-height */
+.ts-dropdown .ts-dropdown-content {
+    max-height: 220px;
+}
+
+
+/* ===================================
+   RESULTADOS — LISTA (panel izquierdo)
+=================================== */
+.results-container {
+    min-height: 500px;
+}
+
+.data-section {
+    min-height: 400px;
+}
+
+.card-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #003A5B;
+}
+
+/* Ítem de lista — mismo patrón que .ideca-menu a de la plantilla */
+.result-item {
+    width: 100%;
+    padding: 12px 15px;
+    min-height: 48px;
+    cursor: pointer;
+    background-color: #EAEAEA;
+    color: #000;
+    border-radius: 5px;
+    margin: 0 8px 8px 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.result-item:hover {
+    background-color: #FEB400;
+}
+
+.result-item.selected,
+#aps-lista-resultados .gridjs-tr:nth-child(even) .result-item.selected {
+    background-color: #FEB400 !important;
+    color: #000;
+    font-weight: 600;
+}
+
+.result-item-title {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #000;
+    display: block;
+}
+
+.result-item.selected .result-item-title {
+    color: #000;
+    font-weight: 600;
+}
+
+/* GridJS overrides para lista */
+#aps-lista-resultados .gridjs-wrapper {
+    border: none;
+    box-shadow: none;
+}
+
+#aps-lista-resultados .gridjs-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+}
+
+#aps-lista-resultados .gridjs-thead {
+    display: none;
+}
+
+#aps-lista-resultados .gridjs-tbody,
+#aps-lista-resultados .gridjs-tr {
+    border: none;
+}
+
+#aps-lista-resultados .gridjs-td {
+    padding: 0;
+    border: none;
+}
+
+#aps-lista-resultados .gridjs-footer {
+    background: transparent;
+    box-shadow: inherit;
+}
+
+#aps-lista-resultados .gridjs-pagination {
+    font-size: 1rem;
+}
+
+#aps-lista-resultados .gridjs-pages button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+    background: transparent;
+    color: #444444;
+    font-weight: 500;
+}
+
+#aps-lista-resultados .gridjs-pages button.gridjs-currentPage {
+    background-color: #FEB400;
+    color: #003A5B;
+    font-weight: 700;
+}
+
+#aps-lista-resultados .gridjs-pages button:hover:not(.gridjs-currentPage) {
+    background-color: #F2F2F2;
+}
+
+/* ===================================
+   PANEL DERECHO — TARJETAS
+=================================== */
+#aps-detalle-contenido {
+    overflow-y: auto;
+    max-height: calc(100vh - 280px);
+    padding-right: 4px;
+}
+
+/* Cabecera de sección por entidad (Admin/IDECA) */
+.entidad-seccion-header {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #003A5B;
+    background-color: #EAEAEA;
+    padding: 8px 15px;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+.entidad-seccion-header:first-child {
+    margin-top: 0;
+}
+
+/* Tarjeta de aplicación */
+.app-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 8px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    background: #EAEAEA;
+    border-radius: 5px;
+}
+
+/* Bloque de texto (nombre + meta): los valores vienen del usuario (nombres, dependencias,
+   URLs...) y pueden traer palabras sin espacios. Sin min-width:0 el flex item no baja de su
+   min-content y empuja el badge/acciones fuera de la card. */
+.app-card-header > div:first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+/* Bloque de badge + acciones: nunca se comprime, cede el espacio el texto. */
+.app-card-header > div:last-child {
+    flex-shrink: 0;
+}
+
+@media (max-width: 576px) {
+    .app-card-header {
+        flex-wrap: wrap;
+    }
+}
+
+.app-card-nombre {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #003A5B;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.app-card-tipo {
+    font-weight: 400;
+    color: #595C5F;
+}
+
+.app-card-sigla {
+    font-size: 0.875rem;
+    color: #595C5F;
+    font-weight: 400;
+}
+
+.app-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+    margin-top: 0.35rem;
+}
+
+.app-card-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background-color: #f5f7f8;
+    border: 1px solid #e5e8ea;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.app-card-meta-label {
+    color: #003A5B;
+    font-weight: 600;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.app-card-meta-value {
+    color: #595C5F;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.app-card-actions {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+}
+
+.app-card-date {
+    font-size: 1rem;
+    color: #003A5B;
+    font-weight: 600;
+    padding-top: 0.5rem;
+    margin-top: 0.25rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.app-card-actions .btn {
+    padding: 2px 6px;
+    font-size: 0.875rem;
+}
+
+.app-card-body {
+    padding: 8px 0 0;
+}
+
+/* GridJS overrides para lista */
+.gridjs-table {
+    font-size: 0.9rem;
+}
+
+.gridjs-tbody, td.gridjs-td {
+  background-color: transparent !important;
+}
+
+.gridjs-td {
+    padding: 0;
+    border: none;
+}
+
+.gridjs-footer {
+  background: transparent;
+  box-shadow: inherit;
+  display: flex;
+  justify-content: center;
+}
+
+.gridjs-pagination {
+    font-size: 1rem;
+}
+
+.gridjs-pagination .gridjs-pages {
+    float: right;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.gridjs-pagination .gridjs-pages button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    border: none;
+    background: transparent;
+    color: #444444;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.gridjs-pagination .gridjs-pagination .gridjs-pages button:first-child,
+.gridjs-pagination .gridjs-pagination .gridjs-pages button:last-child {
+    font-size: 1.5rem !important;
+}
+
+.gridjs-pagination .gridjs-pages button.gridjs-currentPage {
+    background-color: #FEB400;
+    color: #003A5B;
+    font-weight: 700;
+}
+
+#lista-resultados .gridjs-pages button:hover:not(.gridjs-currentPage) {
+    background-color: #F2F2F2;
+}
+
+/* Fila etiqueta-valor: etiqueta arriba, valor debajo (igual que Descripción/Necesidad) */
+.info-row {
+    display: flex;
+    flex-direction: column;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #F6F6F6;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+/* Solo para valores de texto libre largo (Descripción, Observaciones, etc.):
+   se comporta como un textarea de solo lectura de ~4 líneas con scroll interno. */
+.info-value-texto {
+    display: block;
+    white-space: pre-wrap;
+    line-height: 1.4;
+    max-height: calc(1.4em * 4 + 1rem);
+    overflow-y: auto;
+}
+
+/* Para valores complejos (arrays/objetos anidados, ver datos-hiee.js#renderCamposConEsquema):
+   igual que info-value pero sin el recorte de alto de info-value-texto — el contenido ya trae
+   su propia estructura de filas (.hiee-subitem/.info-row), truncarlo a ~4 líneas lo vuelve ilegible. */
+.info-value-bloque {
+    display: block;
+}
+
+.info-value a {
+    color: #003A5B;
+    text-decoration: underline;
+    word-break: break-all;
+}
+
+/* ===================================
+   BADGES DE ESTADO
+=================================== */
+.badge-estado-publicado {
+    background-color: #208637;
+    color: #fff;
+}
+
+.badge-estado-borrador {
+    background-color: #003A5B;
+    color: #fff;
+}
+
+.badge-estado-retirado {
+    background-color: #E3192F;
+    color: white;
+}
+
+.badge-estado-eliminado {
+    background-color: #E3192F;
+    color: white;
+}
+
+.aps-bulk-bar { background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 0.375rem; padding: 0.5rem 1rem; display: flex; align-items: center; }
+
+/* ===================================
+   FORMULARIO
+=================================== */
+.form-toolbar {
+    position: sticky;
+    top: var(--form-toolbar-top, 0px);
+    z-index: 20;
+    background: #fff;
+    padding: 10px 0;
+    box-shadow: 0 2px 8px #00000026;
+}
+
+.form-container {
+    box-shadow: 0 0 10px #00000041;
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.form-section + .form-section {
+    border-top: 1px solid #dee2e6;
+}
+
+.form-section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #003A5B;
+}
+
+.form-section-body {
+    padding: 20px;
+}
+
+.form-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 0.3rem;
+}
+
+.form-control, .form-select {
+    font-size: 0.875rem;
+    border-color: #ced4da;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #003A5B;
+    box-shadow: 0 0 0 0.2rem rgba(0, 58, 91, 0.15);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Selector de mes (flatpickr monthSelect): readonly, se elige solo desde el calendario */
+.selector-mes:not(:disabled) {
+    cursor: pointer;
+    background-color: #fff;
+}
+
+/* Lista de checkboxes (temáticas / sensores) */
+.checkbox-list {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+}
+
+.checkbox-list .form-check {
+    margin-bottom: 0.3rem;
+}
+
+.checkbox-list .form-check:last-child {
+    margin-bottom: 0;
+}
+
+.checkbox-list .form-check-input:checked {
+    background-color: #003A5B;
+    border-color: #003A5B;
+}
+
+/* Ayuda contextual de campo (hint inline) */
+.field-hint {
+    font-size: 0.82rem;
+    color: #495057;
+    background: #f0f4f8;
+    border-left: 3px solid #003A5B;
+    padding: 0.4rem 0.75rem;
+    margin-top: 0.3rem;
+    border-radius: 0 4px 4px 0;
+    line-height: 1.4;
+}
+
+i[data-schema-field] {
+    cursor: pointer;
+}
+
+i[data-schema-field].hint-active {
+    color: #003A5B !important;
+}
+
+/* Botones del formulario */
+.btn-outline-secondary {
+    color: #003A5B;
+    border: 1px solid #003A5B !important;
+}
+
+.btn-outline-secondary:hover {
+    background: #003A5B;
+}
+
+/* Botón "Limpiar filtros" con algún filtro activo (ver app.js#actualizarBtnLimpiarFiltros) */
+#btn-limpiar-filtros.filtros-activos {
+    background: #FEB400;
+    color: #003A5B;
+    border-color: #FEB400 !important;
+}
+
+#btn-limpiar-filtros.filtros-activos:hover {
+    background: #003A5B;
+    color: #fff;
+    border-color: #003A5B !important;
+}
+
+.btn-primary:hover {
+    color: #003A5B;
+    background: inherit;
+    border: 1px solid #FEB400 !important;
+}
+
+.btn-secondary {
+    color: #fff;
+    background: #003A5B;
+    border: 1px solid transparent;
+}
+
+.btn-secondary:hover {
+    color: #003A5B;
+    background: inherit;
+    border: 1px solid #003A5B;
+}
+
+.btn-tertiary {
+    color: #444444;
+    background: #EAEAEA;
+}
+
+.btn-tertiary:hover {
+    color: #003A5B;
+    background: #F2F2F2;
+    border: 1px solid #003A5B;
+}
+
+/* "Publicar" solo se habilita tras guardar y pasar la validación (ver
+   actualizarEstadoBotonPublicar*). Deshabilitado se ve neutro; al habilitarse
+   se resalta en amarillo con un pulso breve que se reinicia en cada transición
+   disabled -> enabled (la animación arranca cuando el selector empieza a aplicar). */
+.btn-publicar:disabled {
+    color: #444444;
+    background: #EAEAEA;
+    border: 1px solid transparent;
+}
+
+.btn-publicar:not(:disabled) {
+    color: #003A5B;
+    background: #FEB400;
+    border: 1px solid transparent;
+    font-weight: 600;
+    animation: publicar-pulso 1.2s ease-out 3;
+}
+
+.btn-publicar:not(:disabled):hover {
+    color: #003A5B;
+    background: inherit;
+    border: 1px solid #FEB400 !important;
+}
+
+@keyframes publicar-pulso {
+    0% { box-shadow: 0 0 0 0 rgba(254, 180, 0, 0.7); }
+    100% { box-shadow: 0 0 0 12px rgba(254, 180, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-publicar:not(:disabled) {
+        animation: none;
+    }
+}
+
+/* Visualmente restringido pero sin "disabled" real: el botón sigue siendo
+   hoverable/clicable para poder mostrar el tooltip y la validación al clic. */
+.btn-restringido {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* ===================================
+   MODALES
+=================================== */
+.modal-header {
+    background-color: #C8C8C8;
+    padding: 0.6rem 1rem;
+}
+
+/* ===================================
+   TOAST
+=================================== */
+#toast-guardado {
+    border-left: 5px solid #208637;
+}
+
+/* ===================================
+   LOADING / ERROR / EMPTY
+=================================== */
+.loading-state,
+.error-state,
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    color: #6c757d;
+    text-align: center;
+}
+
+.loading-state .spinner-border {
+    width: 2rem;
+    height: 2rem;
+    color: #003A5B;
+}
+
+.rounded-20 {
+    border-radius: 20px;
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+    .data-section { min-height: 300px; }
+
+
+/* =====================================================================================================
+   PROYECTOS (CRUD) — portado de proyectos/css/estilos.css. La card de detalle reusa el mismo
+   sistema visual .app-card (ver Aplicaciones más arriba) — no se duplica.
+   ===================================================================================================== */
+.portales-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-height: calc(1.4em * 4);
+    overflow-y: auto;
+}
+.portales-lista a { color: #003A5B; text-decoration: underline; font-size: 0.85rem; line-height: 1.4; }
+.portales-lista span { line-height: 1.4; }
+
+#pry-vista-pdf { display: none; }
+
+@media print {
+    body > *:not(#pry-vista-pdf) { display: none !important; }
+    #pry-vista-pdf { display: block !important; }
+    .pdf-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #003A5B; padding-bottom: 0.5rem; margin-bottom: 1rem; }
+    .pdf-header h2 { font-size: 1.2rem; color: #003A5B; margin: 0; }
+    .pdf-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .pdf-table th { font-weight: 600; color: #444; width: 30%; padding: 0.3rem 0.5rem; vertical-align: top; border-bottom: 1px solid #eee; }
+    .pdf-table td { padding: 0.3rem 0.5rem; border-bottom: 1px solid #eee; }
+}
+
+/* =====================================================================================================
+   SERVICIOS (CRUD) — portado de servicios/css/estilos.css. La card de detalle reusa el mismo
+   sistema visual .app-card / .info-row que Aplicaciones/Proyectos (ver más arriba) — no se duplica.
+   ===================================================================================================== */
+.tabla-capacidades .col-formato { width: 12%; white-space: nowrap; }
+.tabla-capacidades .col-tipo { width: 28%; }
+.tabla-capacidades .col-acciones { width: 90px; }
+
+.url-capacidad {
+    font-size: 0.8rem;
+    color: #003A5B;
+    text-decoration: underline;
+    word-break: break-all;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.badge-formato-estandar { background-color: #003A5B; color: white; font-size: 0.75rem; }
+
+.capacidad-row {
+    background: #f8f9fa;
+    border-radius: 4px;
+    padding: 0.5rem;
+}

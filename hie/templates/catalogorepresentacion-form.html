@@ -1,0 +1,400 @@
+<div id="formcontainer_cr_[ID_REGISTRO]" class="catalogorepresentacion-container">
+  <!-- Inputs hidden para mantener referencias -->
+  <input type="hidden" id="hiee-srig-id-cr-[ID_REGISTRO]" name="hiee-srig-id-cr-[ID_REGISTRO]" class="hiee-srig-id" value="[SRIG_ID]">
+  <input type="hidden" id="hiee-id-registro-cr-[ID_REGISTRO]" name="hiee-id-registro-cr-[ID_REGISTRO]" class="hiee-id-registro" value="[ID_REGISTRO]">
+
+  <!-- Campo IDENTIFICADOR_PADRE para registros hijo -->
+  <input type="hidden" id="cr_[ID_REGISTRO]_IDENTIFICADOR_PADRE" name="IDENTIFICADOR_PADRE">
+
+  <div class="hiee-contenedor-botones-cr">
+    <!-- Botones Catálogo de Representación -->
+    <div class="form-buttons catalogorepresentacion-buttons">
+      <div class="tools">
+        <span class="span-validacion" id="span-validacion-captura-cr-[ID_REGISTRO]" data-id-registro="[ID_REGISTRO]"></span>
+        <span class="span-validacion" id="span-validacion-persistencia-cr-[ID_REGISTRO]" data-id-registro="[ID_REGISTRO]"></span>        <!-- Switch Vista Previa / Editar -->
+        <div class="edit-mode-switch-container d-flex align-items-center">
+          <label class="switch-label me-2" id="lbl-vista-previa-cr-[ID_REGISTRO]">Vista Previa</label>
+          <div class="form-check form-switch">
+            <input class="form-check-input edit-mode-switch" type="checkbox"
+                    id="switch-editar-catalogorepresentacion-[ID_REGISTRO]"
+                    data-srig-id="[SRIG_ID]"
+                    data-id-registro="[ID_REGISTRO]"
+                    data-no-preview="true">
+          </div>
+          <label class="switch-label ms-2" id="lbl-editar-cr-[ID_REGISTRO]">Editar</label>
+        </div>
+        <button type="button" id="btn-publicar-catalogorepresentacion-[ID_REGISTRO]" data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]" class="btn btn-success btn-lg preview-mode-button d-none">
+          <i class="fa-solid fa-upload"></i> Publicar
+        </button>
+        <button type="button" id="btn-guardar-catalogorepresentacion-[ID_REGISTRO]" data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]"
+          class="btn btn-lg edit-mode-button oculto">
+          <i class="fa-solid fa-save"></i> Guardar
+        </button>
+        <button type="button" id="btn-pdf-catalogorepresentacion-[ID_REGISTRO]" data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-file"></i> PDF
+        </button>
+        <button type="button" id="btn-resetearformulario-catalogorepresentacion-[ID_REGISTRO]" data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]"
+          class="btn btn-sm btn-outline-danger edit-mode-button oculto" title="Limpiar formulario">
+          <i class="fa-solid fa-broom"></i>
+        </button>
+        <button type="button" data-test="btn-colapsar-formularios-cr-[ID_REGISTRO]" onclick="cerrarAcordeonesDeTabActivo()" class="btn btn-sm"
+          title="Colapsar formularios">
+          <div class="collapseall">
+            <img src="./assets/icons/collapseall.svg" alt="">
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Acordeones para todos los elementos -->
+  <div class="contenedor-acordeones">
+    <div class="accordion" id="acordeonCatalogoRepresentacion">
+
+      <!-- Acordeón Información Básica -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-informacionBasica">
+            Información Básica del Catálogo de Representación
+          </button>
+        </h2>
+        <div id="collapse-informacionBasica" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            <!-- Campos readOnly como etiquetas con inputs hidden -->
+            <div class="row mb-3">
+              <!-- Campo ID oculto pero mantiene input hidden para funcionalidad -->
+              <input type="hidden" id="cr_[ID_REGISTRO]_id" name="id">
+
+              <div class="col-md-6" style="display: none;">
+                <label class="form-label">Identificador del objeto</label>
+                <span id="cr_[ID_REGISTRO]_identificadorRecursoUniforme_display" class="form-control-plaintext">-</span>
+                <input type="hidden" id="cr_[ID_REGISTRO]_identificadorRecursoUniforme" name="identificadorRecursoUniforme">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Alcance del Catálogo de Representación</label>
+                <select class="form-select" id="cr_[ID_REGISTRO]_nivelAlcance" name="nivelAlcance" title="Alcance del Catálogo de Representación"></select>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label class="form-label">Nombre del Objeto</label>
+                <span id="cr_[ID_REGISTRO]_nombre_display" class="form-control-plaintext">-</span>
+                <input type="hidden" id="cr_[ID_REGISTRO]_nombre" name="nombre">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Nombre Alternativo</label>
+                <span id="cr_[ID_REGISTRO]_nombreAlternativo_display" class="form-control-plaintext">-</span>
+                <input type="hidden" id="cr_[ID_REGISTRO]_nombreAlternativo" name="nombreAlternativo">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Entidad</label>
+                <span id="cr_[ID_REGISTRO]_entidad_display" class="form-control-plaintext">-</span>
+                <input type="hidden" id="cr_[ID_REGISTRO]_entidad" name="entidad">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label class="form-label">Dirección</label>
+                <span id="cr_[ID_REGISTRO]_direccion_display" class="form-control-plaintext">-</span>
+                <input type="hidden" id="cr_[ID_REGISTRO]_direccion" name="direccion">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Correo electrónico</label>
+                <span id="cr_[ID_REGISTRO]_email_display" class="form-control-plaintext">-</span>
+                <input type="hidden" id="cr_[ID_REGISTRO]_email" name="email">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Teléfonos de Contacto</label>
+                <span id="cr_[ID_REGISTRO]_telefono_display" class="form-control-plaintext">-</span>
+                <input type="hidden" id="cr_[ID_REGISTRO]_telefono" name="telefono">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Acordeón Funciones -->
+      <div class="accordion-item" data-test="acordeon-funciones-[ID_REGISTRO]" data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-test="btn-acordeon-funciones-[ID_REGISTRO]" data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-funciones">
+            Funciones <span class="text-danger">*</span>
+            <span class="badge bg-secondary ms-2" id="badge-[ID_REGISTRO]-funciones">0</span>
+          </button>
+        </h2>
+        <div id="collapse-funciones" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            <p class="mb-3">Funciones de representación del catálogo</p>
+
+            <!-- Template para funciones -->
+            <template id="template-funcion-[ID_REGISTRO]">
+              <div class="accordion-item" data-index="">
+                <h2 class="accordion-header d-flex">
+                  <button class="accordion-button collapsed flex-grow-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-[ID_REGISTRO]-funcion-">
+                    <span class="me-2">
+                      <i class="fa-solid fa-cogs me-1"></i>Función #<span class="item-number"></span>
+                    </span>
+                    <span class="badge bg-warning ms-2 funcion-nombre-badge">Sin nombre</span>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-danger ms-2 my-1 me-1" data-form="cr" data-srig="[ID_REGISTRO]" data-test="btn-eliminar-funcion-[ID_REGISTRO]"
+                    onclick="CatalogoRepresentacionModule.eliminarFuncion('[ID_REGISTRO]', this.closest('[data-index]').getAttribute('data-index'))">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </h2>
+                <div id="collapse-[ID_REGISTRO]-funcion-" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+
+                    <div class="row mb-3">
+                      <div class="col-md-2 oculto">
+                        <label class="form-label">ID</label>
+                        <input type="hidden" id="cr_[ID_REGISTRO]_funciones_id_" name="funciones[][id]">
+                        <span class="form-control-plaintext" id="cr_[ID_REGISTRO]_funciones_id_display_">-</span>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Tipo de función <span class="text-danger">*</span></label>
+                    <select class="form-select" id="cr_[ID_REGISTRO]_funciones_tipo_" name="funciones[][tipo]" title="Tipo de función" required>
+                      <option value="">Seleccione...</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Nombre de la función <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_nombre_" name="funciones[][nombre]" title="Nombre de la función" required>
+                  </div>
+                </div>
+
+                <!-- Acordeón anidado para especificaciones -->
+                <div class="border rounded p-2 bg-light">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="mb-0">Especificaciones <span class="text-danger">*</span> <span class="badge bg-primary" id="badge-[ID_REGISTRO]-especificaciones-">0</span></h6>
+                  </div>
+
+                  <div id="cr_[ID_REGISTRO]_funciones_especificaciones_" class="especificaciones-container accordion">
+                    <!-- Especificaciones aparecerán aquí -->
+                  </div>
+
+                  <div class="mt-3 text-center">
+                    <button type="button" class="btn btn-sm btn-success" data-form="cr" data-srig="[SRIG_ID]" data-test="btn-agregar-especificacion-[ID_REGISTRO]"
+                      onclick="CatalogoRepresentacionModule.agregarEspecificacion('[ID_REGISTRO]', this.closest('[data-index]').getAttribute('data-index'))">
+                      <i class="fa-solid fa-plus"></i> Agregar Especificación
+                    </button>
+                  </div>
+                </div>
+                  </div>
+                </div>
+              </div>
+            </template>
+
+            <!-- Template para especificaciones -->
+            <template id="template-especificacion-[ID_REGISTRO]">
+              <div class="accordion-item" data-spec-index="">
+                <h2 class="accordion-header d-flex">
+                  <button class="accordion-button collapsed flex-grow-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-[ID_REGISTRO]-especificacion-">
+                    <span class="me-2">
+                      <i class="fa-solid fa-cog me-1"></i>Especificación #<span class="spec-number"></span>
+                    </span>
+                    <span class="badge bg-success ms-2 especificacion-valor-badge">Sin valor</span>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-danger ms-2 my-1 me-1" data-form="cr" data-srig="[SRIG_ID]" data-test="btn-eliminar-especificacion-[ID_REGISTRO]"
+                    onclick="CatalogoRepresentacionModule.eliminarEspecificacion('[ID_REGISTRO]', this.closest('[data-index]').getAttribute('data-index'), this.closest('[data-spec-index]').getAttribute('data-spec-index'))">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </h2>
+                <div id="collapse-[ID_REGISTRO]-especificacion-" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+
+                    <div class="row mb-3">
+                      <div class="col-md-2 oculto">
+                        <label class="form-label">ID</label>
+                        <input type="hidden" id="cr_[ID_REGISTRO]_funciones_especificaciones_id_" name="funciones[][especificaciones][][id]">
+                        <span class="form-control-plaintext" id="cr_[ID_REGISTRO]_funciones_especificaciones_id_display_">-</span>
+                      </div>
+                    </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Valor <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_valor_" name="funciones[][especificaciones][][valor]" title="Valor" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Etiqueta de la leyenda <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_etiquetaLeyenda_" name="funciones[][especificaciones][][etiquetaLeyenda]" title="Etiqueta de la leyenda" required>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <label class="form-label">Descripción <span class="text-danger">*</span></label>
+                    <textarea class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_descripcion_" name="funciones[][especificaciones][][descripcion]" rows="2" title="Descripción" required></textarea>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Geometría <span class="text-danger">*</span></label>
+                    <select class="form-select" id="cr_[ID_REGISTRO]_funciones_especificaciones_geometria_" name="funciones[][especificaciones][][geometria]" title="Geometría" required>
+                      <option value="">Seleccione...</option>
+                      <option value="Punto">Punto</option>
+                      <option value="Linea">Línea</option>
+                      <option value="Poligono">Polígono</option>
+                      <option value="Raster">Raster</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Muestra Gráfica <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_muestraGrafica_" name="funciones[][especificaciones][][muestraGrafica]" title="Muestra Gráfica" required>
+                  </div>
+                </div>
+
+                <!-- Propiedades específicas por geometría -->
+
+                <!-- Propiedades de Punto -->
+                <div class="punto-props" style="display: none;">
+                  <h6 class="text-primary">Propiedades de Punto</h6>
+                  <div class="row mb-3">
+                    <div class="col-md-3">
+                      <label class="form-label">Ícono Punto</label>
+                      <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_iconoPunto_" name="funciones[][especificaciones][][iconoPunto]" title="Ícono Punto">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">Color Punto</label>
+                      <input type="color" class="form-control form-control-color" id="cr_[ID_REGISTRO]_funciones_especificaciones_colorPunto_" name="funciones[][especificaciones][][colorPunto]" title="Color Punto">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">Tamaño Punto</label>
+                      <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_tamanoPunto_" name="funciones[][especificaciones][][tamanoPunto]" title="Tamaño Punto">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">Ángulo del ícono</label>
+                      <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_anguloPunto_" name="funciones[][especificaciones][][anguloPunto]" title="Ángulo del ícono">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Propiedades de Línea -->
+                <div class="linea-props" style="display: none;">
+                  <h6 class="text-success">Propiedades de Línea</h6>
+                  <div class="row mb-3">
+                    <div class="col-md-4">
+                      <label class="form-label">Color de la línea</label>
+                      <input type="color" class="form-control form-control-color" id="cr_[ID_REGISTRO]_funciones_especificaciones_colorLinea_" name="funciones[][especificaciones][][colorLinea]" title="Color de la línea">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Ancho de la Línea</label>
+                      <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_ancholinea_" name="funciones[][especificaciones][][ancholinea]" title="Ancho de la Línea">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Estilo de la línea</label>
+                      <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_estiloLinea_" name="funciones[][especificaciones][][estiloLinea]" title="Estilo de la línea">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Propiedades de Polígono -->
+                <div class="poligono-props" style="display: none;">
+                  <h6 class="text-warning">Propiedades de Polígono</h6>
+                  <div class="row mb-3">
+                    <div class="col-md-3">
+                      <label class="form-label">Color del borde</label>
+                      <input type="color" class="form-control form-control-color" id="cr_[ID_REGISTRO]_funciones_especificaciones_colorLineaBorde_" name="funciones[][especificaciones][][colorLineaBorde]" title="Color del borde (Polígono)">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">Ancho del borde</label>
+                      <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_anchoLineaBorde_" name="funciones[][especificaciones][][anchoLineaBorde]" title="Ancho del borde (Polígono)">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">Estilo del borde</label>
+                      <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_estiloLineaBorde_" name="funciones[][especificaciones][][estiloLineaBorde]" title="Estilo del borde (Polígono)">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">Color del relleno</label>
+                      <input type="color" class="form-control form-control-color" id="cr_[ID_REGISTRO]_funciones_especificaciones_colorRelleno_" name="funciones[][especificaciones][][colorRelleno]" title="Color del relleno (Polígono)">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-12">
+                      <label class="form-label">Estilo del relleno</label>
+                      <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_estiloRelleno_" name="funciones[][especificaciones][][estiloRelleno]" title="Estilo del relleno (Polígono)">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Propiedades de Fuente -->
+                <div class="fuente-props">
+                  <h6 class="text-info">Propiedades de Fuente</h6>
+                  <div class="row mb-3">
+                    <div class="col-md-3">
+                      <label class="form-label">Fuente</label>
+                      <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_fuente_" name="funciones[][especificaciones][][fuente]" title="Fuente">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">Tamaño de la Fuente</label>
+                      <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_tamanoFuente_" name="funciones[][especificaciones][][tamanoFuente]" title="Tamaño de la Fuente">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">Estilo de la Fuente</label>
+                      <input type="text" class="form-control" id="cr_[ID_REGISTRO]_funciones_especificaciones_estiloFuente_" name="funciones[][especificaciones][][estiloFuente]" title="Estilo de la Fuente">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">Color de la Fuente</label>
+                      <input type="color" class="form-control form-control-color" id="cr_[ID_REGISTRO]_funciones_especificaciones_colorFuente_" name="funciones[][especificaciones][][colorFuente]" title="Color de la Fuente">
+                    </div>
+                  </div>
+                </div>
+                  </div>
+                </div>
+              </div>
+            </template>
+
+            <div id="cr_[ID_REGISTRO]_funciones" class="items-container accordion"></div>
+            <div class="mt-3 text-center">
+              <button type="button" id="cr_[ID_REGISTRO]_btn_agregar_funcion" class="btn btn-sm btn-success" data-form="cr" data-srig="[SRIG_ID]" data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]" data-test="btn-agregar-funcion-[ID_REGISTRO]"
+                onclick="CatalogoRepresentacionModule.agregarFuncion('[ID_REGISTRO]')">
+                <i class="fa-solid fa-plus"></i> Agregar Función
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Acordeón Citaciones -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-citaciones">
+            Citaciones
+          </button>
+        </h2>
+        <div id="collapse-citaciones" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label class="form-label">Citaciones</label>
+                <div class="citation-picker" data-field="citaciones">
+                  <div class="citation-search-container position-relative">
+                    <input type="text" class="form-control citation-search"
+                    data-test="input-buscar-citaciones-cr-[ID_REGISTRO]"
+                    placeholder="Buscar citaciones...">
+                    <div class="citation-dropdown"></div>
+                  </div>
+                  <div id="selected-citations-et_[ID_REGISTRO]" class="selected-citations mt-2">
+                    <!-- Selected citations will appear here -->
+                  </div>
+                  <div id="citation-inputs-et_[ID_REGISTRO]" class="citation-inputs">
+                    <!-- Hidden inputs for form submission -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

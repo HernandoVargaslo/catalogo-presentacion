@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>HIEE - Catálogo de Recursos Geográficos</title>
+  <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <!-- Font Awesome 6 Free CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- jQuery UI CSS (Datepicker) -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+
+  <link rel="stylesheet" href="assets/flatpickr/flatpickr.min.css">
+  <script src="assets/flatpickr/flatpickr.min.js"></script>
+  <script src="assets/flatpickr/es.js"></script>
+
+  <!-- Tus estilos personalizados -->
+  <link rel="stylesheet" href="css/estilos.css" />
+</head>
+
+<body>
+  <header class="header-container">
+    <!-- Header global entidad (barra superior de GOV.CO) -->
+    <div id="header-global-entidad" class="menu--top d-flex align-items-center">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="region region-menu-fixedtop">
+            <section id="block-logogovco"
+              class="d-flex align-items-center block-block-content block-block-content1c89a329-44a5-4e13-9d20-41e274593c3e clearfix">
+              <div class="field field--name-body field--type-text-with-summary field--label-hidden field--item first">
+                <p class="p-header-gov-co mb-0">
+                  <a href="https://www.gov.co/" target="_blank"><img alt="Logo Gov.co" class="logo-gov-co" height="24"
+                      src="https://cdn.www.gov.co/assets/images/logo.png" /></a>
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cabecera fija con título + botones -->
+    <div id="cabecera-app"
+      class="container-fluid d-flex justify-content-between align-items-center bg-light border-bottom">
+      <div class="d-flex flex-wrap w-100 justify-content-between align-items-center py-2">
+        <div class="d-flex flex-wrap">
+          <a href="./">
+            <img id="logo-ideca" src="./assets/img/logo.svg" alt="">
+          </a>
+          <div id="logo-entidad" class="me-3"></div>
+          <h1 id="span_titulo_aplicacion" class="d-flex align-items-center mb-0 fs-8">
+            Catálogo de Recursos - Herramienta Integral de Estándares
+          </h1>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <!-- Nombre del usuario (oculto hasta validar sesión) -->
+          <span id="nombre-usuario-header" class="text-muted oculto">
+            <i class="fa-solid fa-user me-1"></i>
+            <span id="texto-nombre-usuario"></span>
+          </span>
+          <!-- botón Administración (oculto hasta validar rol) -->
+          <button id="btn-admin-header" class="btn btn-primary btn-info btn-admin oculto" title="Administración">
+            Administración
+          </button>
+          <!-- botón para iniciar login -->
+          <button id="btn-login-desplegar" class="btn btn-outline-primary oculto" title="Iniciar sesión">
+            <i class="fa-solid fa-sign-in-alt me-1"></i>
+            Iniciar sesión
+          </button>
+          <!-- botón para testing: establecer token vencido (REMOVER EN PRODUCCIÓN) -->
+          <button id="btn-token-vencido-test" class="btn btn-outline-warning oculto me-2"
+            title="Establecer token vencido para testing">
+            <i class="fa-solid fa-clock me-1"></i>
+            Establecer Token Vencido
+          </button>
+          <!-- botón para testing: renovación silenciosa (REMOVER EN PRODUCCIÓN) -->
+          <button id="btn-renovacion-silenciosa-test" class="btn btn-outline-info oculto me-2"
+            title="Probar renovación silenciosa de token">
+            <i class="fa-solid fa-refresh me-1"></i>
+            Renovar Token Silenciosamente
+          </button>
+          <!-- botón para cerrar sesión -->
+          <button id="btn-cerrar-sesion" class="btn btn-outline-danger oculto" title="Cerrar sesión">
+            <i class="fa-solid fa-sign-out-alt me-1"></i>
+            Cerrar sesión
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="navbar" id="navbarMenu">
+      <ul class="navbar-nav w-100 mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a id="link-acerca" class="nav-link active" data-view="acerca">Acerca de</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contáctenos</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <!-- Menu -->
+
+  <main id="vista-principal">
+    <section class="container acerca-de mt-4">
+      <div class="m-auto rounded-2 shadow-sm">
+
+        <h1 class="fw-bold border-bottom px-3 py-3">
+          Herramienta Integral de Estándares - IDECA
+        </h1>
+        <div class="content p-3">
+          <p class="text-secondary">
+            La Herramienta Integral de Estándares de la Infraestructura de Datos Espaciales para el Distrito Capital –
+            <strong>IDECA</strong> es una aplicación web desarrollada como parte del proceso de automatización en la
+            gestión de la documentación de los datos geográficos producidos por las entidades que conforman IDECA.
+          </p>
+
+          <p class="text-secondary">
+            Esta herramienta hace parte del <strong>Módulo de datos del Catálogo de Recursos Geográficos</strong> y
+            busca facilitar las actividades de creación, publicación y mantenimiento de los siguientes estándares
+            geográficos en el marco de la implementación de la Política de Gestión de Información Geográfica del
+            Distrito:
+          </p>
+
+          <ul class="list-group list-group-flush mt-4">
+            <li class="list-group-item d-flex align-items-start gap-2 bg-transparent border-0 ps-0">
+              <i class="bi bi-bookmark-check-fill text-primary fs-5"></i>
+              <div>
+                <strong>Diccionario de conceptos:</strong><br>
+                ISO 19126:2021 "Geographic information — Feature concept dictionaries and registers"
+              </div>
+            </li>
+            <li class="list-group-item d-flex align-items-start gap-2 bg-transparent border-0 ps-0">
+              <i class="bi bi-bookmark-check-fill text-primary fs-5"></i>
+              <div>
+                <strong>Catálogo de objetos:</strong><br>
+                ISO 19110:2016 "Geographic information — Methodology for feature cataloguing"
+              </div>
+            </li>
+            <li class="list-group-item d-flex align-items-start gap-2 bg-transparent border-0 ps-0">
+              <i class="bi bi-bookmark-check-fill text-primary fs-5"></i>
+              <div>
+                <strong>Reporte de calidad:</strong><br>
+                ISO 19157:2013 "Geographic information — Data quality"
+              </div>
+            </li>
+            <li class="list-group-item d-flex align-items-start gap-2 bg-transparent border-0 ps-0">
+              <i class="bi bi-bookmark-check-fill text-primary fs-5"></i>
+              <div>
+                <strong>Especificación técnica:</strong><br>
+                ISO 19131:2007 "Geographic information — Data product specifications"
+              </div>
+            </li>
+            <li class="list-group-item d-flex align-items-start gap-2 bg-transparent border-0 ps-0">
+              <i class="bi bi-bookmark-check-fill text-primary fs-5"></i>
+              <div>
+                <strong>Catálogo de representación:</strong><br>
+                ISO 19117:2012 "Geographic information — Portrayal"
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footerc">
+      <div class="container pb-4">
+        <div class="footer-middle">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div id="site-name">
+                Unidad Administrativa Especial de Catastro Distrital
+                <p>Ideca: Infraestructura de Datos Espaciales para el Distrito Capital</p>
+              </div>
+              <div class="textos">
+                <p>
+                  Dirección: Av. Carrera 30 No. 25 - 90, Torre B Piso 2<br>
+                  Código postal: 111311<br>
+                  Horario de atención: Lunes a Viernes de 8:00 am a 4:30 pm<br>
+                  Teléfono conmutador: +57 601 234 7600<br>
+                  Línea de servicio a la ciudadanía: +57 601 234 7600 - Ext. 7600<br>
+                  Línea Gratuita Nacional: 01 8000 9104887<br>
+                  Notificaciones judiciales: <a
+                    href="mailto:notificaciones@catastrobogota.gov.co">notificaciones@catastrobogota.gov.co</a><br>
+                  Información general: Línea 195
+                </p>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div id="logo-hacienda"></div>
+              <img src="./assets/img/logo.svg" alt="Logo IDECA" id="logo-ideca">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div id="redes" class="d-flex gap-3 pb-3">
+                <div class="d-flex flex-wrap">
+                  <a href="https://www.instagram.com/catastrobogota_" target="_blank" class="red-social"
+                    id="otrared"></a>
+                  <a href="https://www.instagram.com/catastrobogota_" target="_blank">@catastrobogota_</a>
+                </div>
+                <div class="d-flex flex-wrap">
+                  <a href="https://www.facebook.com/CatastroBogota/" target="_blank" class="red-social"
+                    id="facebook"></a>
+                  <a href="https://www.facebook.com/CatastroBogota/" target="_blank">@CatastroBogota</a>
+                </div>
+                <div class="d-flex flex-wrap">
+                  <a href="https://twitter.com/CatastroBogota" target="_blank" class="red-social" id="Twitter"></a>
+                  <a href="https://twitter.com/CatastroBogota" target="_blank">@CatastroBogota</a>
+                </div>
+                <div class="d-flex flex-wrap">
+                  <a href="https://www.youtube.com/@catastrobogota3985" target="_blank" class="red-social"
+                    id="youtube"></a>
+                  <a href="https://www.youtube.com/@catastrobogota3985" target="_blank">Catastro Bogotá</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div>
+                <a style="text-decoration: underline !important; font-weight: bold;padding-right: 15px;"
+                  href="/sitemap">Mapa del sitio</a>
+                <a style="text-decoration: underline !important; font-weight: bold;padding-right: 15px;"
+                  href="https://outlook.office.com/owa/" target="_blank">Correo institucional</a>
+                <a style="text-decoration: underline !important; font-weight: bold;padding-right: 15px;"
+                  href="http://intranet.catastrobogota.gov.co/" target="_blank">Intranet</a>
+                <a style="text-decoration: underline !important; font-weight: bold;padding-right: 15px;"
+                  href="https://mesadeservicio.catastrobogota.gov.co/CAisd/pdmweb.exe" target="_blank">Mesa de
+                  servicio</a>
+                <a style="text-decoration: underline !important; font-weight: bold;padding-right: 15px;"
+                  href="https://www.catastrobogota.gov.co/declaracion-de-accesibilidad"
+                  target="_blank">Accesibilidad</a>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <p><a
+                  href="http://www.catastrobogota.gov.co/contacto/politicas-de-seguridad-privacidad-condiciones-de-uso-y-proteccion-de-datos-personales"
+                  style="text-decoration: underline !important;  font-weight: bold;" target="_blank">Políticas de
+                  seguridad, privacidad, condiciones de uso y protección de datos personales</a></p>
+              <p><a href="http://www.catastrobogota.gov.co/transparencia-y-acceso-a-la-informacion-publica"
+                  style="text-decoration: underline !important; font-weight: bold;" target="_blank">Transparencia y
+                  acceso a la información pública</a></p>
+              <p>Consulte aquí el documento: <a style="text-decoration: underline !important; font-weight: bold;"
+                  href="https://mesacomisionideca.gitbook.io/manual-de-usuario-pig/" target="_blank">Manual de usuario
+                  de la Plataforma de Información</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="px-3 d-flex justify-content-between">
+          <div id="icons-govco">
+            <a href="https://www.gov.co/home/" target="_blank">
+              <img alt="Responsive image" class="img-fluid footer-icon-co"
+                src="https://www.gov.co/uploads/23c08fdb-7970-420c-a556-c3af1802ef58.svg" style="width: 40px;"> <img
+                alt="Responsive image" class="img-fluid footer-icon-govco"
+                src="https://www.gov.co/uploads/53cb9900-1f6d-4d95-81a1-02e02efbe3be.svg" style="width: 112px;">
+            </a>
+          </div>
+          <div class="region region-footer-bottom-left">
+            <section id="block-copyright"
+              class="block d-flex align-items-center block-block-content block-block-content3f748e93-5bab-44c7-877a-32a04dbd2fe1 clearfix">
+              <div class="field field--name-body field--type-text-with-summary field--label-hidden field--item">
+                <div class="text-white" id="copyright"><span>© 2022 ideca</span><span>. Todos los derechos
+                    reservados.</span></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Firebase, jQuery, Bootstrap, tu app.js -->
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.17.1/ajv2020.bundle.min.js"></script>
+
+
+</body>
+
+</html>

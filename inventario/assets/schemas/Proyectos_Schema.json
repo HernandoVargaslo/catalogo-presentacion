@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "InventarioProyecto",
+  "description": "Payload para crear o actualizar un proyecto geográfico",
+  "additionalProperties": false,
+  "properties": {
+    "FECHA_REGISTRO": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Fecha de registro",
+      "description": "Fecha en la que se creó el registro por primera vez en el sistema."
+    },
+    "NOMBRE": {
+      "type": "string",
+      "title": "Nombre",
+      "maxLength": 200,
+      "description": "Este campo corresponde al nombre identificador del proyecto geográfico reportado por la entidad. El nombre refleja de manera precisa el propósito o alcance del proyecto."
+    },
+    "DESCRIPCION": {
+      "type": "string",
+      "title": "Descripción",
+      "maxLength": 1000,
+      "description": "Descripción clara y concisa del proyecto geográfico, incluyendo su propósito, contexto territorial y/o temática del proyecto.",
+      "example": "Es una aplicación gratuita desarrollada por IDECA (Infraestructura de Datos Espaciales para Bogotá) que permite a los ciudadanos planificar, navegar y registrar recorridos en bicicleta utilizando información oficial de la ciudad. Está diseñada para apoyar una movilidad más segura, eficiente y sostenible en Bogotá."
+    },
+    "DEPENDENCIAS_ENTIDAD": {
+      "type": "string",
+      "title": "Dependencias de la entidad",
+      "description": "Nombre de la(s) dependencia(s) interna(s) de la entidad que participan en el desarrollo del proyecto."
+    },
+    "ETAPA_PROYECTO": {
+      "type": "string",
+      "title": "Etapa del Proyecto",
+      "description": "Indica la etapa del ciclo de vida del proyecto, según corresponda."
+    },
+    "FECHA_INICIO": {
+      "type": "string",
+      "format": "month",
+      "title": "Fecha de inicio del Proyecto",
+      "description": "Mes y año en la que se da inicio formal al Proyecto por parte de la entidad responsable."
+    },
+    "FECHA_CIERRE": {
+      "type": "string",
+      "format": "month",
+      "title": "Fecha de Cierre del Proyecto",
+      "description": "Mes y año en la que se da finalización formal al Proyecto por parte de la entidad responsable. Solo es visible cuando la etapa del proyecto registrada es \"Cierre\""
+    },
+    "SECTOR_DISTRITAL": {
+      "type": "string",
+      "title": "Sector Distrital",
+      "description": "Sector al cual pertenece la Entidad"
+    },
+    "ENTIDADES_INVOLUCRADAS": {
+      "type": "string",
+      "title": "Otras entidades involucradas",
+      "description": "Nombre de una o más entidades adicionales involucradas o participantes en alguna fase del proyecto.",
+      "example": "1,4,7"
+    },
+    "URL_ACCESO": {
+      "type": "string",
+      "title": "URL de acceso",
+      "description": "Listado de una o varias direcciones web, que brindan acceso al proyecto geográfico. Ejemplo: https://mapas.bogota.gov.co/",
+      "example": "https://mapas.bogota.gov.co/"
+    },
+    "DATOS_REFERENCIA": {
+      "type": "string",
+      "title": "¿Utiliza datos de referencia?",
+      "enum": ["SI", "NO"],
+      "description": "Registra \"SI\" o \"NO\" si el proyecto utiliza o consume datos del Mapa de Referencia del Distrito Capital."
+    },
+    "DATOS_TEMATICOS": {
+      "type": "string",
+      "title": "¿Utiliza datos temáticos?",
+      "enum": ["SI", "NO"],
+      "description": "Registra \"SI\" o \"NO\", si el proyecto utiliza datos Temáticos. De ser el caso, lista las Temáticas de los datos que el proyecto consume."
+    },
+    "TEMATICAS": {
+      "type": "string",
+      "title": "Temáticas",
+      "description": "Registra \"SI\" o \"NO\", si el proyecto utiliza datos Temáticos. De ser el caso, lista las Temáticas de los datos que el proyecto consume.",
+      "example": "1,4,7"
+    },
+    "DATOS_SENSORES": {
+      "type": "string",
+      "title": "¿Utiliza datos provenientes de sensores remotos?",
+      "enum": ["SI", "NO"],
+      "description": "Registra \"SI\" o \"NO\", si el proyecto utiliza o consume datos o productos provenientes de sensores remotos. De ser el caso, lista los tipos de productos que el proyecto consume."
+    },
+    "SENSORES_REMOTOS": {
+      "type": "string",
+      "title": "Sensores remotos",
+      "description": "Registra \"SI\" o \"NO\", si el proyecto utiliza o consume datos o productos provenientes de sensores remotos. De ser el caso, lista los tipos de productos que el proyecto consume.",
+      "example": "2,5"
+    },
+    "DATOS_PORTALES": {
+      "type": "string",
+      "title": "¿El proyecto cuenta con portales web?",
+      "enum": ["SI", "NO"],
+      "description": "Registra \"SI\" o \"NO\", si el proyecto geográfico utiliza portales web adicionales a su portal principal. De ser el caso, lista los portales web que utiliza."
+    },
+    "PORTALES_WEB": {
+      "type": "string",
+      "title": "Portales WEB",
+      "description": "Registra \"SI\" o \"NO\", si el proyecto geográfico utiliza portales web adicionales a su portal principal. De ser el caso, lista los portales web que utiliza.",
+      "example": "[Sistema de Registro de Ítems Geográficos](https://geoitems.ideca.gov.co/),Plataforma Ideca"
+    },
+    "RESULTADOS_ESPERADOS": {
+      "type": "string",
+      "title": "Resultados esperados",
+      "maxLength": 1000,
+      "description": "Descripción de los productos, evidencias o logros medibles que el proyecto debe alcanzar, para dar respuesta a sus objetivos específicos."
+    },
+    "OBSERVACIONES": {
+      "type": "string",
+      "title": "Observaciones",
+      "maxLength": 1000,
+      "description": "Puede contener información adicional relevante que no haya sido contemplada en los campos anteriores."
+    },
+    "OBSERVACIONES_RETIRO": {
+      "type": "string",
+      "title": "Observaciones del retiro",
+      "maxLength": 1000,
+      "description": "Ingrese cualquier información adicional, aclaración o detalle relevante sobre el retiro del proyecto."
+    }
+  },
+  "required": [
+    "NOMBRE",
+    "DESCRIPCION",
+    "DEPENDENCIAS_ENTIDAD",
+    "ETAPA_PROYECTO",
+    "FECHA_INICIO",
+    "SECTOR_DISTRITAL",
+    "DATOS_REFERENCIA",
+    "DATOS_TEMATICOS",
+    "DATOS_SENSORES",
+    "DATOS_PORTALES",
+    "RESULTADOS_ESPERADOS"
+  ]
+}

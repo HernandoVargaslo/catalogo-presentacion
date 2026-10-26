@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JWLHW5RN01"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-JWLHW5RN01');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Aplicaciones Geográficas - Catálogo de Recursos</title>
+  <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tom-select@2.5.1/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.css">
+  <link rel="stylesheet" href="css/estilos-202610041725.min.css">
+    <script src="https://cdn.userway.org/widget.js" data-account="YxU09HPa9Z"></script>
+    <script
+      src="https://js.sentry-cdn.com/39ad5fd34ee63ef87f9d96cec708a316.min.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+
+<body class="modulo-aplicaciones">
+
+  <!-- Barra superior GOV.CO (patrón diseñador gov-bar) -->
+  <div class="gov-bar border-bottom">
+    <div class="container-fluid-md container-lg d-flex justify-content-between align-items-center">
+      <div class="govco-top-logo">
+        <a href="https://www.gov.co/" target="_blank" rel="noopener noreferrer">
+          <img src="https://cdn.www.gov.co/assets/images/logo.png" alt="Logo Gov.co" height="30" class="logo-gov-co">
+        </a>
+      </div>
+      <div class="d-flex justify-content-center gap-2 my-2">
+        <a href="https://www.gov.co/" target="_blank" rel="noopener noreferrer" class="govco-top-link-a">Ir a Govco</a>
+        <div class="d-flex gap-2 notranslate">
+          <button type="button" class="btn btn-lang active" data-lang="es">Es</button>
+          <button type="button" class="btn btn-lang" data-lang="en">In</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar principal (patrón diseñador navbar) -->
+  <nav class="navbar navbar-expand-lg flex-wrap p-0 sticky-top" aria-label="Navegación principal">
+    <div class="bg-light w-100">
+      <div class="container-fluid-md container-lg position-relative d-flex flex-wrap justify-content-between align-items-center my-2">
+        <div class="navbar-header justify-content-between d-flex align-items-center gap-3">
+          <a href="../index.html" class="navbar-brand p-0 m-0">
+            <img src="./assets/images/logo-ideca.svg" alt="Inicio">
+          </a>
+          <img class="logo-alcaldia" src="./assets/images/logo-alcaldia.svg" alt="Logo Alcaldía Mayor de Bogotá">
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2 user-space">
+            <img id="foto-usuario-header" src="" alt="" class="d-none rounded-circle" width="24" height="24">
+            <div id="user-info-navbar" class="user-info d-flex align-items-center flex-column flex-nowrap d-none">
+              <b class="text-truncate text-secondary mb-0">
+                <span class="visually-hidden">Usuario:</span>
+                <span id="texto-nombre-usuario"></span>
+              </b>
+              <p class="text-truncate mb-0" id="texto-rol-usuario"></p>
+            </div>
+            <button id="btn-cerrar-sesion" type="button"
+              class="border border-2 border-danger bg-transparent rounded-circle text-danger shadow-none d-none"
+              aria-label="Cerrar sesión" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cerrar sesión">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+            <button id="btn-login" type="button" class="p-0 border-0 bg-transparent" aria-label="Iniciar sesión"
+              data-bs-toggle="modal" data-bs-target="#modal-login" title="Iniciar sesión">
+              <img src="./assets/images/user.svg" alt="">
+            </button>
+          </div>
+          <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Menú de navegación">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container-md-fluid container-lg px-0 mx-0 px-lg-3 mx-md-auto">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav w-100 text-center">
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Inicio</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Quiénes somos</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Recursos</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Herramientas</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Uso de datos</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Aprendizaje</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Actualidad</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.catastrobogota.gov.co/" target="_blank" rel="noopener noreferrer">Catastro</a></li>
+          <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Ayuda</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner hero (patrón diseñador breadcrumb-container) -->
+  <div class="breadcrumb-container d-flex align-items-center mt-2 mx-2 p-0"
+       style="background: url('./assets/images/ide_bogota.png') no-repeat center center / cover;">
+    <div class="container-md-fluid container-lg breadcrumb-content w-100 py-3">
+      <div class="col-md-7">
+        <h1 class="breadcrumb-title mb-1">Gestión de aplicaciones</h1>
+        <p class="breadcrumb-desc mb-0">
+          Encuentra las aplicaciones web o móviles dispuestas por las entidades del Distrito.
+        </p>
+      </div>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item">
+            <a href="https://www.ideca.gov.co/"><i class="fa-solid fa-house"></i></a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="../index.html">Catálogo de recursos</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Aplicaciones</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <main id="vista-principal">
+    <div class="constrained-content mt-3">
+
+      <!-- Toast de guardado -->
+      <div id="toast-guardado" class="alert alert-success alert-dismissible d-none mb-3" role="alert">
+        <strong id="toast-mensaje"></strong>
+        <button id="btn-toast-close" type="button" class="btn-close"></button>
+      </div>
+
+      <div class="search-filters-section row align-items-center">
+        <!-- Búsqueda — alinea con panel-lista-section (col-md-3) -->
+        <div class="col-md-3">
+          <div class="search-input-group d-flex align-items-center position-relative">
+            <input type="text" id="search-main" class="form-control" placeholder="Buscar aplicación" autocomplete="off">
+            <button class="btn position-absolute start-0" aria-label="Buscar" tabindex="-1">
+              <i class="fa-solid fa-search"></i>
+            </button>
+            <button id="btn-clear-search" class="btn position-absolute search-clear-btn d-none"
+              aria-label="Limpiar búsqueda" tabindex="-1">
+              <i class="fa-solid fa-times"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filtros y acciones — alinea con panel-detalle-section (col-md-9) -->
+        <div class="col-md-9">
+          <div class="d-flex align-items-center gap-2 flex-wrap">
+            <!-- Sector Distrital — TomSelect selección única -->
+            <div class="filter-select-wrap" id="filter-sector-wrap">
+              <select id="filter-sector" class="form-select"></select>
+            </div>
+
+            <!-- Entidad — TomSelect selección única, con opción "Todas las entidades" -->
+            <div class="filter-select-wrap" id="filter-entidad-wrap">
+              <select id="filter-entidad" class="form-select"></select>
+            </div>
+
+            <!-- Tipo de Aplicación — TomSelect selección única, con opción "Todos los tipos" -->
+            <div class="filter-select-wrap">
+              <select id="filter-tipo" class="form-select"></select>
+            </div>
+
+            <!-- Limpiar filtros -->
+            <button id="btn-limpiar-filtros" class="btn btn-outline-secondary btn-icon" title="Limpiar filtros">
+              <i class="fa-solid fa-broom"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== VISTA CONSULTA ===== -->
+      <div id="vista-consulta" class="results-container row">
+
+        <!-- Panel izquierdo: lista -->
+        <div id="panel-lista-section" class="col-md-3 data-section d-flex flex-column">
+          <div class="card rounded-0 h-100">
+            <div class="card-header p-3">
+              <h3 class="mb-2">Aplicaciones <span id="contador-resultados" class="text-muted fs-6"></span></h3>
+              <div class="d-flex gap-2">
+                <button id="btn-exportar" class="btn btn-sm btn-outline-secondary rounded-pill flex-grow-1">
+                  <i class="fa-solid fa-download me-1"></i> Exportar resultado
+                </button>
+                <button id="btn-refrescar-lista" class="btn btn-sm btn-outline-secondary rounded-pill" title="Refrescar listado">
+                  <i class="fa-solid fa-rotate"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <div id="lista-resultados" class="results-list"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel derecho: todas las tarjetas -->
+        <div id="panel-detalle-section" class="col-md-9 data-section">
+          <div id="detalle-contenido"></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer institucional (patrón diseñador footer) -->
+  <footer class="footer">
+    <div class="px-2 px-md-0">
+      <div class="container-fluid container-md border rounded-20 p-4 pt-5 pb-3 mb-3 bg-light">
+        <div class="row">
+          <div class="col-md-6">
+            <h2 class="h5 fw-bold">Unidad Administrativa Especial de Catastro Distrital</h2>
+            <p>Ideca: Infraestructura de Datos Espaciales para el Distrito Capital</p>
+            <address class="mb-2">
+              Dirección: Av. Carrera 30 No. 25 - 90, Torre B Piso 2 <br>
+              Código postal: 111311 <br>
+              Horario de atención: Lunes a Viernes de 8:00 am a 4:30 pm <br>
+              Teléfono conmutador: +57 601 234 7600<br>
+              Línea de servicio a la ciudadanía: +57 601 234 7600 - Ext. 7600 <br>
+              Línea Gratuita Nacional: 01 8000 9104887 <br>
+              Notificaciones judiciales:
+              <a href="mailto:notificaciones@catastrobogota.gov.co">notificaciones@catastrobogota.gov.co</a>
+            </address>
+          </div>
+          <div class="col-md-6 d-flex flex-wrap justify-content-md-end gap-4 mb-3 footer-logos mt-0">
+            <img src="./assets/images/logo-ideca.svg" alt="Logo Ideca" class="footer-logo">
+            <img src="./assets/images/logo-alcaldia-uikit.svg" alt="Logo Alcaldía Mayor de Bogotá" class="footer-logo">
+          </div>
+        </div>
+        <nav aria-label="Redes sociales" class="mb-3">
+          <ul class="list-inline footer-social">
+            <li class="list-inline-item">
+              <a href="https://www.instagram.com/catastrobogota_" target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/images/icons/instagram.svg" alt=""> @catastrobogota_
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.facebook.com/CatastroBogota/" target="_blank" rel="noopener noreferrer"
+                aria-label="Facebook Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/images/icons/facebook.svg" alt=""> @CatastroBogota
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://twitter.com/CatastroBogota" target="_blank" rel="noopener noreferrer"
+                aria-label="X (Twitter) Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/images/icons/twitter.svg" alt=""> @CatastroBogota
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.youtube.com/@catastrobogota3985" target="_blank" rel="noopener noreferrer"
+                aria-label="YouTube Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/images/icons/youtube.svg" alt=""> Catastro Bogotá
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <nav aria-label="Enlaces institucionales" class="mb-3">
+          <ul class="list-inline footer-links flex-wrap">
+            <li class="list-inline-item me-3"><a href="https://www.ideca.gov.co/sitemap" rel="noopener noreferrer">Mapa del sitio</a></li>
+            <li class="list-inline-item me-3"><a href="https://outlook.office.com/owa/" target="_blank" rel="noopener noreferrer">Correo institucional</a></li>
+            <li class="list-inline-item me-3"><a href="http://intranet.catastrobogota.gov.co/" target="_blank" rel="noopener noreferrer">Intranet</a></li>
+            <li class="list-inline-item me-3"><a href="https://mesadeservicio.catastrobogota.gov.co/CAisd/pdmweb.exe" target="_blank" rel="noopener noreferrer">Mesa de servicio</a></li>
+            <li class="list-inline-item me-3"><a href="https://www.catastrobogota.gov.co/declaracion-de-accesibilidad" target="_blank" rel="noopener noreferrer">Accesibilidad</a></li>
+            <li class="list-inline-item w-100"><a href="http://www.catastrobogota.gov.co/contacto/politicas-de-seguridad-privacidad-condiciones-de-uso-y-proteccion-de-datos-personales" target="_blank" rel="noopener noreferrer">Políticas de seguridad, privacidad, condiciones de uso y protección de datos personales</a></li>
+            <li class="list-inline-item"><a href="http://www.catastrobogota.gov.co/transparencia-y-acceso-a-la-informacion-publica" target="_blank" rel="noopener noreferrer">Transparencia y acceso a la información pública</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="container d-flex gap-2 justify-content-between align-items-center py-2">
+        <div class="d-flex gap-2 align-items-center">
+          <img src="https://cdn.www.gov.co/assets/images/logo.png" style="width: 112px;" alt="Logo GOV.CO" class="footer-bottom-logo">
+          <img src="./assets/images/logo-colombia.svg" style="width: 40px;" alt="Logo Colombia" class="footer-bottom-logo">
+        </div>
+        <p class="d-flex justify-content-md-end text-start text-white mb-0">
+          &copy; <span id="current-year" class="me-1"></span> Ideca. Todos los derechos reservados.
+        </p>
+        <script>
+          document.getElementById("current-year").textContent = new Date().getFullYear();
+        </script>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal: Iniciar sesión -->
+  <div class="modal fade" id="modal-login" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <button type="button" class="btn p-0 position-absolute end-0 m-3" data-bs-dismiss="modal" aria-label="Cerrar">
+          <i class="fa-solid fa-xmark fs-3"></i>
+        </button>
+        <div class="d-flex py-4 justify-content-center flex-column align-items-center">
+          <div class="col-8">
+            <div id="loginContainer">
+              <h2 class="fw-bold text-center mb-4">Catálogo de Recursos Geográficos</h2>
+              <h5 class="text-muted mb-3">
+                Unidad Administrativa Especial de <br> Catastro Distrital
+              </h5>
+              <div id="aviso-verificacion" class="alert alert-warning d-none" role="alert">
+                <p id="texto-aviso-verificacion" class="mb-3"></p>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                  <button type="button" id="btn-reenviar-verificacion" class="btn btn-sm btn-verificacion-secundario">
+                    Reenviar correo
+                  </button>
+                  <button type="button" id="btn-ya-valide" class="btn btn-sm btn-verificacion-principal">
+                    Ya validé mi correo
+                  </button>
+                </div>
+              </div>
+              <div id="firebaseui-auth-container"></div>
+              <div class="terminos-login">
+                <p class="small text-muted mb-0">
+                  Con el inicio de sesión acepto términos y condiciones...
+                  <a href="https://www.catastrobogota.gov.co/contacto/politicas-de-seguridad-privacidad-condiciones-de-uso-y-proteccion-de-datos-personales"
+                    target="_blank">Ver más.</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.5.1/dist/js/tom-select.complete.min.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth__es_419.js"></script>
+  <script src="js/app-202610041725.min.js"></script>
+</body>
+
+</html>

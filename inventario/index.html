@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J4842G2VCW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-J4842G2VCW');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gestión de recursos geográficos</title>
+  <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link href="https://cdn.jsdelivr.net/npm/tom-select@2.5.1/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/view-transitions.css">
+    <script src="https://cdn.userway.org/widget.js" data-account="YxU09HPa9Z"></script>
+    <script
+      src="https://js.sentry-cdn.com/39ad5fd34ee63ef87f9d96cec708a316.min.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+
+<body class="modulo-inventario">
+
+  <!-- Barra superior GOV.CO (patrón diseñador gov-bar) -->
+  <div class="gov-bar border-bottom">
+    <div class="container-fluid-md container-lg d-flex justify-content-between align-items-center">
+      <div class="govco-top-logo">
+        <a href="https://www.gov.co/" target="_blank" rel="noopener noreferrer">
+          <img src="https://cdn.www.gov.co/assets/images/logo.png" alt="Logo Gov.co" height="30" class="logo-gov-co">
+        </a>
+      </div>
+      <div class="d-flex justify-content-center gap-2 my-2">
+        <a href="https://www.gov.co/" target="_blank" rel="noopener noreferrer" class="govco-top-link-a">Ir a Govco</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar principal (patrón diseñador navbar) -->
+  <nav class="navbar navbar-expand-lg flex-wrap p-0 sticky-top" aria-label="Navegación principal">
+    <div class="bg-light w-100">
+      <div class="container-fluid-md container-lg position-relative d-flex flex-wrap justify-content-between align-items-center my-2">
+        <div class="navbar-header justify-content-between d-flex align-items-center gap-3">
+          <a href="../index.html" class="navbar-brand p-0 m-0">
+            <img src="./assets/images/logo-ideca.svg" alt="Inicio">
+          </a>
+          <img class="logo-alcaldia border-start ps-3" src="./assets/images/logo-alcaldia.svg" alt="Logo Alcaldía Mayor de Bogotá">
+        </div>
+        <section
+              class="buscadorHeader position-absolute top-50 start-50 translate-middle w-40"
+              role="search"
+              aria-label="Buscador del sitio"
+          >
+            <form class="search-bottom" method="get">
+                <div class="position-relative">
+                    <input
+                        type="search"
+                        class="form-control rounded-pill pe-5"
+                        placeholder="Escribe una palabra o una pregunta"
+                        aria-label="Escribe una palabra o una pregunta"
+                        aria-controls="searchPanel"
+                        aria-expanded="false"
+                    />
+                    <i class="fas fa-search position-absolute top-50 end-0 translate-middle-y me-3" aria-hidden="true"></i>
+                </div>
+            </form>
+        </section>
+        <div class="d-flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2 user-space">
+            <img id="foto-usuario-header" src="" alt="" class="d-none rounded-circle" width="24" height="24">
+            <div id="user-info-navbar" class="user-field me-2 text-start lh-sm">
+              <div class="user-field me-2 text-start lh-sm">
+                <div class="visually-hidden">Usuario:</div>
+                <div class="fw-semibold user-name text-secondary" id="texto-nombre-usuario"></div>
+              </div>
+              <p class="text-truncate mb-0" id="texto-rol-usuario"></p>
+            </div>
+            <button id="btn-cerrar-sesion" type="button"
+              class="border border-2 border-danger bg-transparent rounded-circle text-danger shadow-none d-none"
+              aria-label="Cerrar sesión" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cerrar sesión">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+          </div>
+          <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Menú de navegación">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      id="navbarMenuOverlay"
+      class="container-md-fluid container-lg px-0 mx-0 px-lg-3 mx-md-auto"
+      style="display: none;"
+    >
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+          <ul class="navbar-nav w-100 text-center" id="centralMenu"></ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Buscador inteligente -->
+  <div id="searchBackdrop" class="search-backdrop" tabindex="-1" aria-hidden="true"></div>
+  <section
+    id="searchPanel"
+    class="buscador_inteligente mx-auto px-3"
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="searchTitle"
+    aria-hidden="true"
+    inert
+    tabindex="-1"
+  >
+    <div class="search-results">
+      <div class="d-block d-md-flex align-items-stretch">
+        <div class="d-flex flex-column flex-md-row">
+          <aside id="search-info" class="search-info bg-white flex-shrink-0 show order-2 order-md-1">
+            <div class="contenido">
+              <div class="sup-label text-secondary fw-bold mb-2" style="line-height: normal;">
+                Respuesta ampliada a tu pregunta o búsqueda
+              </div>
+              <div class="search-info-header d-flex justify-content-between align-items-center mb-2">
+                <div class="search-ai d-flex align-items-center">
+                  <span class="search-ai-icon">
+                    <i class="fas fa-robot" aria-hidden="true"></i>
+                  </span>
+                  <h2 id="searchTitle" class="h6 fw-bold mb-0 text-secondary ms-2">
+                    Buscador inteligente
+                  </h2>
+                </div>
+              </div>
+              <div class="search-info-content"></div>
+            </div>
+          </aside>
+          <button
+            type="button"
+            id="closeSearchPanel"
+            class="btn-close search-panel-toggle order-1 order-md-2"
+            aria-label="Ocultar panel de inteligencia artificial"
+            aria-controls="search-info"
+            aria-expanded="true"
+          >
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="content-results-list flex-grow-1">
+          <div class="sup-label w-100 bg-white text-secondary fw-bold bi-message">Listado de resultados</div>
+          <button
+            type="button"
+            id="closeSearchPanelButton"
+            class="btn btn-sm position-absolute ms-2"
+            aria-label="Cerrar buscador inteligente"
+            aria-controls="searchPanel"
+          >
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </button>
+          <div class="search-list" role="region" aria-label="Resultados de búsqueda"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banner hero (patrón diseñador breadcrumb-container) -->
+  <div class="breadcrumb-container d-flex align-items-center mt-2 mx-2 p-0"
+       style="background: url('./assets/images/ide_bogota.png') center/cover no-repeat;">
+    <div class="container-md-fluid container-lg breadcrumb-content w-100 py-3">
+      <div class="col-md-7">
+        <h1 class="breadcrumb-title mb-1 h4">Gestión de recursos geográficos</h1>
+        <p class="breadcrumb-desc mb-0">
+            Gestiona los inventarios de IDECA: Datos (HIE), Servicios Web, Proyectos y Aplicaciones.
+        </p>
+      </div>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item">
+            <a href="https://www.ideca.gov.co/"><i class="fa-solid fa-house"></i></a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="https://www.ideca.gov.co/recursos/">Recursos</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <main id="vista-principal" class="d-none">
+    <div class="container mt-3">
+
+      <!-- Toast -->
+      <div id="toast-msg" class="alert alert-danger alert-dismissible d-none mb-3" role="alert">
+        <strong id="toast-texto"></strong>
+        <button id="btn-toast-close" type="button" class="btn-close"></button>
+      </div>
+
+      <!-- Filtros (inline) -->
+      <!-- md+: buscador + filtros quedan en la MISMA línea (flex-wrap en el contenedor, el
+           collapse participa como un ítem más). <768px: el collapse se oculta y pasa a
+           ocupar toda la fila siguiente (flex-basis:100% en CSS) solo cuando se despliega. -->
+      <div class="container search-filters-sticky">
+        <div class="search-filters-section row flex-wrap align-items-center">
+          <!-- Búsqueda — alinea con panel-izquierdo en md+ -->
+          <div class="search-box-wrap">
+            <div class="search-input-group d-flex align-items-center position-relative">
+              <input type="text" id="search-main" class="form-control" placeholder="Nombre del inventario" autocomplete="off">
+              <button class="btn position-absolute start-0" tabindex="-1">
+                <i class="fa-solid fa-search"></i>
+              </button>
+              <button id="btn-clear-search" class="btn position-absolute search-clear-btn d-none" tabindex="-1">
+                <i class="fa-solid fa-times"></i>
+              </button>
+            </div>
+          </div>
+  
+          <!-- <768px: los filtros/botones se despliegan al hacer clic, para no partir el buscador a 2 líneas -->
+          <button id="btn-toggle-filtros" class="btn btn-outline-secondary btn-icon d-md-none ms-auto" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#filtros-collapse" aria-expanded="false"
+                  aria-controls="filtros-collapse" title="Filtros">
+            <i class="fa-solid fa-filter"></i>
+          </button>
+  
+          <!-- Filtros y acciones — visibles siempre en md+ (misma línea que el buscador);
+               desplegables con btn-toggle-filtros en <768px -->
+          <div class="collapse d-md-block filtros-collapse" id="filtros-collapse">
+            <div class="filters-actions-wrap d-flex flex-wrap align-items-center gap-2 mt-2 mt-md-0">
+              <!-- TomSelect selección única, con "Todos los sectores" -->
+              <div class="filter-select-wrap">
+                <select id="filter-sector" class="form-select"></select>
+              </div>
+  
+              <!-- TomSelect selección única, con "Todas las entidades" -->
+              <div class="filter-select-wrap">
+                <select id="filter-entidad" class="form-select"></select>
+              </div>
+  
+              <!-- TomSelect selección única, con "Todos los tipos de inventario" -->
+              <div class="filter-select-wrap">
+                <select id="filter-tipo" class="form-select">
+                  <option value="">Todos los tipos de inventario</option>
+                  <option value="APLICACIONES">Aplicaciones</option>
+                  <option value="DATOS">Datos (HIE)</option>
+                  <option value="PROYECTOS">Proyectos</option>
+                  <option value="SERVICIOS">Servicios WEB</option>
+                </select>
+              </div>
+  
+              <div class="filter-select-wrap">
+                <select id="filter-estado" class="form-select"></select>
+              </div>
+  
+              <button id="btn-limpiar-filtros" class="btn btn-outline-secondary btn-icon ms-md-auto" title="Limpiar filtros">
+                <i class="fa-solid fa-broom"></i>
+              </button>
+  
+              <button id="btn-exportar" class="btn btn-outline-secondary btn-icon" title="Exportar resultado">
+                <i class="fa-solid fa-download"></i>
+              </button>
+  
+              <button id="btn-refrescar-lista" class="btn btn-outline-secondary btn-icon" title="Refrescar listado">
+                <i class="fa-solid fa-rotate"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel principal master-detail -->
+      <div class="results-container">
+
+        <!-- Panel izquierdo: acordeón -->
+        <div class="panel-izquierdo">
+          <div class="card border-0 rounded-0 h-100 bg-transparent">
+            <div class="card-body p-0" id="acordeon-container">
+              <!-- Generado por JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel derecho: detalle -->
+        <div class="panel-derecho">
+          <div id="detalle-contenido">
+            <div class="empty-state">
+              <i class="fa-solid fa-chart-line fa-2x text-muted mb-2"></i>
+              <p class="mb-0">Seleccione un inventario de la lista para ver su detalle.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== VISTA FORMULARIO APLICACIONES (crear/editar, portado de aplicaciones/) ===== -->
+      <div id="aps-vista-formulario" class="d-none">
+        <div class="form-toolbar d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+          <div class="d-flex align-items-center gap-3">
+            <button id="aps-btn-volver-link" class="btn btn-sm btn-outline-secondary rounded-pill">
+              <i class="fa-solid fa-arrow-left me-1"></i> Volver
+            </button>
+            <span id="aps-form-nombre-entidad" class="fw-semibold text-secondary"></span>
+            <span id="aps-form-badge-estado" class="badge rounded-pill d-none"></span>
+          </div>
+          <div class="d-flex gap-2">
+            <button id="aps-btn-descartar" class="btn btn-tertiary rounded-pill">Descartar Cambios</button>
+            <button id="aps-btn-guardar" class="btn btn-outline-secondary rounded-pill"
+              data-bs-toggle="tooltip" data-bs-placement="top" title="Ingresa el nombre para poder guardar">Guardar</button>
+            <button id="aps-btn-publicar" class="btn btn-publicar rounded-pill d-none">Publicar</button>
+          </div>
+        </div>
+
+        <div class="form-container">
+        <div class="form-section" id="aps-tab-basica">
+          <h2 class="form-section-title">Información básica de la Aplicación</h2>
+          <div class="form-section-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="aps-f-nombre" class="form-label"><span data-schema-title="NOMBRE">Nombre</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="NOMBRE" title=""></i>
+                </label>
+                <input type="text" id="aps-f-nombre" class="form-control" maxlength="200"
+                  placeholder="Nombre de la aplicación web geográfica">
+                <div class="invalid-feedback" id="aps-err-nombre"></div>
+              </div>
+              <div class="col-md-3">
+                <label for="aps-f-sigla" class="form-label"><span data-schema-title="SIGLA">Sigla</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="SIGLA" title=""></i>
+                </label>
+                <input type="text" id="aps-f-sigla" class="form-control" maxlength="20">
+                <div class="invalid-feedback" id="aps-err-sigla"></div>
+              </div>
+              <div class="col-md-3">
+                <label for="aps-f-tipo" class="form-label"><span data-schema-title="TIPO">Tipo de aplicación</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="TIPO" title=""></i>
+                </label>
+                <select id="aps-f-tipo" class="form-select">
+                  <option value="">Seleccionar...</option>
+                </select>
+                <div class="invalid-feedback" id="aps-err-tipo"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="aps-f-descripcion" class="form-label"><span data-schema-title="DESCRIPCION">Descripción</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="DESCRIPCION" title=""></i>
+                </label>
+                <textarea id="aps-f-descripcion" class="form-control" rows="3"
+                  placeholder="Máx. 1000 caracteres"></textarea>
+                <div class="invalid-feedback" id="aps-err-descripcion"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="aps-f-necesidad" class="form-label"><span data-schema-title="NECESIDAD_SATISFACER">Necesidad a satisfacer</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="NECESIDAD_SATISFACER" title=""></i>
+                </label>
+                <textarea id="aps-f-necesidad" class="form-control" rows="3"
+                  placeholder="Máx. 1000 caracteres"></textarea>
+                <div class="invalid-feedback" id="aps-err-necesidad"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="aps-f-publico-objetivo" class="form-label"><span data-schema-title="PUBLICO_OBJETIVO">Público objetivo</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="PUBLICO_OBJETIVO" title=""></i>
+                </label>
+                <textarea id="aps-f-publico-objetivo" class="form-control" rows="3"
+                  placeholder="Máx. 1000 caracteres"></textarea>
+                <div class="invalid-feedback" id="aps-err-publico-objetivo"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="aps-f-dependencias" class="form-label"><span data-schema-title="DEPENDENCIAS_ENTIDAD">Dependencias de la entidad</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="DEPENDENCIAS_ENTIDAD" title=""></i>
+                </label>
+                <input type="text" id="aps-f-dependencias" class="form-control">
+                <div class="invalid-feedback" id="aps-err-dependencias"></div>
+              </div>
+              <div class="col-12">
+                <label class="form-label"><span data-schema-title="URL_ACCESO">URL de acceso</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="URL_ACCESO" title=""></i>
+                </label>
+                <div id="aps-lista-urls-acceso">
+                  <!-- Filas de URL generadas por JS -->
+                </div>
+                <button type="button" id="aps-btn-agregar-url-acceso" class="btn btn-outline-secondary btn-sm">
+                  <i class="fa-solid fa-plus me-1"></i> Agregar URL
+                </button>
+                <div class="text-danger small mt-2" id="aps-err-url-general"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section" id="aps-tab-geo">
+          <h2 class="form-section-title">Relacionar datos geográficos</h2>
+          <div class="form-section-body">
+            <div class="row g-4">
+              <!-- Datos de referencia -->
+              <div class="col-md-4">
+                <label class="form-label fw-semibold"><span data-schema-title="DATOS_REFERENCIA">¿Utiliza datos de referencia?</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="DATOS_REFERENCIA" title=""></i>
+                </label>
+                <div class="d-flex gap-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="aps-f-referencia" id="aps-f-referencia-si" value="SI">
+                    <label class="form-check-label" for="aps-f-referencia-si">Sí</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="aps-f-referencia" id="aps-f-referencia-no" value="NO">
+                    <label class="form-check-label" for="aps-f-referencia-no">No</label>
+                  </div>
+                </div>
+                <div class="text-danger small mb-2" id="aps-err-referencia"></div>
+              </div>
+
+              <!-- Datos temáticos -->
+              <div class="col-md-4">
+                <label class="form-label fw-semibold"><span data-schema-title="DATOS_TEMATICOS">¿Utiliza datos temáticos?</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="DATOS_TEMATICOS" title=""></i>
+                </label>
+                <div class="d-flex gap-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="aps-f-tematicos" id="aps-f-tematicos-si" value="SI">
+                    <label class="form-check-label" for="aps-f-tematicos-si">Sí</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="aps-f-tematicos" id="aps-f-tematicos-no" value="NO">
+                    <label class="form-check-label" for="aps-f-tematicos-no">No</label>
+                  </div>
+                </div>
+                <div class="text-danger small mb-2" id="aps-err-tematicos-radio"></div>
+                <div id="aps-campo-tematicas" class="mt-2 campo-condicional">
+                  <select id="aps-f-tematicas-select" multiple placeholder="Seleccione las temáticas..."></select>
+                  <div class="invalid-feedback" id="aps-err-tematicas"></div>
+                </div>
+              </div>
+
+              <!-- Sensores remotos -->
+              <div class="col-md-4">
+                <label class="form-label fw-semibold"><span data-schema-title="DATOS_SENSORES">¿Utiliza datos provenientes de sensores remotos?</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="DATOS_SENSORES" title=""></i>
+                </label>
+                <div class="d-flex gap-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="aps-f-sensores" id="aps-f-sensores-si" value="SI">
+                    <label class="form-check-label" for="aps-f-sensores-si">Sí</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="aps-f-sensores" id="aps-f-sensores-no" value="NO">
+                    <label class="form-check-label" for="aps-f-sensores-no">No</label>
+                  </div>
+                </div>
+                <div class="text-danger small mb-2" id="aps-err-sensores-radio"></div>
+                <div id="aps-campo-sensores" class="mt-2 campo-condicional">
+                  <select id="aps-f-sensores-select" multiple placeholder="Seleccione o escriba un sensor..."></select>
+                  <div class="invalid-feedback" id="aps-err-sensores"></div>
+                </div>
+              </div>
+
+              <!-- Resultados esperados -->
+              <div class="col-12">
+                <label for="aps-f-resultados" class="form-label fw-semibold"><span data-schema-title="RESULTADOS_ESPERADOS">Resultados esperados</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="RESULTADOS_ESPERADOS" title=""></i>
+                </label>
+                <textarea id="aps-f-resultados" class="form-control" rows="3"
+                  placeholder="Máx. 1000 caracteres"></textarea>
+                <div class="invalid-feedback" id="aps-err-resultados"></div>
+              </div>
+
+              <!-- Observaciones -->
+              <div class="col-12">
+                <label for="aps-f-observaciones" class="form-label fw-semibold"><span data-schema-title="OBSERVACIONES">Observaciones</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="OBSERVACIONES" title="OBSERVACIONES"></i>
+                </label>
+                <textarea id="aps-f-observaciones" class="form-control" rows="3"
+                  placeholder="Máx. 1000 caracteres"></textarea>
+                <div class="invalid-feedback" id="aps-err-observaciones"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- ===== VISTA FORMULARIO PROYECTOS (crear/editar, portado de proyectos/) ===== -->
+      <div id="pry-vista-formulario" class="d-none">
+        <div class="form-toolbar d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+          <div class="d-flex align-items-center gap-3">
+            <button id="pry-btn-volver-link" class="btn btn-sm btn-outline-secondary rounded-pill">
+              <i class="fa-solid fa-arrow-left me-1"></i> Volver
+            </button>
+            <span id="pry-form-nombre-entidad" class="fw-semibold text-secondary"></span>
+            <span id="pry-form-badge-estado" class="badge rounded-pill d-none"></span>
+          </div>
+          <div class="d-flex gap-2">
+            <button id="pry-btn-descartar" class="btn btn-tertiary rounded-pill">
+              Descartar Cambios
+            </button>
+            <button id="pry-btn-guardar" class="btn btn-outline-secondary rounded-pill"
+              data-bs-toggle="tooltip" data-bs-placement="top" title="Ingresa el nombre para poder guardar">
+              Guardar
+            </button>
+            <button id="pry-btn-publicar" class="btn btn-publicar rounded-pill d-none">
+              Publicar
+            </button>
+          </div>
+        </div>
+
+        <div class="form-container">
+        <div class="form-section" id="pry-tab-basica">
+          <h2 class="form-section-title">Información básica del Proyecto</h2>
+          <div class="form-section-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="pry-f-nombre" class="form-label"><span data-schema-title="NOMBRE">Nombre</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="NOMBRE" title=""></i>
+                </label>
+                <input type="text" id="pry-f-nombre" class="form-control" maxlength="200"
+                  placeholder="Nombre del proyecto geográfico">
+                <div class="invalid-feedback" id="pry-err-nombre"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="pry-f-etapa" class="form-label"><span data-schema-title="ETAPA_PROYECTO">Etapa del Proyecto</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="ETAPA_PROYECTO" title=""></i>
+                </label>
+                <select id="pry-f-etapa" class="form-select">
+                  <option value="">Seleccionar...</option>
+                </select>
+                <div class="invalid-feedback" id="pry-err-etapa"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="pry-f-fecha-inicio" class="form-label"><span data-schema-title="FECHA_INICIO">Fecha de inicio del Proyecto</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="FECHA_INICIO" title=""></i>
+                </label>
+                <input type="text" id="pry-f-fecha-inicio" class="form-control selector-mes" placeholder="Seleccione mes y año">
+                <div class="invalid-feedback" id="pry-err-fecha-inicio"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="pry-f-fecha-cierre" class="form-label"><span data-schema-title="FECHA_CIERRE">Fecha de Cierre del Proyecto</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="FECHA_CIERRE" title=""></i>
+                </label>
+                <input type="text" id="pry-f-fecha-cierre" class="form-control selector-mes" placeholder="Seleccione mes y año" disabled>
+                <div class="form-text" id="pry-hint-fecha-cierre-disabled">
+                  Solo editable cuando la Etapa del Proyecto es "Cierre".
+                </div>
+                <div class="invalid-feedback" id="pry-err-fecha-cierre"></div>
+              </div>
+              <div class="col-12">
+                <label for="pry-f-descripcion" class="form-label"><span data-schema-title="DESCRIPCION">Descripción</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="DESCRIPCION" title=""></i>
+                </label>
+                <textarea id="pry-f-descripcion" class="form-control" rows="3"
+                  placeholder="Máx. 1000 caracteres"></textarea>
+                <div class="invalid-feedback" id="pry-err-descripcion"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="pry-f-dependencias" class="form-label"><span data-schema-title="DEPENDENCIAS_ENTIDAD">Dependencias de la entidad</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="DEPENDENCIAS_ENTIDAD" title=""></i>
+                </label>
+                <input type="text" id="pry-f-dependencias" class="form-control">
+                <div class="invalid-feedback" id="pry-err-dependencias"></div>
+              </div>
+              <div class="col-6">
+                <label for="pry-f-entidades-involucradas" class="form-label"><span data-schema-title="ENTIDADES_INVOLUCRADAS">Entidades involucradas</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="ENTIDADES_INVOLUCRADAS" title=""></i>
+                </label>
+                <select id="pry-f-entidades-involucradas" multiple placeholder="Seleccione las entidades involucradas..."></select>
+                <div class="invalid-feedback" id="pry-err-entidades-involucradas"></div>
+              </div>
+              <div class="col-12">
+                <label class="form-label"><span data-schema-title="URL_ACCESO">URL de acceso</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="URL_ACCESO" title=""></i>
+                </label>
+                <div id="pry-lista-urls-acceso">
+                  <!-- Filas de URL generadas por JS -->
+                </div>
+                <button type="button" id="pry-btn-agregar-url-acceso" class="btn btn-outline-secondary btn-sm">
+                  <i class="fa-solid fa-plus me-1"></i> Agregar URL
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section" id="pry-tab-geo">
+          <h2 class="form-section-title">Relacionar datos geográficos</h2>
+          <div class="form-section-body">
+            <div class="row g-4">
+              <!-- Datos de referencia -->
+              <div class="col-md-4">
+                <label class="form-label fw-semibold"><span data-schema-title="DATOS_REFERENCIA">¿Utiliza datos de referencia?</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="DATOS_REFERENCIA" title=""></i>
+                </label>
+                <div class="d-flex gap-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pry-f-referencia" id="pry-f-referencia-si" value="SI">
+                    <label class="form-check-label" for="pry-f-referencia-si">Sí</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pry-f-referencia" id="pry-f-referencia-no" value="NO">
+                    <label class="form-check-label" for="pry-f-referencia-no">No</label>
+                  </div>
+                </div>
+                <div class="text-danger small mb-2" id="pry-err-referencia"></div>
+              </div>
+
+              <!-- Temáticos -->
+              <div class="col-md-4">
+                <label class="form-label fw-semibold"><span data-schema-title="DATOS_TEMATICOS">¿Utiliza datos temáticos?</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="DATOS_TEMATICOS" title=""></i>
+                </label>
+                <div class="d-flex gap-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pry-f-tematicos" id="pry-f-tematicos-si" value="SI">
+                    <label class="form-check-label" for="pry-f-tematicos-si">Sí</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pry-f-tematicos" id="pry-f-tematicos-no" value="NO">
+                    <label class="form-check-label" for="pry-f-tematicos-no">No</label>
+                  </div>
+                </div>
+                <div class="text-danger small mb-2" id="pry-err-tematicos-radio"></div>
+                <div id="pry-campo-tematicas" class="mt-2 d-none">
+                  <select id="pry-f-tematicas-select" multiple placeholder="Seleccione las temáticas..."></select>
+                  <div class="invalid-feedback" id="pry-err-tematicas"></div>
+                </div>
+              </div>
+
+              <!-- Sensores remotos -->
+              <div class="col-md-4">
+                <label class="form-label fw-semibold"><span data-schema-title="DATOS_SENSORES">¿Utiliza datos de sensores remotos?</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="DATOS_SENSORES" title=""></i>
+                </label>
+                <div class="d-flex gap-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pry-f-sensores" id="pry-f-sensores-si" value="SI">
+                    <label class="form-check-label" for="pry-f-sensores-si">Sí</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pry-f-sensores" id="pry-f-sensores-no" value="NO">
+                    <label class="form-check-label" for="pry-f-sensores-no">No</label>
+                  </div>
+                </div>
+                <div class="text-danger small mb-2" id="pry-err-sensores-radio"></div>
+                <div id="pry-campo-sensores" class="mt-2 d-none">
+                  <select id="pry-f-sensores-select" multiple placeholder="Seleccione o escriba un sensor..."></select>
+                  <div class="invalid-feedback" id="pry-err-sensores"></div>
+                </div>
+              </div>
+
+              <!-- Portales WEB -->
+              <div class="col-12">
+                <label class="form-label fw-semibold"><span data-schema-title="DATOS_PORTALES">¿El proyecto utiliza portales WEB?</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="PORTALES_WEB" title=""></i>
+                </label>
+                <div class="d-flex gap-3 mb-2">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pry-f-portales-web" id="pry-f-portales-si" value="SI">
+                    <label class="form-check-label" for="pry-f-portales-si">Sí</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pry-f-portales-web" id="pry-f-portales-no" value="NO">
+                    <label class="form-check-label" for="pry-f-portales-no">No</label>
+                  </div>
+                </div>
+                <div class="text-danger small mb-2" id="pry-err-portales-radio"></div>
+                <div id="pry-campo-portales" class="d-none">
+                  <div class="row g-2 mb-2" id="pry-lista-portales">
+                    <!-- Portales generados por JS -->
+                  </div>
+                  <div class="text-danger small mb-2" id="pry-err-portales"></div>
+                  <div id="pry-campo-url-portal" class="mt-2 d-none">
+                    <label class="form-label">Portales personalizados ("Otro") <span class="text-danger">*</span></label>
+                    <div id="pry-portales-custom-container"></div>
+                    <div class="text-danger small mb-2" id="pry-err-portales-custom"></div>
+                    <button type="button" id="pry-btn-agregar-portal-custom" class="btn btn-outline-secondary btn-sm">
+                      <i class="fa-solid fa-plus me-1"></i> Agregar portal
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Resultados esperados -->
+              <div class="col-12">
+                <label for="pry-f-resultados" class="form-label fw-semibold"><span data-schema-title="RESULTADOS_ESPERADOS">Resultados esperados</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="RESULTADOS_ESPERADOS" title=""></i>
+                </label>
+                <textarea id="pry-f-resultados" class="form-control" rows="3" placeholder="Máx. 1000 caracteres"></textarea>
+                <div class="invalid-feedback" id="pry-err-resultados"></div>
+              </div>
+
+              <!-- Observaciones -->
+              <div class="col-12">
+                <label for="pry-f-observaciones" class="form-label fw-semibold"><span data-schema-title="OBSERVACIONES">Observaciones</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="OBSERVACIONES" title=""></i>
+                </label>
+                <textarea id="pry-f-observaciones" class="form-control" rows="3" placeholder="Máx. 1000 caracteres"></textarea>
+                <div class="invalid-feedback" id="pry-err-observaciones"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- ===== VISTA FORMULARIO SERVICIOS (crear/editar, portado de servicios/) ===== -->
+      <div id="srv-vista-formulario" class="d-none">
+        <div class="form-toolbar d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+          <div class="d-flex align-items-center gap-3">
+            <button id="srv-btn-volver-link" class="btn btn-sm btn-outline-secondary rounded-pill">
+              <i class="fa-solid fa-arrow-left me-1"></i> Volver
+            </button>
+            <span id="srv-form-nombre-entidad" class="fw-semibold text-secondary"></span>
+            <span id="srv-form-badge-estado" class="badge rounded-pill d-none"></span>
+          </div>
+          <div class="d-flex gap-2">
+            <button id="srv-btn-descartar" class="btn btn-tertiary rounded-pill">Descartar Cambios</button>
+            <button id="srv-btn-guardar" class="btn btn-outline-secondary rounded-pill"
+              data-bs-toggle="tooltip" data-bs-placement="top" title="Ingresa el nombre para poder guardar">Guardar</button>
+            <button id="srv-btn-publicar" class="btn btn-publicar rounded-pill d-none">Publicar</button>
+          </div>
+        </div>
+
+        <div class="form-container">
+        <div class="form-section" id="srv-tab-basica">
+          <h2 class="form-section-title">Información básica del Servicio WEB</h2>
+          <div class="form-section-body">
+            <div class="row g-3">
+              <div class="col-md-8">
+                <label for="srv-f-nombre" class="form-label"><span data-schema-title="NOMBRE">Nombre del servicio</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="NOMBRE" title=""></i>
+                </label>
+                <input type="text" id="srv-f-nombre" class="form-control" maxlength="200"
+                  placeholder="Nombre del servicio web">
+                <div class="invalid-feedback" id="srv-err-nombre"></div>
+              </div>
+              <div class="col-md-4">
+                <label for="srv-f-ubicacion" class="form-label">Infraestructura de disposición <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="UBICACION" title=""></i>
+                </label>
+                <select id="srv-f-ubicacion" class="form-select">
+                  <option value="">Seleccionar...</option>
+                </select>
+                <div class="invalid-feedback" id="srv-err-ubicacion"></div>
+              </div>
+              <div class="col-12">
+                <label for="srv-f-directorio" class="form-label"><span data-schema-title="DIRECTORIO_SERVICIOS">Directorio de servicios</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="DIRECTORIO_SERVICIOS" title=""></i>
+                </label>
+                <input type="url" id="srv-f-directorio" class="form-control" placeholder="https://" pattern="https://.*">
+                <div class="invalid-feedback" id="srv-err-directorio"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="srv-f-certificacion" class="form-label"><span data-schema-title="CERTIFICACION_MINTIC">Nivel de certificación ante MINTIC</span> <span class="text-danger">*</span>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="CERTIFICACION_MINTIC" title=""></i>
+                </label>
+                <select id="srv-f-certificacion" class="form-select">
+                  <option value="">Seleccionar...</option>
+                </select>
+                <div class="invalid-feedback" id="srv-err-certificacion"></div>
+              </div>
+              <div class="col-md-6 d-flex flex-column justify-content-end">
+                <div class="form-check form-switch mt-3">
+                  <input class="form-check-input" type="checkbox" id="srv-f-acompanamiento-ideca">
+                  <label class="form-check-label" for="srv-f-acompanamiento-ideca">
+                    ¿Servicio registrado con acompañamiento de IDECA?
+                  </label>
+                  <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="ACOMPANAMIENTO_IDECA" title=""></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section" id="srv-tab-capacidades">
+          <h2 class="form-section-title">Capacidades del servicio</h2>
+          <div class="form-section-body">
+            <!-- col-12: aplicarTooltipsDesdeSchemaServicios cuelga el hint del ancestro col-* más cercano -->
+            <div class="col-12 mb-3">
+              <p class="text-muted small mb-0">
+                Registre al menos un formato de capacidad con su URL de acceso (Al dar click en la URL se abrirá en nueva pestaña del navegador).
+                <i class="fa-solid fa-circle-info text-secondary ms-1" data-schema-field="CAPACIDADES" title=""></i>
+              </p>
+            </div>
+
+            <div id="srv-capacidades-container">
+              <!-- Renglón de captura/edición generado por JS -->
+            </div>
+            <div class="text-danger small mt-2 d-none" id="srv-err-capacidades"></div>
+
+            <div class="mt-4" id="srv-tabla-capacidades-wrap" style="display:none">
+              <h6 class="text-secondary">Características del servicio web</h6>
+              <table class="table table-sm table-striped align-middle tabla-capacidades" id="srv-tabla-capacidades">
+                <thead class="table-dark">
+                  <tr>
+                    <th class="col-formato">Formato de Capacidad</th>
+                    <th class="col-tipo">Tipo de Servicio</th>
+                    <th>Dirección URL</th>
+                    <th class="col-acciones"></th>
+                  </tr>
+                </thead>
+                <tbody id="srv-tabla-capacidades-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- ===== VISTA HISTÓRICO (detalle guardado de trazabilidad, solo lectura — reemplaza al
+           antiguo modal-trazabilidad; ver app.js#verDetalleHistorico) ===== -->
+      <div id="vista-historico" class="d-none">
+        <div class="form-toolbar d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+          <div class="d-flex align-items-center gap-3">
+            <button id="historico-btn-volver" class="btn btn-sm btn-outline-secondary rounded-pill">
+              <i class="fa-solid fa-arrow-left me-1"></i> Volver
+            </button>
+            <span id="historico-titulo" class="fw-semibold text-secondary"></span>
+            <span id="historico-badge" class="badge rounded-pill ms-2"></span>
+            <span id="historico-fecha" class="text-muted small"></span>
+          </div>
+        </div>
+
+        <div class="form-container">
+          <div class="form-section">
+            <div class="form-section-body" id="historico-contenido"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer institucional (patrón diseñador footer) -->
+  <footer class="footer">
+    <div class="px-2 px-md-0">
+      <div class="container-fluid container-md border rounded-20 p-4 pt-5 pb-3 mb-3 bg-light">
+        <div class="row">
+          <div class="col-md-6">
+            <h2 class="h5 fw-bold">Unidad Administrativa Especial de Catastro Distrital</h2>
+            <p>Ideca: Infraestructura de Datos Espaciales para el Distrito Capital</p>
+            <address class="mb-2">
+              Dirección: Av. Carrera 30 No. 25 - 90, Torre B Piso 2 <br>
+              Código postal: 111311 <br>
+              Horario de atención: Lunes a Viernes de 8:00 am a 4:30 pm <br>
+              Teléfono conmutador: +57 601 234 7600<br>
+              Línea de servicio a la ciudadanía: +57 601 234 7600 - Ext. 7600 <br>
+              Línea Gratuita Nacional: 01 8000 9104887 <br>
+              Notificaciones judiciales:
+              <a href="mailto:notificaciones@catastrobogota.gov.co">notificaciones@catastrobogota.gov.co</a>
+            </address>
+          </div>
+          <div class="col-md-6 d-flex flex-wrap justify-content-md-end gap-4 mb-3 footer-logos mt-0">
+            <img src="./assets/images/logo-alcaldia-uikit.svg" alt="Logo Alcaldía Mayor de Bogotá" class="footer-logo">
+          </div>
+        </div>
+        <nav aria-label="Redes sociales" class="mb-3">
+          <ul class="list-inline footer-social">
+            <li class="list-inline-item">
+              <a href="https://www.instagram.com/catastrobogota_" target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/images/icons/instagram.svg" alt=""> @catastrobogota_
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.facebook.com/CatastroBogota/" target="_blank" rel="noopener noreferrer"
+                aria-label="Facebook Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/images/icons/facebook.svg" alt=""> @CatastroBogota
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://twitter.com/CatastroBogota" target="_blank" rel="noopener noreferrer"
+                aria-label="X (Twitter) Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/images/icons/twitter.svg" alt=""> @CatastroBogota
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.youtube.com/@catastrobogota3985" target="_blank" rel="noopener noreferrer"
+                aria-label="YouTube Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/images/icons/youtube.svg" alt=""> Catastro Bogotá
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <nav aria-label="Enlaces institucionales" class="mb-3">
+          <ul class="list-inline footer-links flex-wrap">
+            <li class="list-inline-item me-3"><a href="https://www.ideca.gov.co/sitemap" rel="noopener noreferrer">Mapa del sitio</a></li>
+            <li class="list-inline-item me-3"><a href="https://outlook.office.com/owa/" target="_blank" rel="noopener noreferrer">Correo institucional</a></li>
+            <li class="list-inline-item me-3"><a href="http://intranet.catastrobogota.gov.co/" target="_blank" rel="noopener noreferrer">Intranet</a></li>
+            <li class="list-inline-item me-3"><a href="https://mesadeservicio.catastrobogota.gov.co/CAisd/pdmweb.exe" target="_blank" rel="noopener noreferrer">Mesa de servicio</a></li>
+            <li class="list-inline-item me-3"><a href="https://www.catastrobogota.gov.co/declaracion-de-accesibilidad" target="_blank" rel="noopener noreferrer">Accesibilidad</a></li>
+            <li class="list-inline-item w-100"><a href="http://www.catastrobogota.gov.co/contacto/politicas-de-seguridad-privacidad-condiciones-de-uso-y-proteccion-de-datos-personales" target="_blank" rel="noopener noreferrer">Políticas de seguridad, privacidad, condiciones de uso y protección de datos personales</a></li>
+            <li class="list-inline-item"><a href="http://www.catastrobogota.gov.co/transparencia-y-acceso-a-la-informacion-publica" target="_blank" rel="noopener noreferrer">Transparencia y acceso a la información pública</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="container d-flex gap-2 justify-content-between align-items-center py-2">
+        <div class="d-flex gap-2 align-items-center">
+          <img src="https://cdn.www.gov.co/assets/images/logo.png" style="width: 112px;" alt="Logo GOV.CO" class="footer-bottom-logo">
+          <img src="./assets/images/logo-colombia.svg" style="width: 40px;" alt="Logo Colombia" class="footer-bottom-logo">
+        </div>
+        <p class="d-flex justify-content-md-end text-start text-white mb-0">
+          &copy; <span id="current-year" class="me-1"></span> Ideca. Todos los derechos reservados.
+        </p>
+        <script>
+          document.getElementById("current-year").textContent = new Date().getFullYear();
+        </script>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal: Confirmar publicar (Aplicaciones) -->
+  <div class="modal fade" id="aps-modal-publicar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Publicar aplicación</h5>
+          <i class="fa-solid fa-triangle-exclamation text-warning ms-2"></i>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro que desea actualizar y publicar la aplicación?
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="aps-btn-confirmar-publicar" type="button" class="btn btn-primary rounded-pill">Publicar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Retirar (Aplicaciones) -->
+  <div class="modal fade" id="aps-modal-retirar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Retirar registro</h5>
+          <i class="fa-solid fa-eye-slash text-warning ms-2"></i>
+        </div>
+        <div class="modal-body">
+          <p id="aps-modal-retirar-msg">Por favor, ingrese las observaciones que soportan el retiro del registro en el inventario de aplicaciones.</p>
+          <textarea id="aps-modal-retirar-obs" class="form-control" rows="5"></textarea>
+          <div class="invalid-feedback d-none" id="aps-err-obs-retirar">Las observaciones son obligatorias.</div>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="aps-btn-ejecutar-retirar" type="button" class="btn btn-warning rounded-pill">Retirar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Eliminar con observaciones (Aplicaciones) -->
+  <div class="modal fade" id="aps-modal-eliminar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Eliminar registro</h5>
+          <i class="fa-solid fa-triangle-exclamation text-danger ms-2"></i>
+        </div>
+        <div class="modal-body">
+          <p>¿Está seguro que desea eliminar este registro? Esta acción no se puede deshacer.</p>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="aps-btn-confirmar-eliminar" type="button" class="btn btn-danger rounded-pill">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Reactivar (Aplicaciones) -->
+  <div class="modal fade" id="aps-modal-reactivar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Reactivar registro</h5>
+          <i class="fa-solid fa-rotate-left text-success ms-2"></i>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro que desea reactivar esta aplicación? Volverá al estado Borrador.
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="aps-btn-confirmar-reactivar" type="button" class="btn btn-success rounded-pill">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Confirmar inicio de registro de aplicación -->
+  <div class="modal fade" id="aps-modal-inicio-registro" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Registrar aplicación</h5>
+          <i class="fa-solid fa-triangle-exclamation text-warning ms-2"></i>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro que desea registrar una nueva aplicación en el inventario?
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="aps-btn-confirmar-inicio-registro" type="button" class="btn btn-primary rounded-pill">Continuar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Confirmar inicio de registro de servicio web -->
+  <div class="modal fade" id="srv-modal-inicio-registro" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Registrar servicio web</h5>
+          <i class="fa-solid fa-triangle-exclamation text-warning ms-2"></i>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro que desea registrar un nuevo servicio web en el inventario?
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="srv-btn-confirmar-inicio-registro" type="button" class="btn btn-primary rounded-pill">Continuar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Inicio de registro (texto legal) -->
+  <div class="modal fade" id="pry-modal-inicio-registro" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Registro de Proyectos con Información Geográfica</h5>
+          <i class="fa-solid fa-triangle-exclamation text-warning ms-2"></i>
+        </div>
+        <div class="modal-body">
+          <p>Para continuar con el diligenciamiento de este formulario por favor tenga en cuenta los siguientes conceptos:</p>
+          <p>Un <strong>proyecto</strong> se entiende como la unidad operacional de planeación del desarrollo que vincula recursos públicos (humanos, físicos, monetarios, geográficos, entre otros) para resolver problemas o necesidades sentidas de la población. Cualquier proyecto que utilice Recursos Geográficos (mapas, datos georreferenciados, portales, imágenes), en cualquiera de sus estados (planeación, ejecución o uso), para su producción o resultado, se considera un proyecto geográfico.</p>
+          <p>Un <strong>proyecto geográfico</strong> hace referencia a todo dato, información, bases de datos, objetos, capas, niveles organizados de manera única u original con componentes geográficos o que pueden expresarse geográficamente; así como servicios, aplicaciones, herramientas, funcionalidades, programas de computador o software, sistemas de información, documentos, materiales o resultados del apoyo a la gestión de los datos geográficos y que tienen vocación de ser compartidos de la manera más eficaz posible en el ámbito o marco de las IDE (Infraestructuras de Datos Espaciales), a partir de la definición de recursos geoespaciales del numeral 9.º de la Política de Gestión de Información Geoespacial para el Distrito Capital adoptada por la Resolución 002 de 2017 de la CDS.</p>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="pry-btn-confirmar-inicio-registro" type="button" class="btn btn-primary rounded-pill">Continuar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Confirmar publicar -->
+  <div class="modal fade" id="pry-modal-publicar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Publicar proyecto</h5>
+          <i class="fa-solid fa-triangle-exclamation text-warning ms-2"></i>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro que desea actualizar y publicar el proyecto geográfico?
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="pry-btn-ejecutar-publicar" type="button" class="btn btn-primary rounded-pill">Publicar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Retirar -->
+  <div class="modal fade" id="pry-modal-retirar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Retirar registro</h5>
+          <i class="fa-solid fa-eye-slash text-warning ms-2"></i>
+        </div>
+        <div class="modal-body">
+          <p id="pry-modal-retirar-msg">Por favor, ingrese las observaciones que soportan el retiro del registro en el inventario de proyectos.</p>
+          <textarea id="pry-modal-retirar-obs" class="form-control" rows="5"></textarea>
+          <div class="invalid-feedback d-none" id="pry-err-obs-retirar">Las observaciones son obligatorias.</div>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="pry-btn-ejecutar-retirar" type="button" class="btn btn-warning rounded-pill">Retirar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Eliminar con observaciones -->
+  <div class="modal fade" id="pry-modal-eliminar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Eliminar registro</h5>
+          <i class="fa-solid fa-triangle-exclamation text-danger ms-2"></i>
+        </div>
+        <div class="modal-body">
+          <p>¿Está seguro que desea eliminar este registro? Esta acción no se puede deshacer.</p>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="pry-btn-confirmar-eliminar" type="button" class="btn btn-danger rounded-pill">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Reactivar (Proyectos) -->
+  <div class="modal fade" id="pry-modal-reactivar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Reactivar registro</h5>
+          <i class="fa-solid fa-rotate-left text-success ms-2"></i>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro que desea reactivar este proyecto? Volverá al estado Borrador.
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="pry-btn-confirmar-reactivar" type="button" class="btn btn-success rounded-pill">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vista PDF (solo impresión, Proyectos) -->
+  <div id="pry-vista-pdf" class="d-none">
+    <div id="pry-pdf-contenido"></div>
+  </div>
+
+  <!-- Modal: Confirmar publicar (Servicios) -->
+  <div class="modal fade" id="srv-modal-publicar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Publicar servicio</h5>
+          <i class="fa-solid fa-triangle-exclamation text-warning ms-2"></i>
+        </div>
+        <div class="modal-body">
+          <p class="mb-0">¿Está seguro que desea publicar el servicio web geográfico para su entidad?</p>
+          <div id="srv-publicar-fecha-wrap" class="d-none">
+            <label for="srv-modal-publicar-fecha" class="form-label mt-3">Fecha de publicación</label>
+            <input type="date" id="srv-modal-publicar-fecha" class="form-control">
+            <div class="invalid-feedback" id="srv-err-fecha-publicar">Ingrese una fecha válida, igual o anterior a hoy.</div>
+          </div>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="srv-btn-ejecutar-publicar" type="button" class="btn btn-primary rounded-pill">Publicar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Agregar acción (Servicios) -->
+  <div class="modal fade" id="srv-modal-agregar-accion" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Agregar acción</h5>
+        </div>
+        <div class="modal-body">
+          <p>Seleccione la acción a registrar en el historial del servicio. Esto no modifica su estado.</p>
+          <select id="srv-modal-agregar-accion-tipo" class="form-select">
+            <option value="DETENIDO">Detenido</option>
+            <option value="REPUBLICADO">Republicado</option>
+          </select>
+          <label for="srv-modal-agregar-accion-fecha" class="form-label mt-3">Fecha de la acción</label>
+          <input type="date" id="srv-modal-agregar-accion-fecha" class="form-control">
+          <div class="invalid-feedback" id="srv-err-fecha-accion">Ingrese una fecha válida, entre la fecha de publicación y hoy.</div>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="srv-btn-ejecutar-agregar-accion" type="button" class="btn btn-primary rounded-pill">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Editar fecha de publicación (Servicios) -->
+  <div class="modal fade" id="srv-modal-fecha-publicacion" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Editar fecha de publicación</h5>
+        </div>
+        <div class="modal-body">
+          <p>Corrija la fecha en que el servicio fue publicado. No puede ser posterior a hoy ni a la primera acción registrada en el historial.</p>
+          <label for="srv-modal-fecha-publicacion-fecha" class="form-label">Fecha de publicación</label>
+          <input type="date" id="srv-modal-fecha-publicacion-fecha" class="form-control">
+          <div class="invalid-feedback" id="srv-err-fecha-publicacion">Ingrese una fecha válida, no posterior a hoy ni a la primera acción del historial.</div>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="srv-btn-ejecutar-fecha-publicacion" type="button" class="btn btn-primary rounded-pill">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Retirar (Servicios) -->
+  <div class="modal fade" id="srv-modal-retirar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Retirar registro</h5>
+          <i class="fa-solid fa-eye-slash text-warning ms-2"></i>
+        </div>
+        <div class="modal-body">
+          <p id="srv-modal-retirar-msg">Por favor, ingrese las observaciones que soportan el retiro del registro en el inventario de servicios web geográficos.</p>
+          <textarea id="srv-modal-retirar-obs" class="form-control" rows="5"></textarea>
+          <div class="invalid-feedback d-none" id="srv-err-obs-retirar">Las observaciones son obligatorias.</div>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="srv-btn-ejecutar-retirar" type="button" class="btn btn-warning rounded-pill">Retirar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Eliminar (Servicios) -->
+  <div class="modal fade" id="srv-modal-eliminar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Eliminar registro</h5>
+          <i class="fa-solid fa-triangle-exclamation text-danger ms-2"></i>
+        </div>
+        <div class="modal-body">
+          <p>¿Está seguro que desea eliminar este registro? Esta acción no se puede deshacer.</p>
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="srv-btn-confirmar-eliminar" type="button" class="btn btn-danger rounded-pill">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Reactivar (Servicios) -->
+  <div class="modal fade" id="srv-modal-reactivar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header py-2">
+          <h5 class="modal-title text-secondary">Reactivar registro</h5>
+          <i class="fa-solid fa-rotate-left text-success ms-2"></i>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro que desea reactivar este servicio web? Volverá al estado Borrador.
+        </div>
+        <div class="modal-footer py-2">
+          <button type="button" class="btn btn-tertiary rounded-pill" data-bs-dismiss="modal">Cancelar</button>
+          <button id="srv-btn-confirmar-reactivar" type="button" class="btn btn-success rounded-pill">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menú -->
+  <script src="js/menu.js"></script>
+
+  <!-- Buscador inteligente: API, respuesta ampliada y resultados relacionados -->
+  <script src="js/intelligent-search.js"></script>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.5.1/dist/js/tom-select.complete.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/es.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/index.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
+
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/aplicaciones.js"></script>
+  <script src="js/proyectos.js"></script>
+  <script src="js/servicios.js"></script>
+  <script src="js/datos-hiee.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

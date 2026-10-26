@@ -1,0 +1,449 @@
+/**
+ * Referencia de estilos — plantilla_general.html (diseñador)
+ * Fuente: ~/Developer/IDECA/Fase_II/comprimido/styles.css
+ *
+ * Extracto LITERAL (sin modificar) de las reglas relevantes para adaptar
+ * cada módulo del Catálogo de Recursos al diseño entregado.
+ *
+ * Este archivo NO se carga en ningún módulo (no rompe la independencia
+ * entre módulos). Es solo fuente de copy-paste: al adaptar un módulo,
+ * copiar la regla exacta de aquí a su propio css/layout.css — no
+ * reconstruir "a ojo" desde captura de pantalla.
+ *
+ * Desde la separación de estilos compartidos (gov-bar, navbar,
+ * breadcrumb-hero, footer) en css/layout.css por módulo, este es el
+ * archivo destino de las reglas de esta plantilla — no css/estilos.css,
+ * que ahora contiene solo lo propio de cada módulo.
+ *
+ * Al agregar una sección nueva del diseño a un módulo, si la sección no
+ * está aquí todavía, extraerla primero del styles.css original y añadirla
+ * a este archivo, luego copiarla al módulo.
+ */
+
+/* ===================================
+   VARIABLES DE COLOR (:root)
+=================================== */
+:root {
+  --color-azul-institucional: #36c;
+  --color-white: #fff;
+  --color-black: #444444;
+  --color-gray: #F2F2F2;
+  --color-soft-gray: #EAEAEA;
+  --color-dark-gray: #BBBBBB;
+  --color-primary: #FEB400;
+  --color-secondary: #003A5B;
+  --color-success: #208637;
+  --color-danger: #E3192F;
+  --breadcrumb-gradient: linear-gradient(90deg, #29002A, #003A5B);
+}
+
+/* ===================================
+   GOV-BAR (barra superior GOV.CO)
+=================================== */
+.gov-bar {
+  z-index: 1;
+  position: relative;
+  background: var(--color-azul-institucional) !important;
+}
+
+.gov-bar img {
+  width: auto;
+  height: 30px;
+}
+
+.gov-bar a,
+.gov-bar .btn {
+  color: var(--color-white);
+}
+
+.gov-bar .btn {
+  border: 1px solid var(--color-white);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0 5px;
+}
+
+.gov-bar .btn:hover {
+  border: 1px solid var(--color-white);
+  background: var(--color-white);
+  color: var(--color-secondary);
+}
+
+.gov-bar .btn.active {
+  background: var(--color-white) !important;
+  color: var(--color-secondary) !important;
+}
+
+/* Markup gov-bar (para copiar estructura, no solo CSS):
+<div class="gov-bar border-bottom">
+  <div class="container-fluid-md container-lg d-flex justify-content-between align-items-center">
+    <div class="govco-top-logo">
+      <a href="https://www.gov.co/" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn.www.gov.co/assets/images/logo.png" alt="Logo Gov.co" height="30" class="logo-gov-co" />
+      </a>
+    </div>
+    <div id="google_translate_element" style="display:none;" tabindex="0"></div>
+    <div class="d-flex justify-content-center gap-2 my-2">
+      <a href="https://www.gov.co/" target="_blank" rel="noopener noreferrer" class="govco-top-link-a">Ir a Govco</a>
+      <div class="d-flex gap-2 notranslate">
+        <button class="btn btn-lang active" data-lang="es">Es</button>
+        <button class="btn btn-lang" data-lang="en">In</button>
+      </div>
+    </div>
+  </div>
+</div>
+*/
+
+/* ===================================
+   NAVEGACIÓN PRINCIPAL (.navbar)
+=================================== */
+.navbar {
+  z-index: 100;
+  background: var(--color-secondary);
+  box-shadow: 5px 0 10px #0000001f;
+}
+
+.navbar .nav-link {
+  color: var(--color-white);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.navbar .nav-link:hover {
+  color: var(--color-secondary);
+  background: var(--color-white);
+}
+
+.navbar .nav-link.active {
+  color: #000;
+  background: var(--color-primary);
+  font-weight: 600;
+}
+
+.navbar img {
+  width: auto;
+  height: 30px;
+}
+
+.navbar .logo-alcaldia {
+  height: 30px;
+}
+
+.navbar .form-control {
+  box-shadow: 0 0 5px #0000001c;
+}
+
+/* Sesión / usuario en navbar */
+.user-space button {
+  aspect-ratio: 1/1;
+  max-height: 30px;
+}
+
+.user-info {
+  font-size: 0.7rem;
+  line-height: normal;
+}
+
+/* Markup sesión navbar (para copiar estructura):
+<div class="d-flex user-space gap-2 align-items-center">
+  <div class="user-info d-flex align-items-center flex-column flex-nowrap" aria-label="Información del usuario">
+    <b class="text-truncate text-secondary mb-0">
+      <span class="visually-hidden">Usuario:</span>
+      Jose Gregorio
+      <span>(Entidad)</span>
+    </b>
+    <p class="text-truncate mb-0">
+      <span class="visually-hidden">Entidad:</span>
+      Secretaría de Planeación
+    </p>
+  </div>
+  <button type="button" class="border border-2 border-danger bg-transparent rounded-circle h-100 text-danger shadow-none"
+    aria-label="Cerrar sesión" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cerrar sesión">
+    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+  </button>
+  <button type="button" class="p-0 border-0 bg-transparent" aria-label="Iniciar sesión"
+    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Iniciar sesión">
+    <img src="./img/icons/user.svg" alt="" />
+  </button>
+</div>
+*/
+
+/* ===================================
+   BREADCRUMB (banner hero)
+=================================== */
+.breadcrumb-container {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 1rem 2rem;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  height: 130px;
+  background-position: 0;
+}
+
+.breadcrumb-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--breadcrumb-gradient);
+  opacity: 0.8;
+  z-index: 0;
+}
+
+.breadcrumb-container .breadcrumb-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.breadcrumb-container .breadcrumb {
+  margin-bottom: 0;
+  background: transparent;
+}
+
+.breadcrumb-container .breadcrumb-item a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.breadcrumb-container .breadcrumb-item + .breadcrumb-item::before {
+  color: #fff;
+  content: "|";
+  padding: 0 0.5rem;
+}
+
+.breadcrumb-container .breadcrumb-title {
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+}
+
+/* ===================================
+   TABS
+=================================== */
+.custom-tabs .nav-link {
+  box-shadow: 0 0 10px #00000041;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px 8px 0 0;
+  padding: 10px 20px;
+  font-weight: 600;
+  color: #6c757d;
+  background-color: #F1F1F1;
+  border: none;
+  margin-right: 4px;
+}
+
+.custom-tabs .nav-link.active {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+.custom-tabs .nav-link:not(.active):hover {
+  background-color: #e9ecef;
+  color: #000;
+}
+
+.tab-content {
+  box-shadow: 0 0 10px #00000041;
+  border-top: none;
+  padding: 20px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* ===================================
+   BOTONES
+=================================== */
+.btn-outline-secondary {
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary) !important;
+}
+
+.btn-outline-secondary:hover {
+  background: var(--color-secondary);
+}
+
+.btn-primary {
+  color: var(--color-secondary);
+  background: var(--color-primary);
+  border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+  color: var(--color-secondary);
+  background: inherit;
+  border: 1px solid var(--color-primary) !important;
+}
+
+.btn-secondary {
+  color: var(--color-white);
+  background: var(--color-secondary);
+  border: 1px solid transparent;
+}
+
+.btn-secondary:hover {
+  color: var(--color-secondary);
+  background: inherit;
+  border: 1px solid var(--color-secondary);
+}
+
+.btn-tertiary {
+  color: var(--color-black);
+  background: var(--color-soft-gray);
+}
+
+.btn-tertiary:hover {
+  color: var(--color-secondary);
+  background: var(--color-gray);
+  border: 1px solid var(--color-secondary);
+}
+
+/* ===================================
+   MENÚ ASIDE (.ideca-menu)
+=================================== */
+.ideca-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ideca-menu li {
+  width: 100%;
+}
+
+.ideca-menu a {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  padding: 12px 15px;
+  background-color: #EAEAEA;
+  color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.ideca-menu .icono {
+  width: 40px;
+}
+
+.ideca-menu a:hover {
+  background-color: var(--color-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.ideca-menu a:hover .icono,
+.ideca-menu a.active .icono {
+  filter: brightness(0) opacity(0.65);
+}
+
+.ideca-menu a.active {
+  background-color: var(--color-primary);
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .ideca-menu {
+    position: sticky;
+    top: calc(24px + 95px);
+    align-self: start;
+    height: fit-content;
+    z-index: 1;
+  }
+}
+
+/* ===================================
+   MODAL
+=================================== */
+.modal-header {
+  background: #C8C8C8;
+}
+
+.modal-content {
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
+.card-modal {
+  border: 0;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.card-modal-icon {
+  width: 90px;
+}
+
+.card-modal.active {
+  box-shadow: 0 0 10px #00000047;
+}
+
+/* ===================================
+   FOOTER
+=================================== */
+footer {
+  color: var(--color-azul-institucional);
+  background: linear-gradient(0deg, var(--color-dark-gray) 90%, rgba(255, 255, 255, 0) 90%);
+}
+footer a {
+  text-decoration: none;
+  font-weight: 300;
+}
+footer .footer-logos img {
+  width: auto;
+  height: 50px;
+}
+footer .footer-social img {
+  width: 20px;
+}
+footer .footer-links a {
+  text-decoration: underline;
+}
+footer .container-fluid {
+  background: var(--color-azul-institucional);
+}
+footer address {
+  font-weight: 300;
+}
+footer address,
+footer .text {
+  color: var(--color-black);
+}
+
+/* ===================================
+   UTILIDADES SUELTAS
+=================================== */
+.rounded-20 {
+  border-radius: 20px;
+}
+
+.navbar-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* ===================================
+   DISCREPANCIAS RESUELTAS — 2026-07-09
+   aplicaciones/css/estilos.css alineado a esta referencia para:
+   botones (.btn-primary, .btn-secondary, .btn-tertiary,
+   .btn-outline-secondary, .btn-publicar) y tabs (.custom-tabs en vez
+   de .nav-tabs). .btn-publicar no existe en la plantilla (acción
+   propia del módulo) — se alineó a los mismos colores que .btn-primary
+   por consistencia visual, no por ser una clase de la plantilla.
+
+   Pendiente sin resolver: .breadcrumb-container en aplicaciones/ usa
+   min-height + el wrapper .constrained-content (padding 1rem) para
+   alinear el hero con el resto del contenido del módulo. La plantilla
+   usa height:130px fijo + padding:1rem 2rem propio, sin ese wrapper.
+   Es una adaptación deliberada, no un error de copia — decidir si se
+   alinea 100% a la plantilla o se mantiene así.
+=================================== */

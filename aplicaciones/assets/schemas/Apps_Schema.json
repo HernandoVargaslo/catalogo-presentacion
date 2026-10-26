@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "InventarioAplicacion",
+  "description": "Payload para crear o actualizar una aplicación geográfica",
+  "additionalProperties": false,
+  "properties": {
+    "FECHA_REGISTRO": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Fecha de registro",
+      "description": "Fecha en la que se creó el registro por primera vez en el sistema. Se estampa automáticamente al crear (no es un campo del formulario) y se conserva sin cambios en cada actualización posterior."
+    },
+    "NOMBRE": {
+      "type": "string",
+      "title": "Nombre",
+      "maxLength": 200,
+      "description": "Este campo corresponde al nombre identificador de la aplicación geográfica. Debe ser claro, representativo y permitir reconocer fácilmente su función o propósito. Ejemplo: Mapas Bogotá Bici"
+    },
+    "SIGLA": {
+      "type": "string",
+      "title": "Sigla",
+      "maxLength": 20,
+      "description": "Sigla o acrónimo que identifica la aplicación geográfica. Debe ser una abreviatura reconocible y coherente con el nombre oficial de la aplicación."
+    },
+    "PUBLICO_OBJETIVO": {
+      "type": "string",
+      "title": "Público objetivo",
+      "maxLength": 1000,
+      "description": "Describe o caracteriza el público al cual se dirige la Aplicación."
+    },
+    "NECESIDAD_SATISFACER": {
+      "type": "string",
+      "title": "Necesidad a satisfacer",
+      "maxLength": 1000,
+      "description": "Descripción del problema, requerimiento o proceso que la aplicación busca atender o mejorar."
+    },
+    "DESCRIPCION": {
+      "type": "string",
+      "title": "Descripción",
+      "maxLength": 1000,
+      "description": "Descripción clara y completa de la aplicación, en la que se contemplan aspectos como objetivo, funcionalidades, características o alcance. Ejemplo: Es una aplicación gratuita que permite a los ciudadanos planificar, navegar y registrar recorridos en bicicleta utilizando información oficial de la ciudad y está diseñada para apoyar una movilidad más segura, eficiente y sostenible en Bogotá."
+    },
+    "TIPO": {
+      "type": "string",
+      "title": "Tipo de aplicación",
+      "description": "Tipo de aplicación geográfica según su funcionalidad principal."
+    },
+    "SECTOR_DISTRITAL": {
+      "type": "string",
+      "title": "Sector Distrital",
+      "description": "Seleccione el sector distrital al que pertenece o está asociada la aplicación geográfica. Esta clasificación permite organizar las aplicaciones según las áreas temáticas o entidades del distrito que las gestionan o utilizan."
+    },
+    "DEPENDENCIAS_ENTIDAD": {
+      "type": "string",
+      "title": "Dependencias de la entidad",
+      "description": "Nombre de la(s) dependencia(s) interna(s) de la entidad, que participan en el desarrollo de la aplicación. Ejemplo: Laboratorio de Innovación Pública de Bogotá – iBO"
+    },
+    "URL_ACCESO": {
+      "type": "string",
+      "title": "URL de acceso",
+      "description": "El campo registra una o varias direcciones web válidas que brindan acceso a la aplicación. Ejemplo: https://apps.apple.com/co/app/mapas-bogot%C3%A1-bici/id1463295339?l=en-GB"
+    },
+    "DATOS_REFERENCIA": {
+      "type": "string",
+      "title": "¿Utiliza datos de referencia?",
+      "enum": ["SI", "NO"],
+      "description": "Registra \"SI\" o \"NO\" si la aplicación consume datos del Mapa de Referencia del Distrito Capital."
+    },
+    "DATOS_TEMATICOS": {
+      "type": "string",
+      "title": "¿Utiliza datos temáticos?",
+      "enum": ["SI", "NO"],
+      "description": "Registra \"SI\" o \"NO\", si la aplicación utiliza datos Temáticos. De ser el caso, lista las Temáticas de los datos que la aplicación consume."
+    },
+    "TEMATICAS": {
+      "type": "string",
+      "title": "Temáticas",
+      "description": "Registra \"SI\" o \"NO\", si la aplicación utiliza datos Temáticos. De ser el caso, lista las Temáticas de los datos que la aplicación consume."
+    },
+    "DATOS_SENSORES": {
+      "type": "string",
+      "title": "¿Utiliza datos provenientes de sensores remotos?",
+      "enum": ["SI", "NO"],
+      "description": "Registra \"SI\" o \"NO\", si la aplicación utiliza o consume datos o productos provenientes de sensores remotos. De ser el caso, lista los tipos de productos que la aplicación consume."
+    },
+    "SENSORES_REMOTOS": {
+      "type": "string",
+      "title": "Sensores remotos",
+      "description": "Registra \"SI\" o \"NO\", si la aplicación utiliza o consume datos o productos provenientes de sensores remotos. De ser el caso, lista los tipos de productos que la aplicación consume."
+    },
+    "RESULTADOS_ESPERADOS": {
+      "type": "string",
+      "title": "Resultados esperados",
+      "maxLength": 1000,
+      "description": "Descripción o información de las salidas que genera la aplicación. Ejemplo: Genera salida grafica de  Rutas calculadas sobre la red de ciclorrutas y ciclovías. Distancia del recorrido. Tiempo estimado y tiempo acumulado de los recorridos. Calorías quemadas durante el recorrido. Dinero ahorrado frente al uso de transporte convencional. Ahorro estimado de CO₂. Indicaciones de navegación por voz. Información de cicloparqueaderos y ciclotalleres. Ubicación de CAI y condiciones de seguridad. Información del estado del clima."
+    },
+    "OBSERVACIONES": {
+      "type": "string",
+      "title": "Observaciones",
+      "maxLength": 1000,
+      "description": "Puede contener información adicional relevante que no haya sido contemplada en los campos anteriores."
+    },
+    "OBSERVACIONES_RETIRO": {
+      "type": "string",
+      "title": "Observaciones del retiro",
+      "maxLength": 1000,
+      "description": "Ingrese cualquier información adicional, aclaración o detalle relevante sobre el retiro de la aplicación geográfica."
+    }
+  },
+  "required": [
+    "PUBLICO_OBJETIVO",
+    "NECESIDAD_SATISFACER",
+    "DESCRIPCION",
+    "TIPO",
+    "SECTOR_DISTRITAL",
+    "DEPENDENCIAS_ENTIDAD",
+    "URL_ACCESO",
+    "DATOS_REFERENCIA",
+    "DATOS_TEMATICOS",
+    "DATOS_SENSORES",
+    "RESULTADOS_ESPERADOS"
+  ]
+}

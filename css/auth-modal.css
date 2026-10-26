@@ -1,0 +1,82 @@
+.firebaseui-card-content,
+.firebaseui-card-footer {
+  padding: 0;
+}
+
+.firebaseui-container {
+  background: transparent !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+}
+
+.firebaseui-card-header h1 {
+  font-size: 1rem !important;
+}
+
+#loginContainer .firebaseui-card-actions {
+  padding: 8px 0px 10px 0px !important;
+}
+
+.firebaseui-card-header {
+  padding: 0;
+  font-size: 0.8rem !important;
+}
+
+.firebaseui-idp-button {
+  border-radius: 4px !important;
+  margin-bottom: 12px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mdl-button--raised.mdl-button--colored {
+  background-color: #003a5c;
+}
+
+.mdl-button--primary.mdl-button--primary {
+  color: #003a5c;
+}
+
+#loginContainer h2 {
+  color: #003A5B;
+  line-height: normal;
+  font-size: 1.8rem;
+}
+
+/* Aviso de cuenta pendiente de validación: el texto se asigna con textContent y usa \n
+   para separar párrafos. */
+#texto-aviso-verificacion {
+  white-space: pre-line;
+}
+
+/* Botones del aviso de validación, con el azul institucional: la acción principal va rellena
+   y la secundaria en contorno; ambas se invierten al pasar el mouse. */
+#aviso-verificacion .btn-verificacion-principal,
+#aviso-verificacion .btn-verificacion-secundario {
+  border: 1px solid #003A5B;
+}
+
+#aviso-verificacion .btn-verificacion-principal {
+  color: #ffffff;
+  background: #003A5B;
+}
+
+#aviso-verificacion .btn-verificacion-principal:hover,
+#aviso-verificacion .btn-verificacion-principal:focus-visible {
+  color: #003A5B;
+  background: transparent;
+}
+
+#aviso-verificacion .btn-verificacion-secundario {
+  color: #003A5B;
+  background: transparent;
+}
+
+#aviso-verificacion .btn-verificacion-secundario:hover,
+#aviso-verificacion .btn-verificacion-secundario:focus-visible {
+  color: #ffffff;
+  background: #003A5B;
+}

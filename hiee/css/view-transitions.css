@@ -1,0 +1,35 @@
+/* View Transitions — mismo origen, navegación entre módulos
+   Soporte: Chrome/Edge 126+, Safari 18.2+
+   Fallback: Firefox ignora estas reglas, navegación normal */
+
+@view-transition {
+  navigation: auto;
+}
+
+/* El breadcrumb anima como elemento independiente entre páginas */
+nav[aria-label="breadcrumb"] {
+  view-transition-name: breadcrumb;
+}
+
+/* Contenido principal: fade + desplazamiento suave */
+::view-transition-old(root) {
+  animation: 180ms ease-out both vt-salida;
+}
+
+::view-transition-new(root) {
+  animation: 280ms ease-out both vt-entrada;
+}
+
+@keyframes vt-salida {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes vt-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}

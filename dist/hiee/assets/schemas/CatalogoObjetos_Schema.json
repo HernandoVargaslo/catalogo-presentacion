@@ -1,0 +1,888 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "CatalogoObjetos",
+  "description": "Catalogo de Objetos Geográficos",
+  "version": "1.0.0",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "ID",
+      "description": "Id del Objeto",
+      "readOnly": true
+    },
+    "identificadorRecursoUniforme": {
+      "type": "string",
+      "title": "Código Identificador del objeto",
+      "description": "Código Identificador del objeto",
+      "format": "uri",
+      "maxLength": 2083,
+      "readOnly": true
+    },
+    "nombre": {
+      "type": "string",
+      "title": "Nombre del Objeto",
+      "description": "Nombre del Objeto",
+      "readOnly": true
+    },
+    "definicion": {
+      "type": "string",
+      "title": "Definición",
+      "description": "Definición",
+      "readOnly": true
+    },
+    "nombresAlternativos": {
+      "type": ["string", "null"],
+      "title": "Nombre alternativo",
+      "description": "Nombre alternativo",
+      "readOnly": true
+    },
+    "campoAplicacion": {
+      "type": "string",
+      "title": "Campo de aplicación",
+      "description": "Campo de aplicación",
+      "readOnly": true
+    },
+    "esDocumentacionPublica": {
+      "type": "string",
+      "title": "Tipo de documentación",
+      "description": "Tipo de documentación",
+      "$ref": "#/$defs/ddVisibilidad"
+    },
+    "tematica": {
+      "type": "string",
+      "title": "Temática Asociada",
+      "description": "Temática Asociada",
+      "$ref": "#/$defs/ccTematica"
+    },
+    "conjuntoDatos": {
+      "type": "array",
+      "title": "Conjunto de datos",
+      "description": "Conjunto de datos",
+      "items": {
+        "$ref": "#/$defs/ddConjuntoDatos"
+      },
+      "uniqueItemProperties": [
+        "id_srig"
+      ]
+    },
+    "atributos": {
+      "type": "array",
+      "title": "Atributos",
+      "description": "Atributos",
+      "items": {
+        "$ref": "#/$defs/ddAtributo"
+      },
+      "uniqueItemProperties": [
+        "nombre"
+      ]
+    },
+    "asociaciones": {
+      "type": "array",
+      "title": "Asociaciones",
+      "description": "Asociaciones",
+      "items": {
+        "$ref": "#/$defs/ddAsociacionObjetogeografico"
+      },
+      "uniqueItemProperties": [
+        "nombre"
+      ]
+    },
+    "herencias": {
+      "type": "object",
+      "title": "Herencia",
+      "description": "Herencia",
+      "$ref": "#/$defs/ccHerencia"
+    },
+    "relacionConceptos": {
+      "type": "array",
+      "title": "Relación conceptual",
+      "description": "Relación conceptual",
+      "items": {
+        "$ref": "#/$defs/ddRelacionConcepto"
+      },
+      "uniqueItemProperties": [
+        "nombre"
+      ]
+    },
+    "operaciones": {
+      "type": "array",
+      "title": "Operaciones entre atributos",
+      "description": "Operaciones entre atributos",
+      "items": {
+        "$ref": "#/$defs/ddOperacion"
+      },
+      "uniqueItemProperties": [
+        "nombre"
+      ]
+    }
+  },
+  "$defs": {
+    "citacion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "nombre": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "nombre"
+      ]
+    },
+    "ccHerencia": {
+      "type": "object",
+      "title": "Herencia",
+      "description": "Herencia del objeto geográfico",
+      "additionalProperties": false,
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "title": "Nombre de la herencia",
+          "description": "Nombre de la herencia"
+        },
+        "definicion": {
+          "type": "string",
+          "title": "Definición de la herencia",
+          "description": "Definición de la herencia"
+        },
+        "citaciones": {
+          "type": "array",
+          "title": "Citación",
+          "description": "Citas de la herencia",
+          "items": {
+            "$ref": "#/$defs/citacion"
+          },
+          "uniqueItemProperties": [
+            "id",
+            "nombre"
+          ]
+        },
+        "instanciaUnica": {
+          "type": "boolean",
+          "title": "Es instancia única",
+          "description": "Indica si la herencia es una instancia única"
+        },
+        "nombrePadre": {
+          "type": "string",
+          "title": "Nombre del Objeto padre",
+          "description": "Nombre del Objeto padre",
+          "readOnly": true
+        }
+      },
+      "required": [
+        "nombre",
+        "definicion",
+        "instanciaUnica",
+        "nombrePadre"
+      ]
+    },
+    "ccTematica": {
+      "oneOf": [
+        {
+          "title": "Agricultura y Desarrollo Rural",
+          "const": "Agricultura y Desarrollo Rural"
+        },
+        {
+          "title": "Ambiente y Desarrollo Sostenible",
+          "const": "Ambiente y Desarrollo Sostenible"
+        },
+        {
+          "title": "Archivos Públicos",
+          "const": "Archivos Públicos"
+        },
+        {
+          "title": "Ciencia, Tecnología e Innovación",
+          "const": "Ciencia, Tecnología e Innovación"
+        },
+        {
+          "title": "Comercio, Industria y Turismo",
+          "const": "Comercio, Industria y Turismo"
+        },
+        {
+          "title": "Cultura",
+          "const": "Cultura"
+        },
+        {
+          "title": "Deporte y Recreación",
+          "const": "Deporte y Recreación"
+        },
+        {
+          "title": "Economía y Finanzas",
+          "const": "Economía y Finanzas"
+        },
+        {
+          "title": "Educación",
+          "const": "Educación"
+        },
+        {
+          "title": "Estadísticas Nacionales",
+          "const": "Estadísticas Nacionales"
+        },
+        {
+          "title": "Función Pública",
+          "const": "Función Pública"
+        },
+        {
+          "title": "Gastos Gubernamentales",
+          "const": "Gastos Gubernamentales"
+        },
+        {
+          "title": "Hacienda y Crédito Público",
+          "const": "Hacienda y Crédito Público"
+        },
+        {
+          "title": "Inclusion Social y Reconciliacion",
+          "const": "Inclusion Social y Reconciliacion"
+        },
+        {
+          "title": "Justicia y Derecho",
+          "const": "Justicia y Derecho"
+        },
+        {
+          "title": "Mapas Nacionales",
+          "const": "Mapas Nacionales"
+        },
+        {
+          "title": "Minas y Energía",
+          "const": "Minas y Energía"
+        },
+        {
+          "title": "Mujer",
+          "const": "Mujer"
+        },
+        {
+          "title": "Ordenamiento Territorial",
+          "const": "Ordenamiento Territorial"
+        },
+        {
+          "title": "Organismos de Control",
+          "const": "Organismos de Control"
+        },
+        {
+          "title": "Participacion Ciudadana",
+          "const": "Participacion Ciudadana"
+        },
+        {
+          "title": "Presupuestos Gubernamentales",
+          "const": "Presupuestos Gubernamentales"
+        },
+        {
+          "title": "Resultados Electorales",
+          "const": "Resultados Electorales"
+        },
+        {
+          "title": "Salud y Protección Social",
+          "const": "Salud y Protección Social"
+        },
+        {
+          "title": "Seguridad y Defensa",
+          "const": "Seguridad y Defensa"
+        },
+        {
+          "title": "Servicios Públicos",
+          "const": "Servicios Públicos"
+        },
+        {
+          "title": "Trabajo",
+          "const": "Trabajo"
+        },
+        {
+          "title": "Transporte",
+          "const": "Transporte"
+        },
+        {
+          "title": "Vivienda, Ciudad y Territorio",
+          "const": "Vivienda, Ciudad y Territorio"
+        }
+      ]
+    },
+    "ddConjuntoDatos": {
+      "type": "object",
+      "title": "Conjunto de datos",
+      "description": "Conjunto de datos",
+      "additionalProperties": false,
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "title": "Nombre del conjunto de datos",
+          "description": "Nombre del conjunto de datos",
+          "readOnly": true
+        },
+        "id_srig": {
+          "type": "string",
+          "title": "ID_SRIG",
+          "description": "ID_SRIG",
+          "readOnly": true
+        },
+        "definicion": {
+          "type": "string",
+          "title": "Definición",
+          "description": "Definición",
+          "readOnly": true
+        }
+      },
+      "required": [
+        "nombre",
+        "id_srig",
+        "definicion"
+      ]
+    },
+    "ddAsociacionObjetogeografico": {
+      "type": "object",
+      "title": "Asociación de objeto geográfico",
+      "description": "Asociación de objeto geográfico",
+      "additionalProperties": false,
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "title": "Nombre de la asociación",
+          "description": "Nombre de la asociación"
+        },
+        "definicion": {
+          "type": "string",
+          "title": "Definición de la asociación",
+          "description": "Definición de la asociación",
+          "maxLength": 900
+        },
+        "citacion": {
+          "type": "array",
+          "title": "Citación",
+          "description": "Citas de la asociación",
+          "items": {
+            "$ref": "#/$defs/citacion"
+          },
+          "uniqueItemProperties": [
+            "nombre"
+          ]
+        },
+        "rol1_nombre": {
+          "type": "string",
+          "title": "Nombre del rol",
+          "description": "Nombre del rol"
+        },
+        "rol1_definicion": {
+          "type": "string",
+          "title": "Definición del rol",
+          "description": "Definición del rol",
+          "maxLength": 450
+        },
+        "rol1_citaciones": {
+          "type": "array",
+          "title": "Citación del rol",
+          "description": "Citación del rol",
+          "items": {
+            "$ref": "#/$defs/citacion"
+          },
+          "uniqueItemProperties": [
+            "nombre"
+          ]
+        },
+        "rol1_tipoRol": {
+          "type": "string",
+          "title": "Tipo de rol asociado",
+          "description": "Tipo de rol asociado",
+          "$ref": "#/$defs/ddTipoRol"
+        },
+        "rol1_esOrdenado": {
+          "type": "boolean",
+          "title": "Es ordenado?",
+          "description": "Indica si el rol es ordenado"
+        },
+        "rol1_esNavegable": {
+          "type": "boolean",
+          "title": "Es navegable?",
+          "description": "Indica si el rol es navegable"
+        },
+        "rolsocio_objeto": {
+          "type": "string",
+          "title": "Objeto con el que se asocia",
+          "description": "Objeto con el que se asocia"
+        },
+        "rolsocio_definicion": {
+          "type": "string",
+          "title": "Definición del Rol del objeto asociado",
+          "description": "Definición del Rol del objeto asociado",
+          "maxLength": 450
+        },
+        "rolsocio_citaciones": {
+          "type": "array",
+          "title": "Citación del rol del objeto asociado",
+          "description": "Citación del rol del objeto asociado",
+          "items": {
+            "$ref": "#/$defs/citacion"
+          },
+          "uniqueItemProperties": [
+            "nombre"
+          ]
+        },
+        "rolsocio_nombre": {
+          "type": "string",
+          "title": "Nombre del Rol del objeto asociado",
+          "description": "Nombre del Rol del objeto asociado"
+        },
+        "rolsocio_tipoRol": {
+          "type": "string",
+          "title": "Tipo de Rol del objeto asociado",
+          "description": "Tipo de Rol del objeto asociado",
+          "$ref": "#/$defs/ddTipoRol"
+        },
+        "rolsocio_esOrdenado": {
+          "type": "boolean",
+          "title": "Es ordenado objeto asociado",
+          "description": "Es ordenado objeto asociado"
+        },
+        "rolsocio_esNavegable": {
+          "type": "boolean",
+          "title": "Es navegable objeto asociado",
+          "description": "Es navegable objeto asociado"
+        }
+      },
+      "required": [
+        "nombre",
+        "definicion",
+        "rol1_nombre",
+        "rol1_definicion",
+        "rol1_tipoRol",
+        "rol1_esOrdenado",
+        "rol1_esNavegable",
+        "rolsocio_objeto",
+        "rolsocio_definicion",
+        "rolsocio_nombre",
+        "rolsocio_tipoRol",
+        "rolsocio_esOrdenado",
+        "rolsocio_esNavegable"
+      ]
+    },
+    "ddAtributo": {
+      "type": "object",
+      "title": "Atributos",
+      "description": "Atributos del objeto geográfico",
+      "additionalProperties": false,
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "title": "Nombre del atributo",
+          "description": "Nombre del atributo"
+        },
+        "definicion": {
+          "type": "string",
+          "title": "Definición del atributo",
+          "description": "Definición del atributo",
+          "maxLength": 900
+        },
+        "alias": {
+          "type": "string",
+          "title": "Alias del atributo",
+          "description": "Alias del atributo"
+        },
+        "citaciones": {
+          "type": "array",
+          "title": "Citación",
+          "description": "Citas del atributo",
+          "items": {
+            "$ref": "#/$defs/citacion"
+          },
+          "uniqueItemProperties": [
+            "id",
+            "nombre"
+          ]
+        },
+        "unidadMedida": {
+          "type": "string",
+          "title": "Unidad de medida del atributo",
+          "description": "Unidad de medida del atributo",
+          "$ref": "#/$defs/ddUnidadMedida"
+        },
+        "tipoDato": {
+          "type": "string",
+          "title": "Tipo de dato del atributo",
+          "description": "Tipo de dato del atributo",
+          "$ref": "#/$defs/ddTipoDato"
+        },
+        "dominio": {
+          "type": "object",
+          "title": "Dominio del atributo",
+          "description": "Dominio del atributo",
+          "$ref": "#/$defs/ddDominio"
+        },
+        "esSubtipo": {
+          "type": "boolean",
+          "title": "Es subtipo?",
+          "description": "Indica si el atributo es un subtipo"
+        }
+      },
+      "required": [
+        "nombre",
+        "definicion",
+        "tipoDato",
+        "esSubtipo"
+      ]
+    },
+    "ddDominio": {
+      "type": "object",
+      "title": "Dominio",
+      "description": "Dominio del atributo",
+      "additionalProperties": false,
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "title": "Nombre de lista de dominio",
+          "description": "Nombre de lista de dominio"
+        },
+        "definicion": {
+          "type": "string",
+          "title": "Definición de lista de dominio",
+          "description": "Definición del dominio",
+          "maxLength": 900
+        },
+        "citaciones": {
+          "type": "array",
+          "title": "Citación",
+          "description": "Citas del dominio",
+          "items": {
+            "$ref": "#/$defs/citacion"
+          },
+          "uniqueItemProperties": [
+            "id",
+            "nombre"
+          ]
+        },
+        "valoresDominio": {
+          "type": "array",
+          "title": "Valores del dominio",
+          "description": "Valores del dominio",
+          "items": {
+            "$ref": "#/$defs/ddValorDominio"
+          },
+          "uniqueItemProperties": [
+            "codigo"
+          ]
+        }
+      },
+      "required": [
+        "nombre",
+        "definicion"
+      ],
+      "if": {
+        "anyOf": [
+          { "required": ["nombre"], "properties": { "nombre": { "minLength": 1 } } },
+          { "required": ["definicion"], "properties": { "definicion": { "minLength": 1 } } }
+        ]
+      },
+      "then": {
+        "required": ["valoresDominio"],
+        "properties": {
+          "valoresDominio": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "ddOperacion": {
+      "type": "object",
+      "title": "Operación",
+      "description": "Operación",
+      "additionalProperties": false,
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "title": "Nombre de la operación",
+          "description": "Nombre de la operación"
+        },
+        "definicion": {
+          "type": "string",
+          "title": "Definición de la operación",
+          "description": "Definición de la operación",
+          "maxLength": 900
+        },
+        "citaciones": {
+          "type": "array",
+          "title": "Citación",
+          "description": "Citas de la operación",
+          "items": {
+            "$ref": "#/$defs/citacion"
+          },
+          "uniqueItemProperties": [
+            "id",
+            "nombre"
+          ]
+        },
+        "firmaAtributos": {
+          "type": "array",
+          "title": "Firma",
+          "description": "Atributos de la operación",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "nombre",
+        "definicion",
+        "firmaAtributos"
+      ]
+    },
+    "ddRelacionConcepto": {
+      "type": "object",
+      "title": "Relación conceptual",
+      "description": "Relación conceptual del objeto geográfico",
+      "additionalProperties": false,
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "title": "Nombre de la relación",
+          "description": "Nombre de la relación"
+        },
+        "definicion": {
+          "type": "string",
+          "title": "Definición de la relación",
+          "description": "Definición de la relación",
+          "maxLength": 900
+        },
+        "citaciones": {
+          "type": "array",
+          "title": "Citación",
+          "description": "Citas de la relación",
+          "items": {
+            "$ref": "#/$defs/citacion"
+          },
+          "uniqueItemProperties": [
+            "id",
+            "nombre"
+          ]
+        },
+        "tipoRelacion": {
+          "type": "string",
+          "title": "Tipo de relación de concepto",
+          "description": "Tipo de relación de concepto",
+          "$ref": "#/$defs/ddTipoRelacion"
+        },
+        "explicacion": {
+          "type": "string",
+          "title": "Explicación de la relación",
+          "description": "Explicación de la relación",
+          "maxLength": 900
+        },
+        "nombreObjRelacionado": {
+          "type": "string",
+          "title": "Nombre del objeto relacionado",
+          "description": "Nombre del objeto relacionado"
+        }
+      },
+      "required": [
+        "nombre",
+        "definicion",
+        "tipoRelacion",
+        "explicacion",
+        "nombreObjRelacionado"
+      ]
+    },
+    "ddTipoDato": {
+      "oneOf": [
+        {
+          "title": "boleano",
+          "const": "boleano"
+        },
+        {
+          "title": "cadena de caracteres",
+          "const": "cadena de caracteres"
+        },
+        {
+          "title": "cadena de caracteres idioma",
+          "const": "cadena de caracteres idioma"
+        },
+        {
+          "title": "caracter",
+          "const": "caracter"
+        },
+        {
+          "title": "código conjunto de caracteres",
+          "const": "código conjunto de caracteres"
+        },
+        {
+          "title": "Decimal",
+          "const": "Decimal"
+        },
+        {
+          "title": "entero",
+          "const": "entero"
+        },
+        {
+          "title": "enterolimitado",
+          "const": "enterolimitado"
+        },
+        {
+          "title": "fecha",
+          "const": "fecha"
+        },
+        {
+          "title": "fecha y Hora",
+          "const": "fecha y Hora"
+        },
+        {
+          "title": "hora",
+          "const": "hora"
+        },
+        {
+          "title": "imagen",
+          "const": "imagen"
+        },
+        {
+          "title": "lógico",
+          "const": "lógico"
+        },
+        {
+          "title": "Número",
+          "const": "Número"
+        },
+        {
+          "title": "probabilidad",
+          "const": "probabilidad"
+        },
+        {
+          "title": "real",
+          "const": "real"
+        },
+        {
+          "title": "secuencia",
+          "const": "secuencia"
+        },
+        {
+          "title": "vector",
+          "const": "vector"
+        }
+      ]
+    },
+    "ddTipoRelacion": {
+      "oneOf": [
+        {
+          "title": "opuesto",
+          "const": "opuesto"
+        },
+        {
+          "title": "otro",
+          "const": "otro"
+        },
+        {
+          "title": "similar",
+          "const": "similar"
+        }
+      ]
+    },
+    "ddTipoRol": {
+      "oneOf": [
+        {
+          "title": "Agregación",
+          "const": "Agregación"
+        },
+        {
+          "title": "Composición",
+          "const": "Composición"
+        },
+        {
+          "title": "Ordinaria",
+          "const": "Ordinaria"
+        }
+      ]
+    },
+    "ddUnidadMedida": {
+      "oneOf": [
+        {
+          "title": "Ángulo",
+          "const": "Ángulo"
+        },
+        {
+          "title": "Área",
+          "const": "Área"
+        },
+        {
+          "title": "Escala",
+          "const": "Escala"
+        },
+        {
+          "title": "Longitud",
+          "const": "Longitud"
+        },
+        {
+          "title": "No Aplica",
+          "const": "No Aplica"
+        },
+        {
+          "title": "Tiempo",
+          "const": "Tiempo"
+        },
+        {
+          "title": "Velocidad",
+          "const": "Velocidad"
+        },
+        {
+          "title": "Volumen",
+          "const": "Volumen"
+        }
+      ]
+    },
+    "ddValorDominio": {
+      "type": "object",
+      "title": "Valor de dominio",
+      "description": "Valor de dominio del atributo",
+      "additionalProperties": false,
+      "properties": {
+        "codigo": {
+          "type": "string",
+          "title": "Código de dominio",
+          "description": "Código de dominio"
+        },
+        "etiqueta": {
+          "type": "string",
+          "title": "Etiqueta",
+          "description": "Etiqueta"
+        },
+        "definicion": {
+          "type": "string",
+          "title": "Definición del valor de dominio",
+          "description": "Definición del valor de dominio",
+          "maxLength": 330
+        }
+      },
+      "required": [
+        "codigo",
+        "etiqueta",
+        "definicion"
+      ]
+    },
+    "ddVisibilidad": {
+      "oneOf": [
+        {
+          "title": "Pública",
+          "const": "Pública"
+        },
+        {
+          "title": "Clasificada",
+          "const": "Pública Clasificada"
+        },
+        {
+          "title": "Reservada",
+          "const": "Pública Reservada"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "identificadorRecursoUniforme",
+    "nombre",
+    "definicion",
+    "campoAplicacion",
+    "esDocumentacionPublica",
+    "tematica"
+  ]
+}

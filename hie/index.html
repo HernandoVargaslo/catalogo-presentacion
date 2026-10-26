@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>HIEE - Catálogo de Recursos Geográficos</title>
+  <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <!-- Font Awesome 6 Free CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- FirebaseUI CSS -->
+  <link rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.css" />
+
+  <!-- jQuery UI CSS (Datepicker) -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+
+  <link rel="stylesheet" href="assets/flatpickr/flatpickr.min.css">
+  <script src="assets/flatpickr/flatpickr.min.js"></script>
+  <script src="assets/flatpickr/es.js"></script>
+
+  <!-- Tus estilos personalizados -->
+  <link rel="stylesheet" href="css/estilos.css" />
+</head>
+
+<body>
+  <!-- Modal de reautenticación (overlay, no destruye la UI actual) -->
+  <div class="modal fade" id="modal-reauth" tabindex="-1" aria-labelledby="modal-reauth-label" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-reauth-label">Reautenticación requerida</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-3">
+            Tu sesión necesita reautenticación para continuar. No perderás tu trabajo; al iniciar sesión se reintentará
+            automáticamente la acción.
+          </p>
+          <div id="firebaseui-auth-container-reauth"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="header-container">
+    <!-- Header global entidad (barra superior de GOV.CO) -->
+    <div id="header-global-entidad" class="menu--top d-flex align-items-center">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="region region-menu-fixedtop">
+            <section id="block-logogovco"
+              class="d-flex align-items-center block-block-content block-block-content1c89a329-44a5-4e13-9d20-41e274593c3e clearfix">
+              <div class="field field--name-body field--type-text-with-summary field--label-hidden field--item first">
+                <p class="p-header-gov-co mb-0">
+                  <a href="https://www.gov.co/" target="_blank"><img alt="Logo Gov.co" class="logo-gov-co" height="24"
+                      src="https://cdn.www.gov.co/assets/images/logo.png" /></a>
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cabecera fija con título + botones -->
+    <div id="cabecera-app"
+      class="container-fluid d-flex justify-content-between align-items-center bg-light border-bottom">
+      <div class="d-flex flex-wrap w-100 justify-content-between align-items-center py-2">
+        <div class="d-flex flex-wrap">
+          <a href="./">
+            <img id="logo-ideca" src="./assets/img/logo.svg" alt="">
+          </a>
+          <div id="logo-entidad" class="me-3"></div>
+          <h1 id="span_titulo_aplicacion" class="d-flex align-items-center mb-0 fs-8">
+            Catálogo de Recursos - Herramienta Integral de Estándares
+          </h1>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <!-- Nombre del usuario (oculto hasta validar sesión) -->
+          <span id="nombre-usuario-header" class="text-muted oculto">
+            <i class="fa-solid fa-user me-1"></i>
+            <span id="texto-nombre-usuario"></span>
+          </span>
+          <!-- botón Administración (oculto hasta validar rol) -->
+          <button id="btn-admin-header" class="btn btn-primary btn-info btn-admin oculto" title="Administración">
+            Administración
+          </button>
+          <!-- botón para iniciar login -->
+          <button id="btn-login-desplegar" class="btn btn-outline-primary oculto" title="Iniciar sesión">
+            <i class="fa-solid fa-sign-in-alt me-1"></i>
+            Iniciar sesión
+          </button>
+          <!-- botón para testing: invalidar token (REMOVER EN PRODUCCIÓN) -->
+          <button id="btn-token-vencido-test" class="btn btn-outline-warning oculto me-2" style="display: none;"
+            title="Invalidar token para testing">
+            <i class="fa-solid fa-clock me-1"></i>
+            Invalidar Token
+          </button>
+          <!-- botón para testing: simular pérdida irrecuperable de sesión (REMOVER EN PRODUCCIÓN) -->
+          <button id="btn-sesion-irrecuperable-test" class="btn btn-outline-danger oculto me-2"
+            title="Simular pérdida irrecuperable de sesión (requiere reautenticación)">
+            <i class="fa-solid fa-triangle-exclamation me-1"></i>
+            Sesión Irrecuperable
+          </button>
+          <!-- botón para testing: renovación silenciosa (REMOVER EN PRODUCCIÓN) -->
+          <button id="btn-renovacion-silenciosa-test" class="btn btn-outline-info oculto me-2"
+            title="Probar renovación silenciosa de token">
+            <i class="fa-solid fa-refresh me-1"></i>
+            Renovar Token
+          </button>
+          <!-- botón para cerrar sesión -->
+          <button id="btn-cerrar-sesion" class="btn btn-outline-danger oculto" title="Cerrar sesión">
+            <i class="fa-solid fa-sign-out-alt me-1"></i>
+            Cerrar sesión
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="navbar" id="navbarMenu">
+      <ul class="navbar-nav w-100 mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a id="link-inicio" class="nav-link active" href="./">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a id="link-acerca" class="nav-link" data-view="acerca">Acerca de</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <!-- Menu -->
+
+  <main id="vista-principal">
+    <div id="div_frontpage_container" class="div_frontpage_container">
+      <!-- Login container -->
+      <div id="loginContainer" class="col-md-6">
+        <div class="d-flex py-4 justify-content-center flex-column align-items-center">
+          <div class="col-8">
+            <h2 class="fw-bold text-center mb-4">Herramienta Integral de Estándares</h2>
+            <h5 class="text-muted mb-3">
+              Unidad Administrativa Especial de <br />
+              Catastro Distrital
+            </h5>
+            <div id="firebaseui-auth-container"></div>
+            <!-- Texto de aceptación de términos y condiciones -->
+            <div class="terminos-login text-center">
+              <p class="texto-terminos small text-muted mb-0">
+                Con el inicio de sesión acepto términos y condiciones y
+                autorizo el tratamiento de mis datos personales de acuerdo con
+                la política de tratamiento de datos personales de la UAECD.
+                <a href="https://www.catastrobogota.gov.co/contacto/politicas-de-seguridad-privacidad-condiciones-de-uso-y-proteccion-de-datos-personales"
+                  target="_blank">Ver más.</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="div-logo-entidad-login" class="w-100 text-center div-logo-entidad">
+        <img src="assets/img/logon_0.png" alt="Logo UAECD" class="img-fluid" />
+      </div>
+    </div>
+
+    <span id="statusBadge"></span>
+    <span id="appVersionBadge">v1.17.03</span>
+    <span id="horaBadge"></span>
+    <span id="sessionTimeBadge"></span>
+    <div id="dashboardContainer" class="oculto">
+      <!-- Contenedor principal con dos columnas -->
+      <div class="container-fluid mt-3">
+        <div id="div-contenedor-items-secciones-hiee" class="row-secciones">
+          <!-- Columna izquierda: Gestión de datos geográficos (SRIG) - inicialmente 100% -->
+          <div id="div-contenedor-items-y-chat" class="d-flex">
+            <div id="div-contenedor-botones-items-y-chat" class="gap-2 oculto">
+              <button id="btn-mostrar-items" class="btn btn-primary btn-info boton-vertical">
+                <i class="fa-solid fa-map mb-2"></i>Ítems Geográficos
+              </button>
+              <button id="btn-mostrar-chat" class="btn btn-secondary btn-info boton-vertical oculto">
+                <i class="fa-solid fa-envelope mb-2"></i>Buzón de Acompañamiento
+              </button>
+              <button id="btn-mostrar-validaciones" class="btn btn-warning btn-info boton-vertical oculto"
+                title="Validaciones pendientes para poder publicar">
+                <i class="fa-solid fa-exclamation-triangle mb-2"></i>Validaciones
+              </button>
+            </div>
+            <div id="div-contenedor-contenedores-items-y-chat" class="d-flex flex-column">
+              <div id="div-contenedor-items">
+                <div id="div-contenedor-cajitas-items-geograficos">
+                  <div class="card">
+                    <div class="card-header bg-primary text-white">
+                      <div class="d-flex justify-content-between align-items-center header-seccion-srig">
+                        <h5 class="mb-0">
+                          Ítems Geográficos
+                          <span id="entidad-items-geograficos" class="text-light fw-normal small ms-2"></span>
+                        </h5>
+                        <div class="d-flex align-items-center gap-2">
+                          <!-- Botón actualizar listado (solo para usuarios autenticados en modo no público) -->
+                          <button type="button" id="btn-actualizar-listado" class="btn btn-sm btn-outline-light d-none"
+                            title="Actualizar listado de ítems geográficos">
+                            <i class="fa-solid fa-sync-alt"></i>
+                          </button>
+                          <div class="btn-group" role="group">
+                            <button type="button" id="btn-ordenar-asc" class="btn btn-sm btn-outline-light"
+                              title="Ordenar por nombre ascendente">
+                              <i class="fa-solid fa-arrow-up"></i>
+                            </button>
+                            <button type="button" id="btn-ordenar-desc" class="btn btn-sm btn-outline-light"
+                              title="Ordenar por nombre descendente">
+                              <i class="fa-solid fa-arrow-down"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <!-- Filtros de búsqueda -->
+                      <div class="mb-3">
+                        <!-- Filtro por texto -->
+                        <div class="input-group mb-2">
+                          <span class="input-group-text"><i class="fa-solid fa-search"></i></span>
+                          <input type="text" id="filtro-srig" class="form-control"
+                            placeholder="Filtrar por ID o nombre..." aria-label="Filtrar datos geográficos">
+                          <button id="btn-limpiar-filtro-srig" class="btn btn-outline-secondary" type="button"
+                            title="Limpiar filtro">
+                            <i class="fa-solid fa-xmark"></i>
+                          </button>
+                        </div>
+
+                        <!-- Filtro por estado de diligenciamiento (solo para usuarios autenticados no-ENTIDAD) -->
+                        <div id="filtro-estado-container" class="d-none">
+                          <select id="filtro-estado-srig" class="form-select form-select-sm">
+                            <option value="todos">Mostrar todos</option>
+                            <option value="con-registro">Mostrar ítems con registro de estándares</option>
+                            <option value="sin-registro">Mostrar ítems sin registro de estándares</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Grid de tarjetas para datos geográficos -->
+                      <div id="contenedor-srig" class="srig-grid">
+                        <!-- Las tarjetas se cargarán dinámicamente desde la API -->
+                      </div>
+
+                      <!-- Mensaje cuando no hay resultados -->
+                      <div id="sin-resultados-srig" class="alert alert-info mt-3 d-none">
+                        No se encontraron ítems geográficos que coincidan con el filtro.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="div-contenedor-chat">
+                <div class="card">
+                  <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">Buzón de Acompañamiento</h5>
+                  </div>
+                  <div class="card-body">
+                    <!-- Aquí va el contenido del chat -->
+                  </div>
+                </div>
+              </div>
+              <div id="div-contenedor-validaciones">
+                <div class="card">
+                  <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                      <i class="fa-solid fa-exclamation-triangle me-2"></i>Validaciones Pendientes
+                      <span id="formulario-validacion-activo" class="text-muted fw-normal small ms-2"></span>
+                    </h5>
+                  </div>
+                  <div class="card-body" id="contenedor-lista-validaciones"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Columna derecha: Contenedor para las secciones dinámicas HIEE - inicialmente oculta -->
+          <div id="contenedor-secciones-hiee" class="col-0">
+            <!-- Aquí se insertarán dinámicamente las secciones HIEE -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Template para secciones HIEE (se clonará dinámicamente) -->
+  <template id="template-seccion-hiee">
+    <div class="seccion-hiee card" data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]"
+      id="seccion-hiee-[ID_REGISTRO]">
+      <!-- Inputs hidden para mantener referencias -->
+      <input type="hidden" class="hiee-srig-id" value="[SRIG_ID]">
+      <input type="hidden" class="hiee-id-registro" value="[ID_REGISTRO]">
+
+      <div class="card-header d-flex justify-content-between align-items-center"
+        style="z-index: 10; background-color: white;">
+        <div class="d-flex">
+          <h4 class="mb-0 me-3">Estándares: <span id="nombre-srig-[ID_REGISTRO]" class="nombre-srig"></span></h4>
+          <div class="id-registro-container">
+            <label class="form-label mb-0 me-2"><strong>ID Registro:</strong></label>
+            <span id="global-id-registro-display-[ID_REGISTRO]" class="badge bg-secondary">-</span>
+            <input type="hidden" id="global-id-registro-[ID_REGISTRO]" name="global_id_registro">
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <!-- Switch de vista previa (solo para usuarios autenticados) -->
+          <div class="form-check form-switch d-flex preview-toggle-container">
+            <label class="form-check-label" for="preview-mode-toggle-[ID_REGISTRO]">
+              <small>Vista previa</small>
+            </label>
+            <input class="form-check-input" type="checkbox" id="preview-mode-toggle-[ID_REGISTRO]">
+          </div>
+          <button class="btn-maximizar-hiee btn btn-sm btn-outline-primary" title="Maximizar sección">
+            <i class="bi bi-fullscreen"></i>
+          </button>
+          <button class="btn-restaurar-hiee btn btn-sm btn-outline-warning d-none" title="Restaurar sección">
+            <i class="bi bi-fullscreen-exit"></i>
+          </button>
+          <button class="btn-cerrar-hiee btn btn-sm btn-outline-secondary d-flex align-items-center gap-1">
+            <i class="fa-solid fa-xmark"></i> Cerrar
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <!-- Navegación por pestañas -->
+        <ul class="nav nav-tabs hiee-tabs mb-2" style="z-index: 9; background-color: white;">
+          <li class="nav-item pestana-et" id="pestana_et_[ID_REGISTRO]" data-id-registro="[ID_REGISTRO]">
+            <a class="nav-link active" data-tab="especificacion-tecnica" data-test="nav-link-et-[ID_REGISTRO]"
+              data-form="especificaciontecnica">
+              <div id="estado_et_[ID_REGISTRO]_pestana" class="estado-estandar me-2" title="Especificación Técnica">ET
+              </div>
+              <span>Especificación Técnica</span>
+            </a>
+          </li>
+          <li class="nav-item pestana-co" id="pestana_co_[ID_REGISTRO]" data-id-registro="[ID_REGISTRO]">
+            <a class="nav-link" data-tab="diccionario" data-test="nav-link-co-[ID_REGISTRO]" data-form="catalogacion">
+              <div id="estado_co_[ID_REGISTRO]_pestana" class="estado-estandar me-2" title="Catalogación">CO</div>
+              <span>Catalogación</span>
+            </a>
+          </li>
+          <li class="nav-item pestana-rc" id="pestana_rc_[ID_REGISTRO]" data-id-registro="[ID_REGISTRO]">
+            <a class="nav-link" data-tab="reporte-calidad" data-test="nav-link-rc-[ID_REGISTRO]"
+              data-form="reportecalidad">
+              <div id="estado_rc_[ID_REGISTRO]_pestana" class="estado-estandar me-2" title="Reporte de Calidad">RC</div>
+              <span>Reporte de Calidad</span>
+            </a>
+          </li>
+          <li class="nav-item pestana-cr" id="pestana_cr_[ID_REGISTRO]" data-id-registro="[ID_REGISTRO]">
+            <a class="nav-link" data-tab="catalogo-representacion" data-test="nav-link-cr-[ID_REGISTRO]"
+              data-form="catalogorepresentacion">
+              <div id="estado_cr_[ID_REGISTRO]_pestana" class="estado-estandar me-2" title="Catálogo de Representación">
+                CR</div>
+              <span>Catálogo de Representación</span>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- Contenido de las pestañas -->
+      <div class="hiee-tab-content">
+        <!-- 1. Pestaña Especificación Técnica -->
+        <div class="hiee-tab-pane active" data-tab-content="especificacion-tecnica">
+          <form class="hiee-form" id="form-especificacion-tecnica-[ID_REGISTRO]"
+            name="form-especificacion-tecnica-[ID_REGISTRO]">
+            <!-- El contenido se carga dinámicamente aquí -->
+          </form>
+        </div>
+
+        <!-- 2. Pestaña Catalogación -->
+        <div class="hiee-tab-pane" data-tab-content="diccionario">
+          <form class="hiee-form" id="form-catalogo-objetos-[ID_REGISTRO]" name="form-catalogo-objetos-[ID_REGISTRO]">
+            <!-- El contenido se carga dinámicamente aquí -->
+          </form>
+        </div>
+
+        <!-- 3. Pestaña Reporte de Calidad -->
+        <div class="hiee-tab-pane" data-tab-content="reporte-calidad">
+          <form class="hiee-form" id="form-reporte-calidad-[ID_REGISTRO]" name="form-reporte-calidad-[ID_REGISTRO]">
+            <!-- El contenido se carga dinámicamente aquí -->
+          </form>
+        </div>
+
+
+        <!-- 4. Pestaña Catálogo de Representación -->
+        <div class="hiee-tab-pane" data-tab-content="catalogo-representacion">
+          <form class="hiee-form" id="form-catalogo-representacion-[ID_REGISTRO]"
+            name="form-catalogo-representacion-[ID_REGISTRO]">
+            <!-- El contenido se carga dinámicamente aquí -->
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+    </div>
+  </template>
+
+  <section id="seccion-admin" class="position-absolute top-50 start-50 translate-middle container seccion oculto">
+    <div class="d-flex justify-content-between">
+      <h3 class="mb-0">Consola de Administración</h3>
+      <span id="btn-cerrar-admin" class="btn-cerrar top-0 end-0">
+        <i class="fa-solid fa-xmark"></i>
+      </span>
+    </div>
+    <div class="admin-subnav my-3 border-bottom">
+      <button class="admin-btn btn btn-outline-secondary" data-area="permisos">
+        Permisos
+      </button>
+      <button class="admin-btn btn btn-outline-secondary d-none" data-area="usuarios">
+        Usuarios
+      </button>
+      <button class="admin-btn btn btn-outline-secondary d-none" data-area="entidades">
+        Entidades
+      </button>
+      <button class="admin-btn btn btn-outline-secondary" data-area="citaciones">
+        Citaciones
+      </button>
+    </div>
+
+    <!-- Área Permisos -->
+    <div id="admin-permisos" class="admin-area oculto">
+      <div class="d-flex justify-content-between align-items-center py-2">
+        <h4>Permisos de Usuarios</h4>
+        <div class="d-flex gap-2">
+          <button id="btn-nuevo-permiso" class="btn btn-primary btn-info">
+            + Nuevo Permiso
+          </button>
+          <p id="contador-permisos" class="text-muted mb-0 d-flex align-items-center"></p>
+        </div>
+      </div>
+
+      <!-- Indicador de carga -->
+      <div id="permisos-cargando" class="text-center mb-3 d-none">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p>Cargando permisos...</p>
+      </div>
+
+      <!-- Campo de filtro para tabla de permisos -->
+      <div class="mb-3">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="filtro-permisos" class="form-label">🔍 Filtrar permisos</label>
+            <input type="text" id="filtro-permisos" class="form-control"
+              placeholder="Buscar por usuario, entidad, módulo o tipo...">
+          </div>
+          <div class="col-md-6 d-flex align-items-end">
+            <button type="button" id="btn-limpiar-filtro-permisos" class="btn btn-outline-secondary">
+              <i class="fas fa-times"></i> Limpiar filtro
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive-admin border">
+        <table id="tabla-permisos" class="table table-striped">
+          <thead>
+            <tr>
+              <th class="sortable" data-column="ID_PERMISO">
+                <span class="th-content">
+                  ID Permiso <i class="fas fa-sort ms-1"></i>
+                </span>
+              </th>
+              <th class="sortable" data-column="USUARIO">
+                <span class="th-content">
+                  Usuario <i class="fas fa-sort ms-1"></i>
+                </span>
+              </th>
+              <th class="sortable" data-column="ENTIDAD">
+                <span class="th-content">
+                  Entidad <i class="fas fa-sort ms-1"></i>
+                </span>
+              </th>
+              <th class="sortable" data-column="MODULO">
+                <span class="th-content">
+                  Módulo <i class="fas fa-sort ms-1"></i>
+                </span>
+              </th>
+              <th class="sortable" data-column="TIPO">
+                <span class="th-content">
+                  Tipo <i class="fas fa-sort ms-1"></i>
+                </span>
+              </th>
+              <th class="sortable" data-column="ACTIVO">
+                <span class="th-content">
+                  Activo <i class="fas fa-sort ms-1"></i>
+                </span>
+              </th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- Paginación para tabla de permisos -->
+      <div class="d-flex justify-content-between align-items-center mt-3">
+        <div>
+          <span id="permisos-info-page"></span>
+        </div>
+        <div class="d-flex align-items-center">
+          <select id="permisos-page-size" class="form-select form-select-sm me-3" style="width: auto;">
+            <option value="10">10 por página</option>
+            <option value="25" selected>25 por página</option>
+            <option value="50">50 por página</option>
+            <option value="100">100 por página</option>
+          </select>
+          <nav>
+            <ul class="pagination pagination-sm mb-0" id="permisos-pagination">
+              <!-- Paginación se genera dinámicamente -->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área Usuarios -->
+    <div id="admin-usuarios" class="admin-area oculto d-none">
+      <h4>Usuarios</h4>
+
+      <!-- Formulario de filtro -->
+      <div class="row mb-3">
+        <div class="col-md-8">
+          <div class="input-group">
+            <input type="text" id="input-filtro-usuarios" class="form-control"
+              placeholder="Filtrar por nombre o email (@catastrobogota.gov.co)" aria-label="Filtro" />
+            <button class="btn btn-outline-primary" type="button" id="btn-filtrar-usuarios">
+              Filtrar
+            </button>
+            <button class="btn btn-outline-secondary" type="button" id="btn-limpiar-filtro-usuarios">
+              Limpiar
+            </button>
+          </div>
+          <small class="form-text text-muted">Ejemplo: @catastrobogota.gov.co para filtrar por dominio</small>
+        </div>
+        <div class="col-md-4 text-end">
+          <span id="contador-usuarios" class="text-muted"></span>
+        </div>
+      </div>
+
+      <!-- Indicador de carga -->
+      <div id="usuarios-cargando" class="text-center mb-3 d-none">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p>Cargando usuarios...</p>
+      </div>
+
+      <div class="table-responsive-admin border">
+        <table id="tabla-usuarios" class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID Usuario</th>
+              <th>Nombre</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Área Entidades -->
+    <div id="admin-entidades" class="admin-area oculto d-none">
+      <h4>Entidades</h4>
+
+      <!-- Formulario de filtro -->
+      <div class="row mb-3">
+        <div class="col-md-8">
+          <div class="input-group">
+            <input type="text" id="input-filtro-entidades" class="form-control"
+              placeholder="Filtrar por nombre (ej: UAECD, Alcaldía)" aria-label="Filtro" />
+            <button class="btn btn-outline-primary" type="button" id="btn-filtrar-entidades">
+              Filtrar
+            </button>
+            <button class="btn btn-outline-secondary" type="button" id="btn-limpiar-filtro-entidades">
+              Limpiar
+            </button>
+          </div>
+          <small class="form-text text-muted">Ejemplo: UAECD para filtrar entidades relacionadas</small>
+        </div>
+        <div class="col-md-4 text-end">
+          <span id="contador-entidades" class="text-muted"></span>
+        </div>
+      </div>
+
+      <!-- Indicador de carga -->
+      <div id="entidades-cargando" class="text-center mb-3 d-none">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p>Cargando entidades...</p>
+      </div>
+
+      <div class="table-responsive-admin border">
+        <table id="tabla-entidades" class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID Entidad</th>
+              <th>Nombre</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Área Citaciones -->
+    <div id="admin-citaciones" class="admin-area oculto">
+      <div class="d-flex justify-content-between align-items-center py-2">
+        <h4 class="mb-0">Citaciones</h4>
+        <button id="btn-nueva-citacion" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-plus"></i> Nueva Citación
+        </button>
+      </div>
+
+      <!-- Formulario de filtro -->
+      <div class="row mb-3">
+        <div class="col-md-8">
+          <div class="input-group">
+            <input type="text" id="input-filtro-citaciones" class="form-control"
+              placeholder="Filtrar por nombre de citación" aria-label="Filtro" />
+            <button class="btn btn-outline-primary" type="button" id="btn-filtrar-citaciones">
+              Filtrar
+            </button>
+            <button class="btn btn-outline-secondary" type="button" id="btn-limpiar-filtro-citaciones">
+              Limpiar
+            </button>
+          </div>
+          <small class="form-text text-muted">Ejemplo: buscar por nombre de citación</small>
+        </div>
+        <div class="col-md-4 text-end">
+          <span id="contador-citaciones" class="text-muted"></span>
+        </div>
+      </div>
+
+      <!-- Indicador de carga -->
+      <div id="citaciones-cargando" class="text-center mb-3 d-none">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p>Cargando citaciones...</p>
+      </div>
+
+      <!-- Contenedor de tarjetas de citaciones con scroll -->
+      <div class="citations-scroll-container" style="max-height: 60vh; overflow-y: auto; padding-right: 15px;">
+        <div id="contenedor-citaciones" class="row">
+          <!-- Las tarjetas se generarán dinámicamente aquí -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón cerrar -->
+  </section>
+
+
+  <form id="form-permiso" class="position-absolute d-none col-md-6 form-show m-auto z-3 mb-4 z-1">
+    <h4 id="titulo-form-permiso" class="text-center">
+      Crear Nuevo Permiso
+    </h4>
+
+    <!-- Campo ID permiso (oculto) -->
+    <input type="hidden" id="input-id-permiso" />
+
+    <!-- Campo Usuario con Autocomplete -->
+    <div class="mb-3">
+      <label for="input-texto-usuario-permiso" class="form-label">Usuario</label>
+      <div class="autocomplete-container">
+        <input type="text" id="input-texto-usuario-permiso" class="form-control"
+          placeholder="Escriba para buscar usuario..." autocomplete="off" />
+        <input type="hidden" id="input-id-usuario-permiso" value="" />
+        <div id="sugerencias-usuarios" class="autocomplete-items"></div>
+        <div class="autocomplete-spinner autocomplete-spinner-usuario">
+          <div class="spinner-border spinner-border-sm text-primary" role="status">
+            <span class="visually-hidden">Buscando...</span>
+          </div>
+        </div>
+      </div>
+      <small class="form-text text-muted">Ingrese nombre o correo del usuario</small>
+    </div>
+
+    <!-- Campo Entidad con Autocomplete -->
+    <div class="mb-3">
+      <label for="input-texto-entidad-permiso" class="form-label">Entidad</label>
+      <div class="autocomplete-container">
+        <input type="text" id="input-texto-entidad-permiso" class="form-control"
+          placeholder="Escriba para buscar entidad..." autocomplete="off" />
+        <input type="hidden" id="input-id-entidad-permiso" value="" />
+        <div id="sugerencias-entidades" class="autocomplete-items"></div>
+        <div class="autocomplete-spinner autocomplete-spinner-entidad">
+          <div class="spinner-border spinner-border-sm text-primary" role="status">
+            <span class="visually-hidden">Buscando...</span>
+          </div>
+        </div>
+      </div>
+      <small class="form-text text-muted">Ingrese el nombre de la entidad</small>
+    </div>
+
+    <!-- Módulo del permiso -->
+    <div class="mb-3">
+      <label for="input-modulo-permiso" class="form-label">Módulo</label>
+      <select id="input-modulo-permiso" class="form-select">
+        <option value="" disabled selected>Selecciona un módulo</option>
+      </select>
+    </div>
+
+    <!-- Tipo de permiso -->
+    <div class="mb-3 oculto" id="div-tipo-permiso">
+      <label for="input-tipo-permiso" class="form-label">Tipo</label>
+      <select id="input-tipo-permiso" class="form-select">
+      </select>
+    </div>
+
+    <!-- Checkbox Activo (no cambia) -->
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="input-activo-permiso" checked />
+      <label class="form-check-label" for="input-activo-permiso">Activo</label>
+    </div>
+
+    <!-- Botones (no cambian) -->
+    <div class="d-flex justify-content-end">
+      <button type="button" id="btn-cancelar-permiso" class="btn btn-info me-2">
+        Cancelar
+      </button>
+      <button type="button" id="btn-guardar-permiso" class="btn btn-success">
+        Guardar
+      </button>
+    </div>
+  </form>
+
+
+  <!-- Avisos tipo "toast" -->
+  <div id="aviso-global" class="oculto"></div>
+
+  <div id="backDropAdmin" class="modal-backdrop modal fade" style="display: none;"></div>
+
+  <div id="backDropForms" class="modal-backdrop modal fade" style="display: none;"></div>
+
+  <footer>
+    <div class="footerc">
+      <div class="container pb-4">
+        <div class="footer-middle">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div id="site-name">
+                Unidad Administrativa Especial de Catastro Distrital
+                <p>Ideca: Infraestructura de Datos Espaciales para el Distrito Capital</p>
+              </div>
+              <div class="textos">
+                <p>
+                  Dirección: Av. Carrera 30 No. 25 - 90, Torre B Piso 2<br>
+                  Código postal: 111311<br>
+                  Horario de atención: Lunes a Viernes de 8:00 am a 4:30 pm<br>
+                  Teléfono conmutador: +57 601 234 7600<br>
+                  Línea de servicio a la ciudadanía: +57 601 234 7600 - Ext. 7600<br>
+                  Línea Gratuita Nacional: 01 8000 9104887<br>
+                  Notificaciones judiciales: <a
+                    href="mailto:notificaciones@catastrobogota.gov.co">notificaciones@catastrobogota.gov.co</a><br>
+                  Información general: Línea 195
+                </p>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div id="logo-hacienda"></div>
+              <img src="./assets/img/logo.svg" alt="Logo IDECA" id="logo-ideca">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div id="redes" class="d-flex gap-3 pb-3">
+                <div class="d-flex flex-wrap">
+                  <a href="https://www.instagram.com/catastrobogota_" target="_blank" class="red-social"
+                    id="otrared"></a>
+                  <a href="https://www.instagram.com/catastrobogota_" target="_blank">@catastrobogota_</a>
+                </div>
+                <div class="d-flex flex-wrap">
+                  <a href="https://www.facebook.com/CatastroBogota/" target="_blank" class="red-social"
+                    id="facebook"></a>
+                  <a href="https://www.facebook.com/CatastroBogota/" target="_blank">@CatastroBogota</a>
+                </div>
+                <div class="d-flex flex-wrap">
+                  <a href="https://twitter.com/CatastroBogota" target="_blank" class="red-social" id="Twitter"></a>
+                  <a href="https://twitter.com/CatastroBogota" target="_blank">@CatastroBogota</a>
+                </div>
+                <div class="d-flex flex-wrap">
+                  <a href="https://www.youtube.com/@catastrobogota3985" target="_blank" class="red-social"
+                    id="youtube"></a>
+                  <a href="https://www.youtube.com/@catastrobogota3985" target="_blank">Catastro Bogotá</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div>
+                <a style="text-decoration: underline !important; font-weight: bold;padding-right: 15px;"
+                  href="/sitemap">Mapa del sitio</a>
+                <a style="text-decoration: underline !important; font-weight: bold;padding-right: 15px;"
+                  href="https://outlook.office.com/owa/" target="_blank">Correo institucional</a>
+                <a style="text-decoration: underline !important; font-weight: bold;padding-right: 15px;"
+                  href="http://intranet.catastrobogota.gov.co/" target="_blank">Intranet</a>
+                <a style="text-decoration: underline !important; font-weight: bold;padding-right: 15px;"
+                  href="https://mesadeservicio.catastrobogota.gov.co/CAisd/pdmweb.exe" target="_blank">Mesa de
+                  servicio</a>
+                <a style="text-decoration: underline !important; font-weight: bold;padding-right: 15px;"
+                  href="https://www.catastrobogota.gov.co/declaracion-de-accesibilidad"
+                  target="_blank">Accesibilidad</a>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <p><a
+                  href="http://www.catastrobogota.gov.co/contacto/politicas-de-seguridad-privacidad-condiciones-de-uso-y-proteccion-de-datos-personales"
+                  style="text-decoration: underline !important;  font-weight: bold;" target="_blank">Políticas de
+                  seguridad, privacidad, condiciones de uso y protección de datos personales</a></p>
+              <p><a href="http://www.catastrobogota.gov.co/transparencia-y-acceso-a-la-informacion-publica"
+                  style="text-decoration: underline !important; font-weight: bold;" target="_blank">Transparencia y
+                  acceso a la información pública</a></p>
+              <p>Consulte aquí el documento: <a style="text-decoration: underline !important; font-weight: bold;"
+                  href="https://mesacomisionideca.gitbook.io/manual-de-usuario-pig/" target="_blank">Manual de usuario
+                  de la Plataforma de Información</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="px-3 d-flex justify-content-between">
+          <div id="icons-govco">
+            <a href="https://www.gov.co/home/" target="_blank">
+              <img alt="Responsive image" class="img-fluid footer-icon-co"
+                src="https://www.gov.co/uploads/23c08fdb-7970-420c-a556-c3af1802ef58.svg" style="width: 40px;"> <img
+                alt="Responsive image" class="img-fluid footer-icon-govco"
+                src="https://www.gov.co/uploads/53cb9900-1f6d-4d95-81a1-02e02efbe3be.svg" style="width: 112px;">
+            </a>
+          </div>
+          <div class="region region-footer-bottom-left">
+            <section id="block-copyright"
+              class="block d-flex align-items-center block-block-content block-block-content3f748e93-5bab-44c7-877a-32a04dbd2fe1 clearfix">
+              <div class="field field--name-body field--type-text-with-summary field--label-hidden field--item">
+                <div class="text-white" id="copyright"><span>© 2022 ideca</span><span>. Todos los derechos
+                    reservados.</span></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Firebase, jQuery, Bootstrap, tu app.js -->
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth__es.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.17.1/ajv2020.bundle.min.js"></script>
+
+  <!-- Reportador de Excepciones (carga temprana) -->
+  <!-- <script src="js/reportador-de-excepciones.js?version=v1.17.03"></script> -->
+
+  <script src="js/config.js?version=v1.17.03"></script>
+  <script src="js/schemas.js?version=v1.17.03"></script>
+
+  <script src="js/animacion.js?version=v1.17.03"></script>
+  <script src="js/formBackupManager.js?version=v1.17.03"></script>
+  <script src="js/util.js?version=v1.17.03"></script>
+  <script src="js/sec.js?version=v1.17.03"></script>
+
+
+  <script src="js/validacionpersistencia.js?version=v1.17.03"></script>
+
+
+  <script src="js/formgenerator.js?version=v1.17.03"></script>
+  <script src="js/srig-detail-manager.js?version=v1.17.03"></script>
+  <script src="js/citation-manager.js?version=v1.17.03"></script>
+  <script src="js/attribute-picker.js?version=v1.17.03"></script>
+  <script src="js/chat.js?version=v1.17.03"></script>
+  <script src="js/app.js?version=v1.17.03"></script>
+
+  <script src="js/catalogacion/catalogacion.js?version=v1.17.03"></script>
+  <script src="js/reportecalidad/reportecalidad.js?version=v1.17.03"></script>
+  <script src="js/especificaciontecnica/especificaciontecnica.js?version=v1.17.03"></script>
+  <script src="js/catalogorepresentacion/catalogorepresentacion.js?version=v1.17.03"></script>
+
+  <script>
+    const cerrarAcordeonesDeTabActivo = () => {
+      const tabActivo = document.querySelector('.seccion-hiee.active .hiee-tab-pane.active');
+
+      const acordeonesAbiertos = tabActivo.querySelectorAll('.accordion-collapse.show');
+
+      acordeonesAbiertos.forEach(acordeon => {
+        const instancia = bootstrap.Collapse.getInstance(acordeon) || new bootstrap.Collapse(acordeon, { toggle: false });
+        instancia.hide();
+      });
+    };
+
+    const cerrarAcordeonesEspecificos = (button) => {
+      // Encuentra el contenedor más cercano con esas clases
+      const containerAcordeons = button.closest('.border.rounded');
+      console.log(button);
+      if (containerAcordeons) {
+        // Busca todos los acordeones abiertos dentro de ese contenedor
+        const acordeonesAbiertos = containerAcordeons.querySelectorAll('.accordion-collapse.show');
+
+        acordeonesAbiertos.forEach(acordeon => {
+          const collapseInstance = bootstrap.Collapse.getInstance(acordeon)
+            || new bootstrap.Collapse(acordeon, { toggle: false });
+
+          collapseInstance.hide();
+        });
+      }
+    };
+
+    const cerrarAcordeonesEspecificosD = (button) => {
+      // Encuentra el contenedor más cercano con esas clases
+      const containerAcordeons = button.closest('.col-md-12');
+      console.log(button);
+      if (containerAcordeons) {
+        // Busca todos los acordeones abiertos dentro de ese contenedor
+        const acordeonesAbiertos = containerAcordeons.querySelectorAll('.accordion-collapse.show');
+
+        acordeonesAbiertos.forEach(acordeon => {
+          const collapseInstance = bootstrap.Collapse.getInstance(acordeon)
+            || new bootstrap.Collapse(acordeon, { toggle: false });
+
+          collapseInstance.hide();
+        });
+      }
+    };
+  </script>
+
+  <!-- Loading Backdrop con logo IDECA -->
+  <div id="loading-backdrop" class="loading-backdrop">
+    <div class="logo-container">
+      <img src="assets/img/loader.gif" alt="Logo IDECA" />
+    </div>
+    <div class="loading-text" id="loading-message">
+      Cargando estándares HIEE...
+    </div>
+  </div>
+
+  <!-- Modal para crear hijo - Oculto para implementación futura -->
+  <!--
+  <div id="modal-crear-hijo" class="modal fade" tabindex="-1" role="dialog"
+       aria-labelledby="modalCrearHijoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCrearHijoLabel">
+            <i class="fa-solid fa-plus-circle me-2"></i>Crear Hijo
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="form-crear-hijo">
+
+            <input type="hidden" id="crear-hijo-identificador-srig" name="IDENTIFICADOR_SRIG">
+
+            <input type="hidden" id="crear-hijo-id-registro" name="ID_REGISTRO">
+
+
+            <input type="hidden" id="crear-hijo-nombre-original" name="nombre_original">
+            <input type="hidden" id="crear-hijo-nombre-alternativo-original" name="nombresAlternativos_original">
+            <input type="hidden" id="crear-hijo-definicion-original" name="definicion_original">
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="crear-hijo-nombre" class="form-label">Nombre del Objeto <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="crear-hijo-nombre" name="nombre" required>
+              </div>
+              <div class="col-md-6">
+                <label for="crear-hijo-nombre-alternativo" class="form-label">Nombre Alternativo</label>
+                <input type="text" class="form-control" id="crear-hijo-nombre-alternativo" name="nombresAlternativos">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label for="crear-hijo-definicion" class="form-label">Definición <span class="text-danger">*</span></label>
+                <textarea class="form-control" id="crear-hijo-definicion" name="definicion" rows="4" required></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" id="btn-modal-crear-hijo">
+            <i class="fa-solid fa-plus-circle me-1"></i>Crear Hijo
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  -->
+
+</body>
+
+</html>

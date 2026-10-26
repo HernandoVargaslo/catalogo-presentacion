@@ -1,0 +1,746 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "CalidadDato",
+  "description": "Calidad del Dato de Objetos Geográficos",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "ID",
+      "description": "Id del Objeto",
+      "readOnly": true
+    },
+    "identificadorRecursoUniforme": {
+      "type": "string",
+      "title": "Código identificador del objeto",
+      "description": "Código Identificador del objeto",
+      "format": "uri",
+      "maxLength": 2083,
+      "readOnly": true
+    },
+    "nombre": {
+      "type": "string",
+      "title": "Nombre del objeto",
+      "description": "Nombre del Objeto",
+      "readOnly": true
+    },
+    "fechaDatosEvaluar": {
+      "type": "string",
+      "title": "Fecha de los datos evaluados",
+      "description": "Fecha de los datos evaluados",
+      "format": "date"
+    },
+    "numeroRegistrosObjeto": {
+      "type": "integer",
+      "title": "Número de registros en el objeto",
+      "description": "Número de Registros en el Objeto Geográfico",
+      "minimum": 0
+    },
+    "version": {
+      "type": ["string", "null"],
+      "title": "Versión del documento",
+      "description": "Versión del documento"
+    },
+    "factoresCalidad": {
+      "type": "array",
+      "title": "Factores de calidad",
+      "description": "Factores de calidad",
+      "items": {
+        "$ref": "#/$defs/ccfactorCalidad"
+      },
+      "minItems": 1
+    }
+  },
+  "$defs": {
+    "citacion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "nombre": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "nombre"]
+    },
+    "ccCatalogoMedida": {
+      "oneOf": [
+        {
+          "title": "C - Exceso de Ítems",
+          "const": "C - Exceso de Ítems"
+        },
+        {
+          "title": "C - Número de instancias de objeto geográfico duplicadas",
+          "const": "C - Número de instancias de objeto geográfico duplicadas"
+        },
+        {
+          "title": "C - Número de Ítems en exceso",
+          "const": "C - Número de Ítems en exceso"
+        },
+        {
+          "title": "C - Porcentaje de ítems en exceso",
+          "const": "C - Porcentaje de ítems en exceso"
+        },
+        {
+          "title": "CC - Esquema conceptual conforme",
+          "const": "CC - Esquema conceptual conforme"
+        },
+        {
+          "title": "CC - Esquema conceptual no conforme",
+          "const": "CC - Esquema conceptual no conforme"
+        },
+        {
+          "title": "CC - Número de ítems no conformes con las reglas del esquema conceptual",
+          "const": "CC - Número de ítems no conformes con las reglas del esquema conceptual"
+        },
+        {
+          "title": "CC - Número de superposiciones inválidas de superficies",
+          "const": "CC - Número de superposiciones inválidas de superficies"
+        },
+        {
+          "title": "CC - Porcentaje de conformidad con respecto a las reglas del esquema conceptual.",
+          "const": "CC - Porcentaje de conformidad con respecto a las reglas del esquema conceptual."
+        },
+        {
+          "title": "CC - Porcentaje de no conformidad con respecto a las reglas del esquema conceptual.",
+          "const": "CC - Porcentaje de no conformidad con respecto a las reglas del esquema conceptual."
+        },
+        {
+          "title": "CD - Conformidad en valores de dominio",
+          "const": "CD - Conformidad en valores de dominio"
+        },
+        {
+          "title": "CD - No conformidad en valores de dominio",
+          "const": "CD - No conformidad en valores de dominio"
+        },
+        {
+          "title": "CD - Número de ítems no conformes con sus valores de dominio",
+          "const": "CD - Número de ítems no conformes con sus valores de dominio"
+        },
+        {
+          "title": "CD - Porcentaje de conformidad en valores de dominio",
+          "const": "CD - Porcentaje de conformidad en valores de dominio"
+        },
+        {
+          "title": "CD - Porcentaje de no conformidad en valores de dominio",
+          "const": "CD - Porcentaje de no conformidad en valores de dominio"
+        },
+        {
+          "title": "CF - Conflictos de estructura física",
+          "const": "CF - Conflictos de estructura física"
+        },
+        {
+          "title": "CF - Número de conflictos de estructura física",
+          "const": "CF - Número de conflictos de estructura física"
+        },
+        {
+          "title": "CF - Porcentaje de conflictos de estructura física",
+          "const": "CF - Porcentaje de conflictos de estructura física"
+        },
+        {
+          "title": "CT - Número de conexiones faltantes debido a sobretrazos",
+          "const": "CT - Número de conexiones faltantes debido a sobretrazos"
+        },
+        {
+          "title": "CT - Número de conexiones faltantes debido a subtrazos",
+          "const": "CT - Número de conexiones faltantes debido a subtrazos"
+        },
+        {
+          "title": "CT - Número de conexiones punto-curva defectuosas",
+          "const": "CT - Número de conexiones punto-curva defectuosas"
+        },
+        {
+          "title": "CT - Número de errores de auto intersección no válidos",
+          "const": "CT - Número de errores de auto intersección no válidos"
+        },
+        {
+          "title": "CT - Número de errores de auto superposición no válidos",
+          "const": "CT - Número de errores de auto superposición no válidos"
+        },
+        {
+          "title": "CT - Número de huecos topológicos no válidos",
+          "const": "CT - Número de huecos topológicos no válidos"
+        },
+        {
+          "title": "CT - Orden cronológico",
+          "const": "CT - Orden cronológico"
+        },
+        {
+          "title": "CT - Porcentaje de conexiones punto-curva defectuosas",
+          "const": "CT - Porcentaje de conexiones punto-curva defectuosas"
+        },
+        {
+          "title": "EA - Desviación estándar circular",
+          "const": "EA - Desviación estándar circular"
+        },
+        {
+          "title": "EA - Elipse de confianza",
+          "const": "EA - Elipse de confianza"
+        },
+        {
+          "title": "EA - Elipse de incertidumbre",
+          "const": "EA - Elipse de incertidumbre"
+        },
+        {
+          "title": "EA - Error absoluto circular al 90% del nivel de significancia de datos sesgados",
+          "const": "EA - Error absoluto circular al 90% del nivel de significancia de datos sesgados"
+        },
+        {
+          "title": "EA - Error absoluto circular al 90% del nivel de significancia de datos sesgados (NATO)",
+          "const": "EA - Error absoluto circular al 90% del nivel de significancia de datos sesgados (NATO)"
+        },
+        {
+          "title": "EA - Error circular al 90% de nivel de significancia",
+          "const": "EA - Error circular al 90% de nivel de significancia"
+        },
+        {
+          "title": "EA - Error circular al 95% de nivel de significancia",
+          "const": "EA - Error circular al 95% de nivel de significancia"
+        },
+        {
+          "title": "EA - Error circular cercano a valor verdadero",
+          "const": "EA - Error circular cercano a valor verdadero"
+        },
+        {
+          "title": "EA - Error cuadrático medio (root mean square error)",
+          "const": "EA - Error cuadrático medio (root mean square error)"
+        },
+        {
+          "title": "EA - Error cuadrático medio de planimetría",
+          "const": "EA - Error cuadrático medio de planimetría"
+        },
+        {
+          "title": "EA - Error lineal absoluto al 90% del nivel de significancia de datos verticales sesgados (Alternativa 1)",
+          "const": "EA - Error lineal absoluto al 90% del nivel de significancia de datos verticales sesgados (Alternativa 1)"
+        },
+        {
+          "title": "EA - Error lineal absoluto al 90% del nivel de significancia de datos verticales sesgados (Alternativa 2)",
+          "const": "EA - Error lineal absoluto al 90% del nivel de significancia de datos verticales sesgados (Alternativa 2)"
+        },
+        {
+          "title": "EA - Error lineal estándar",
+          "const": "EA - Error lineal estándar"
+        },
+        {
+          "title": "EA - Error lineal probable",
+          "const": "EA - Error lineal probable"
+        },
+        {
+          "title": "EA - Error probable circular",
+          "const": "EA - Error probable circular"
+        },
+        {
+          "title": "EA - Exactitud de mapa lineal al 90% del nivel de significancia",
+          "const": "EA - Exactitud de mapa lineal al 90% del nivel de significancia"
+        },
+        {
+          "title": "EA - Exactitud de mapa lineal al 95% del nivel de significancia",
+          "const": "EA - Exactitud de mapa lineal al 95% del nivel de significancia"
+        },
+        {
+          "title": "EA - Exactitud de mapa lineal al 99% del nivel de significancia",
+          "const": "EA - Exactitud de mapa lineal al 99% del nivel de significancia"
+        },
+        {
+          "title": "EA - Nivel cercano de certeza lineal",
+          "const": "EA - Nivel cercano de certeza lineal"
+        },
+        {
+          "title": "EA - Número de incertidumbres posicionales por encima de un umbral dado.",
+          "const": "EA - Número de incertidumbres posicionales por encima de un umbral dado."
+        },
+        {
+          "title": "EA - Porcentaje de incertidumbres posicionales por encima de un umbral dado.",
+          "const": "EA - Porcentaje de incertidumbres posicionales por encima de un umbral dado."
+        },
+        {
+          "title": "EA -Matriz de covarianza",
+          "const": "EA -Matriz de covarianza"
+        },
+        {
+          "title": "EA- Sesgo de posición (1D, 2D y 3D)",
+          "const": "EA- Sesgo de posición (1D, 2D y 3D)"
+        },
+        {
+          "title": "EA- Valor medio de incertidumbre posicional (1D, 2D y 3D)",
+          "const": "EA- Valor medio de incertidumbre posicional (1D, 2D y 3D)"
+        },
+        {
+          "title": "EA- Valor medio de incertidumbre posicional excluyendo valores atípicos (2D)",
+          "const": "EA- Valor medio de incertidumbre posicional excluyendo valores atípicos (2D)"
+        },
+        {
+          "title": "EACL - Número de valores de atributo incorrectos",
+          "const": "EACL - Número de valores de atributo incorrectos"
+        },
+        {
+          "title": "EACL - Porcentaje de valores de atributo correctos",
+          "const": "EACL - Porcentaje de valores de atributo correctos"
+        },
+        {
+          "title": "EACL - Porcentaje de valores de atributo incorrectos",
+          "const": "EACL - Porcentaje de valores de atributo incorrectos"
+        },
+        {
+          "title": "EACN - Incertidumbre de valor de un atributo al 50% del nivel de significancia.",
+          "const": "EACN - Incertidumbre de valor de un atributo al 50% del nivel de significancia."
+        },
+        {
+          "title": "EACN - Incertidumbre de valor de un atributo al 68,3% del nivel de significancia.",
+          "const": "EACN - Incertidumbre de valor de un atributo al 68,3% del nivel de significancia."
+        },
+        {
+          "title": "EACN - Incertidumbre de valor de un atributo al 90% del nivel de significancia",
+          "const": "EACN - Incertidumbre de valor de un atributo al 90% del nivel de significancia"
+        },
+        {
+          "title": "EACN - Incertidumbre de valor de un atributo al 95% del nivel de significancia",
+          "const": "EACN - Incertidumbre de valor de un atributo al 95% del nivel de significancia"
+        },
+        {
+          "title": "EACN - Incertidumbre de valor de un atributo al 99% del nivel de significancia",
+          "const": "EACN - Incertidumbre de valor de un atributo al 99% del nivel de significancia"
+        },
+        {
+          "title": "EACN - Incertidumbre de valor de un atributo al 99,8% del nivel de significancia",
+          "const": "EACN - Incertidumbre de valor de un atributo al 99,8% del nivel de significancia"
+        },
+        {
+          "title": "EC - Coeficiente Kappa",
+          "const": "EC - Coeficiente Kappa"
+        },
+        {
+          "title": "EC - Matriz de error de clasificación",
+          "const": "EC - Matriz de error de clasificación"
+        },
+        {
+          "title": "EC - Matriz de error relativo de clasificación",
+          "const": "EC - Matriz de error relativo de clasificación"
+        },
+        {
+          "title": "EMT - Exactitud del tiempo al 50% del nivel de significancia",
+          "const": "EMT - Exactitud del tiempo al 50% del nivel de significancia"
+        },
+        {
+          "title": "EMT - Exactitud del tiempo al 68.3% del nivel de significancia",
+          "const": "EMT - Exactitud del tiempo al 68.3% del nivel de significancia"
+        },
+        {
+          "title": "EMT - Exactitud del tiempo al 90% del nivel de significancia",
+          "const": "EMT - Exactitud del tiempo al 90% del nivel de significancia"
+        },
+        {
+          "title": "EMT - Exactitud del tiempo al 95% del nivel de significancia",
+          "const": "EMT - Exactitud del tiempo al 95% del nivel de significancia"
+        },
+        {
+          "title": "EMT - Exactitud del tiempo al 99% del nivel de significancia",
+          "const": "EMT - Exactitud del tiempo al 99% del nivel de significancia"
+        },
+        {
+          "title": "EMT - Exactitud del tiempo al 99.8% del nivel de significancia",
+          "const": "EMT - Exactitud del tiempo al 99.8% del nivel de significancia"
+        },
+        {
+          "title": "ER - Error horizontal relativo",
+          "const": "ER - Error horizontal relativo"
+        },
+        {
+          "title": "ER - Error vertical relativo",
+          "const": "ER - Error vertical relativo"
+        },
+        {
+          "title": "ETA - No conformidad en valores de dominio",
+          "const": "ETA - No conformidad en valores de dominio"
+        },
+        {
+          "title": "ETA -Porcentaje de no conformidad en valores de dominio",
+          "const": "ETA -Porcentaje de no conformidad en valores de dominio"
+        },
+        {
+          "title": "O - Ítems faltantes",
+          "const": "O - Ítems faltantes"
+        },
+        {
+          "title": "O - Número de Ítems faltantes",
+          "const": "O - Número de Ítems faltantes"
+        },
+        {
+          "title": "O - Porcentaje de Ítem faltantes",
+          "const": "O - Porcentaje de Ítem faltantes"
+        },
+        {
+          "title": "U - Conteo de aciertos en la revisión de la especificación técnica del producto",
+          "const": "U - Conteo de aciertos en la revisión de la especificación técnica del producto"
+        },
+        {
+          "title": "U - Conteo de fallos en la revisión de la especificación técnica del producto",
+          "const": "U - Conteo de fallos en la revisión de la especificación técnica del producto"
+        },
+        {
+          "title": "U - Porcentaje de aciertos en la revisión de la especificación técnica del producto",
+          "const": "U - Porcentaje de aciertos en la revisión de la especificación técnica del producto"
+        },
+        {
+          "title": "U - Porcentaje de fallos en la revisión de la especificación técnica del producto",
+          "const": "U - Porcentaje de fallos en la revisión de la especificación técnica del producto"
+        },
+        {
+          "title": "U - Revisión de la especificación técnica del producto",
+          "const": "U - Revisión de la especificación técnica del producto"
+        }
+      ]
+    },
+    "ccMetodoEvaluacion": {
+      "type": "object",
+      "title": "Metodo de evaluación",
+      "description": "Metodo de evaluación",
+      "additionalProperties": false,
+      "properties": {
+        "descripcion": {
+          "type": "string",
+          "title": "Descripción del método",
+          "description": "Descripcion del Método",
+          "maxLength": 900
+        },
+        "tipoMetodoEvaluacion": {
+          "type": "string",
+          "title": "Tipo método de evaluación",
+          "description": "Tipo Método de Evaluación",
+          "$ref": "#/$defs/ccTipoMetodoEvaluacion"
+        },
+        "procedimientosMetodo": {
+          "type": "array",
+          "title": "Citación del procedimiento de la evaluación",
+          "description": "Citación del procedimiento de la evaluación",
+          "items": {
+            "$ref": "#/$defs/citacion"
+          },
+          "uniqueItemProperties": ["id", "nombre"]
+        },
+        "tipoInspeccion": {
+          "type": "string",
+          "title": "Tipo de inspección",
+          "description": "Tipo de Inspección",
+          "$ref": "#/$defs/ccTipoInspeccionDominio"
+        },
+        "descripcionSubconjunto": {
+          "type": ["string", "null"],
+          "title": "Descripción del subconjunto",
+          "description": "Descripción del subconjunto",
+          "maxLength": 850
+        },
+        "esquemaMuestreo": {
+          "type": ["string", "null"],
+          "title": "Esquema de muestreo",
+          "description": "Esquema de muestreo",
+          "maxLength": 850
+        },
+        "radioMuestreo": {
+          "type": ["number", "null"],
+          "title": "Radio de muestreo",
+          "description": "Radio de muestreo",
+          "if": { "type": "number" },
+          "then": {
+            "exclusiveMinimum": 0,
+            "maximum": 1
+          }
+        },
+        "fuenteDeductiva": {
+          "type": ["string", "null"],
+          "title": "Fuente deductiva",
+          "description": "Fuente Deductiva",
+          "maxLength": 500
+        }
+      },
+      "if": {
+        "properties": {
+          "tipoInspeccion": {
+            "const": "Inspección muestreo"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "descripcion",
+          "tipoMetodoEvaluacion",
+          "tipoInspeccion",
+          "descripcionSubconjunto",
+          "esquemaMuestreo",
+          "radioMuestreo"
+        ]
+      },
+      "else": {
+        "required": ["descripcion", "tipoMetodoEvaluacion", "tipoInspeccion"]
+      }
+    },
+    "ccResultadosCalidad": {
+      "type": "object",
+      "title": "Resultado de calidad",
+      "description": "Resultado de calidad",
+      "additionalProperties": false,
+      "properties": {
+        "numeroErrores": {
+          "type": "integer",
+          "title": "Número de errores",
+          "description": "Número de errores",
+          "minimum": 0
+        },
+        "esConforme": {
+          "type": "boolean",
+          "title": "Es conforme",
+          "description": "Es conforme ?"
+        },
+        "explicacionConformidad": {
+          "type": "string",
+          "title": "Explicación de conformidad",
+          "description": "Explicación de Conformidad",
+          "maxLength": 900
+        },
+        "nivelConformidad": {
+          "type": "string",
+          "title": "Nivel de conformidad",
+          "description": "Nivel de Conformidad",
+          "maxLength": 850
+        },
+        "valor": {
+          "type": ["string", "null"],
+          "title": "Valor obtenido",
+          "description": "Valor obtenido"
+        },
+        "unidadValor": {
+          "type": ["string", "null"],
+          "title": "Unidad de valor",
+          "description": "Unidad de valor"
+        },
+        "declaracion": {
+          "type": ["string", "null"],
+          "title": "Declaración",
+          "description": "Declaración",
+          "maxLength": 900
+        }
+      },
+      "required": [
+        "numeroErrores",
+        "esConforme",
+        "explicacionConformidad",
+        "nivelConformidad"
+      ]
+    },
+    "ccTipoInspeccionDominio": {
+      "oneOf": [
+        {
+          "title": "Inspección completa",
+          "const": "Inspección completa"
+        },
+        {
+          "title": "Inspección indirecta",
+          "const": "Inspección indirecta"
+        },
+        {
+          "title": "Inspección muestreo",
+          "const": "Inspección muestreo"
+        }
+      ]
+    },
+    "ccTipoMetodoEvaluacion": {
+      "oneOf": [
+        {
+          "title": "Externo Directo",
+          "const": "Externo Directo"
+        },
+        {
+          "title": "Indirecto",
+          "const": "Indirecto"
+        },
+        {
+          "title": "Interno Directo",
+          "const": "Interno Directo"
+        }
+      ]
+    },
+    "ccfactorCalidad": {
+      "type": "object",
+      "title": "Factores de calidad",
+      "description": "Factores de calidad",
+      "additionalProperties": false,
+      "properties": {
+        "alcanceFactorCalidad": {
+          "type": "string",
+          "title": "Alcance del factor de calidad",
+          "description": "Alcance del factor de calidad",
+          "$ref": "#/$defs/meNivelAlcance"
+        },
+        "atributo": {
+          "type": ["string", "null"],
+          "title": "Atributo",
+          "description": "Atributo",
+          "readOnly": true
+        },
+        "catalogoMedida": {
+          "type": "string",
+          "title": "Prueba a realizar",
+          "description": "Prueba a Realizar",
+          "$ref": "#/$defs/ccCatalogoMedida"
+        },
+        "metodoEvaluacion": {
+          "type": "object",
+          "title": "Metodo de evaluación",
+          "description": "Metodo de evaluación",
+          "$ref": "#/$defs/ccMetodoEvaluacion"
+        },
+        "resultadoCalidad": {
+          "type": "object",
+          "title": "Resultado de calidad",
+          "description": "Resultado de calidad",
+          "$ref": "#/$defs/ccResultadosCalidad"
+        }
+      },
+      "if": {
+        "properties": {
+          "alcanceFactorCalidad": {
+            "const": "atributo"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "alcanceFactorCalidad",
+          "atributo",
+          "catalogoMedida",
+          "metodoEvaluacion",
+          "resultadoCalidad"
+        ]
+      },
+      "else": {
+        "required": [
+          "alcanceFactorCalidad",
+          "catalogoMedida",
+          "metodoEvaluacion",
+          "resultadoCalidad"
+        ]
+      }
+    },
+    "meNivelAlcance": {
+      "oneOf": [
+        {
+          "title": "atributo",
+          "const": "atributo"
+        },
+        {
+          "title": "objeto",
+          "const": "objeto"
+        },
+        {
+          "title": "agregado",
+          "const": "agregado"
+        },
+        {
+          "title": "aplicación",
+          "const": "aplicación"
+        },
+        {
+          "title": "cobertura",
+          "const": "cobertura"
+        },
+        {
+          "title": "colección",
+          "const": "colección"
+        },
+        {
+          "title": "conjunto Datos ",
+          "const": "conjunto Datos "
+        },
+        {
+          "title": "conjunto de datos no geográficos",
+          "const": "conjunto Datos No Geograficos"
+        },
+        {
+          "title": "documento",
+          "const": "documento"
+        },
+        {
+          "title": "grupo Dimension",
+          "const": "grupo Dimension"
+        },
+        {
+          "title": "hardware Captura",
+          "const": "hardware Captura"
+        },
+        {
+          "title": "iniciativa",
+          "const": "iniciativa"
+        },
+        {
+          "title": "metadata",
+          "const": "metadata"
+        },
+        {
+          "title": "modelo",
+          "const": "modelo"
+        },
+        {
+          "title": "muestra",
+          "const": "muestra"
+        },
+        {
+          "title": "producto",
+          "const": "producto"
+        },
+        {
+          "title": "repositorio",
+          "const": "repositorio"
+        },
+        {
+          "title": "series",
+          "const": "series"
+        },
+        {
+          "title": "servicio",
+          "const": "servicio"
+        },
+        {
+          "title": "sesión de campo",
+          "const": "sesion Campo"
+        },
+        {
+          "title": "sesion Captura",
+          "const": "sesion Captura"
+        },
+        {
+          "title": "software",
+          "const": "software"
+        },
+        {
+          "title": "tile",
+          "const": "tile"
+        },
+        {
+          "title": "tipo Atributo",
+          "const": "tipo Atributo"
+        },
+        {
+          "title": "tipo Objeto",
+          "const": "tipo Objeto"
+        },
+        {
+          "title": "tipo Propiedad",
+          "const": "tipo Propiedad"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "nombre",
+    "identificadorRecursoUniforme",
+    "fechaDatosEvaluar",
+    "numeroRegistrosObjeto",
+    "version",
+    "factoresCalidad"
+  ]
+}

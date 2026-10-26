@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Migración HEI</title>
+	<link rel="shortcut icon" href="assets/img/favicon.png" />
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.css" />
+	<!-- Firebase individual components for production -->
+	<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth__es_419.js"></script>
+
+	<link rel="stylesheet" href="./css/styles.css" />
+
+</head>
+
+<body>
+	<main class="container mt-5">
+		<div style="display: flex; justify-content: space-between;">
+			<h1 class="mb-4">Migración HEI</h1>
+			<div id="logoutContainer"
+				style="text-align: center;padding: 10px; display: flex; justify-content: center; align-items: center;">
+				<span id="userName"></span>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<button id="logoutBtn" type="button" onclick="signOut();" class="btn btn-default btn-danger">
+					Cerrar sesi&oacute;n
+				</button>
+			</div>
+		</div>
+
+		<ul class="nav nav-tabs" role="tablist">
+			<li class="nav-item" role="presentation">
+				<button class="nav-link active" id="file-tab" data-bs-toggle="tab" data-bs-target="#fileTab" type="button"
+					role="tab" aria-controls="home" aria-selected="false">Validación</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="migracion-tab" data-bs-toggle="tab" data-bs-target="#migracionTab" type="button"
+					role="tab" aria-controls="profile" aria-selected="true">Migración</button>
+			</li>
+		</ul>
+
+		<div class="tab-content">
+
+			<div class="tab-pane fade show active" id="fileTab" role="tabpanel">
+				<div class="p-3">
+					<div class="drag-drop-area" id="dragDropValidar">
+						<div class="drag-drop-content">
+							<i class="fas fa-cloud-upload-alt drag-drop-icon"></i>
+							<h4 class="drag-drop-title">Arrastra y suelta archivos a validar aquí</h4>
+							<p class="drag-drop-text">o</p>
+							<button type="button" class="btn btn-outline-primary btn-lg drag-drop-button" id="browseFilesValidarBtn">
+								Examinar archivos
+							</button>
+							<input type="file" name="inputFilesValidar" id="inputFilesValidar" multiple accept=".xlsx,.json"
+								style="display: none;" />
+						</div>
+					</div>
+					<br />
+					<ul class="nav nav-tabs" role="tablist">
+						<li class="nav-item" role="presentation">
+							<button class="nav-link active" id="CO-tab" data-bs-toggle="tab" data-bs-target="#CO_Tab" type="button"
+								role="tab" aria-controls="CO" aria-selected="true">Catalogo de Objetos</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link" id="RC-tab" data-bs-toggle="tab" data-bs-target="#RC_Tab" type="button"
+								role="tab" aria-controls="RC" aria-selected="false">Reporte de Calidad</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link" id="ET-tab" data-bs-toggle="tab" data-bs-target="#ET_Tab" type="button"
+								role="tab" aria-controls="ET" aria-selected="false">Especificación Técnica</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link" id="CR-tab" data-bs-toggle="tab" data-bs-target="#CR_Tab" type="button"
+								role="tab" aria-controls="CR" aria-selected="false">Catalogo de Representación</button>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane fade show active" id="CO_Tab" role="tabpanel">
+							<div id="divResults-CO" style="display: flex; justify-content: space-between;">
+								<div class="w-50">
+									<div class="pre-editor-container">
+										<div class="pre-editor-controls">
+											<button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-target="ouput-CO">
+												<i class="fas fa-edit"></i> Editar
+											</button>
+											<button type="button" class="btn btn-sm btn-success save-btn visually-hidden"
+												data-target="ouput-CO">
+												<i class="fas fa-save"></i> Guardar
+											</button>
+											<button type="button" class="btn btn-sm btn-secondary cancel-btn visually-hidden"
+												data-target="ouput-CO">
+												<i class="fas fa-times"></i> Cancelar
+											</button>
+											<div class="editor-message ms-auto"></div>
+										</div>
+										<pre id="ouput-CO"></pre>
+										<textarea id="ouput-CO-editor" class="form-control pre-editor visually-hidden" rows="20"></textarea>
+									</div>
+								</div>
+								<div class="w-50">
+									<div id="errores-CO"></div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="RC_Tab" role="tabpanel">
+							<div id="divResults-RC" style="display: flex; justify-content: space-between;">
+								<div class="w-50">
+									<div class="pre-editor-container">
+										<div class="pre-editor-controls">
+											<button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-target="ouput-RC">
+												<i class="fas fa-edit"></i> Editar
+											</button>
+											<button type="button" class="btn btn-sm btn-success save-btn visually-hidden"
+												data-target="ouput-RC">
+												<i class="fas fa-save"></i> Guardar
+											</button>
+											<button type="button" class="btn btn-sm btn-secondary cancel-btn visually-hidden"
+												data-target="ouput-RC">
+												<i class="fas fa-times"></i> Cancelar
+											</button>
+											<div class="editor-message ms-auto"></div>
+										</div>
+										<pre id="ouput-RC"></pre>
+										<textarea id="ouput-RC-editor" class="form-control pre-editor visually-hidden" rows="20"></textarea>
+									</div>
+								</div>
+								<div class="w-50">
+									<div id="errores-RC"></div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="ET_Tab" role="tabpanel">
+							<div id="divResults-ET" style="display: flex; justify-content: space-between;">
+								<div class="w-50">
+									<div class="pre-editor-container">
+										<div class="pre-editor-controls">
+											<button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-target="ouput-ET">
+												<i class="fas fa-edit"></i> Editar
+											</button>
+											<button type="button" class="btn btn-sm btn-success save-btn visually-hidden"
+												data-target="ouput-ET">
+												<i class="fas fa-save"></i> Guardar
+											</button>
+											<button type="button" class="btn btn-sm btn-secondary cancel-btn visually-hidden"
+												data-target="ouput-ET">
+												<i class="fas fa-times"></i> Cancelar
+											</button>
+											<div class="editor-message ms-auto"></div>
+										</div>
+										<pre id="ouput-ET"></pre>
+										<textarea id="ouput-ET-editor" class="form-control pre-editor visually-hidden" rows="20"></textarea>
+									</div>
+								</div>
+								<div class="w-50">
+									<div id="errores-ET"></div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="CR_Tab" role="tabpanel">
+							<div id="divResults-CR" style="display: flex; justify-content: space-between;">
+								<div class="w-50">
+									<div class="pre-editor-container">
+										<div class="pre-editor-controls">
+											<button type="button" class="btn btn-sm btn-outline-primary edit-btn" data-target="ouput-CR">
+												<i class="fas fa-edit"></i> Editar
+											</button>
+											<button type="button" class="btn btn-sm btn-success save-btn visually-hidden"
+												data-target="ouput-CR">
+												<i class="fas fa-save"></i> Guardar
+											</button>
+											<button type="button" class="btn btn-sm btn-secondary cancel-btn visually-hidden"
+												data-target="ouput-CR">
+												<i class="fas fa-times"></i> Cancelar
+											</button>
+											<div class="editor-message ms-auto"></div>
+										</div>
+										<pre id="ouput-CR"></pre>
+										<textarea id="ouput-CR-editor" class="form-control pre-editor visually-hidden" rows="20"></textarea>
+									</div>
+								</div>
+								<div class="w-50">
+									<div id="errores-CR"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button id="descargarJSON" class="btn btn-success visually-hidden form-control"
+					onclick="downloadJSON()">Descargar archivos JSON y LOGS</button>
+			</div>
+
+			<div class="tab-pane fade" id="migracionTab" role="tabpanel">
+				<div class="p-3">
+					<div style="top: 0px; position: relative; width: 100%; background-color: white;">
+						<div id="loginContainer" class="visually-hidden">
+							<div id="authContainer">
+							</div>
+						</div>
+					</div>
+					<div id="divMigracion" class="mt-3 visually-hidden"
+						style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+						<label for="inputIdRecurso" class="form-label">SRIG: </label>
+						<input type="text" id="inputIdRecurso" placeholder="ID Recurso" class="form-contro w-50" />
+						<button id="buscarSRIGBtn" class="btn btn-primary form-control w-25" onclick="buscarSRIG()">Buscar
+							SRIG</button>
+					</div>
+					<br />
+					<div id="divDatosSRIG" class="p-3 h-75 bg-info bg-opacity-10 border border-2 border-primary rounded">
+						<form class="flex-container mb-3">
+							<div class="mb-1" style="width:10%"><label class="form-label">ID</label><input class="form-control"
+									type="text" id="SRIG_ID" readonly></div>
+							<div class="mb-1 flex-item"><label class="form-label">Enlace: </label><input class="form-control"
+									type="text" id="SRIG_ENLACE" readonly></div>
+							<div class="mb-1 flex-item3"><label class="form-label">Entidad</label><input class="form-control"
+									type="text" id="SRIG_ENTIDAD" readonly></div>
+							<div class="mb-1 flex-item3"><label class="form-label">Padre</label><input class="form-control"
+									type="text" id="SRIG_PADRE" readonly></div>
+							<div class="mb-1 flex-item3"><label class="form-label">Campos Aplicación</label><input
+									class="form-control" type="text" id="SRIG_CAMPOS_APLICACION" readonly></div>
+							<div class="mb-1 flex-item3"><label class="form-label">Nombre</label><input class="form-control"
+									type="text" id="SRIG_NOMBRE" readonly></div>
+							<div class="mb-1 flex-item3"><label class="form-label">Nombre Alternativo</label><input
+									class="form-control" type="text" id="SRIG_NOMBRE_ALTERNATIVO" readonly></div>
+							<div class="mb-1 flex-item3"><label class="form-label">Estado</label><input class="form-control"
+									type="text" id="SRIG_ESTADO" readonly></div>
+							<div class="mb-1 flex-item3"><label class="form-label">Clase Item</label><input class="form-control"
+									type="text" id="SRIG_CLASE_ITEM" readonly></div>
+							<div class="mb-1 flex-item1"><label class="form-label">Descripción</label><textarea class="form-control"
+									rows="4" readonly id="SRIG_DESCRIPCION"></textarea></div>
+						</form>
+					</div>
+					<br />
+					<div id="divParametros" class="p-3 visually-hidden">
+						<h5>Archivos de migración</h5>
+						<br />
+						<div class="drag-drop-area" id="dragDropMigracion">
+							<div class="drag-drop-content">
+								<i class="fas fa-cloud-upload-alt drag-drop-icon"></i>
+								<h4 class="drag-drop-title">Arrastra y suelta archivos JSON a migrar aquí</h4>
+								<p class="drag-drop-text">o</p>
+								<button type="button" class="btn btn-outline-primary btn-lg drag-drop-button"
+									id="browseFilesMigracionBtn">
+									Examinar archivos
+								</button>
+								<input type="file" name="inputFilesMigracion" id="inputFilesMigracion" multiple accept=".json,.zip"
+									style="display: none;" />
+							</div>
+						</div>
+						<div id="listadoArchivosMigracion" class="visually-hidden">
+							<h6>Archivos listos para migrar:</h6>
+							<div id="archivosMigracionList" class="list-group mb-3">
+								<!-- Archivos se agregarán dinámicamente aquí -->
+							</div>
+							<div class="d-flex gap-2">
+								<button type="button" class="btn btn-outline-secondary" id="limpiarArchivosBtn">
+									<i class="fas fa-trash"></i> Limpiar archivos
+								</button>
+								<button type="button" class="btn btn-primary" id="cambiarArchivosBtn">
+									<i class="fas fa-exchange-alt"></i> Cambiar archivos
+								</button>
+							</div>
+						</div>
+						<br />
+						<button id="migrarBtn" class="btn btn-success form-control visually-hidden"
+							onclick="migrarHIE()">Migrar</button>
+					</div>
+				</div>
+			</div>
+	</main>
+
+	<!-- Modal para mensajes de sistema -->
+	<div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="mensajeModalLabel">Mensaje</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body" id="mensajeModalBody">
+					<!-- El mensaje se insertará aquí -->
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.17.1/ajv2020.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+	<script src="./js/config.js"></script>
+	<script src="./js/utils.js"></script>
+	<script src="./js/schemas.js"></script>
+	<script src="./js/index.js"></script>
+</body>
+
+</html>

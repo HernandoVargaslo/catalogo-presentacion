@@ -1,0 +1,2767 @@
+{
+  "info": {
+    "_postman_id": "70973680-feba-4c3e-88e2-a33ae9a58942",
+    "name": "UAECD-Catalogo de Recursos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "37731168"
+  },
+  "item": [
+    {
+      "name": "CRUD Dependencias",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/dependencias?cmd=create&NOMBRE=Nombre de dependencia&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjU4ODU0OSwiZXhwIjoxNzQyNTkyMTQ5LCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.vDTUiwIgzTQ1LewQ3vhF__8I4V_Ojclyu7zYAWaFq0HuTAOXjxXc4GUnWaRwCSW86u3fBDylvrbbwmaXBuCOFzlTJFMD9NkQeZBx5gYh9IbrUtlSjpi9rU0B8mToanq2Y5ESlsp7yHcGmp_CocdN0Uorqr8iWMbnFmDh01pdx5xvIGEqLQkywvTU4Ho5bdZPebTlRxDompbpfZmbmvzKtmB6uavGp40WIEP3ha8_RTP0lzX1GZSkrMpmec8Sy72cRtjNDOJImd63Xg1p4FcnI1C1FQLsLmdJWxKfqrNag9eTY59Z-ASl-E-biijZOUPZECt7OmCwog7vT0F5vX3mpg",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "dependencias"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "create"
+                },
+                {
+                  "key": "NOMBRE",
+                  "value": "Nombre de dependencia"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjU4ODU0OSwiZXhwIjoxNzQyNTkyMTQ5LCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.vDTUiwIgzTQ1LewQ3vhF__8I4V_Ojclyu7zYAWaFq0HuTAOXjxXc4GUnWaRwCSW86u3fBDylvrbbwmaXBuCOFzlTJFMD9NkQeZBx5gYh9IbrUtlSjpi9rU0B8mToanq2Y5ESlsp7yHcGmp_CocdN0Uorqr8iWMbnFmDh01pdx5xvIGEqLQkywvTU4Ho5bdZPebTlRxDompbpfZmbmvzKtmB6uavGp40WIEP3ha8_RTP0lzX1GZSkrMpmec8Sy72cRtjNDOJImd63Xg1p4FcnI1C1FQLsLmdJWxKfqrNag9eTY59Z-ASl-E-biijZOUPZECt7OmCwog7vT0F5vX3mpg"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/dependencias?cmd=update&ID_DEPENDENCIA=1&NOMBRE=Prueba Dependencia Update&token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "dependencias"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "update"
+                },
+                {
+                  "key": "ID_DEPENDENCIA",
+                  "value": "1"
+                },
+                {
+                  "key": "NOMBRE",
+                  "value": "Prueba Dependencia Update"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/dependencias?cmd=delete&ID_DEPENDENCIA=1&token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "dependencias"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "delete"
+                },
+                {
+                  "key": "ID_DEPENDENCIA",
+                  "value": "1"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Entidades",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/dependencias?cmd=query_entidades&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc3MjQ4MzE3MCwiZXhwIjoxNzcyNDg2NzcwLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.zkpcwRFC_YmdH1xMHRbYewJ-jIWEjyz1k8SE81HhMghJQFC4C2b_GitzHYEQsq3vEnXyVDwtiny2zN6jgojdO_hrRd99ztdbAcDjlY33yj2tPYinFvjtjE8-O36E2JgA2SxF9oaEbGuvowUhIBK4kPtaDwH2Jy5Sdn37sKeABffG2VEqRFW2hbDdiggbLGZRRH8qfmsuDtl8g5GbNrjuNi0-K2nsckOr4hcehxBirR9rVjYXnSlhqB7ZevHSQYa4iwhNLA9Sbc04TlYUalK5k3y_8nQeTOG8Kbnft_hSJXT2uFjwwsbL5N1vfvbAsrF2O5U9OzV99DoS9sRtJi5MWA",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "dependencias"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "query_entidades"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc3MjQ4MzE3MCwiZXhwIjoxNzcyNDg2NzcwLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.zkpcwRFC_YmdH1xMHRbYewJ-jIWEjyz1k8SE81HhMghJQFC4C2b_GitzHYEQsq3vEnXyVDwtiny2zN6jgojdO_hrRd99ztdbAcDjlY33yj2tPYinFvjtjE8-O36E2JgA2SxF9oaEbGuvowUhIBK4kPtaDwH2Jy5Sdn37sKeABffG2VEqRFW2hbDdiggbLGZRRH8qfmsuDtl8g5GbNrjuNi0-K2nsckOr4hcehxBirR9rVjYXnSlhqB7ZevHSQYa4iwhNLA9Sbc04TlYUalK5k3y_8nQeTOG8Kbnft_hSJXT2uFjwwsbL5N1vfvbAsrF2O5U9OzV99DoS9sRtJi5MWA"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Dependencias",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/dependencias?cmd=query_dependencias&ID_ENTIDAD=57&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc3MjQ4MzE3MCwiZXhwIjoxNzcyNDg2NzcwLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.zkpcwRFC_YmdH1xMHRbYewJ-jIWEjyz1k8SE81HhMghJQFC4C2b_GitzHYEQsq3vEnXyVDwtiny2zN6jgojdO_hrRd99ztdbAcDjlY33yj2tPYinFvjtjE8-O36E2JgA2SxF9oaEbGuvowUhIBK4kPtaDwH2Jy5Sdn37sKeABffG2VEqRFW2hbDdiggbLGZRRH8qfmsuDtl8g5GbNrjuNi0-K2nsckOr4hcehxBirR9rVjYXnSlhqB7ZevHSQYa4iwhNLA9Sbc04TlYUalK5k3y_8nQeTOG8Kbnft_hSJXT2uFjwwsbL5N1vfvbAsrF2O5U9OzV99DoS9sRtJi5MWA",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "dependencias"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "query_dependencias"
+                },
+                {
+                  "key": "ID_ENTIDAD",
+                  "value": "57"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc3MjQ4MzE3MCwiZXhwIjoxNzcyNDg2NzcwLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.zkpcwRFC_YmdH1xMHRbYewJ-jIWEjyz1k8SE81HhMghJQFC4C2b_GitzHYEQsq3vEnXyVDwtiny2zN6jgojdO_hrRd99ztdbAcDjlY33yj2tPYinFvjtjE8-O36E2JgA2SxF9oaEbGuvowUhIBK4kPtaDwH2Jy5Sdn37sKeABffG2VEqRFW2hbDdiggbLGZRRH8qfmsuDtl8g5GbNrjuNi0-K2nsckOr4hcehxBirR9rVjYXnSlhqB7ZevHSQYa4iwhNLA9Sbc04TlYUalK5k3y_8nQeTOG8Kbnft_hSJXT2uFjwwsbL5N1vfvbAsrF2O5U9OzV99DoS9sRtJi5MWA"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "CRUD Datos",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/datos/admin?cmd=create&NOMBRE=Prueba&DESCRIPCION=Texto&ID_ENTIDAD=57&TIPO_DATO=&IDENTIFICADOR_SRIG=https://geoitems.ideca.gov.co/diccionario/0511&IDENTIFICADOR_PDA=780d9d1d-bafa-4956-8cdc-eda5063e72b2&IDENTIFICADOR_PMB=2563&ACTIVO=1&IDENTIFICADOR_HIE&IDENTIFICADOR_METADATOS&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjZlODk1YzQ3YTA0YzVmNmRlMzExMmFmZjE2ODFhMzUwNzdkMWNjZDQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0ODk4ODA2MiwiZXhwIjoxNzQ4OTkxNjYyLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Gof3aodgTOj2Yt1RfNmonJrkIm43KlQqaPsHGv417iUF1AI2TCaPk733cmfGSisZZDAtTRKt61w8M3NH_sTnKx5OhlhneMQkNIiSTcO_QSp0Vu-9jJYVwyItbtLqkcimWUfAyDoSdXqAcG5owOyVyA458szC_bfq35R7b_GQw8y0ID9hlD2ynHLByctj5jn4-lXHfZ-KcDR93X0hYFi80jSwEM1n6T4hUeNy94TAk2L1P38myYqiRIGaoegHV8MdVP6gOfCeRaKsP7dVbMDzvyWFhBVJaueHFulACxUCp36ae3isYDghKEMFRc6Hs4nQymdjSGtzG4FGLABeW4AJOA",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "datos",
+                "admin"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "create"
+                },
+                {
+                  "key": "NOMBRE",
+                  "value": "Prueba"
+                },
+                {
+                  "key": "DESCRIPCION",
+                  "value": "Texto"
+                },
+                {
+                  "key": "ID_ENTIDAD",
+                  "value": "57"
+                },
+                {
+                  "key": "TIPO_DATO",
+                  "value": ""
+                },
+                {
+                  "key": "IDENTIFICADOR_SRIG",
+                  "value": "https://geoitems.ideca.gov.co/diccionario/0511"
+                },
+                {
+                  "key": "IDENTIFICADOR_PDA",
+                  "value": "780d9d1d-bafa-4956-8cdc-eda5063e72b2"
+                },
+                {
+                  "key": "IDENTIFICADOR_PMB",
+                  "value": "2563"
+                },
+                {
+                  "key": "ACTIVO",
+                  "value": "1",
+                  "description": "0 o 1"
+                },
+                {
+                  "key": "IDENTIFICADOR_HIE",
+                  "value": null
+                },
+                {
+                  "key": "IDENTIFICADOR_METADATOS",
+                  "value": null
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjZlODk1YzQ3YTA0YzVmNmRlMzExMmFmZjE2ODFhMzUwNzdkMWNjZDQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0ODk4ODA2MiwiZXhwIjoxNzQ4OTkxNjYyLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Gof3aodgTOj2Yt1RfNmonJrkIm43KlQqaPsHGv417iUF1AI2TCaPk733cmfGSisZZDAtTRKt61w8M3NH_sTnKx5OhlhneMQkNIiSTcO_QSp0Vu-9jJYVwyItbtLqkcimWUfAyDoSdXqAcG5owOyVyA458szC_bfq35R7b_GQw8y0ID9hlD2ynHLByctj5jn4-lXHfZ-KcDR93X0hYFi80jSwEM1n6T4hUeNy94TAk2L1P38myYqiRIGaoegHV8MdVP6gOfCeRaKsP7dVbMDzvyWFhBVJaueHFulACxUCp36ae3isYDghKEMFRc6Hs4nQymdjSGtzG4FGLABeW4AJOA"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/datos/admin?cmd=update&ID_DATO=21&NOMBRE=Prueba&DESCRIPCION=Texto&IDENTIFICADOR_PDA=780d9d1d-bafa-4956-8cdc-eda5063e72b2&IDENTIFICADOR_SRIG=https://geoitems.ideca.gov.co/diccionario/0511&IDENTIFICADOR_PMB=2563&ID_ENTIDAD=57&TIPO_DATO=&ACTIVO=1&IDENTIFICADOR_HIE&IDENTIFICADOR_METADATOS&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjZlODk1YzQ3YTA0YzVmNmRlMzExMmFmZjE2ODFhMzUwNzdkMWNjZDQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0ODk4ODA2MiwiZXhwIjoxNzQ4OTkxNjYyLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Gof3aodgTOj2Yt1RfNmonJrkIm43KlQqaPsHGv417iUF1AI2TCaPk733cmfGSisZZDAtTRKt61w8M3NH_sTnKx5OhlhneMQkNIiSTcO_QSp0Vu-9jJYVwyItbtLqkcimWUfAyDoSdXqAcG5owOyVyA458szC_bfq35R7b_GQw8y0ID9hlD2ynHLByctj5jn4-lXHfZ-KcDR93X0hYFi80jSwEM1n6T4hUeNy94TAk2L1P38myYqiRIGaoegHV8MdVP6gOfCeRaKsP7dVbMDzvyWFhBVJaueHFulACxUCp36ae3isYDghKEMFRc6Hs4nQymdjSGtzG4FGLABeW4AJOA",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "datos",
+                "admin"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "update"
+                },
+                {
+                  "key": "ID_DATO",
+                  "value": "21"
+                },
+                {
+                  "key": "NOMBRE",
+                  "value": "Prueba"
+                },
+                {
+                  "key": "DESCRIPCION",
+                  "value": "Texto"
+                },
+                {
+                  "key": "IDENTIFICADOR_PDA",
+                  "value": "780d9d1d-bafa-4956-8cdc-eda5063e72b2"
+                },
+                {
+                  "key": "IDENTIFICADOR_SRIG",
+                  "value": "https://geoitems.ideca.gov.co/diccionario/0511"
+                },
+                {
+                  "key": "IDENTIFICADOR_PMB",
+                  "value": "2563"
+                },
+                {
+                  "key": "ID_ENTIDAD",
+                  "value": "57"
+                },
+                {
+                  "key": "TIPO_DATO",
+                  "value": ""
+                },
+                {
+                  "key": "ACTIVO",
+                  "value": "1"
+                },
+                {
+                  "key": "IDENTIFICADOR_HIE",
+                  "value": null
+                },
+                {
+                  "key": "IDENTIFICADOR_METADATOS",
+                  "value": null
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjZlODk1YzQ3YTA0YzVmNmRlMzExMmFmZjE2ODFhMzUwNzdkMWNjZDQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0ODk4ODA2MiwiZXhwIjoxNzQ4OTkxNjYyLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Gof3aodgTOj2Yt1RfNmonJrkIm43KlQqaPsHGv417iUF1AI2TCaPk733cmfGSisZZDAtTRKt61w8M3NH_sTnKx5OhlhneMQkNIiSTcO_QSp0Vu-9jJYVwyItbtLqkcimWUfAyDoSdXqAcG5owOyVyA458szC_bfq35R7b_GQw8y0ID9hlD2ynHLByctj5jn4-lXHfZ-KcDR93X0hYFi80jSwEM1n6T4hUeNy94TAk2L1P38myYqiRIGaoegHV8MdVP6gOfCeRaKsP7dVbMDzvyWFhBVJaueHFulACxUCp36ae3isYDghKEMFRc6Hs4nQymdjSGtzG4FGLABeW4AJOA"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/datos/admin?cmd=delete&ID_DATO=1&token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "datos",
+                "admin"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "delete"
+                },
+                {
+                  "key": "ID_DATO",
+                  "value": "1"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/datos/admin?cmd=query&order[0][column]=0&order[0][dir]=asc&start=0&length=10&draw=0&token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "datos",
+                "admin"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "query"
+                },
+                {
+                  "key": "order[0][column]",
+                  "value": "0"
+                },
+                {
+                  "key": "order[0][dir]",
+                  "value": "asc"
+                },
+                {
+                  "key": "start",
+                  "value": "0"
+                },
+                {
+                  "key": "length",
+                  "value": "10"
+                },
+                {
+                  "key": "draw",
+                  "value": "0"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/datos/admin?cmd=get&ID_DATO=1&token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "datos",
+                "admin"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "get"
+                },
+                {
+                  "key": "ID_DATO",
+                  "value": "1"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "CRUD Inventarios",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"DATA\": \"e30=\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/inventarios/admin?cmd=create&TIPO_INVENTARIO=APLICACIONES&NOMBRE=Prueba&ID_ENTIDAD=57&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc3MjQ2Nzc1MSwiZXhwIjoxNzcyNDcxMzUxLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.GFed4tZbYUfKR17_AA67SKwkhazjvZbffM_s6d6waQx0RlcoaBlmIWP083K12wCIQ37XEb-lwBLSilI0e6eSPFFbNhA75DzljkG3j3BBFmfDRAO-FTp00-_ziOQilpTl3S1Mm-krPHFWEL992wg4VYIOXp-qWRTpO_6nlN3_nhqYYIEgb5du8BT25MMIA7-sMmjgzjF41uOQd5rfHgD56M-eisi_WvghG12SdbFcM1CHeYa1VDJqBY6bLhQYfSmZmn_Mh6AkTxYH9TbD-oCaLSUbhdGstRrP95BrnG0v4vblOtafwaTev7E77F_WDXRrzPVCh7v5S-a3vtsh8DLHoA",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "inventarios",
+                "admin"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "create"
+                },
+                {
+                  "key": "TIPO_INVENTARIO",
+                  "value": "APLICACIONES",
+                  "description": "APLICACIONES, PROYECTOS, SERVICIOS"
+                },
+                {
+                  "key": "NOMBRE",
+                  "value": "Prueba"
+                },
+                {
+                  "key": "ID_ENTIDAD",
+                  "value": "57"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc3MjQ2Nzc1MSwiZXhwIjoxNzcyNDcxMzUxLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.GFed4tZbYUfKR17_AA67SKwkhazjvZbffM_s6d6waQx0RlcoaBlmIWP083K12wCIQ37XEb-lwBLSilI0e6eSPFFbNhA75DzljkG3j3BBFmfDRAO-FTp00-_ziOQilpTl3S1Mm-krPHFWEL992wg4VYIOXp-qWRTpO_6nlN3_nhqYYIEgb5du8BT25MMIA7-sMmjgzjF41uOQd5rfHgD56M-eisi_WvghG12SdbFcM1CHeYa1VDJqBY6bLhQYfSmZmn_Mh6AkTxYH9TbD-oCaLSUbhdGstRrP95BrnG0v4vblOtafwaTev7E77F_WDXRrzPVCh7v5S-a3vtsh8DLHoA"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"DATA\": \"e30=\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/inventarios/admin?cmd=update&ID_INVENTARIO=1&NOMBRE=Prueba (texto)&TIPO_INVENTARIO=APLICACIONES&ID_ENTIDAD=57&ESTADO=CREADO&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc3MjQ2Nzc1MSwiZXhwIjoxNzcyNDcxMzUxLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.GFed4tZbYUfKR17_AA67SKwkhazjvZbffM_s6d6waQx0RlcoaBlmIWP083K12wCIQ37XEb-lwBLSilI0e6eSPFFbNhA75DzljkG3j3BBFmfDRAO-FTp00-_ziOQilpTl3S1Mm-krPHFWEL992wg4VYIOXp-qWRTpO_6nlN3_nhqYYIEgb5du8BT25MMIA7-sMmjgzjF41uOQd5rfHgD56M-eisi_WvghG12SdbFcM1CHeYa1VDJqBY6bLhQYfSmZmn_Mh6AkTxYH9TbD-oCaLSUbhdGstRrP95BrnG0v4vblOtafwaTev7E77F_WDXRrzPVCh7v5S-a3vtsh8DLHoA",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "inventarios",
+                "admin"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "update"
+                },
+                {
+                  "key": "ID_INVENTARIO",
+                  "value": "1"
+                },
+                {
+                  "key": "NOMBRE",
+                  "value": "Prueba (texto)"
+                },
+                {
+                  "key": "TIPO_INVENTARIO",
+                  "value": "APLICACIONES",
+                  "description": "APLICACIONES, PROYECTOS, SERVICIOS"
+                },
+                {
+                  "key": "ID_ENTIDAD",
+                  "value": "57",
+                  "description": "Obligatorio"
+                },
+                {
+                  "key": "ESTADO",
+                  "value": "CREADO",
+                  "description": "Obligatorio"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc3MjQ2Nzc1MSwiZXhwIjoxNzcyNDcxMzUxLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.GFed4tZbYUfKR17_AA67SKwkhazjvZbffM_s6d6waQx0RlcoaBlmIWP083K12wCIQ37XEb-lwBLSilI0e6eSPFFbNhA75DzljkG3j3BBFmfDRAO-FTp00-_ziOQilpTl3S1Mm-krPHFWEL992wg4VYIOXp-qWRTpO_6nlN3_nhqYYIEgb5du8BT25MMIA7-sMmjgzjF41uOQd5rfHgD56M-eisi_WvghG12SdbFcM1CHeYa1VDJqBY6bLhQYfSmZmn_Mh6AkTxYH9TbD-oCaLSUbhdGstRrP95BrnG0v4vblOtafwaTev7E77F_WDXRrzPVCh7v5S-a3vtsh8DLHoA"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/inventarios/admin?cmd=delete&TIPO_INVENTARIO=APLICACIONES&ID_INVENTARIO=1&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc3MjQ2Nzc1MSwiZXhwIjoxNzcyNDcxMzUxLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.GFed4tZbYUfKR17_AA67SKwkhazjvZbffM_s6d6waQx0RlcoaBlmIWP083K12wCIQ37XEb-lwBLSilI0e6eSPFFbNhA75DzljkG3j3BBFmfDRAO-FTp00-_ziOQilpTl3S1Mm-krPHFWEL992wg4VYIOXp-qWRTpO_6nlN3_nhqYYIEgb5du8BT25MMIA7-sMmjgzjF41uOQd5rfHgD56M-eisi_WvghG12SdbFcM1CHeYa1VDJqBY6bLhQYfSmZmn_Mh6AkTxYH9TbD-oCaLSUbhdGstRrP95BrnG0v4vblOtafwaTev7E77F_WDXRrzPVCh7v5S-a3vtsh8DLHoA",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "inventarios",
+                "admin"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "delete"
+                },
+                {
+                  "key": "TIPO_INVENTARIO",
+                  "value": "APLICACIONES",
+                  "description": "APLICACIONES, PROYECTOS, SERVICIOS",
+                  "type": "text"
+                },
+                {
+                  "key": "ID_INVENTARIO",
+                  "value": "1"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc3MjQ2Nzc1MSwiZXhwIjoxNzcyNDcxMzUxLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.GFed4tZbYUfKR17_AA67SKwkhazjvZbffM_s6d6waQx0RlcoaBlmIWP083K12wCIQ37XEb-lwBLSilI0e6eSPFFbNhA75DzljkG3j3BBFmfDRAO-FTp00-_ziOQilpTl3S1Mm-krPHFWEL992wg4VYIOXp-qWRTpO_6nlN3_nhqYYIEgb5du8BT25MMIA7-sMmjgzjF41uOQd5rfHgD56M-eisi_WvghG12SdbFcM1CHeYa1VDJqBY6bLhQYfSmZmn_Mh6AkTxYH9TbD-oCaLSUbhdGstRrP95BrnG0v4vblOtafwaTev7E77F_WDXRrzPVCh7v5S-a3vtsh8DLHoA"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/inventarios/admin?cmd=query&TIPO_INVENTARIO=APLICACIONES&order[0][column]=0&order[0][dir]=asc&start=0&length=10&draw=0&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc3MjQ2Nzc1MSwiZXhwIjoxNzcyNDcxMzUxLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.GFed4tZbYUfKR17_AA67SKwkhazjvZbffM_s6d6waQx0RlcoaBlmIWP083K12wCIQ37XEb-lwBLSilI0e6eSPFFbNhA75DzljkG3j3BBFmfDRAO-FTp00-_ziOQilpTl3S1Mm-krPHFWEL992wg4VYIOXp-qWRTpO_6nlN3_nhqYYIEgb5du8BT25MMIA7-sMmjgzjF41uOQd5rfHgD56M-eisi_WvghG12SdbFcM1CHeYa1VDJqBY6bLhQYfSmZmn_Mh6AkTxYH9TbD-oCaLSUbhdGstRrP95BrnG0v4vblOtafwaTev7E77F_WDXRrzPVCh7v5S-a3vtsh8DLHoA",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "inventarios",
+                "admin"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "query"
+                },
+                {
+                  "key": "TIPO_INVENTARIO",
+                  "value": "APLICACIONES",
+                  "description": "APLICACIONES, PROYECTOS, SERVICIOS"
+                },
+                {
+                  "key": "order[0][column]",
+                  "value": "0"
+                },
+                {
+                  "key": "order[0][dir]",
+                  "value": "asc"
+                },
+                {
+                  "key": "start",
+                  "value": "0"
+                },
+                {
+                  "key": "length",
+                  "value": "10"
+                },
+                {
+                  "key": "draw",
+                  "value": "0"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc3MjQ2Nzc1MSwiZXhwIjoxNzcyNDcxMzUxLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.GFed4tZbYUfKR17_AA67SKwkhazjvZbffM_s6d6waQx0RlcoaBlmIWP083K12wCIQ37XEb-lwBLSilI0e6eSPFFbNhA75DzljkG3j3BBFmfDRAO-FTp00-_ziOQilpTl3S1Mm-krPHFWEL992wg4VYIOXp-qWRTpO_6nlN3_nhqYYIEgb5du8BT25MMIA7-sMmjgzjF41uOQd5rfHgD56M-eisi_WvghG12SdbFcM1CHeYa1VDJqBY6bLhQYfSmZmn_Mh6AkTxYH9TbD-oCaLSUbhdGstRrP95BrnG0v4vblOtafwaTev7E77F_WDXRrzPVCh7v5S-a3vtsh8DLHoA"
+                },
+                {
+                  "key": "ENTIDAD",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "SERVICIOS_FORMATO",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "PROYECTOS_ETAPA",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "PROYECTOS_ANNIO",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "SERVICIOS_FORMATO",
+                  "value": null,
+                  "description": "Multiple, separado por ;",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/inventarios/admin?cmd=get&TIPO_INVENTARIO=APLICACIONES&ID_INVENTARIO=1&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc3MjQ2Nzc1MSwiZXhwIjoxNzcyNDcxMzUxLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.GFed4tZbYUfKR17_AA67SKwkhazjvZbffM_s6d6waQx0RlcoaBlmIWP083K12wCIQ37XEb-lwBLSilI0e6eSPFFbNhA75DzljkG3j3BBFmfDRAO-FTp00-_ziOQilpTl3S1Mm-krPHFWEL992wg4VYIOXp-qWRTpO_6nlN3_nhqYYIEgb5du8BT25MMIA7-sMmjgzjF41uOQd5rfHgD56M-eisi_WvghG12SdbFcM1CHeYa1VDJqBY6bLhQYfSmZmn_Mh6AkTxYH9TbD-oCaLSUbhdGstRrP95BrnG0v4vblOtafwaTev7E77F_WDXRrzPVCh7v5S-a3vtsh8DLHoA",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "inventarios",
+                "admin"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "get"
+                },
+                {
+                  "key": "TIPO_INVENTARIO",
+                  "value": "APLICACIONES",
+                  "description": "APLICACIONES, PROYECTOS, SERVICIOS"
+                },
+                {
+                  "key": "ID_INVENTARIO",
+                  "value": "1"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc3MjQ2Nzc1MSwiZXhwIjoxNzcyNDcxMzUxLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.GFed4tZbYUfKR17_AA67SKwkhazjvZbffM_s6d6waQx0RlcoaBlmIWP083K12wCIQ37XEb-lwBLSilI0e6eSPFFbNhA75DzljkG3j3BBFmfDRAO-FTp00-_ziOQilpTl3S1Mm-krPHFWEL992wg4VYIOXp-qWRTpO_6nlN3_nhqYYIEgb5du8BT25MMIA7-sMmjgzjF41uOQd5rfHgD56M-eisi_WvghG12SdbFcM1CHeYa1VDJqBY6bLhQYfSmZmn_Mh6AkTxYH9TbD-oCaLSUbhdGstRrP95BrnG0v4vblOtafwaTev7E77F_WDXRrzPVCh7v5S-a3vtsh8DLHoA"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "CRUD HIE",
+      "item": [
+        {
+          "name": "Registros",
+          "item": [
+            {
+              "name": "Create",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/admin?cmd=create&NOMBRE=Prueba&IDENTIFICADOR_SRIG=https://geoitems.ideca.gov.co/diccionario/0511&IDENTIFICADOR_PADRE&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjU4ODU0OSwiZXhwIjoxNzQyNTkyMTQ5LCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.vDTUiwIgzTQ1LewQ3vhF__8I4V_Ojclyu7zYAWaFq0HuTAOXjxXc4GUnWaRwCSW86u3fBDylvrbbwmaXBuCOFzlTJFMD9NkQeZBx5gYh9IbrUtlSjpi9rU0B8mToanq2Y5ESlsp7yHcGmp_CocdN0Uorqr8iWMbnFmDh01pdx5xvIGEqLQkywvTU4Ho5bdZPebTlRxDompbpfZmbmvzKtmB6uavGp40WIEP3ha8_RTP0lzX1GZSkrMpmec8Sy72cRtjNDOJImd63Xg1p4FcnI1C1FQLsLmdJWxKfqrNag9eTY59Z-ASl-E-biijZOUPZECt7OmCwog7vT0F5vX3mpg&CATALOGO_OBJETOS=e30=",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "admin"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "create"
+                    },
+                    {
+                      "key": "NOMBRE",
+                      "value": "Prueba"
+                    },
+                    {
+                      "key": "IDENTIFICADOR_SRIG",
+                      "value": "https://geoitems.ideca.gov.co/diccionario/0511"
+                    },
+                    {
+                      "key": "IDENTIFICADOR_PADRE",
+                      "value": null
+                    },
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjU4ODU0OSwiZXhwIjoxNzQyNTkyMTQ5LCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.vDTUiwIgzTQ1LewQ3vhF__8I4V_Ojclyu7zYAWaFq0HuTAOXjxXc4GUnWaRwCSW86u3fBDylvrbbwmaXBuCOFzlTJFMD9NkQeZBx5gYh9IbrUtlSjpi9rU0B8mToanq2Y5ESlsp7yHcGmp_CocdN0Uorqr8iWMbnFmDh01pdx5xvIGEqLQkywvTU4Ho5bdZPebTlRxDompbpfZmbmvzKtmB6uavGp40WIEP3ha8_RTP0lzX1GZSkrMpmec8Sy72cRtjNDOJImd63Xg1p4FcnI1C1FQLsLmdJWxKfqrNag9eTY59Z-ASl-E-biijZOUPZECt7OmCwog7vT0F5vX3mpg"
+                    },
+                    {
+                      "key": "CATALOGO_OBJETOS",
+                      "value": "e30=",
+                      "description": "JSON en base64 (Opcional)"
+                    },
+                    {
+                      "key": "ESPECIFICACION_TECNICA",
+                      "value": "",
+                      "description": "JSON en base64 (Opcional)",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "CALIDAD",
+                      "value": "",
+                      "description": "JSON en base64 (Opcional)",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "REPRESENTACION",
+                      "value": "",
+                      "description": "JSON en base64 (Opcional)",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "FLAG_CATALOGO_OBJETOS",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "FLAG_ESPECIFICACION_TECNICA",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "FLAG_CALIDAD",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "FLAG_REPRESENTACION",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create2",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"CATALOGO_OBJETOS\": \"e30=\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/admin?cmd=create2&NOMBRE=Prueba&IDENTIFICADOR_SRIG=https://geoitems.ideca.gov.co/diccionario/0511&IDENTIFICADOR_PADRE&token=eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1MTg5MTkxMTA3NjA1NDM0NGUxNWUyNTY0MjViYjQyNWVlYjNhNWMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc2NDc5MDM3MCwiZXhwIjoxNzY0NzkzOTcwLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.RI1X7CuXqwmlk5sq34MNw2-2xBK8mOTl1ULyF1tEMJMuYIBlQKZzio7RBtC-GI9ahkSw2-eD2sqzOYtdO0gwcn3bzyzfSJM3z7tBUCWGJRfircX-vZecNA9kMtvoXYbKgtYXGS5x67cc4R2L60LtbweHM6WdJltkisX13UphadwWr8DGmV8uvvrbdGTYnp90KPNnVg2nSl1TZwu74mMJlnPvBz7RaOjHEUO_qP0PVvGu46R6tSLi_uMCLeY4Wtv3in8hfAVtgNEO5kW4Gb9ppRdyRzdUsRP3UWpUh0f_ipaBp7N5ID85UUC6sFI5XKEVXVTntARYgpFrCwJpn12BRQ",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "admin"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "create2"
+                    },
+                    {
+                      "key": "NOMBRE",
+                      "value": "Prueba"
+                    },
+                    {
+                      "key": "IDENTIFICADOR_SRIG",
+                      "value": "https://geoitems.ideca.gov.co/diccionario/0511"
+                    },
+                    {
+                      "key": "IDENTIFICADOR_PADRE",
+                      "value": null
+                    },
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1MTg5MTkxMTA3NjA1NDM0NGUxNWUyNTY0MjViYjQyNWVlYjNhNWMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc2NDc5MDM3MCwiZXhwIjoxNzY0NzkzOTcwLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.RI1X7CuXqwmlk5sq34MNw2-2xBK8mOTl1ULyF1tEMJMuYIBlQKZzio7RBtC-GI9ahkSw2-eD2sqzOYtdO0gwcn3bzyzfSJM3z7tBUCWGJRfircX-vZecNA9kMtvoXYbKgtYXGS5x67cc4R2L60LtbweHM6WdJltkisX13UphadwWr8DGmV8uvvrbdGTYnp90KPNnVg2nSl1TZwu74mMJlnPvBz7RaOjHEUO_qP0PVvGu46R6tSLi_uMCLeY4Wtv3in8hfAVtgNEO5kW4Gb9ppRdyRzdUsRP3UWpUh0f_ipaBp7N5ID85UUC6sFI5XKEVXVTntARYgpFrCwJpn12BRQ"
+                    },
+                    {
+                      "key": "FLAG_CATALOGO_OBJETOS",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "FLAG_ESPECIFICACION_TECNICA",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "FLAG_CALIDAD",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "FLAG_REPRESENTACION",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/admin?cmd=update&ID_REGISTRO=1&NOMBRE=Prueba&IDENTIFICADOR_SRIG=https://geoitems.ideca.gov.co/diccionario/0511&IDENTIFICADOR_PADRE&token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg&CATALOGO_OBJETOS=e30=&ESTADO=PUBLICADO",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "admin"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "update"
+                    },
+                    {
+                      "key": "ID_REGISTRO",
+                      "value": "1"
+                    },
+                    {
+                      "key": "NOMBRE",
+                      "value": "Prueba"
+                    },
+                    {
+                      "key": "IDENTIFICADOR_SRIG",
+                      "value": "https://geoitems.ideca.gov.co/diccionario/0511"
+                    },
+                    {
+                      "key": "IDENTIFICADOR_PADRE",
+                      "value": null
+                    },
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg"
+                    },
+                    {
+                      "key": "CATALOGO_OBJETOS",
+                      "value": "e30=",
+                      "description": "JSON en base64 (Opcional)"
+                    },
+                    {
+                      "key": "ESPECIFICACION_TECNICA",
+                      "value": "",
+                      "description": "JSON en base64 (Opcional)",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "CALIDAD",
+                      "value": "",
+                      "description": "JSON en base64 (Opcional)",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "REPRESENTACION",
+                      "value": "",
+                      "description": "JSON en base64 (Opcional)",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "FLAG_CATALOGO_OBJETOS",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "FLAG_ESPECIFICACION_TECNICA",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "FLAG_CALIDAD",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "FLAG_REPRESENTACION",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "ESTADO",
+                      "value": "PUBLICADO",
+                      "description": "CREADO, BORRADOR, PUBLICADO, MIGRADO",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update2",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"CALIDAD\": \"e30=\",\r\n    \"ESPECIFICACION_TECNICA\": \"e30=\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/admin?cmd=update2&ID_REGISTRO=3094&NOMBRE=Prueba 2&IDENTIFICADOR_SRIG=https://geoitems.ideca.gov.co/diccionario/0511&IDENTIFICADOR_PADRE&token=eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1MTg5MTkxMTA3NjA1NDM0NGUxNWUyNTY0MjViYjQyNWVlYjNhNWMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc2NDc5MDM3MCwiZXhwIjoxNzY0NzkzOTcwLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.RI1X7CuXqwmlk5sq34MNw2-2xBK8mOTl1ULyF1tEMJMuYIBlQKZzio7RBtC-GI9ahkSw2-eD2sqzOYtdO0gwcn3bzyzfSJM3z7tBUCWGJRfircX-vZecNA9kMtvoXYbKgtYXGS5x67cc4R2L60LtbweHM6WdJltkisX13UphadwWr8DGmV8uvvrbdGTYnp90KPNnVg2nSl1TZwu74mMJlnPvBz7RaOjHEUO_qP0PVvGu46R6tSLi_uMCLeY4Wtv3in8hfAVtgNEO5kW4Gb9ppRdyRzdUsRP3UWpUh0f_ipaBp7N5ID85UUC6sFI5XKEVXVTntARYgpFrCwJpn12BRQ&ESTADO=PUBLICADO",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "admin"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "update2"
+                    },
+                    {
+                      "key": "ID_REGISTRO",
+                      "value": "3094"
+                    },
+                    {
+                      "key": "NOMBRE",
+                      "value": "Prueba 2"
+                    },
+                    {
+                      "key": "IDENTIFICADOR_SRIG",
+                      "value": "https://geoitems.ideca.gov.co/diccionario/0511"
+                    },
+                    {
+                      "key": "IDENTIFICADOR_PADRE",
+                      "value": null
+                    },
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1MTg5MTkxMTA3NjA1NDM0NGUxNWUyNTY0MjViYjQyNWVlYjNhNWMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc2NDc5MDM3MCwiZXhwIjoxNzY0NzkzOTcwLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.RI1X7CuXqwmlk5sq34MNw2-2xBK8mOTl1ULyF1tEMJMuYIBlQKZzio7RBtC-GI9ahkSw2-eD2sqzOYtdO0gwcn3bzyzfSJM3z7tBUCWGJRfircX-vZecNA9kMtvoXYbKgtYXGS5x67cc4R2L60LtbweHM6WdJltkisX13UphadwWr8DGmV8uvvrbdGTYnp90KPNnVg2nSl1TZwu74mMJlnPvBz7RaOjHEUO_qP0PVvGu46R6tSLi_uMCLeY4Wtv3in8hfAVtgNEO5kW4Gb9ppRdyRzdUsRP3UWpUh0f_ipaBp7N5ID85UUC6sFI5XKEVXVTntARYgpFrCwJpn12BRQ"
+                    },
+                    {
+                      "key": "FLAG_CATALOGO_OBJETOS",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "FLAG_ESPECIFICACION_TECNICA",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "FLAG_CALIDAD",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "FLAG_REPRESENTACION",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "ESTADO",
+                      "value": "PUBLICADO",
+                      "description": "CREADO, BORRADOR, PUBLICADO, MIGRADO"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Crear mensaje",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/admin?cmd=create_msg&ID_REGISTRO=1&MENSAJE=e30=&token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "admin"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "create_msg"
+                    },
+                    {
+                      "key": "ID_REGISTRO",
+                      "value": "1"
+                    },
+                    {
+                      "key": "MENSAJE",
+                      "value": "e30=",
+                      "description": "JSON en base64"
+                    },
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/admin?cmd=delete&ID_REGISTRO=1&token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "admin"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "delete"
+                    },
+                    {
+                      "key": "ID_REGISTRO",
+                      "value": "1"
+                    },
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "List",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/admin?cmd=query&srig_clase=Objeto&srig_estado=Retirado&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjJiN2JhZmIyZjEwY2FlMmIxZjA3ZjM4MTZjNTQyMmJlY2NhNWMyMjMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc1NTAwMjEyNywiZXhwIjoxNzU1MDA1NzI3LCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.PlSr6TxSwVmxkoyVE-rRMGWU4WhcPGuIQxIP7uTZ7psBLMCzY3hVp7IYB5Wb1bbjyoi-DQKJTaPClzNT-bWOjAuEzJvdq83HMtb9TlJZF8zaGCLZ7Ipx4PVLBqaY6sVUaBiziquEflDIuUtDEmjHq-5nqv92LwjczsXftjo1oMAkVAAvpxQc2_3_kfR-fHyO8Cb_16UN_tdhvPOUF-zB_eocGnvglwLciKnRtzA0Hv04ATyvqZtwq86-tB_y4wAt_od8ifR7JdmJZldBGJCWSrkyRU33pBHKyjopKqzEthIolqmONA_pAeYOSaPOw4Was87Iqea5LyX0MwvQYDp2iA",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "admin"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "query"
+                    },
+                    {
+                      "key": "query",
+                      "value": "",
+                      "description": "(Opcional)",
+                      "disabled": true
+                    },
+                    {
+                      "key": "srig_clase",
+                      "value": "Objeto",
+                      "description": "(Opcional)"
+                    },
+                    {
+                      "key": "srig_estado",
+                      "value": "Retirado"
+                    },
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJiN2JhZmIyZjEwY2FlMmIxZjA3ZjM4MTZjNTQyMmJlY2NhNWMyMjMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc1NTAwMjEyNywiZXhwIjoxNzU1MDA1NzI3LCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.PlSr6TxSwVmxkoyVE-rRMGWU4WhcPGuIQxIP7uTZ7psBLMCzY3hVp7IYB5Wb1bbjyoi-DQKJTaPClzNT-bWOjAuEzJvdq83HMtb9TlJZF8zaGCLZ7Ipx4PVLBqaY6sVUaBiziquEflDIuUtDEmjHq-5nqv92LwjczsXftjo1oMAkVAAvpxQc2_3_kfR-fHyO8Cb_16UN_tdhvPOUF-zB_eocGnvglwLciKnRtzA0Hv04ATyvqZtwq86-tB_y4wAt_od8ifR7JdmJZldBGJCWSrkyRU33pBHKyjopKqzEthIolqmONA_pAeYOSaPOw4Was87Iqea5LyX0MwvQYDp2iA"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/admin?cmd=get&IDENTIFICADOR_SRIG&token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "admin"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "get"
+                    },
+                    {
+                      "key": "ID_REGISTRO",
+                      "value": "21",
+                      "description": "La consulta se puede hacer por ID_REGISTRO o  IDENTIFICADOR_SRIG",
+                      "disabled": true
+                    },
+                    {
+                      "key": "IDENTIFICADOR_SRIG",
+                      "value": null,
+                      "description": "La consulta se puede hacer por ID_REGISTRO o  IDENTIFICADOR_SRIG",
+                      "type": "text"
+                    },
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Citaciones",
+          "item": [
+            {
+              "name": "Create",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/admin?cmd=create_citacion&NOMBRE=Prueba Citacion&CITACION=e30=&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjU4ODU0OSwiZXhwIjoxNzQyNTkyMTQ5LCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.vDTUiwIgzTQ1LewQ3vhF__8I4V_Ojclyu7zYAWaFq0HuTAOXjxXc4GUnWaRwCSW86u3fBDylvrbbwmaXBuCOFzlTJFMD9NkQeZBx5gYh9IbrUtlSjpi9rU0B8mToanq2Y5ESlsp7yHcGmp_CocdN0Uorqr8iWMbnFmDh01pdx5xvIGEqLQkywvTU4Ho5bdZPebTlRxDompbpfZmbmvzKtmB6uavGp40WIEP3ha8_RTP0lzX1GZSkrMpmec8Sy72cRtjNDOJImd63Xg1p4FcnI1C1FQLsLmdJWxKfqrNag9eTY59Z-ASl-E-biijZOUPZECt7OmCwog7vT0F5vX3mpg",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "admin"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "create_citacion"
+                    },
+                    {
+                      "key": "NOMBRE",
+                      "value": "Prueba Citacion"
+                    },
+                    {
+                      "key": "CITACION",
+                      "value": "e30=",
+                      "description": "JSON en base64 (Opcional)"
+                    },
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjU4ODU0OSwiZXhwIjoxNzQyNTkyMTQ5LCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.vDTUiwIgzTQ1LewQ3vhF__8I4V_Ojclyu7zYAWaFq0HuTAOXjxXc4GUnWaRwCSW86u3fBDylvrbbwmaXBuCOFzlTJFMD9NkQeZBx5gYh9IbrUtlSjpi9rU0B8mToanq2Y5ESlsp7yHcGmp_CocdN0Uorqr8iWMbnFmDh01pdx5xvIGEqLQkywvTU4Ho5bdZPebTlRxDompbpfZmbmvzKtmB6uavGp40WIEP3ha8_RTP0lzX1GZSkrMpmec8Sy72cRtjNDOJImd63Xg1p4FcnI1C1FQLsLmdJWxKfqrNag9eTY59Z-ASl-E-biijZOUPZECt7OmCwog7vT0F5vX3mpg"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/admin?cmd=update_citacion&ID_CITACION=1&NOMBRE=Prueba Citacion Update&CITACION=e30=&token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "admin"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "update_citacion"
+                    },
+                    {
+                      "key": "ID_CITACION",
+                      "value": "1"
+                    },
+                    {
+                      "key": "NOMBRE",
+                      "value": "Prueba Citacion Update"
+                    },
+                    {
+                      "key": "CITACION",
+                      "value": "e30=",
+                      "description": "JSON en base64 (Opcional)"
+                    },
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/admin?cmd=delete_citacion&ID_CITACION=1&token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "admin"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "delete_citacion"
+                    },
+                    {
+                      "key": "ID_CITACION",
+                      "value": "1"
+                    },
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJjNDAxN2U3MGE4MWM5NTMxY2YxYjY4MjY4M2Q5OThlNGY1NTg5MTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MTI4NjQ5MywiZXhwIjoxNzQxMjkwMDkzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.UdSDD3Hq0yKy0NBF-7LVx-00M4kpCTn7P1nZaBmqSVoMcecsd6Qhw67DBJZGZkbcmxkKM35KJ2YrD17kl5ULDaJX2tv42JI_6nkGZHksNhwbP64aWvMbN6ZuDea34UcYTs4gBfETyfCQdQC2fXr11ZitB3XoVXYy4KOUdw9ocJRUNT-Uq3sL8_xfFElZvG6rfcUZKTwiQAZJ_LxM7iBSmpYrWc6tUdROtd3PyNthozlH6uDx2KGoY9t7X5OHPxxEFB6vtkZBFxCPGA3eZXN3wS8orfnu5dIQCGBcJX8S-OZm9C4RHgVC1K0XkjXB8ojoMax9Zx9PdD1DvzjoPOc_sg"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CRUD Permisos",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/permisos?cmd=create_permiso&ID_USUARIO=121&ID_ENTIDAD=1&TIPO=ADMIN&ACTIVO=1&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjkwNDY0MywiZXhwIjoxNzQyOTA4MjQzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.D-ygPJdWMsfQLXKe07GQvnP_DHretKxklXcfomWtEzR0s6uC32f5rgAJGj6J6LPRqBK9VNy589JZOe0yWvaJBY8qfEApVb5FZrZcO2GEA_qKD5HYr3K_6opGxfQdZUYKYHXrzv374BEr-ituTRYtc8-filytmhaHVcPDGOpEM1pE-i7GqK9_ZdVwxDd8Cr8KqGz3ZgHdfyY8T40xmiuPimpTgwM9F2U7y6mzr61VUR6OQZwSTZLZ414n8S8svb_wei8Frzg6UwX09XDqQeCP8M6JuTy79SwTqg_oGP9pVICgiLQzAfWUerCI4zR3OIXKTBgxGYMbmz1SSI2GteW6uA&MODULO=HIE",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "permisos"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "create_permiso"
+                },
+                {
+                  "key": "ID_USUARIO",
+                  "value": "121"
+                },
+                {
+                  "key": "ID_ENTIDAD",
+                  "value": "1"
+                },
+                {
+                  "key": "TIPO",
+                  "value": "ADMIN",
+                  "description": "ADMIN, LIDER, IDECA, ENTIDAD"
+                },
+                {
+                  "key": "ACTIVO",
+                  "value": "1",
+                  "description": "0, 1"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjkwNDY0MywiZXhwIjoxNzQyOTA4MjQzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.D-ygPJdWMsfQLXKe07GQvnP_DHretKxklXcfomWtEzR0s6uC32f5rgAJGj6J6LPRqBK9VNy589JZOe0yWvaJBY8qfEApVb5FZrZcO2GEA_qKD5HYr3K_6opGxfQdZUYKYHXrzv374BEr-ituTRYtc8-filytmhaHVcPDGOpEM1pE-i7GqK9_ZdVwxDd8Cr8KqGz3ZgHdfyY8T40xmiuPimpTgwM9F2U7y6mzr61VUR6OQZwSTZLZ414n8S8svb_wei8Frzg6UwX09XDqQeCP8M6JuTy79SwTqg_oGP9pVICgiLQzAfWUerCI4zR3OIXKTBgxGYMbmz1SSI2GteW6uA"
+                },
+                {
+                  "key": "MODULO",
+                  "value": "HIE",
+                  "description": "HIE, DATOS, ADMIN"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/permisos?cmd=update_permiso&ID_PERMISO=2&ID_USUARIO=121&ID_ENTIDAD=1&TIPO=ENTIDAD&ACTIVO=1&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjkwNDY0MywiZXhwIjoxNzQyOTA4MjQzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.D-ygPJdWMsfQLXKe07GQvnP_DHretKxklXcfomWtEzR0s6uC32f5rgAJGj6J6LPRqBK9VNy589JZOe0yWvaJBY8qfEApVb5FZrZcO2GEA_qKD5HYr3K_6opGxfQdZUYKYHXrzv374BEr-ituTRYtc8-filytmhaHVcPDGOpEM1pE-i7GqK9_ZdVwxDd8Cr8KqGz3ZgHdfyY8T40xmiuPimpTgwM9F2U7y6mzr61VUR6OQZwSTZLZ414n8S8svb_wei8Frzg6UwX09XDqQeCP8M6JuTy79SwTqg_oGP9pVICgiLQzAfWUerCI4zR3OIXKTBgxGYMbmz1SSI2GteW6uA&MODULO=HIE",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "permisos"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "update_permiso"
+                },
+                {
+                  "key": "ID_PERMISO",
+                  "value": "2"
+                },
+                {
+                  "key": "ID_USUARIO",
+                  "value": "121"
+                },
+                {
+                  "key": "ID_ENTIDAD",
+                  "value": "1"
+                },
+                {
+                  "key": "TIPO",
+                  "value": "ENTIDAD",
+                  "description": "ADMIN, LIDER, IDECA, ENTIDAD"
+                },
+                {
+                  "key": "ACTIVO",
+                  "value": "1",
+                  "description": "0, 1"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjkwNDY0MywiZXhwIjoxNzQyOTA4MjQzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.D-ygPJdWMsfQLXKe07GQvnP_DHretKxklXcfomWtEzR0s6uC32f5rgAJGj6J6LPRqBK9VNy589JZOe0yWvaJBY8qfEApVb5FZrZcO2GEA_qKD5HYr3K_6opGxfQdZUYKYHXrzv374BEr-ituTRYtc8-filytmhaHVcPDGOpEM1pE-i7GqK9_ZdVwxDd8Cr8KqGz3ZgHdfyY8T40xmiuPimpTgwM9F2U7y6mzr61VUR6OQZwSTZLZ414n8S8svb_wei8Frzg6UwX09XDqQeCP8M6JuTy79SwTqg_oGP9pVICgiLQzAfWUerCI4zR3OIXKTBgxGYMbmz1SSI2GteW6uA"
+                },
+                {
+                  "key": "MODULO",
+                  "value": "HIE",
+                  "description": "HIE, DATOS, ADMIN"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/permisos?cmd=delete_permiso&ID_PERMISO=2&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjkwNDY0MywiZXhwIjoxNzQyOTA4MjQzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.D-ygPJdWMsfQLXKe07GQvnP_DHretKxklXcfomWtEzR0s6uC32f5rgAJGj6J6LPRqBK9VNy589JZOe0yWvaJBY8qfEApVb5FZrZcO2GEA_qKD5HYr3K_6opGxfQdZUYKYHXrzv374BEr-ituTRYtc8-filytmhaHVcPDGOpEM1pE-i7GqK9_ZdVwxDd8Cr8KqGz3ZgHdfyY8T40xmiuPimpTgwM9F2U7y6mzr61VUR6OQZwSTZLZ414n8S8svb_wei8Frzg6UwX09XDqQeCP8M6JuTy79SwTqg_oGP9pVICgiLQzAfWUerCI4zR3OIXKTBgxGYMbmz1SSI2GteW6uA",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "permisos"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "delete_permiso"
+                },
+                {
+                  "key": "ID_PERMISO",
+                  "value": "2"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjkwNDY0MywiZXhwIjoxNzQyOTA4MjQzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.D-ygPJdWMsfQLXKe07GQvnP_DHretKxklXcfomWtEzR0s6uC32f5rgAJGj6J6LPRqBK9VNy589JZOe0yWvaJBY8qfEApVb5FZrZcO2GEA_qKD5HYr3K_6opGxfQdZUYKYHXrzv374BEr-ituTRYtc8-filytmhaHVcPDGOpEM1pE-i7GqK9_ZdVwxDd8Cr8KqGz3ZgHdfyY8T40xmiuPimpTgwM9F2U7y6mzr61VUR6OQZwSTZLZ414n8S8svb_wei8Frzg6UwX09XDqQeCP8M6JuTy79SwTqg_oGP9pVICgiLQzAfWUerCI4zR3OIXKTBgxGYMbmz1SSI2GteW6uA"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/permisos?cmd=query_permisos&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjkwNDY0MywiZXhwIjoxNzQyOTA4MjQzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.D-ygPJdWMsfQLXKe07GQvnP_DHretKxklXcfomWtEzR0s6uC32f5rgAJGj6J6LPRqBK9VNy589JZOe0yWvaJBY8qfEApVb5FZrZcO2GEA_qKD5HYr3K_6opGxfQdZUYKYHXrzv374BEr-ituTRYtc8-filytmhaHVcPDGOpEM1pE-i7GqK9_ZdVwxDd8Cr8KqGz3ZgHdfyY8T40xmiuPimpTgwM9F2U7y6mzr61VUR6OQZwSTZLZ414n8S8svb_wei8Frzg6UwX09XDqQeCP8M6JuTy79SwTqg_oGP9pVICgiLQzAfWUerCI4zR3OIXKTBgxGYMbmz1SSI2GteW6uA",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "permisos"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "query_permisos"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjkwNDY0MywiZXhwIjoxNzQyOTA4MjQzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.D-ygPJdWMsfQLXKe07GQvnP_DHretKxklXcfomWtEzR0s6uC32f5rgAJGj6J6LPRqBK9VNy589JZOe0yWvaJBY8qfEApVb5FZrZcO2GEA_qKD5HYr3K_6opGxfQdZUYKYHXrzv374BEr-ituTRYtc8-filytmhaHVcPDGOpEM1pE-i7GqK9_ZdVwxDd8Cr8KqGz3ZgHdfyY8T40xmiuPimpTgwM9F2U7y6mzr61VUR6OQZwSTZLZ414n8S8svb_wei8Frzg6UwX09XDqQeCP8M6JuTy79SwTqg_oGP9pVICgiLQzAfWUerCI4zR3OIXKTBgxGYMbmz1SSI2GteW6uA"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Usuarios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/permisos?cmd=query_usuarios&query=@catastrobogota.gov.co&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjkwNDY0MywiZXhwIjoxNzQyOTA4MjQzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.D-ygPJdWMsfQLXKe07GQvnP_DHretKxklXcfomWtEzR0s6uC32f5rgAJGj6J6LPRqBK9VNy589JZOe0yWvaJBY8qfEApVb5FZrZcO2GEA_qKD5HYr3K_6opGxfQdZUYKYHXrzv374BEr-ituTRYtc8-filytmhaHVcPDGOpEM1pE-i7GqK9_ZdVwxDd8Cr8KqGz3ZgHdfyY8T40xmiuPimpTgwM9F2U7y6mzr61VUR6OQZwSTZLZ414n8S8svb_wei8Frzg6UwX09XDqQeCP8M6JuTy79SwTqg_oGP9pVICgiLQzAfWUerCI4zR3OIXKTBgxGYMbmz1SSI2GteW6uA",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "permisos"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "query_usuarios"
+                },
+                {
+                  "key": "query",
+                  "value": "@catastrobogota.gov.co"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjkwNDY0MywiZXhwIjoxNzQyOTA4MjQzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.D-ygPJdWMsfQLXKe07GQvnP_DHretKxklXcfomWtEzR0s6uC32f5rgAJGj6J6LPRqBK9VNy589JZOe0yWvaJBY8qfEApVb5FZrZcO2GEA_qKD5HYr3K_6opGxfQdZUYKYHXrzv374BEr-ituTRYtc8-filytmhaHVcPDGOpEM1pE-i7GqK9_ZdVwxDd8Cr8KqGz3ZgHdfyY8T40xmiuPimpTgwM9F2U7y6mzr61VUR6OQZwSTZLZ414n8S8svb_wei8Frzg6UwX09XDqQeCP8M6JuTy79SwTqg_oGP9pVICgiLQzAfWUerCI4zR3OIXKTBgxGYMbmz1SSI2GteW6uA"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Entidades",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/permisos?cmd=query_entidades&query=UAECD&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjkwNDY0MywiZXhwIjoxNzQyOTA4MjQzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.D-ygPJdWMsfQLXKe07GQvnP_DHretKxklXcfomWtEzR0s6uC32f5rgAJGj6J6LPRqBK9VNy589JZOe0yWvaJBY8qfEApVb5FZrZcO2GEA_qKD5HYr3K_6opGxfQdZUYKYHXrzv374BEr-ituTRYtc8-filytmhaHVcPDGOpEM1pE-i7GqK9_ZdVwxDd8Cr8KqGz3ZgHdfyY8T40xmiuPimpTgwM9F2U7y6mzr61VUR6OQZwSTZLZ414n8S8svb_wei8Frzg6UwX09XDqQeCP8M6JuTy79SwTqg_oGP9pVICgiLQzAfWUerCI4zR3OIXKTBgxGYMbmz1SSI2GteW6uA",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "permisos"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "query_entidades"
+                },
+                {
+                  "key": "query",
+                  "value": "UAECD"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjkwNDY0MywiZXhwIjoxNzQyOTA4MjQzLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.D-ygPJdWMsfQLXKe07GQvnP_DHretKxklXcfomWtEzR0s6uC32f5rgAJGj6J6LPRqBK9VNy589JZOe0yWvaJBY8qfEApVb5FZrZcO2GEA_qKD5HYr3K_6opGxfQdZUYKYHXrzv374BEr-ituTRYtc8-filytmhaHVcPDGOpEM1pE-i7GqK9_ZdVwxDd8Cr8KqGz3ZgHdfyY8T40xmiuPimpTgwM9F2U7y6mzr61VUR6OQZwSTZLZ414n8S8svb_wei8Frzg6UwX09XDqQeCP8M6JuTy79SwTqg_oGP9pVICgiLQzAfWUerCI4zR3OIXKTBgxGYMbmz1SSI2GteW6uA"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "DATOS - Publico",
+      "item": [
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/datos/web?cmd=query&order[0][column]=0&order[0][dir]=asc&start=0&length=10&draw=0&search[value]",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "datos",
+                "web"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "query"
+                },
+                {
+                  "key": "order[0][column]",
+                  "value": "0"
+                },
+                {
+                  "key": "order[0][dir]",
+                  "value": "asc"
+                },
+                {
+                  "key": "start",
+                  "value": "0"
+                },
+                {
+                  "key": "length",
+                  "value": "10"
+                },
+                {
+                  "key": "draw",
+                  "value": "0"
+                },
+                {
+                  "key": "search[value]",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/datos/web?cmd=get&ID_DATO=21",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "datos",
+                "web"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "get"
+                },
+                {
+                  "key": "ID_DATO",
+                  "value": "21"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Exportar",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/datos/web?cmd=export&query=manzana",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "datos",
+                "web"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "export"
+                },
+                {
+                  "key": "ID_ENTIDAD",
+                  "value": "57",
+                  "description": "(Opcional)",
+                  "disabled": true
+                },
+                {
+                  "key": "SECTOR",
+                  "value": "Mujeres",
+                  "description": "(Opcional)",
+                  "disabled": true
+                },
+                {
+                  "key": "query",
+                  "value": "manzana",
+                  "description": "(Opcional)",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "INVENTARIOS - Publico",
+      "item": [
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/inventarios/web?cmd=query&TIPO_INVENTARIO=APLICACIONES&order[0][column]=0&order[0][dir]=asc&start=0&length=10&draw=0&search[value]",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "inventarios",
+                "web"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "query"
+                },
+                {
+                  "key": "TIPO_INVENTARIO",
+                  "value": "APLICACIONES",
+                  "description": "(Opcional) APLICACIONES, PROYECTOS, SERVICIOS"
+                },
+                {
+                  "key": "order[0][column]",
+                  "value": "0"
+                },
+                {
+                  "key": "order[0][dir]",
+                  "value": "asc"
+                },
+                {
+                  "key": "start",
+                  "value": "0"
+                },
+                {
+                  "key": "length",
+                  "value": "10"
+                },
+                {
+                  "key": "draw",
+                  "value": "0"
+                },
+                {
+                  "key": "search[value]",
+                  "value": null
+                },
+                {
+                  "key": "ENTIDAD",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "APLICACIONES_TIPO",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "PROYECTOS_ETAPA",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "PROYECTOS_ANNIO",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "SERVICIOS_FORMATO",
+                  "value": null,
+                  "description": "Multiple, separado por ;",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "GET_DATA",
+                  "value": "true",
+                  "description": "Devuelve el contenido del registro",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/inventarios/web?cmd=get&ID_INVENTARIO=1",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "inventarios",
+                "web"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "get"
+                },
+                {
+                  "key": "ID_INVENTARIO",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reporte",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/inventarios/web?cmd=output&ID_INVENTARIO=1&TIPO=REPORTE_PROYECTO&FORMATO=pdf",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "inventarios",
+                "web"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "output"
+                },
+                {
+                  "key": "ID_INVENTARIO",
+                  "value": "1"
+                },
+                {
+                  "key": "TIPO",
+                  "value": "REPORTE_PROYECTO",
+                  "description": "REPORTE_PROYECTO"
+                },
+                {
+                  "key": "FORMATO",
+                  "value": "pdf",
+                  "description": "pdf, html, xls"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "HIE - Publico",
+      "item": [
+        {
+          "name": "Registros",
+          "item": [
+            {
+              "name": "List",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/web?cmd=query&order[0][column]=0&order[0][dir]=asc&start=0&length=10&draw=0",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "web"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "query"
+                    },
+                    {
+                      "key": "order[0][column]",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order[0][dir]",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "length",
+                      "value": "10"
+                    },
+                    {
+                      "key": "draw",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/web?cmd=get&ID_REGISTRO=21",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "web"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "get"
+                    },
+                    {
+                      "key": "ID_REGISTRO",
+                      "value": "21"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Reporte",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/web?cmd=output&ID_REGISTRO=21&TIPO=GIG-05-FR-01_V2_CATALOGODEOBJETOS&FORMATO=html",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "web"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "output"
+                    },
+                    {
+                      "key": "ID_REGISTRO",
+                      "value": "21"
+                    },
+                    {
+                      "key": "TIPO",
+                      "value": "GIG-05-FR-01_V2_CATALOGODEOBJETOS",
+                      "description": "GIG-05-FR-01_V2_CATALOGODEOBJETOS, GIG-05-FR-02_V2_CATALOGODEREPRESENTACION, GIG-05-FR-03_V2_ESPECIFICACIONESTECNICAS, GIG-05-FR-05_V2_EVALUACIONDECALIDAD"
+                    },
+                    {
+                      "key": "FORMATO",
+                      "value": "html",
+                      "description": "pdf, html, xls"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Reporte Masivo",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/web?cmd=output2&TIPO=GIG-05-FR-01_V2_CATALOGODEOBJETOS&FORMATO=pdf&ID_ENTIDAD=57&SECTOR=Mujeres",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "web"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "output2"
+                    },
+                    {
+                      "key": "TIPO",
+                      "value": "GIG-05-FR-01_V2_CATALOGODEOBJETOS",
+                      "description": "GIG-05-FR-01_V2_CATALOGODEOBJETOS, GIG-05-FR-02_V2_CATALOGODEREPRESENTACION, GIG-05-FR-03_V2_ESPECIFICACIONESTECNICAS, GIG-05-FR-05_V2_EVALUACIONDECALIDAD"
+                    },
+                    {
+                      "key": "FORMATO",
+                      "value": "pdf",
+                      "description": "pdf, html, xls"
+                    },
+                    {
+                      "key": "ID_ENTIDAD",
+                      "value": "57",
+                      "description": "Opcional"
+                    },
+                    {
+                      "key": "SECTOR",
+                      "value": "Mujeres",
+                      "description": "Opcional"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Reporte JSON",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true,
+                "disabledSystemHeaders": {
+                  "accept-encoding": true
+                }
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"item\": {\r\n        \"USUARIO_NOMBRE\": \"David Bello\",\r\n        \"USUARIO_CORREO\": \"david.bello@sinesat.com\",\r\n        \"ID_USUARIO\": \"121\",\r\n        \"ID_REGISTRO\": \"21\",\r\n        \"CATALOGO_OBJETOS\": {\r\n            \"esDocumentacionPublica\": \"Pública\",\r\n            \"definicion\": \"Este es un ejemplo de definición de un objeto geográfico.\",\r\n            \"identificadorRecursoUniforme\": \"urn:example:objeto:geografico\",\r\n            \"relacionConceptos\": [\r\n                {\r\n                    \"tipoRelacion\": \"equivalente\",\r\n                    \"definicion\": \"Relación conceptual de ejemplo.\",\r\n                    \"explicacion\": \"Es considerado equivalente a otro.\",\r\n                    \"id\": 1,\r\n                    \"nombreObjRelacionado\": \"Otro Objeto\",\r\n                    \"nombre\": \"Relación Conceptual\",\r\n                    \"citaciones\": [\r\n                        401\r\n                    ],\r\n                    \"identificador\": \"RELACION1\"\r\n                }\r\n            ],\r\n            \"nombre\": \"Ejemplo Objeto Geográfico\",\r\n            \"conjuntoDatos\": [\r\n                {\r\n                    \"id_srig\": \"CD-001\",\r\n                    \"definicion\": \"Definición del conjunto de datos de ejemplo\",\r\n                    \"id\": 1,\r\n                    \"nombre\": \"Conjunto de Datos de Ejemplo\"\r\n                }\r\n            ],\r\n            \"asociaciones\": [\r\n                {\r\n                    \"citacion\": [\r\n                        201\r\n                    ],\r\n                    \"rolsocio_citaciones\": [\r\n                        203\r\n                    ],\r\n                    \"definicion\": \"Relación de ejemplo entre objetos.\",\r\n                    \"rolsocio_nombre\": \"Contenido por\",\r\n                    \"rol1_definicion\": \"Contiene elementos\",\r\n                    \"rol1_esOrdenado\": true,\r\n                    \"rol1_esNavegable\": true,\r\n                    \"rolsocio_esOrdenado\": false,\r\n                    \"nombre\": \"Asociación ejemplo\",\r\n                    \"rol1_citaciones\": [\r\n                        202\r\n                    ],\r\n                    \"rolsocio_tipoRol\": \"Composición\",\r\n                    \"rolsocio_definicion\": \"Es contenido por otro\",\r\n                    \"rol1_tipoRol\": \"Agregación\",\r\n                    \"rol1_nombre\": \"Contiene\",\r\n                    \"id\": 1,\r\n                    \"identificador\": \"ASOC1\",\r\n                    \"rolsocio_esNavegable\": true\r\n                }\r\n            ],\r\n            \"tematica\": \"Temática de ejemplo\",\r\n            \"herencias\": [\r\n                {\r\n                    \"definicion\": \"Este objeto hereda de otro.\",\r\n                    \"nombrePadre\": \"Objeto Padre\",\r\n                    \"id\": 1,\r\n                    \"nombre\": \"Herencia ejemplo\",\r\n                    \"citaciones\": [\r\n                        301\r\n                    ],\r\n                    \"instanciaUnica\": false,\r\n                    \"identificador\": \"HERENCIA1\"\r\n                }\r\n            ],\r\n            \"nombresAlternativos\": \"Objeto Alterno\",\r\n            \"campoAplicacion\": \"Aplicación de ejemplo\",\r\n            \"ID\": 1,\r\n            \"atributos\": [\r\n                {\r\n                    \"definicion\": \"Medida de altura en metros.\",\r\n                    \"unidadMedida\": \"metros\",\r\n                    \"dominio\": {\r\n                        \"valoresDominio\": [\r\n                            {\r\n                                \"etiqueta\": \"Bajo\",\r\n                                \"codigo\": \"1\",\r\n                                \"definicion\": \"Altura baja\",\r\n                                \"id\": 1\r\n                            },\r\n                            {\r\n                                \"etiqueta\": \"Medio\",\r\n                                \"codigo\": \"2\",\r\n                                \"definicion\": \"Altura media\",\r\n                                \"id\": 2\r\n                            },\r\n                            {\r\n                                \"etiqueta\": \"Alto\",\r\n                                \"codigo\": \"3\",\r\n                                \"definicion\": \"Altura alta\",\r\n                                \"id\": 3\r\n                            }\r\n                        ],\r\n                        \"definicion\": \"Rango posible de alturas.\",\r\n                        \"id\": 1,\r\n                        \"nombre\": \"RangoAltura\",\r\n                        \"citaciones\": [\r\n                            102\r\n                        ],\r\n                        \"identificador\": \"DOM_ALTURA\"\r\n                    },\r\n                    \"esSubtipo\": false,\r\n                    \"alias\": \"Elevación\",\r\n                    \"id\": 1,\r\n                    \"nombre\": \"Altura\",\r\n                    \"tipoDato\": \"entero\",\r\n                    \"citaciones\": [\r\n                        101\r\n                    ],\r\n                    \"identificador\": \"ALTURA\"\r\n                },\r\n                {\r\n                    \"definicion\": \"Medida de altura en metros.\",\r\n                    \"unidadMedida\": \"metros\",\r\n                    \"dominio\": {\r\n                        \"valoresDominio\": [\r\n                            {\r\n                                \"etiqueta\": \"Bajo\",\r\n                                \"codigo\": \"1\",\r\n                                \"definicion\": \"Altura baja\",\r\n                                \"id\": 1\r\n                            },\r\n                            {\r\n                                \"etiqueta\": \"Medio\",\r\n                                \"codigo\": \"2\",\r\n                                \"definicion\": \"Altura media\",\r\n                                \"id\": 2\r\n                            },\r\n                            {\r\n                                \"etiqueta\": \"Alto\",\r\n                                \"codigo\": \"3\",\r\n                                \"definicion\": \"Altura alta\",\r\n                                \"id\": 3\r\n                            }\r\n                        ],\r\n                        \"definicion\": \"Rango posible de alturas.\",\r\n                        \"id\": 1,\r\n                        \"nombre\": \"RangoAltura\",\r\n                        \"citaciones\": [\r\n                            102\r\n                        ],\r\n                        \"identificador\": \"DOM_ALTURA\"\r\n                    },\r\n                    \"esSubtipo\": false,\r\n                    \"alias\": \"Elevación\",\r\n                    \"id\": 2,\r\n                    \"nombre\": \"Altura\",\r\n                    \"tipoDato\": \"entero\",\r\n                    \"citaciones\": [\r\n                        101\r\n                    ],\r\n                    \"identificador\": \"ALTURA\"\r\n                }\r\n            ],\r\n            \"operaciones\": [\r\n                {\r\n                    \"definicion\": \"Calcula la altura máxima.\",\r\n                    \"id\": 1,\r\n                    \"firmaAtributos\": [\r\n                        1\r\n                    ],\r\n                    \"nombre\": \"CalcularAltura\",\r\n                    \"citaciones\": [\r\n                        501\r\n                    ],\r\n                    \"identificador\": \"OPER1\"\r\n                }\r\n            ]\r\n        },\r\n        \"NOMBRE_ENTIDAD\": \"Alcaldia Mayor de Bogotá D.C. - SHD - UAECD - IDECA\",\r\n        \"IDENTIFICADOR_SRIG\": \"https://geoitems.ideca.gov.co/diccionario/0511\",\r\n        \"ID_ENTIDAD\": \"1\",\r\n        \"NOMBRE\": \"Prueba David\"\r\n    },\r\n    \"status\": true\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/web?cmd=output_json&TIPO=GIG-05-FR-01_V2_CATALOGODEOBJETOS&FORMATO=pdf",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "web"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "output_json"
+                    },
+                    {
+                      "key": "TIPO",
+                      "value": "GIG-05-FR-01_V2_CATALOGODEOBJETOS",
+                      "description": "GIG-05-FR-01_V2_CATALOGODEOBJETOS, GIG-05-FR-02_V2_CATALOGODEREPRESENTACION, GIG-05-FR-03_V2_ESPECIFICACIONESTECNICAS, GIG-05-FR-05_V2_EVALUACIONDECALIDAD"
+                    },
+                    {
+                      "key": "FORMATO",
+                      "value": "pdf",
+                      "description": "pdf, html, xls"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Citaciones",
+          "item": [
+            {
+              "name": "List",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/web?cmd=citacion_items&query=Ambiente",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "web"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "citacion_items"
+                    },
+                    {
+                      "key": "query",
+                      "value": "Ambiente"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/web?cmd=citacion_item&ID_CITACION=1",
+                  "protocol": "https",
+                  "host": [
+                    "catalogopmb",
+                    "catastrobogota",
+                    "gov",
+                    "co"
+                  ],
+                  "path": [
+                    "PMBWeb",
+                    "cr",
+                    "hie",
+                    "web"
+                  ],
+                  "query": [
+                    {
+                      "key": "cmd",
+                      "value": "citacion_item"
+                    },
+                    {
+                      "key": "ID_CITACION",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Config",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/hie/config?cmd=config",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "hie",
+                "config"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "config"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Interop",
+      "item": [
+        {
+          "name": "Query SRIG",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/interop?cmd=srig_items&query=Barrio en proceso de legalización&clase=Objeto&estado=Válido",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "interop"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "srig_items"
+                },
+                {
+                  "key": "query",
+                  "value": "Barrio en proceso de legalización",
+                  "description": "(Opcional)"
+                },
+                {
+                  "key": "clase",
+                  "value": "Objeto",
+                  "description": "(Opcional) "
+                },
+                {
+                  "key": "estado",
+                  "value": "Válido",
+                  "description": "(Opcional)"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get SRIG",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/interop?cmd=srig_item&ID=https://geoitems.ideca.gov.co/diccionario/0140",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "interop"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "srig_item"
+                },
+                {
+                  "key": "ID",
+                  "value": "https://geoitems.ideca.gov.co/diccionario/0140"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Query PDA",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/interop?cmd=pda_items&query=ambi",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "interop"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "pda_items"
+                },
+                {
+                  "key": "query",
+                  "value": "ambi"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get PDA",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/interop?cmd=pda_item&ID=b97623c2-08f5-4c4d-b993-678fdb7deda5",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "interop"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "pda_item"
+                },
+                {
+                  "key": "ID",
+                  "value": "b97623c2-08f5-4c4d-b993-678fdb7deda5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Query PMB",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/interop?cmd=pmb_items&query=Manzana",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "interop"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "pmb_items"
+                },
+                {
+                  "key": "query",
+                  "value": "Manzana"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get PMB",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/interop?cmd=pmb_item&ID=347",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "interop"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "pmb_item"
+                },
+                {
+                  "key": "ID",
+                  "value": "347"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Trazabilidad",
+      "item": [
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/trazabilidad?cmd=query&token=eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc5OTRiNGYzMTU2MzJiMjk3NzAwNmQ5M2U5NGIyYWNiZTMwNWZlNDYiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc4MTA5Njg2OCwiZXhwIjoxNzgxMTAwNDY4LCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.mVUMpBzekTzMxRWvqujkqdoADDxflq4shFNAtPKu7ISxjMCybkTcG40k_wEQoHXMkxcLKyp31rTYwYABDykfIzJ5yyt1Sxvs-6RWE90dSnqe0yB0gJzMPGwpJUOz7U4qCSWudtKTsPVxWaweEIRsl5a9Cso9ednrqUBcetWvy_WG11R2_CRD_VF9zqvTIyLe0rcw_Zj31x73d_ySE92uczpkOOfHlbbwF__nwO4cwHE-8uyNhyQpxI9yIrdwQhbF7ia4HGPC2dUCQG8_cztP_F-3A78DVTStDEf4bcm1-QigIM7amooWXqYkkpnCgoug7hc-zu-4AkoA5sV_KwHyeQ",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "trazabilidad"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "query"
+                },
+                {
+                  "key": "query",
+                  "value": "Vivienda Rural",
+                  "disabled": true
+                },
+                {
+                  "key": "tipo",
+                  "value": "DATOS",
+                  "description": "DATOS, APLICACIONES, SERVICIOS, PROYECTOS",
+                  "disabled": true
+                },
+                {
+                  "key": "entidad",
+                  "value": "50",
+                  "description": "Id de la entidad",
+                  "disabled": true
+                },
+                {
+                  "key": "sector",
+                  "value": "Hábitat",
+                  "description": "Sector de la entidad",
+                  "disabled": true
+                },
+                {
+                  "key": "estado",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc5OTRiNGYzMTU2MzJiMjk3NzAwNmQ5M2U5NGIyYWNiZTMwNWZlNDYiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc4MTA5Njg2OCwiZXhwIjoxNzgxMTAwNDY4LCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.mVUMpBzekTzMxRWvqujkqdoADDxflq4shFNAtPKu7ISxjMCybkTcG40k_wEQoHXMkxcLKyp31rTYwYABDykfIzJ5yyt1Sxvs-6RWE90dSnqe0yB0gJzMPGwpJUOz7U4qCSWudtKTsPVxWaweEIRsl5a9Cso9ednrqUBcetWvy_WG11R2_CRD_VF9zqvTIyLe0rcw_Zj31x73d_ySE92uczpkOOfHlbbwF__nwO4cwHE-8uyNhyQpxI9yIrdwQhbF7ia4HGPC2dUCQG8_cztP_F-3A78DVTStDEf4bcm1-QigIM7amooWXqYkkpnCgoug7hc-zu-4AkoA5sV_KwHyeQ"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/trazabilidad?cmd=get&tipo=APLICACIONES&ID_INVENTARIO=1&token=eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc5OTRiNGYzMTU2MzJiMjk3NzAwNmQ5M2U5NGIyYWNiZTMwNWZlNDYiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc4MTA5Njg2OCwiZXhwIjoxNzgxMTAwNDY4LCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.mVUMpBzekTzMxRWvqujkqdoADDxflq4shFNAtPKu7ISxjMCybkTcG40k_wEQoHXMkxcLKyp31rTYwYABDykfIzJ5yyt1Sxvs-6RWE90dSnqe0yB0gJzMPGwpJUOz7U4qCSWudtKTsPVxWaweEIRsl5a9Cso9ednrqUBcetWvy_WG11R2_CRD_VF9zqvTIyLe0rcw_Zj31x73d_ySE92uczpkOOfHlbbwF__nwO4cwHE-8uyNhyQpxI9yIrdwQhbF7ia4HGPC2dUCQG8_cztP_F-3A78DVTStDEf4bcm1-QigIM7amooWXqYkkpnCgoug7hc-zu-4AkoA5sV_KwHyeQ",
+              "protocol": "https",
+              "host": [
+                "catalogopmb",
+                "catastrobogota",
+                "gov",
+                "co"
+              ],
+              "path": [
+                "PMBWeb",
+                "cr",
+                "trazabilidad"
+              ],
+              "query": [
+                {
+                  "key": "cmd",
+                  "value": "get"
+                },
+                {
+                  "key": "tipo",
+                  "value": "APLICACIONES",
+                  "description": "DATOS, APLICACIONES, SERVICIOS, PROYECTOS"
+                },
+                {
+                  "key": "ID_INVENTARIO",
+                  "value": "1"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc5OTRiNGYzMTU2MzJiMjk3NzAwNmQ5M2U5NGIyYWNiZTMwNWZlNDYiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc4MTA5Njg2OCwiZXhwIjoxNzgxMTAwNDY4LCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.mVUMpBzekTzMxRWvqujkqdoADDxflq4shFNAtPKu7ISxjMCybkTcG40k_wEQoHXMkxcLKyp31rTYwYABDykfIzJ5yyt1Sxvs-6RWE90dSnqe0yB0gJzMPGwpJUOz7U4qCSWudtKTsPVxWaweEIRsl5a9Cso9ednrqUBcetWvy_WG11R2_CRD_VF9zqvTIyLe0rcw_Zj31x73d_ySE92uczpkOOfHlbbwF__nwO4cwHE-8uyNhyQpxI9yIrdwQhbF7ia4HGPC2dUCQG8_cztP_F-3A78DVTStDEf4bcm1-QigIM7amooWXqYkkpnCgoug7hc-zu-4AkoA5sV_KwHyeQ"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Validate",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://catalogopmb.catastrobogota.gov.co/PMBWeb/cr/validate?cmd=validate&token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjQ3NTI1MSwiZXhwIjoxNzQyNDc4ODUxLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.ZqgpfLoG-UZ4JaeNJ967m_I1ddo8ALvhQfzX1ReujmoGTYEHFGDFkRl8s5VIztxwbjDid3FEq4WkiSMvNnuzQvHzVm8Q1MV60pHAoLEDJighaP2n0iPL1C2McOeAaqy5LIlHJGxe4zupxIP46_0UBb9WQETm2IB-PUFR4TSimll19X02YMBZHw1V4VgMF50PqpVB34mPGX9yj4J3IK7bOVanemG2Q28oAddD8tSBccm3FVIYOFZDb1JXHDuQaSNMJkrq2Earq4rv6am2MmPpUwd4CD3QT8QwaMHjAoKRdEAzeExf-ir8k6hoOa4cVbyGmsQxijCu-ID8Tt5L7H3Ykg",
+          "protocol": "https",
+          "host": [
+            "catalogopmb",
+            "catastrobogota",
+            "gov",
+            "co"
+          ],
+          "path": [
+            "PMBWeb",
+            "cr",
+            "validate"
+          ],
+          "query": [
+            {
+              "key": "cmd",
+              "value": "validate"
+            },
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjMwYjIyMWFiNjU2MTdiY2Y4N2VlMGY4NDYyZjc0ZTM2NTIyY2EyZTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRGF2aWQgQmVsbG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1ralpmX1d6MlR1Zy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS8wNUhFSHdhUTdGOC9waG90by5qcGciLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcG9ydGFsLWRlLW1hcGFzLWRlLWJvZ290YSIsImF1ZCI6InBvcnRhbC1kZS1tYXBhcy1kZS1ib2dvdGEiLCJhdXRoX3RpbWUiOjE3NDEyNzc5NDEsInVzZXJfaWQiOiJaNXlvbnJudXc2ZXZQZ25DWUZ4d2NSSHhBTnMyIiwic3ViIjoiWjV5b25ybnV3NmV2UGduQ1lGeHdjUkh4QU5zMiIsImlhdCI6MTc0MjQ3NTI1MSwiZXhwIjoxNzQyNDc4ODUxLCJlbWFpbCI6ImRhdmlkLmJlbGxvQHNpbmVzYXQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMTQ4NDUxNDY3MjgyMDg5MjAwNzgiXSwiZW1haWwiOlsiZGF2aWQuYmVsbG9Ac2luZXNhdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.ZqgpfLoG-UZ4JaeNJ967m_I1ddo8ALvhQfzX1ReujmoGTYEHFGDFkRl8s5VIztxwbjDid3FEq4WkiSMvNnuzQvHzVm8Q1MV60pHAoLEDJighaP2n0iPL1C2McOeAaqy5LIlHJGxe4zupxIP46_0UBb9WQETm2IB-PUFR4TSimll19X02YMBZHw1V4VgMF50PqpVB34mPGX9yj4J3IK7bOVanemG2Q28oAddD8tSBccm3FVIYOFZDb1JXHDuQaSNMJkrq2Earq4rv6am2MmPpUwd4CD3QT8QwaMHjAoKRdEAzeExf-ir8k6hoOa4cVbyGmsQxijCu-ID8Tt5L7H3Ykg"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

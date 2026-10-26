@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fix estandares HIE - Utilidad temporal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #f8f9fa; padding-top: 2rem; }
+    .log-container { max-height: 600px; overflow-y: auto; font-family: monospace; font-size: 0.85rem; }
+    .log-entry { padding: 2px 8px; border-bottom: 1px solid #eee; }
+    .log-entry.error { background: #fff0f0; color: #c00; }
+    .log-entry.success { background: #f0fff0; color: #060; }
+    .log-entry.warning { background: #fffcf0; color: #960; }
+    .log-entry.info { background: #f0f8ff; color: #036; }
+    .log-entry.skip { color: #999; }
+    .log-entry.aviso { background: #f6f0ff; color: #529; }
+    #progress-bar { transition: width 0.3s; }
+  </style>
+</head>
+<body>
+  <div class="container" style="max-width: 1000px;">
+    <h3 class="mb-3">Utilidad: Corregir documentos de estandares HIE</h3>
+    <details class="mb-4">
+      <summary class="text-primary mb-2">Que hace esta utilidad</summary>
+    <p class="text-muted mb-0">
+      Recorre los registros HIE, obtiene cada uno con <code>cmd=get</code> y corrige sus documentos
+      (<code>ESPECIFICACION_TECNICA</code>, <code>CATALOGO_OBJETOS</code>, <code>CALIDAD</code>, <code>REPRESENTACION</code>):
+      <br><strong>1.</strong> Campos derivados de <code>SRIG_ITEM</code>: <code>nombre</code>, <code>identificadorRecursoUniforme</code>,
+      <code>nivelAlcance</code>, <code>nombreAlternativo</code> / <code>nombresAlternativos</code>, <code>definicion</code> y
+      <code>campoAplicacion</code>, segun el documento. En la ET, <code>nombreEspecificacion</code> se rehace como
+      "Especificación Técnica del objeto " + el nombre SRIG cuando no coincide.
+      En ET, Catalogo de objetos y Calidad, <code>version</code> vacia se completa con <code>1.0</code>.
+      En los cuatro documentos, el <code>id</code> raiz vacio se completa con el <code>ID_REGISTRO</code>, igual que al crear el registro.
+      <br><strong>2.</strong> Campos derivados de <code>ENTIDAD</code> (solo ET): <code>entidad</code>, <code>direccion</code>,
+      <code>email</code> y <code>telefono</code>.
+      <br>El unico valor fijo es el identificador SRIG (<code>IDENTIFICADOR_SRIG</code>), que es el enlace con el item; no se modifica nunca.
+      Todo lo demas que proviene de SRIG se valida y se actualiza, incluido el <code>NOMBRE</code> del registro.
+      <br>Si el dato fuente no existe o esta vacio, el campo NO se modifica y se reporta como aviso.
+      <br><strong>3.</strong> <code>id</code>: elimina la clave en los niveles donde el schema ya no la admite
+      (<code>additionalProperties: false</code> sin <code>id</code> declarado), leyendo <code>assets/schemas</code>.
+      Conserva el <code>id</code> raiz del documento y el de las citaciones.
+      <br><strong>4.</strong> Avisos (solo reporta, no corrige): valores fuera de lista, textos que superan la longitud maxima,
+      URI o correos no validos, y campos obligatorios faltantes o vacios (incluidos los condicionales) y listas
+      bajo el minimo de elementos, validando cada documento contra su schema completo, igual que el formulario.
+      En la ET los obligatorios faltantes no se reportan si esta en <code>BORRADOR</code> o <code>CREADO</code>
+      (se crea al sincronizar con Calidad o Catalogo de objetos, sin datos del usuario).
+      <br><strong>5.</strong> ET en <code>PUBLICADO</code> o <code>MIGRADO</code> con obligatorios faltantes: es un error;
+      se reporta y <code>FLAG_ESPECIFICACION_TECNICA</code> pasa a <code>BORRADOR</code> para que la entidad la complete.
+      <br><strong>6.</strong> Datos administrados (<code>datosadmin</code>, botones propios): recorre los datos, consulta cada
+      item en SRIG por su identificador (igual que ese modulo) y compara <code>NOMBRE</code>, <code>DESCRIPCION</code>, entidad e
+      <code>IDENTIFICADOR_HIE</code>. Con el rol <code>ADMIN</code> de <code>DATOS</code> recorre y corrige los datos de
+      <strong>todas las entidades</strong>, porque ese modulo no tiene rol por entidad. Esta seccion solo se muestra a usuarios con ese rol.
+      Nunca escribe cuando varios datos comparten el identificador SRIG ni cuando la entidad de SRIG no esta en el catalogo de entidades.
+      <br>Solo envia los documentos que cambian. No modifica <code>ESTADO</code> ni los <code>FLAG_*</code> (salvo el caso del punto 5);
+      si un <code>FLAG_*</code> viene vacio, envia <code>BORRADOR</code> cuando el documento ya tenia datos y <code>CREADO</code> cuando no.
+      <br><strong>Simular</strong> recorre todo y muestra lo que cambiaria, sin escribir en el backend.
+      <br><strong>Detener</strong> corta el recorrido al terminar el registro en curso; lo ya corregido queda guardado.
+      <br>Ejecutar estandares siempre se limita a los registros de la entidad del usuario. Con el rol <code>ADMIN</code>
+      (de <code>HIE</code> o <code>ADMIN</code>), <strong>Simular estandares</strong> recorre <strong>todas las entidades</strong>.
+      <br>Estandares y datos administrados se corren por separado, cada uno con sus botones:
+      <strong>Ejecutar estandares</strong> exige el rol <code>ENTIDAD</code> de HIE y <strong>Ejecutar datos</strong> el rol <code>ADMIN</code> de <code>DATOS</code>.
+      Solo corre un recorrido a la vez.
+    </p>
+    </details>
+
+    <!-- Auth + action -->
+    <div class="card mb-3">
+      <div class="card-body">
+        <div id="auth-status" class="mb-2">
+          <span class="text-muted">Inicializando Firebase...</span>
+        </div>
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+          <span class="fw-bold" style="min-width: 190px;">Estandares HIE</span>
+          <button id="btn-simular" class="btn btn-outline-primary" disabled>Simular estandares</button>
+          <button id="btn-ejecutar" class="btn btn-success" disabled>Ejecutar estandares</button>
+        </div>
+        <div id="fila-datos" class="d-flex flex-wrap align-items-center gap-2 mb-2 d-none">
+          <span class="fw-bold" style="min-width: 190px;">Datos (datosadmin)</span>
+          <button id="btn-simular-datos" class="btn btn-outline-primary" disabled>Simular datos</button>
+          <button id="btn-ejecutar-datos" class="btn btn-success" disabled>Ejecutar datos</button>
+        </div>
+        <button id="btn-detener" class="btn btn-outline-danger" disabled>Detener</button>
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div id="status-card" class="card mb-3 d-none">
+      <div class="card-body">
+        <div id="user-info" class="mb-2"></div>
+        <div class="progress mb-2" style="height: 24px;">
+          <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%">0%</div>
+        </div>
+        <div id="summary" class="small text-muted"></div>
+      </div>
+    </div>
+
+    <!-- Log -->
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Log</span>
+        <button id="btn-limpiar-log" class="btn btn-sm btn-outline-secondary">Limpiar</button>
+      </div>
+      <div id="log" class="card-body log-container"></div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
+  <!-- Mismo validador que usa el formulario de hiee (js/schemas.js) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.17.1/ajv2020.bundle.min.js"></script>
+
+  <script>
+    const URL_BASE = "https://catalogopmb.catastrobogota.gov.co/PMBWeb";
+    const URL_VALIDATE = URL_BASE + "/cr/validate";
+    const URL_HIE_ADMIN = URL_BASE + "/cr/hie/admin";
+    // Mismo listado que usa datosadmin/ (solo lectura)
+    const DATOS_LIMITE = 1000;
+    const URL_INTEROP_SRIG_ITEM = URL_BASE + "/cr/interop?cmd=srig_item&ID=";
+    const URL_DATOS_ADMIN = URL_BASE + "/cr/datos/admin";
+    const URL_DATOS_ENTIDADES = URL_BASE + "/cr/datos/web?cmd=query_entidades&query=";
+    const URL_DATOS_QUERY = URL_BASE + "/cr/datos/web?cmd=query&order[0][column]=0&order[0][dir]=asc&start=0&length=" + DATOS_LIMITE + "&draw=0";
+
+    const CONFIG_FIREBASE = {
+      apiKey: "AIzaSyDShOitSIQ9rNB91Nl8vo7lAo1vWBg4tCM",
+      authDomain: "portal-de-mapas-de-bogota.firebaseapp.com",
+    };
+
+    const URL_SCHEMAS = "assets/schemas/";
+
+    // Documentos del registro HIE con su flag y su schema
+    const DOCUMENTOS = [
+      { campo: 'ESPECIFICACION_TECNICA', flag: 'FLAG_ESPECIFICACION_TECNICA', schema: 'ET_Schema.json' },
+      { campo: 'CATALOGO_OBJETOS', flag: 'FLAG_CATALOGO_OBJETOS', schema: 'CatalogoObjetos_Schema.json' },
+      { campo: 'CALIDAD', flag: 'FLAG_CALIDAD', schema: 'Calidad_Schema.json' },
+      { campo: 'REPRESENTACION', flag: 'FLAG_REPRESENTACION', schema: 'Representacion_Schema.json' }
+    ];
+
+    // Campos de solo lectura que la aplicacion copia al crear el registro: [destino, fuente, clave]
+    const CAMPOS_DERIVADOS = {
+      ESPECIFICACION_TECNICA: [
+        ['nombre', 'srig', 'NOMBRE'],
+        ['identificadorRecursoUniforme', 'srig', 'ENLACE'],
+        ['nivelAlcance', 'srig', 'CLASE_ITEM'],
+        ['nombreAlternativo', 'srig', 'NOMBRE_ALTERNATIVO'],
+        ['entidad', 'entidad', 'NOMBRE'],
+        ['direccion', 'entidad', 'DIRECCION_ENTIDAD'],
+        ['email', 'entidad', 'CORREO'],
+        ['telefono', 'entidad', 'TELEFONO']
+      ],
+      CATALOGO_OBJETOS: [
+        ['nombre', 'srig', 'NOMBRE'],
+        ['identificadorRecursoUniforme', 'srig', 'ENLACE'],
+        ['nombresAlternativos', 'srig', 'NOMBRE_ALTERNATIVO'],
+        ['definicion', 'srig', 'DESCRIPCION'],
+        ['campoAplicacion', 'srig', 'CAMPOS_APLICACION']
+      ],
+      CALIDAD: [
+        ['nombre', 'srig', 'NOMBRE'],
+        ['identificadorRecursoUniforme', 'srig', 'ENLACE']
+      ],
+      REPRESENTACION: [
+        ['nombre', 'srig', 'NOMBRE'],
+        ['identificadorRecursoUniforme', 'srig', 'ENLACE'],
+        ['nivelAlcance', 'srig', 'CLASE_ITEM']
+      ]
+    };
+
+    // Documentos cuyo schema exige "version": si viene vacia se completa con este valor
+    const DOCUMENTOS_CON_VERSION = ['ESPECIFICACION_TECNICA', 'CATALOGO_OBJETOS', 'CALIDAD'];
+    const VERSION_POR_DEFECTO = '1.0';
+
+    // En BORRADOR o CREADO es normal que falten obligatorios (la ET se crea al sincronizar con Calidad o
+    // Catalogo de objetos, sin datos del usuario). Publicada o migrada sin ellos es un error: vuelve a BORRADOR.
+    const DOCUMENTOS_BORRADOR_SI_INCOMPLETO = ['ESPECIFICACION_TECNICA'];
+    const ESTADOS_PUBLICADOS = ['PUBLICADO', 'MIGRADO'];
+
+    // Prefijo con el que la aplicacion arma nombreEspecificacion; la utilidad lo rehace con el nombre SRIG
+    const PREFIJO_NOMBRE_ESPECIFICACION = 'Especificación Técnica del objeto ';
+
+    let currentToken = null;
+    let userPermisos = [];
+    let userEntidad = '';
+    let enEjecucion = false;
+    let detenerSolicitado = false;
+    // Solo el rol ENTIDAD puede escribir (igual que la aplicacion); los demas solo simulan
+    let puedeEjecutar = false;
+    // Solo el rol ADMIN de DATOS puede escribir en datosadmin (igual que ese modulo)
+    let puedeEjecutarDatos = false;
+    // Simular estandares exige algun rol en HIE
+    let puedeSimularHie = false;
+    // El rol ADMIN (HIE o ADMIN) simula sobre todas las entidades; ejecutar sigue limitado a mi entidad
+    let simulaTodasEntidades = false;
+
+    // ===================== FIREBASE INIT =====================
+    firebase.initializeApp(CONFIG_FIREBASE);
+
+    firebase.auth().onAuthStateChanged(async (user) => {
+      const authEl = document.getElementById('auth-status');
+      if (user) {
+        try {
+          currentToken = await user.getIdToken();
+          authEl.innerHTML = `<span class="text-success fw-bold">Sesion activa:</span> ${user.displayName || user.email}`;
+          log(`Firebase: sesion detectada - ${user.email}`, 'success');
+          await validarConBackend();
+        } catch (err) {
+          authEl.innerHTML = `<span class="text-danger">Error obteniendo token: ${err.message}</span>`;
+          log('Error obteniendo token Firebase: ' + err.message, 'error');
+        }
+      } else {
+        authEl.innerHTML = `<span class="text-danger fw-bold">Sin sesion.</span> Inicia sesion en la aplicacion principal primero y recarga esta pagina.`;
+        log('No hay sesion Firebase activa.', 'error');
+      }
+    });
+
+    async function validarConBackend() {
+      log('Validando token con backend...', 'info');
+      try {
+        const resp = await apiGet(URL_VALIDATE + '?cmd=validate');
+        if (!resp.status) {
+          log('Token rechazado por backend: ' + JSON.stringify(resp), 'error');
+          return;
+        }
+
+        userPermisos = resp.PERMISOS || [];
+        // /validate no trae el nombre del usuario: se toma de la sesion Firebase
+        const usuarioFirebase = firebase.auth().currentUser;
+        const nombre = resp.nombre || resp.email ||
+          (usuarioFirebase && (usuarioFirebase.displayName || usuarioFirebase.email)) || 'Desconocido';
+
+        // Obtener entidad del usuario
+        const hiePermisos = userPermisos.filter(p => p.MODULO === 'HIE' && p.ACTIVO === '1');
+        userEntidad = hiePermisos.length > 0 ? (hiePermisos[0].ENTIDAD || '') : '';
+        const roles = hiePermisos.map(p => p.ROL).join(', ');
+
+        log(`Backend OK. Usuario: ${nombre}`, 'success');
+        log(`Entidad: ${userEntidad || '(sin entidad)'}`, 'info');
+        log(`Roles HIE: ${roles || 'Ninguno'}`, 'info');
+
+        document.getElementById('user-info').innerHTML =
+          `<strong>Usuario:</strong> ${nombre} | <strong>Entidad:</strong> ${userEntidad || '(sin entidad)'} | <strong>Roles HIE:</strong> ${roles || 'Ninguno'}`;
+        document.getElementById('status-card').classList.remove('d-none');
+
+        const tieneEntidad = hiePermisos.some(p => p.ROL === 'ENTIDAD');
+        const tieneAdmin = userPermisos.some(p =>
+          (p.MODULO === 'HIE' && p.ROL === 'ADMIN' && p.ACTIVO === '1') ||
+          (p.MODULO === 'ADMIN' && p.ROL === 'ADMIN' && p.ACTIVO === '1')
+        );
+
+
+        puedeEjecutar = tieneEntidad;
+        puedeEjecutarDatos = esAdminDatos(userPermisos);
+        log(puedeEjecutarDatos
+          ? 'Rol ADMIN de DATOS. Puede corregir los datos administrados (datosadmin).'
+          : 'Sin rol ADMIN de DATOS. La seccion de datos administrados (datosadmin) no se muestra.', puedeEjecutarDatos ? 'success' : 'info');
+
+        puedeSimularHie = tieneEntidad || tieneAdmin;
+        simulaTodasEntidades = tieneAdmin;
+
+        if (tieneAdmin) {
+          log('Rol ADMIN. Simular recorre todas las entidades.', 'success');
+        }
+        if (tieneEntidad) {
+          log('Rol ENTIDAD. Puede simular o ejecutar la correccion de estandares (ejecutar solo sobre mi entidad).', 'success');
+        } else if (tieneAdmin) {
+          log('Rol ADMIN sin rol ENTIDAD. Los estandares solo se pueden simular.', 'warning');
+        } else {
+          log('El usuario NO tiene rol ENTIDAD ni ADMIN en HIE: los estandares quedan deshabilitados.', puedeEjecutarDatos ? 'warning' : 'error');
+        }
+        habilitarBotones(true);
+      } catch (err) {
+        log('Error validando con backend: ' + err.message, 'error');
+      }
+    }
+
+    // ===================== HELPERS =====================
+    function log(msg, type = 'info') {
+      const el = document.getElementById('log');
+      const entry = document.createElement('div');
+      entry.className = 'log-entry ' + type;
+      entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+      el.appendChild(entry);
+      el.scrollTop = el.scrollHeight;
+    }
+
+    function updateProgress(current, total) {
+      const pct = total > 0 ? Math.round((current / total) * 100) : 0;
+      const bar = document.getElementById('progress-bar');
+      bar.style.width = pct + '%';
+      bar.textContent = `${current}/${total} (${pct}%)`;
+    }
+
+    function habilitarBotones(habilitar) {
+      const libre = habilitar && !enEjecucion;
+      document.getElementById('btn-simular').disabled = !libre || !puedeSimularHie;
+      document.getElementById('btn-ejecutar').disabled = !libre || !puedeEjecutar;
+      // Datos (datosadmin) solo existe para el rol ADMIN de DATOS
+      document.getElementById('fila-datos').classList.toggle('d-none', !puedeEjecutarDatos);
+      document.getElementById('btn-simular-datos').disabled = !libre || !puedeEjecutarDatos;
+      document.getElementById('btn-ejecutar-datos').disabled = !libre || !puedeEjecutarDatos;
+      document.getElementById('btn-detener').disabled = !enEjecucion;
+    }
+
+    function normalizarTexto(valor) {
+      return String(valor ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+    }
+
+    // El backend no filtra por entidad para el rol ADMIN, asi que se filtra tambien aqui.
+    // Coincide si algun identificador de entidad del registro es igual al del usuario,
+    // o si el nombre del registro termina en la sigla del usuario ("... - IDECA").
+    function esDeMiEntidad(registro) {
+      const mia = normalizarTexto(userEntidad);
+      if (!mia) return false;
+      return [registro.NOMBRE_ENTIDAD, registro.ENTIDAD, registro.ID_ENTIDAD].some(valor => {
+        const texto = normalizarTexto(valor && typeof valor === 'object' ? valor.NOMBRE : valor);
+        if (!texto) return false;
+        if (texto === mia) return true;
+        const sigla = texto.split('-').pop().trim();
+        return texto.includes('-') && sigla === mia;
+      });
+    }
+
+    // Misma forma Unicode (NFC) y espacios simples, incluido el espacio duro; conserva tildes y mayusculas
+    function normalizarEspacios(valor) {
+      return String(valor ?? '').normalize('NFC').replace(/[\s ]+/g, ' ').trim();
+    }
+
+    function corto(valor) {
+      const texto = String(valor ?? '');
+      return texto.length > 60 ? texto.slice(0, 60) + '...' : texto;
+    }
+
+    function parsearJson(valor) {
+      return typeof valor === 'string' ? JSON.parse(valor) : valor;
+    }
+
+    // Sin forzar: el SDK reutiliza el token vigente y solo lo renueva cerca de expirar.
+    // getIdToken(true) en cada registro agota la cuota de Firebase (auth/quota-exceeded).
+    async function refreshToken() {
+      const user = firebase.auth().currentUser;
+      if (user) currentToken = await user.getIdToken();
+    }
+
+    async function apiGet(url) {
+      const sep = url.includes('?') ? '&' : '?';
+      const resp = await fetch(url + sep + 'token=' + encodeURIComponent(currentToken));
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${resp.statusText}`);
+      return resp.json();
+    }
+
+    async function apiPost(url, body) {
+      const sep = url.includes('?') ? '&' : '?';
+      const resp = await fetch(url + sep + 'token=' + encodeURIComponent(currentToken), {
+        method: 'POST',
+        body: JSON.stringify(body)
+      });
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${resp.statusText}`);
+      return resp.json();
+    }
+
+    function utf8ToBase64(str) {
+      const bytes = new TextEncoder().encode(str);
+      let binary = '';
+      for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+      return btoa(binary);
+    }
+
+    // ===================== SCHEMAS =====================
+    async function cargarSchemas() {
+      const schemas = {};
+      for (const doc of DOCUMENTOS) {
+        const resp = await fetch(URL_SCHEMAS + doc.schema);
+        if (!resp.ok) throw new Error(`No se pudo cargar ${doc.schema} (HTTP ${resp.status})`);
+        schemas[doc.campo] = await resp.json();
+      }
+      return schemas;
+    }
+
+    // Resuelve $ref locales (#/$defs/x) fusionando las claves hermanas del nodo
+    function resolverNodo(nodo, raiz) {
+      let saltos = 0;
+      while (nodo && nodo.$ref && saltos++ < 10) {
+        const destino = nodo.$ref.replace(/^#\//, '').split('/').reduce((o, k) => (o ? o[k] : undefined), raiz);
+        const { $ref, ...resto } = nodo;
+        nodo = Object.assign({}, destino, resto);
+      }
+      return nodo;
+    }
+
+    // Recorre el dato junto a su schema y elimina "id" donde el nivel no lo declara
+    // y tampoco admite propiedades adicionales. Acumula las rutas afectadas en `quitados`.
+    function quitarIdsNoPermitidos(dato, nodo, raiz, ruta, quitados) {
+      nodo = resolverNodo(nodo, raiz);
+      if (!nodo || dato === null || typeof dato !== 'object') return;
+
+      if (Array.isArray(dato)) {
+        if (nodo.items && !Array.isArray(nodo.items)) {
+          dato.forEach(item => quitarIdsNoPermitidos(item, nodo.items, raiz, ruta + '[]', quitados));
+        }
+        return;
+      }
+
+      const props = nodo.properties || {};
+      if (nodo.additionalProperties === false && !('id' in props) && 'id' in dato) {
+        delete dato.id;
+        quitados.push(ruta || '(raiz)');
+      }
+
+      for (const key in props) {
+        if (key in dato) quitarIdsNoPermitidos(dato[key], props[key], raiz, ruta ? ruta + '.' + key : key, quitados);
+      }
+    }
+
+    // Ultimo segmento del identificador SRIG ("https://.../diccionario/0318" -> "0318")
+    function idSrigDe(identificador) {
+      return String(identificador ?? '').trim().replace(/\/+$/, '').split('/').pop();
+    }
+
+    // Copia al documento los campos derivados cuya fuente tiene valor. Si la fuente no existe
+    // o esta vacia el campo no se toca: se reporta en `avisos` cuando el documento si tiene valor.
+    // Devuelve cuantos campos cambio.
+    function sincronizarDerivados(docData, campo, fuentes, changes, avisos) {
+      let cambiados = 0;
+      (CAMPOS_DERIVADOS[campo] || []).forEach(([destino, fuente, clave]) => {
+        const bruto = fuentes[fuente] ? fuentes[fuente][clave] : undefined;
+        const valor = typeof bruto === 'number' ? String(bruto) : bruto;
+        if (typeof valor !== 'string' || valor === '') {
+          if (docData[destino]) avisos.push(`${campo} > ${destino}: la fuente (${fuente}.${clave}) esta vacia, se conserva "${corto(docData[destino])}"`);
+          return;
+        }
+        if (docData[destino] === valor) return;
+        changes.push(`${campo}.${destino}: "${corto(docData[destino])}" -> "${corto(valor)}"`);
+        docData[destino] = valor;
+        cambiados++;
+      });
+      return cambiados;
+    }
+
+    function esUriValida(valor) {
+      try { new URL(valor); return true; } catch (_) { return false; }
+    }
+
+    // Recorre el dato junto a su schema y acumula en `avisos` los valores que el schema actual
+    // rechaza y que no se pueden corregir sin decidir contenido. No modifica el dato.
+    function revisarValores(dato, nodo, raiz, ruta, avisos) {
+      nodo = resolverNodo(nodo, raiz);
+      if (!nodo || dato === null || dato === undefined || dato === '') return;
+
+      if (typeof dato === 'string') {
+        if (Array.isArray(nodo.enum) && !nodo.enum.includes(dato)) avisos.push(`${ruta}: "${corto(dato)}" fuera de lista`);
+        if (nodo.maxLength && dato.length > nodo.maxLength) avisos.push(`${ruta}: ${dato.length} caracteres (max ${nodo.maxLength})`);
+        if (nodo.format === 'uri' && !esUriValida(dato)) avisos.push(`${ruta}: URI no valida "${corto(dato)}"`);
+        if (nodo.format === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dato)) avisos.push(`${ruta}: correo no valido "${corto(dato)}"`);
+        return;
+      }
+      if (typeof dato !== 'object') return;
+
+      if (Array.isArray(dato)) {
+        if (nodo.items && !Array.isArray(nodo.items)) {
+          dato.forEach((item, i) => revisarValores(item, nodo.items, raiz, `${ruta}[${i}]`, avisos));
+        }
+        return;
+      }
+
+      const props = nodo.properties || {};
+      for (const key in props) {
+        if (key in dato) revisarValores(dato[key], props[key], raiz, ruta ? ruta + '.' + key : key, avisos);
+      }
+    }
+
+    // Un validador AJV por documento, con las mismas opciones que el formulario de hiee
+    function compilarValidadores(schemas) {
+      const ajv = new window.ajv2020.Ajv2020({ allErrors: true, strict: false });
+      ['uri', 'date', 'email'].forEach(formato => ajv.addFormat(formato, true));
+      const validadores = {};
+      for (const campo in schemas) validadores[campo] = ajv.compile(schemas[campo]);
+      return validadores;
+    }
+
+    // Copia del dato sin los textos vacios: para el formulario un "" en un campo obligatorio es un faltante
+    function sinTextosVacios(valor) {
+      if (Array.isArray(valor)) return valor.map(sinTextosVacios);
+      if (!valor || typeof valor !== 'object') return valor;
+      const copia = {};
+      for (const key in valor) {
+        if (valor[key] !== '') copia[key] = sinTextosVacios(valor[key]);
+      }
+      return copia;
+    }
+
+    // "/identificacion/citaciones/0" -> "identificacion.citaciones[0]"
+    function rutaDesdeAjv(instancePath) {
+      return instancePath.split('/').filter(Boolean)
+        .reduce((ruta, parte) => /^\d+$/.test(parte) ? `${ruta}[${parte}]` : (ruta ? ruta + '.' + parte : parte), '');
+    }
+
+    // Obligatorios faltantes o vacios (incluidos los condicionales if/then/else) y listas con menos
+    // elementos que el minimo, segun el schema completo. No modifica el dato.
+    function revisarRequeridos(dato, validador, avisos) {
+      if (validador(sinTextosVacios(dato))) return;
+      (validador.errors || []).forEach(err => {
+        const ruta = rutaDesdeAjv(err.instancePath);
+        if (err.keyword === 'required') {
+          const campo = err.params.missingProperty;
+          avisos.push(`${ruta ? ruta + '.' + campo : campo}: obligatorio y sin valor`);
+        } else if (err.keyword === 'minItems') {
+          avisos.push(`${ruta || '(raiz)'}: debe tener al menos ${err.params.limit} elemento(s)`);
+        }
+      });
+    }
+
+    // ===================== DATOS ADMINISTRADOS (solo rol ADMIN de DATOS) =====================
+    // Carga el listado de datosadmin indexado por ID SRIG. Devuelve null si no se pudo cargar.
+    async function cargarDatosAdminPorSrig() {
+      try {
+        const data = await apiGet(URL_DATOS_QUERY);
+        if (!data.status || !Array.isArray(data.items)) {
+          log('datosadmin: no se pudo cargar el listado, se omite su validacion: ' + corto(JSON.stringify(data)), 'warning');
+          return null;
+        }
+        const indice = new Map();
+        data.items.forEach(dato => {
+          const idSrig = idSrigDe(dato.IDENTIFICADOR_SRIG);
+          if (!idSrig) return;
+          if (!indice.has(idSrig)) indice.set(idSrig, []);
+          indice.get(idSrig).push(dato);
+        });
+        log(`datosadmin: ${data.items.length} datos cargados, ${indice.size} identificadores SRIG distintos`, 'info');
+        if (data.items.length >= DATOS_LIMITE) {
+          log(`datosadmin: el listado llego al limite de ${DATOS_LIMITE}; puede haber datos sin revisar`, 'warning');
+        }
+        return indice;
+      } catch (err) {
+        log('datosadmin: error cargando el listado, se omite su validacion: ' + err.message, 'warning');
+        return null;
+      }
+    }
+
+    function esAdminDatos(permisos) {
+      return (permisos || []).some(p => p.MODULO === 'DATOS' && p.ROL === 'ADMIN' && p.ACTIVO !== '0');
+    }
+
+    // Los permisos pueden cambiar a mitad del recorrido: se revalidan antes de cada escritura
+    async function sigueSiendoAdminDatos() {
+      await refreshToken();
+      const resp = await apiGet(URL_VALIDATE + '?cmd=validate');
+      return !!resp.status && esAdminDatos(resp.PERMISOS);
+    }
+
+    // Catalogo de entidades ({id, text}) para resolver el ID_ENTIDAD a partir del nombre de SRIG
+    async function cargarEntidades() {
+      try {
+        const resp = await fetch(URL_DATOS_ENTIDADES);
+        const data = await resp.json();
+        if (data.status && Array.isArray(data.entidades)) return data.entidades;
+        log('datosadmin: no se pudo cargar el catalogo de entidades; la entidad solo se reporta', 'warning');
+      } catch (err) {
+        log('datosadmin: error cargando el catalogo de entidades; la entidad solo se reporta: ' + err.message, 'warning');
+      }
+      return null;
+    }
+
+    // Detalle completo del dato (cmd=get, exige rol ADMIN de DATOS). Devuelve null si no se obtiene.
+    async function obtenerDatoAdmin(idDato) {
+      const data = await apiGet(URL_DATOS_ADMIN + '?cmd=get&ID_DATO=' + encodeURIComponent(idDato));
+      return data.status === true && data.item ? data.item : null;
+    }
+
+    // Compara un dato de datosadmin con el item SRIG y el registro HIE. No modifica nada.
+    // Devuelve las diferencias (texto) y los cambios que se pueden aplicar con cmd=update.
+    // Los campos que la respuesta del backend no trae se anotan en `ausentes`. Con el detalle completo
+    // (cmd=get) un campo ausente es un valor vacio: el backend omite las claves en null.
+    function compararDatoAdmin(dato, fuenteSrig, idRegistro, ausentes, entidades, detalleCompleto) {
+      const diferencias = [];
+      const cambios = {};
+      const texto = valor => String((valor && typeof valor === 'object' ? valor.NOMBRE : valor) ?? '').trim();
+
+      ['NOMBRE', 'DESCRIPCION'].forEach(campo => {
+        if (!(campo in dato) && !detalleCompleto) { ausentes.add(`datosadmin.${campo}`); return; }
+        const guardado = texto(dato[campo]);
+        const fuente = texto(fuenteSrig[campo]);
+        if (!fuente) {
+          if (guardado) diferencias.push(`${campo}: SRIG sin valor, se conserva "${corto(guardado)}"`);
+        } else if (guardado !== fuente) {
+          diferencias.push(`${campo}: "${corto(guardado)}" -> "${corto(fuente)}"`);
+          cambios[campo] = fuente;
+        }
+      });
+
+      if (!('ENTIDAD' in fuenteSrig)) {
+        ausentes.add('SRIG.ENTIDAD');
+      } else {
+        const guardada = texto(dato.NOMBRE_ENTIDAD ?? dato.ENTIDAD);
+        const fuente = texto(fuenteSrig.ENTIDAD);
+        if (!fuente) {
+          if (guardada) diferencias.push(`entidad: SRIG sin valor, se conserva "${corto(guardada)}"`);
+        } else if (normalizarTexto(guardada) !== normalizarTexto(fuente)) {
+          const entidad = (entidades || []).find(e => normalizarTexto(e.text) === normalizarTexto(fuente));
+          if (entidad && entidad.id) {
+            diferencias.push(`entidad: "${corto(guardada)}" -> "${corto(fuente)}"`);
+            cambios.ID_ENTIDAD = entidad.id;
+          } else {
+            diferencias.push(`entidad: "${corto(guardada)}" difiere de SRIG "${corto(fuente)}", que no esta en el catalogo de entidades (corregir a mano)`);
+          }
+        }
+      }
+
+      // Sin registro HIE conocido para el item no hay contra que comparar: no se toca
+      const hieGuardado = String(dato.IDENTIFICADOR_HIE ?? '').trim();
+      if (idRegistro && hieGuardado !== String(idRegistro)) {
+        diferencias.push(`IDENTIFICADOR_HIE: "${hieGuardado}" -> "${idRegistro}"`);
+        cambios.IDENTIFICADOR_HIE = String(idRegistro);
+      }
+      return { diferencias, cambios };
+    }
+
+    // Envia cmd=update con los mismos parametros que datosadmin/: todos los valores actuales
+    // del dato mas los cambios. IDENTIFICADOR_SRIG es el enlace y viaja sin modificar.
+    async function actualizarDatoAdmin(dato, cambios) {
+      const final = Object.assign({}, dato, cambios);
+      if (!final.ID_ENTIDAD) throw new Error('el dato no trae ID_ENTIDAD');
+      if (!final.NOMBRE) throw new Error('el dato no tiene NOMBRE');
+
+      const params = new URLSearchParams({
+        cmd: 'update',
+        ID_DATO: dato.ID_DATO,
+        ID_ENTIDAD: final.ID_ENTIDAD,
+        NOMBRE: final.NOMBRE,
+        ACTIVO: String(final.ACTIVO ?? '1') === '0' ? '0' : '1'
+      });
+      ['DESCRIPCION', 'TIPO_DATO', 'IDENTIFICADOR_SRIG', 'IDENTIFICADOR_PDA', 'IDENTIFICADOR_PMB',
+        'IDENTIFICADOR_HIE', 'IDENTIFICADOR_METADATOS'].forEach(clave => {
+        if (final[clave] !== undefined && final[clave] !== null && final[clave] !== '') params.append(clave, final[clave]);
+      });
+
+      const result = await apiGet(URL_DATOS_ADMIN + '?' + params.toString());
+      if (result.status !== true && result.success !== true) {
+        throw new Error(result.message || result.error || JSON.stringify(result));
+      }
+    }
+
+    // Mapa ID SRIG -> ID_REGISTRO de HIE. Si un item tiene mas de un registro queda en null (ambiguo).
+    function indexarHiePorSrig(registros) {
+      const indice = new Map();
+      (registros || []).forEach(registro => {
+        const idSrig = idSrigDe(registro.IDENTIFICADOR_SRIG) || idSrigDe(registro.SRIG_ITEM && registro.SRIG_ITEM.ID);
+        if (!idSrig || !registro.ID_REGISTRO) return;
+        indice.set(idSrig, indice.has(idSrig) && String(indice.get(idSrig)) !== String(registro.ID_REGISTRO) ? null : registro.ID_REGISTRO);
+      });
+      return indice;
+    }
+
+    // Recorre datosadmin y lo compara con SRIG en vivo (cr/interop, la misma fuente que usa ese modulo).
+    // Solo se llega con rol ADMIN de DATOS: abarca todas las entidades y corrige. Acumula en `cuenta`.
+    async function validarDatosAdmin({ simular, datosAdminPorSrig, registrosHie, srigDeMiEntidad, cuenta, camposAusentes }) {
+      const pendientes = [...datosAdminPorSrig.entries()];
+
+      log(`DATOSADMIN: ${pendientes.length} item(s) SRIG a revisar (todas las entidades)`, 'info');
+
+      srigDeMiEntidad.forEach(idSrig => {
+        if (datosAdminPorSrig.has(idSrig)) return;
+        cuenta.sinDato++;
+        log(`DATOSADMIN SRIG ${idSrig}: mi entidad tiene registro HIE pero no hay dato con ese identificador SRIG`, 'skip');
+      });
+
+      // Para IDENTIFICADOR_HIE de otras entidades se necesita el listado HIE sin filtro de entidad;
+      // si falla, queda el de mi entidad
+      let hiePorSrig = indexarHiePorSrig(registrosHie);
+      try {
+        await refreshToken();
+        const completo = await apiGet(URL_HIE_ADMIN + '?cmd=query&srig_clase=Objeto');
+        if (completo.status && Array.isArray(completo.items)) hiePorSrig = indexarHiePorSrig(completo.items);
+      } catch (err) {
+        log('DATOSADMIN: no se pudo consultar el listado HIE completo: ' + err.message, 'warning');
+      }
+      log(`DATOSADMIN: ${hiePorSrig.size} registro(s) HIE conocidos; IDENTIFICADOR_HIE solo se compara para esos items`, 'info');
+      const entidades = await cargarEntidades();
+
+      for (let i = 0; i < pendientes.length; i++) {
+        if (detenerSolicitado) {
+          log(`DATOSADMIN: detenido por el usuario. Revisados ${i} de ${pendientes.length}.`, 'warning');
+          break;
+        }
+        const [idSrig, datosAdmin] = pendientes[i];
+        updateProgress(i + 1, pendientes.length);
+        cuenta.revisados += datosAdmin.length;
+
+        let fuenteSrig = null;
+        try {
+          await refreshToken();
+          const resp = await apiGet(URL_INTEROP_SRIG_ITEM + encodeURIComponent(datosAdmin[0].IDENTIFICADOR_SRIG));
+          fuenteSrig = resp.result || null;
+          if (!fuenteSrig) {
+            cuenta.sinSrig++;
+            log(`DATOSADMIN SRIG ${idSrig} (ID_DATO ${datosAdmin.map(d => d.ID_DATO).join(', ')}): SRIG no devolvio el item, no se compara${resp.message ? ': ' + resp.message : ''}`, 'aviso');
+          }
+        } catch (srigErr) {
+          log(`DATOSADMIN SRIG ${idSrig}: error consultando SRIG: ${srigErr.message}`, 'error');
+          cuenta.errores++;
+        }
+        if (!fuenteSrig) continue;
+
+        if (datosAdmin.length > 1) {
+          log(`DATOSADMIN SRIG ${idSrig}: ${datosAdmin.length} datos comparten el identificador (ID_DATO ${datosAdmin.map(d => d.ID_DATO).join(', ')}); no se corrigen, solo se reportan`, 'aviso');
+        }
+
+        for (const datoListado of datosAdmin) {
+          const etiquetaDato = `DATOSADMIN [${datoListado.ID_DATO}] ${datoListado.NOMBRE || '?'} | ${datoListado.NOMBRE_ENTIDAD || ''}`;
+          try {
+            // Con rol ADMIN se compara contra el detalle completo, que es lo que se reenvia en el update
+            let dato = datoListado;
+            let detalleCompleto = false;
+            if (puedeEjecutarDatos) {
+              const detalle = await obtenerDatoAdmin(datoListado.ID_DATO);
+              if (detalle) {
+                dato = Object.assign({}, datoListado, detalle);
+                detalleCompleto = true;
+              } else {
+                log(`${etiquetaDato}: no se pudo obtener el detalle (cmd=get); solo se reporta`, 'warning');
+              }
+            }
+
+            const { diferencias, cambios } = compararDatoAdmin(dato, fuenteSrig, hiePorSrig.get(idSrig), camposAusentes, entidades, detalleCompleto);
+            if (diferencias.length === 0) continue;
+            cuenta.conDiferencias++;
+
+            const hayCambios = Object.keys(cambios).length > 0;
+            if (!puedeEjecutarDatos || !detalleCompleto || datosAdmin.length > 1 || !hayCambios) {
+              log(`${etiquetaDato} - corregir en datosadmin: ${diferencias.join('; ')}`, 'aviso');
+              continue;
+            }
+
+            if (simular) {
+              log(`${etiquetaDato} - Cambiaria: ${diferencias.join('; ')}`, 'warning');
+              cuenta.actualizados++;
+              continue;
+            }
+
+            if (!(await sigueSiendoAdminDatos())) {
+              puedeEjecutarDatos = false;
+              log(`${etiquetaDato}: ya no tiene el rol ADMIN de DATOS; desde aqui solo se reporta. Pendiente: ${diferencias.join('; ')}`, 'error');
+              cuenta.errores++;
+              continue;
+            }
+            await actualizarDatoAdmin(dato, cambios);
+            log(`${etiquetaDato} - Actualizado: ${diferencias.join('; ')}`, 'success');
+            cuenta.actualizados++;
+          } catch (datoErr) {
+            log(`${etiquetaDato} - Error: ${datoErr.message}`, 'error');
+            cuenta.errores++;
+          }
+        }
+
+        await new Promise(r => setTimeout(r, 150));
+      }
+    }
+
+    // Un documento tiene datos si es un objeto con al menos una clave
+    function tieneDatos(doc) {
+      return !!doc && typeof doc === 'object' && Object.keys(doc).length > 0;
+    }
+
+    // ===================== EJECUTAR =====================
+    async function ejecutar(simular) {
+      if (!currentToken) { log('Sin token', 'error'); return; }
+      if (enEjecucion) return;
+      if (!simular && !puedeEjecutar) { log('Solo el rol ENTIDAD puede ejecutar la correccion de estandares.', 'error'); return; }
+
+      enEjecucion = true;
+      detenerSolicitado = false;
+      habilitarBotones(false);
+
+      let totalItems = 0, processed = 0, updated = 0, skipped = 0, errors = 0, noET = 0, conAvisos = 0, incompletosPublicados = 0;
+      // Solo la simulacion del rol ADMIN abarca todas las entidades
+      const todasEntidades = simular && simulaTodasEntidades;
+
+      try {
+        log(simular ? '=== ESTANDARES: INICIO SIMULACION (no se escribe nada) ===' : '=== ESTANDARES: INICIO EJECUCION ===', 'info');
+        log(todasEntidades ? 'Entidad: todas (simulacion rol ADMIN)' : `Entidad: ${userEntidad}`, 'info');
+        const schemas = await cargarSchemas();
+        const validadores = compilarValidadores(schemas);
+        log(`Schemas cargados: ${DOCUMENTOS.map(d => d.schema).join(', ')}`, 'info');
+
+        log('Consultando listado de registros HIE (cmd=query)...', 'info');
+
+        await refreshToken();
+        // Limitado a la entidad del usuario, salvo la simulacion del rol ADMIN
+        const queryUrl = URL_HIE_ADMIN + '?cmd=query&srig_clase=Objeto' + (todasEntidades ? '' : '&filter_by_entity=1');
+        const queryData = await apiGet(queryUrl);
+
+        if (!queryData.status || !queryData.items) {
+          log('Error en consulta: ' + JSON.stringify(queryData), 'error');
+          return;
+        }
+
+        const recibidos = queryData.items || [];
+        const srigResults = queryData.results || [];
+        const hieeItems = todasEntidades ? recibidos : recibidos.filter(esDeMiEntidad);
+        totalItems = hieeItems.length;
+
+        log(todasEntidades
+          ? `El backend devolvio ${recibidos.length} registros HIE de todas las entidades; se procesan todos`
+          : `El backend devolvio ${recibidos.length} registros HIE; ${totalItems} son de mi entidad (${userEntidad || 'sin entidad'}) y son los unicos que se procesan`, 'info');
+
+        if (recibidos.length > 0 && totalItems === 0) {
+          const ejemplo = recibidos[0];
+          const camposEntidad = Object.keys(ejemplo).filter(k => k.includes('ENTIDAD'))
+            .map(k => `${k}=${corto(typeof ejemplo[k] === 'object' ? JSON.stringify(ejemplo[k]) : ejemplo[k])}`);
+          log(`Ningun registro coincide con mi entidad "${userEntidad}". No se procesa nada. Campos de entidad del primer registro: ${camposEntidad.join(' | ') || '(ninguno)'}`, 'error');
+          return;
+        }
+
+        // Build SRIG index
+        const srigIndex = {};
+        srigResults.forEach(srig => {
+          if (srig.ID) srigIndex[srig.ID] = srig;
+          if (srig.ENLACE) srigIndex[srig.ENLACE] = srig;
+        });
+
+        for (let i = 0; i < hieeItems.length; i++) {
+          if (detenerSolicitado) {
+            log(`Detenido por el usuario. Procesados ${processed} de ${totalItems}.`, 'warning');
+            break;
+          }
+          const hieeRecord = hieeItems[i];
+          const idRegistro = hieeRecord.ID_REGISTRO;
+          const entidadRegistro = hieeRecord.NOMBRE_ENTIDAD || '';
+          processed++;
+          updateProgress(processed, totalItems);
+
+          if (!idRegistro) { skipped++; continue; }
+
+          // 1. cmd=get
+          try {
+            await refreshToken();
+            const fullData = await apiGet(URL_HIE_ADMIN + '?cmd=get&ID_REGISTRO=' + idRegistro);
+
+            if (!fullData.status || !fullData.item) {
+              log(`[${idRegistro}] ${hieeRecord.NOMBRE || '?'} | ${entidadRegistro} - Error en cmd=get`, 'error');
+              errors++;
+              continue;
+            }
+
+            const fullItem = fullData.item;
+            const entidadLabel = fullItem.NOMBRE_ENTIDAD || entidadRegistro || '';
+
+            // 2. Fuente SRIG: SRIG_ITEM del registro; lo que falte se completa con el listado
+            let srigItem = null;
+            if (hieeRecord.IDENTIFICADOR_SRIG) {
+              srigItem = srigIndex[hieeRecord.IDENTIFICADOR_SRIG];
+              if (!srigItem) {
+                const parts = hieeRecord.IDENTIFICADOR_SRIG.split('/');
+                const srigId = parts[parts.length - 1];
+                srigItem = srigResults.find(s => s.ID === srigId || String(s.ID) === srigId);
+              }
+            }
+
+            let srigData = null;
+            if (fullItem.SRIG_ITEM) {
+              try { srigData = parsearJson(fullItem.SRIG_ITEM); } catch (_) {}
+            }
+
+            const fuenteSrig = Object.assign({}, srigItem);
+            Object.entries(srigData || {}).forEach(([clave, valor]) => {
+              if (valor !== null && valor !== undefined && valor !== '') fuenteSrig[clave] = valor;
+            });
+            if (!fuenteSrig.NOMBRE_ALTERNATIVO && fullItem.NOMBRE_ALTERNATIVO) {
+              fuenteSrig.NOMBRE_ALTERNATIVO = fullItem.NOMBRE_ALTERNATIVO;
+            }
+
+            // 3. Fuente ENTIDAD
+            let entidadObj = null;
+            if (fullItem.ENTIDAD) {
+              try { entidadObj = parsearJson(fullItem.ENTIDAD); } catch (_) {}
+            }
+
+            const fuentes = { srig: fuenteSrig, entidad: entidadObj };
+
+            // 4. Parsear documentos. Un documento que no se puede parsear se omite.
+            const docs = {};
+            for (const doc of DOCUMENTOS) {
+              if (!fullItem[doc.campo]) continue;
+              try {
+                docs[doc.campo] = parsearJson(fullItem[doc.campo]);
+              } catch (parseErr) {
+                log(`[${idRegistro}] ${hieeRecord.NOMBRE || '?'} | ${entidadLabel} - ${doc.campo} no se pudo parsear, se omite: ${parseErr.message}`, 'error');
+                errors++;
+              }
+            }
+
+            const tieneET = !!fullItem.ESPECIFICACION_TECNICA;
+            const changes = [];
+            const avisos = [];
+            const docsModificados = {};
+            const docsConDatos = {};
+            // Flags que la correccion cambia y descripcion de los documentos publicados incompletos
+            const flagsForzados = {};
+            const incompletos = [];
+
+            const nombreSrig = typeof fuenteSrig.NOMBRE === 'string' ? fuenteSrig.NOMBRE.trim() : '';
+
+            // 5. Corregir cada documento
+            for (const doc of DOCUMENTOS) {
+              const docData = docs[doc.campo];
+              if (!docData || typeof docData !== 'object') continue;
+
+              // Estado previo a las correcciones: define el flag cuando viene vacio
+              docsConDatos[doc.campo] = tieneDatos(docData);
+              const schema = schemas[doc.campo];
+
+              // 5a. Campos derivados de SRIG_ITEM y ENTIDAD
+              let cambiosDoc = sincronizarDerivados(docData, doc.campo, fuentes, changes, avisos);
+
+              // nombreEspecificacion siempre es el prefijo fijo + el nombre SRIG. Se compara sin diferencias
+              // invisibles (forma Unicode de las tildes, espacios repetidos o al final)
+              if (doc.campo === 'ESPECIFICACION_TECNICA' && nombreSrig && docsConDatos[doc.campo]) {
+                const esperado = PREFIJO_NOMBRE_ESPECIFICACION + nombreSrig;
+                const actual = docData.nombreEspecificacion;
+                if (normalizarEspacios(actual) !== normalizarEspacios(esperado)) {
+                  changes.push(`${doc.campo}.nombreEspecificacion: "${actual ?? ''}" -> "${esperado}"`);
+                  docData.nombreEspecificacion = esperado;
+                  cambiosDoc++;
+                }
+              }
+
+              // version es obligatoria: si el documento no la trae se completa con el valor por defecto
+              if (DOCUMENTOS_CON_VERSION.includes(doc.campo) && docsConDatos[doc.campo] &&
+                  String(docData.version ?? '').trim() === '') {
+                changes.push(`${doc.campo}.version: "${docData.version ?? ''}" -> "${VERSION_POR_DEFECTO}"`);
+                docData.version = VERSION_POR_DEFECTO;
+                cambiosDoc++;
+              }
+
+              // id raiz es obligatorio: la aplicacion lo crea con el ID_REGISTRO; los registros antiguos no lo traen
+              if (docsConDatos[doc.campo] && String(docData.id ?? '').trim() === '') {
+                changes.push(`${doc.campo}.id: "${docData.id ?? ''}" -> "${idRegistro}"`);
+                docData.id = String(idRegistro);
+                cambiosDoc++;
+              }
+
+              // 5b. Quitar "id" donde el schema ya no lo admite
+              const quitados = [];
+              quitarIdsNoPermitidos(docData, schema, schema, '', quitados);
+              if (quitados.length > 0) {
+                changes.push(`${doc.campo}: id removido x${quitados.length} (${[...new Set(quitados)].join(', ')})`);
+                cambiosDoc += quitados.length;
+              }
+
+              if (cambiosDoc > 0) docsModificados[doc.campo] = docData;
+
+              // 5c. Avisos: solo se reportan, sobre documentos que ya tenian datos
+              if (docsConDatos[doc.campo]) {
+                const avisosDoc = [];
+                revisarValores(docData, schema, schema, '', avisosDoc);
+                const faltantes = [];
+                revisarRequeridos(docData, validadores[doc.campo], faltantes);
+                const flagActual = fullItem[doc.flag] || '';
+                if (!DOCUMENTOS_BORRADOR_SI_INCOMPLETO.includes(doc.campo)) {
+                  avisosDoc.push(...faltantes);
+                } else if (faltantes.length > 0 && ESTADOS_PUBLICADOS.includes(flagActual)) {
+                  // Se reenvia el documento tal cual (con las correcciones previas) para cambiar su flag
+                  flagsForzados[doc.campo] = 'BORRADOR';
+                  docsModificados[doc.campo] = docData;
+                  changes.push(`${doc.flag}: ${flagActual} -> BORRADOR`);
+                  incompletos.push(`${doc.campo} en ${flagActual} con ${faltantes.length} obligatorio(s) sin valor: ${faltantes.join('; ')}`);
+                }
+                avisosDoc.forEach(aviso => avisos.push(`${doc.campo} > ${aviso}`));
+              }
+            }
+
+            // 5d. NOMBRE del registro: tambien viene de SRIG. IDENTIFICADOR_SRIG es el enlace y no se toca.
+            const nombreGuardado = fullItem.NOMBRE || hieeRecord.NOMBRE || '';
+            let nombreRegistro = nombreGuardado;
+            if (!nombreSrig) {
+              if (nombreGuardado) avisos.push(`NOMBRE del registro: SRIG sin nombre, se conserva "${corto(nombreGuardado)}"`);
+            } else if (nombreGuardado !== nombreSrig) {
+              // update2 siempre viaja con al menos un documento: si ninguno cambio, se reenvia uno tal cual
+              const docPortador = DOCUMENTOS.find(doc => docsModificados[doc.campo]) ||
+                DOCUMENTOS.find(doc => docs[doc.campo] && typeof docs[doc.campo] === 'object');
+              if (docPortador) {
+                if (!docsModificados[docPortador.campo]) docsModificados[docPortador.campo] = docs[docPortador.campo];
+                changes.push(`NOMBRE del registro: "${corto(nombreGuardado)}" -> "${corto(nombreSrig)}"`);
+                nombreRegistro = nombreSrig;
+              } else {
+                avisos.push(`NOMBRE del registro: "${corto(nombreGuardado)}" difiere de SRIG "${corto(nombreSrig)}" y no hay documento con el cual enviarlo`);
+              }
+            }
+
+            if (avisos.length > 0) {
+              conAvisos++;
+              log(`[${idRegistro}] ${hieeRecord.NOMBRE || '?'} | ${entidadLabel} - REVISAR ${avisos.length} valor(es): ${avisos.join('; ')}`, 'aviso');
+            }
+
+            if (incompletos.length > 0) {
+              incompletosPublicados++;
+              log(`[${idRegistro}] ${hieeRecord.NOMBRE || '?'} | ${entidadLabel} - PUBLICADO INCOMPLETO, ${simular ? 'pasaria' : 'pasa'} a BORRADOR: ${incompletos.join(' | ')}`, 'error');
+            }
+
+            if (changes.length === 0) {
+              if (!tieneET) {
+                log(`[${idRegistro}] ${hieeRecord.NOMBRE || '?'} | ${entidadLabel} - Sin ESPECIFICACION_TECNICA`, 'skip');
+                noET++;
+              } else {
+                log(`[${idRegistro}] ${hieeRecord.NOMBRE || '?'} | ${entidadLabel} - Sin cambios`, 'skip');
+                skipped++;
+              }
+              continue;
+            }
+
+            // 6. Enviar (solo los documentos modificados, cada uno con su flag actual)
+            log(`[${idRegistro}] ${hieeRecord.NOMBRE || '?'} | ${entidadLabel} - ${simular ? 'Cambiaria' : 'Corrigiendo'} ${changes.length} campo(s): ${changes.join('; ')}`, 'warning');
+
+            const currentEstado = fullItem.ESTADO || 'BORRADOR';
+            const nombre = nombreRegistro;
+            const identificadorSrig = fullItem.IDENTIFICADOR_SRIG || hieeRecord.IDENTIFICADOR_SRIG || '';
+            const identificadorPadre = fullItem.IDENTIFICADOR_PADRE || '';
+
+            const urlParams = {
+              cmd: 'update2',
+              ID_REGISTRO: idRegistro,
+              NOMBRE: nombre,
+              IDENTIFICADOR_SRIG: identificadorSrig,
+              IDENTIFICADOR_PADRE: identificadorPadre,
+              ESTADO: currentEstado
+            };
+            const bodyData = {};
+            const flagsEnviados = [];
+
+            DOCUMENTOS.forEach(doc => {
+              if (!docsModificados[doc.campo]) return;
+              bodyData[doc.campo] = utf8ToBase64(JSON.stringify(docsModificados[doc.campo]));
+              // Flag vacio: BORRADOR si el documento ya tenia datos, CREADO si no
+              urlParams[doc.flag] = flagsForzados[doc.campo] || fullItem[doc.flag] || (docsConDatos[doc.campo] ? 'BORRADOR' : 'CREADO');
+              flagsEnviados.push(`${doc.flag}=${urlParams[doc.flag]}`);
+            });
+
+            if (simular) {
+              log(`[${idRegistro}] ${nombre} | ${entidadLabel} - Simulado, no se envio (${flagsEnviados.join(', ')}, ESTADO=${currentEstado})`, 'info');
+              updated++;
+              continue;
+            }
+
+            const updateUrl = URL_HIE_ADMIN + '?' + new URLSearchParams(urlParams).toString();
+
+            await refreshToken();
+            const result = await apiPost(updateUrl, bodyData);
+
+            if (result.status === true) {
+              log(`[${idRegistro}] ${nombre} | ${entidadLabel} - Actualizado (${flagsEnviados.join(', ')}, ESTADO=${currentEstado})`, 'success');
+              updated++;
+            } else {
+              log(`[${idRegistro}] ${nombre} | ${entidadLabel} - Error servidor: ${JSON.stringify(result)}`, 'error');
+              errors++;
+            }
+
+            await new Promise(r => setTimeout(r, 300));
+
+          } catch (reqErr) {
+            log(`[${idRegistro}] ${hieeRecord.NOMBRE || '?'} - Error: ${reqErr.message}`, 'error');
+            errors++;
+          }
+
+          await new Promise(r => setTimeout(r, 200));
+        }
+
+      } catch (err) {
+        log('Error general: ' + err.message, 'error');
+        errors++;
+      } finally {
+        enEjecucion = false;
+        habilitarBotones(true);
+
+        const etiqueta = simular ? 'Cambiarian' : 'Actualizados';
+        document.getElementById('summary').innerHTML =
+          `<strong>Estandares - ${simular ? 'Simulacion' : 'Resultado'}:</strong> Total: ${totalItems} | ${etiqueta}: ${updated} | Sin ET: ${noET} | Saltados: ${skipped} | Con avisos: ${conAvisos} | Publicados incompletos: ${incompletosPublicados} | Errores: ${errors}`;
+
+        log(`=== ESTANDARES: ${detenerSolicitado ? 'DETENIDA' : 'FIN'} ${simular ? 'SIMULACION' : 'EJECUCION'} === Procesados: ${processed}/${totalItems}, ${etiqueta}: ${updated}, Saltados: ${skipped}, Sin ET: ${noET}, Con avisos: ${conAvisos}, Publicados incompletos: ${incompletosPublicados}, Errores: ${errors}`, updated > 0 ? 'success' : 'info');
+      }
+    }
+
+    // Recorrido de datosadmin, independiente del de estandares
+    async function ejecutarDatos(simular) {
+      if (enEjecucion) return;
+      if (!currentToken) { log('Sin token', 'error'); return; }
+      if (!puedeEjecutarDatos) { log('Solo el rol ADMIN de DATOS puede simular o ejecutar la correccion de datosadmin.', 'error'); return; }
+
+      enEjecucion = true;
+      detenerSolicitado = false;
+      habilitarBotones(false);
+
+      const cuenta = { revisados: 0, conDiferencias: 0, actualizados: 0, sinDato: 0, sinSrig: 0, errores: 0 };
+      const camposAusentes = new Set();
+
+      try {
+        log(simular ? '=== DATOSADMIN: INICIO SIMULACION (no se escribe nada) ===' : '=== DATOSADMIN: INICIO EJECUCION ===', 'info');
+
+        await refreshToken();
+        const datosAdminPorSrig = await cargarDatosAdminPorSrig();
+        if (!datosAdminPorSrig) { cuenta.errores++; return; }
+
+        // Registros HIE de mi entidad: reportan los que no tienen dato y respaldan el IDENTIFICADOR_HIE
+        let registrosHie = [];
+        try {
+          const queryData = await apiGet(URL_HIE_ADMIN + '?cmd=query&srig_clase=Objeto&srig_estado=Valido&filter_by_entity=1');
+          if (queryData.status && Array.isArray(queryData.items)) registrosHie = queryData.items;
+          else log('DATOSADMIN: no se pudo consultar los registros HIE de mi entidad: ' + corto(JSON.stringify(queryData)), 'warning');
+        } catch (err) {
+          log('DATOSADMIN: no se pudo consultar los registros HIE de mi entidad: ' + err.message, 'warning');
+        }
+        const srigDeMiEntidad = new Set(registrosHie.filter(esDeMiEntidad).map(r => idSrigDe(r.IDENTIFICADOR_SRIG)).filter(Boolean));
+
+        await validarDatosAdmin({ simular, datosAdminPorSrig, registrosHie, srigDeMiEntidad, cuenta, camposAusentes });
+      } catch (err) {
+        log('Error general: ' + err.message, 'error');
+        cuenta.errores++;
+      } finally {
+        enEjecucion = false;
+        habilitarBotones(true);
+
+        const etiqueta = simular ? 'Cambiarian' : 'Actualizados';
+        document.getElementById('summary').innerHTML =
+          `<strong>datosadmin - ${simular ? 'Simulacion' : 'Resultado'}:</strong> Revisados: ${cuenta.revisados} | Con diferencias: ${cuenta.conDiferencias} | ${etiqueta}: ${cuenta.actualizados} | No encontrados en SRIG: ${cuenta.sinSrig} | Registros HIE sin dato: ${cuenta.sinDato} | Errores: ${cuenta.errores}`;
+
+        if (camposAusentes.size > 0) {
+          log(`No se pudo comparar por falta del campo en la respuesta del backend: ${[...camposAusentes].join(', ')}`, 'warning');
+        }
+
+        log(`=== DATOSADMIN: ${detenerSolicitado ? 'DETENIDA' : 'FIN'} ${simular ? 'SIMULACION' : 'EJECUCION'} === Revisados: ${cuenta.revisados}, con diferencias: ${cuenta.conDiferencias}, ${etiqueta.toLowerCase()}: ${cuenta.actualizados}, no encontrados en SRIG: ${cuenta.sinSrig}, registros HIE sin dato: ${cuenta.sinDato}, errores: ${cuenta.errores}`, cuenta.actualizados > 0 ? 'success' : 'info');
+      }
+    }
+
+    // ===================== EVENTOS =====================
+    document.getElementById('btn-simular').addEventListener('click', () => ejecutar(true));
+    document.getElementById('btn-ejecutar').addEventListener('click', () => ejecutar(false));
+    document.getElementById('btn-simular-datos').addEventListener('click', () => ejecutarDatos(true));
+    document.getElementById('btn-ejecutar-datos').addEventListener('click', () => ejecutarDatos(false));
+    document.getElementById('btn-detener').addEventListener('click', () => {
+      detenerSolicitado = true;
+      document.getElementById('btn-detener').disabled = true;
+      log('Detencion solicitada: se detiene al terminar el registro en curso...', 'warning');
+    });
+    document.getElementById('btn-limpiar-log').addEventListener('click', () => {
+      document.getElementById('log').innerHTML = '';
+    });
+  </script>
+</body>
+</html>

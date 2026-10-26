@@ -1,0 +1,294 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "Represetacion",
+  "description": "Representación",
+  "version": "1.0.0",
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "ID",
+      "description": "Id del Objeto",
+      "readOnly": true
+    },
+    "identificadorRecursoUniforme": {
+      "type": "string",
+      "title": "Identificador del objeto",
+      "description": "Identificador del objeto",
+      "format": "uri",
+      "maxLength": 2083,
+      "readOnly": true
+    },
+    "nivelAlcance": {
+      "type": "string",
+      "title": "Alcance de la Especificación Técnica",
+      "description": "Alcance de la Especificación Técnica",
+      "default": "objeto",
+      "readOnly": true
+    },
+    "nombre": {
+      "type": "string",
+      "title": "Nombre del Objeto",
+      "description": "Nombre del Objeto",
+      "readOnly": true
+    },
+    "funciones": {
+      "type": "array",
+      "title": "Función",
+      "description": "Función",
+      "items": {
+        "$ref": "#/$defs/crFuncion"
+      },
+      "minItems": 1
+    },
+    "citaciones": {
+      "type": "array",
+      "title": "Citación",
+      "description": "Citas de la relación",
+      "items": {
+        "$ref": "#/$defs/citacion"
+      },
+      "uniqueItemProperties": [
+        "id",
+        "nombre"
+      ]
+    }
+  },
+  "$defs": {
+    "citacion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "nombre": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "nombre"
+      ]
+    },
+    "crGeometria": {
+      "oneOf": [
+        {
+          "const": "Linea",
+          "title": "Linea"
+        },
+        {
+          "const": "Poligono",
+          "title": "Poligono"
+        },
+        {
+          "const": "Punto",
+          "title": "Punto"
+        },
+        {
+          "const": "Raster",
+          "title": "Raster"
+        }
+      ]
+    },
+    "crTipoFuncion": {
+      "oneOf": [
+        {
+          "const": "Asociación",
+          "title": "Asociación"
+        },
+        {
+          "const": "Atributo",
+          "title": "Atributo"
+        },
+        {
+          "const": "Operación",
+          "title": "Operación"
+        },
+        {
+          "const": "Unico",
+          "title": "Único"
+        }
+      ]
+    },
+    "crEspecificacion": {
+      "type": "object",
+      "title": "Especificaciones",
+      "description": "Especificaciones",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "ID",
+          "description": "ID de la relación",
+          "readOnly": true,
+          "minimum": 1
+        },
+        "valor": {
+          "type": "string",
+          "title": "Valor",
+          "description": "Valor"
+        },
+        "descripcion": {
+          "type": "string",
+          "title": "Descripción",
+          "description": "Descripción"
+        },
+        "etiquetaLeyenda": {
+          "type": "string",
+          "title": "Etiqueta de la leyenda",
+          "description": "Etiqueta de la leyenda"
+        },
+        "geometria": {
+          "type": "string",
+          "title": "Geometría",
+          "description": "Geometría",
+          "$ref": "#/$defs/crGeometria"
+        },
+        "iconoPunto": {
+          "type": "string",
+          "title": "Ícono Punto",
+          "description": "Ícono del Punto"
+        },
+        "colorPunto": {
+          "type": "string",
+          "title": "Color Punto",
+          "description": "Color del Punto"
+        },
+        "tamanoPunto": {
+          "type": "string",
+          "title": "Tamaño Punto",
+          "description": "Tamaño del Punto"
+        },
+        "anguloPunto": {
+          "type": "string",
+          "title": "Ángulo del ícono",
+          "description": "Ángulo del ícono"
+        },
+        "colorLinea": {
+          "type": "string",
+          "title": "Color de la línea",
+          "description": "Color de la línea"
+        },
+        "ancholinea": {
+          "type": "string",
+          "title": "Ancho de la Línea",
+          "description": "Ancho de la Línea"
+        },
+        "estiloLinea": {
+          "type": "string",
+          "title": "Estilo de la línea",
+          "description": "Estilo de la línea"
+        },
+        "colorLineaBorde": {
+          "type": "string",
+          "title": "Color del borde (Polígono)",
+          "description": "Color del borde (Polígono)"
+        },
+        "anchoLineaBorde": {
+          "type": "string",
+          "title": "Ancho del borde (Polígono)",
+          "description": "Ancho del borde (Polígono)"
+        },
+        "estiloLineaBorde": {
+          "type": "string",
+          "title": "Estilo del borde (Polígono)",
+          "description": "Estilo del borde (Polígono)"
+        },
+        "colorRelleno": {
+          "type": "string",
+          "title": "Color del relleno (Polígono)",
+          "description": "Color del relleno (Polígono)"
+        },
+        "estiloRelleno": {
+          "type": "string",
+          "title": "Estilo del relleno (Polígono)",
+          "description": "Estilo del relleno (Polígono)"
+        },
+        "fuente": {
+          "type": "string",
+          "title": "Fuente",
+          "description": "Fuente"
+        },
+        "tamanoFuente": {
+          "type": "string",
+          "title": "Tamaño de la Fuente",
+          "description": "Tamaño de la Fuente"
+        },
+        "estiloFuente": {
+          "type": "string",
+          "title": "Estilo de la Fuente",
+          "description": "Estilo de la Fuente"
+        },
+        "colorFuente": {
+          "type": "string",
+          "title": "Color de la Fuente",
+          "description": "Color de la Fuente"
+        },
+        "muestraGrafica": {
+          "type": "string",
+          "title": "Muestra Gráfica",
+          "description": "Muestra Gráfica"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "valor",
+        "descripcion",
+        "etiquetaLeyenda",
+        "geometria",
+        "muestraGrafica"
+      ]
+    },
+    "crFuncion": {
+      "type": "object",
+      "title": "Función",
+      "description": "Función",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "ID",
+          "description": "ID de la función",
+          "readOnly": true,
+          "minimum": 1
+        },
+        "tipo": {
+          "type": "string",
+          "title": "Tipo de función",
+          "description": "Tipo de función",
+          "$ref": "#/$defs/crTipoFuncion"
+        },
+        "nombre": {
+          "type": "string",
+          "title": "Nombre de la función",
+          "description": "Nombre de la función"
+        },
+        "especificaciones": {
+          "type": "array",
+          "title": "Especificaciones",
+          "description": "Especificaciones",
+          "items": {
+            "$ref": "#/$defs/crEspecificacion"
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "tipo",
+        "nombre",
+        "especificaciones"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "identificadorRecursoUniforme",
+    "nivelAlcance",
+    "nombre",
+    "funciones"
+  ]
+}

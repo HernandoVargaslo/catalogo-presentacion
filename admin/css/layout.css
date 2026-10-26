@@ -1,0 +1,196 @@
+/* Barra superior GOV.CO (patrón diseñador gov-bar) */
+.gov-bar {
+  z-index: 1000;
+  position: relative;
+  background: #0A43B6;
+}
+
+.gov-bar img {
+  width: auto;
+  height: 30px;
+}
+
+.gov-bar a,
+.gov-bar .btn {
+  color: #fff;
+}
+
+.gov-bar .btn {
+  border: 1px solid #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0 5px;
+}
+
+.gov-bar .btn:hover {
+  border: 1px solid #fff;
+  background: #fff;
+  color: var(--color-secondary);
+}
+
+.gov-bar .btn.active {
+  background: #fff !important;
+  color: var(--color-secondary) !important;
+}
+
+/* Navbar principal — logos + sesión (patrón diseñador navbar) */
+.navbar {
+  z-index: 100;
+  background: #003A5B;
+  box-shadow: 5px 0 10px #0000001f;
+}
+
+.navbar .nav-link {
+  color: #fff;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar .nav-link:hover {
+  color: #003A5B;
+  background: #fff;
+}
+
+.navbar .nav-link.active {
+  color: #000;
+  background: #FEB400;
+  font-weight: 600;
+}
+
+.navbar-toggler {
+  width: 20px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .navbar-collapse {
+    background: #003A5B;
+    border-radius: 0 0 10px 10px;
+  }
+}
+
+.user-info {
+  font-size: 0.7rem;
+  line-height: normal;
+}
+
+.user-space button.rounded-circle {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===================================
+   BREADCRUMB-CONTAINER (banner hero)
+=================================== */
+.breadcrumb-container {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  color: #fff;
+  min-height: 130px;
+}
+
+.breadcrumb-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #29002A 0%, #003A5B 100%);
+  opacity: 0.8;
+  z-index: 0;
+}
+
+.breadcrumb-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.breadcrumb-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.15rem;
+}
+
+.breadcrumb-container .breadcrumb {
+  font-size: 0.85rem;
+  background: transparent;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.breadcrumb-container .breadcrumb-item a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.breadcrumb-container .breadcrumb-item + .breadcrumb-item::before {
+  color: rgba(255, 255, 255, 0.7);
+  content: "|";
+  padding: 0 0.4rem;
+}
+
+.breadcrumb-container .breadcrumb-item.active {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ===================================
+   FOOTER (patrón diseñador footer)
+=================================== */
+.footer {
+  color: #0A43B6;
+  background: linear-gradient(0deg, #BBBBBB 90%, rgba(255, 255, 255, 0) 90%);
+  margin-top: 2rem;
+}
+
+.footer a {
+  text-decoration: none;
+  font-weight: 300;
+}
+
+.footer .footer-logos img.footer-logo {
+  width: auto;
+  height: 50px;
+}
+
+.footer .footer-social img {
+  width: auto;
+  aspect-ratio: 1/1;
+  height: 15px;
+}
+
+.footer .footer-links a {
+  text-decoration: underline;
+}
+
+.footer .container-fluid {
+  background: #0A43B6;
+}
+
+.footer .container-fluid .text-white {
+  line-height: normal;
+  font-size: 0.8rem;
+}
+
+.footer address {
+  font-weight: 300;
+}
+
+.footer address,
+.footer .text {
+  color: #444444;
+}
+

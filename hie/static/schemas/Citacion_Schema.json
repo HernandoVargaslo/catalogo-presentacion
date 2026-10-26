@@ -1,0 +1,242 @@
+{
+  "type": "object",
+  "title": "Citacion",
+  "description": "Citaciones",
+  "version": "1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "ciCodFecha": {
+      "oneOf": [
+        {
+          "const": "adopcion",
+          "title": "adopción"
+        },
+        {
+          "const": "comienzo Validez",
+          "title": "comienzo Validez"
+        },
+        {
+          "const": "creacion",
+          "title": "creación"
+        },
+        {
+          "const": "Distribución",
+          "title": "Distribución"
+        },
+        {
+          "const": "fin Validez",
+          "title": "fin Validez"
+        },
+        {
+          "const": "Lanzamiento",
+          "title": "Lanzamiento"
+        },
+        {
+          "const": "no Disponible",
+          "title": "no Disponible"
+        },
+        {
+          "const": "obsoleto",
+          "title": "obsoleto"
+        },
+        {
+          "const": "proxima Actualizacion",
+          "title": "proxima Actualización"
+        },
+        {
+          "const": "publicacion",
+          "title": "publicación"
+        },
+        {
+          "const": "reemplazada",
+          "title": "reemplazada"
+        },
+        {
+          "const": "revision",
+          "title": "revisión"
+        },
+        {
+          "const": "ultima Actualizacion",
+          "title": "ultima Actualización"
+        },
+        {
+          "const": "ultima Revision",
+          "title": "ultima Revision"
+        },
+        {
+          "const": "vencimiento",
+          "title": "vencimiento"
+        },
+        {
+          "const": "vigencia",
+          "title": "vigencia"
+        }
+      ]
+    },
+    "ciFormaPresentacion": {
+      "oneOf": [
+        {
+          "const": "audio",
+          "title": "audio"
+        },
+        {
+          "const": "audioDigital",
+          "title": "audio Digital"
+        },
+        {
+          "const": "Diagrama",
+          "title": "Diagrama"
+        },
+        {
+          "const": "Diagrama Digital",
+          "title": "Diagrama Digital"
+        },
+        {
+          "const": "documentoDigital",
+          "title": "documento Digital"
+        },
+        {
+          "const": "documentoImpreso",
+          "title": "documento Impreso"
+        },
+        {
+          "const": "imagenDigital",
+          "title": "imagen Digital"
+        },
+        {
+          "const": "imagenImpresa",
+          "title": "imagen Impresa"
+        },
+        {
+          "const": "mapaDigital",
+          "title": "mapa Digital"
+        },
+        {
+          "const": "mapaImpreso",
+          "title": "mapa Impreso"
+        },
+        {
+          "const": "modeloDigital",
+          "title": "modelo Digital"
+        },
+        {
+          "const": "modeloImpreso",
+          "title": "modelo Impreso"
+        },
+        {
+          "const": "multimedia",
+          "title": "multimedia"
+        },
+        {
+          "const": "multimedia digital",
+          "title": "multimedia digital"
+        },
+        {
+          "const": "objeto físico",
+          "title": "objeto físico"
+        },
+        {
+          "const": "perfilDigital",
+          "title": "perfil Digital"
+        },
+        {
+          "const": "perfilImpreso",
+          "title": "perfil Impreso"
+        },
+        {
+          "const": "tablaDigital",
+          "title": "tabla Digital"
+        },
+        {
+          "const": "tablaImpresa",
+          "title": "tabla Impresa"
+        },
+        {
+          "const": "video",
+          "title": "video"
+        },
+        {
+          "const": "videoDigital",
+          "title": "video Digital"
+        }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "titulo": {
+      "type": "string",
+      "title": "Título de Citación o Fuente",
+      "description": "Título de Citación o Fuente"
+    },
+    "tituloAlternativo": {
+      "type": "string",
+      "title": "Titulo alternativo",
+      "description": "Titulo alternativo"
+    },
+    "tipoFecha": {
+      "type": "string",
+      "title": "Tipo Fecha",
+      "description": "Tipo Fecha",
+      "$ref": "#/$defs/ciCodFecha"
+    },
+    "fecha": {
+      "type": "string",
+      "format": "date",
+      "title": "Fecha",
+      "description": "Fecha"
+    },
+    "edicion": {
+      "type": "string",
+      "title": "Edición",
+      "description": "Edición"
+    },
+    "autor": {
+      "type": "string",
+      "title": "Autor",
+      "description": "Autor de la Citación o Fuente"
+    },
+    "formaPresentacion": {
+      "type": "string",
+      "title": "Forma de Presentación",
+      "description": "Forma de Presentación",
+      "$ref": "#/$defs/ciFormaPresentacion"
+    },
+    "series": {
+      "type": "string",
+      "title": "Series",
+      "description": "Series"
+    },
+    "otrosDetalles": {
+      "type": "string",
+      "title": "Otros Detalles",
+      "description": "Otros Detalles"
+    },
+    "isbn": {
+      "type": "string",
+      "title": "ISBN",
+      "description": "ISBN",
+      "format": "isbn"
+    },
+    "issn": {
+      "type": "string",
+      "title": "ISSN",
+      "description": "ISSN",
+      "format": "issn"
+    },
+    "recursoLinea": {
+      "type": "string",
+      "title": "Recurso en Línea",
+      "description": "Recurso en Línea",
+      "format": "uri",
+      "maxLength": 2083
+    }
+  },
+  "required": [
+    "titulo",
+    "tipoFecha",
+    "fecha",
+    "autor",
+    "formaPresentacion"
+  ]
+}

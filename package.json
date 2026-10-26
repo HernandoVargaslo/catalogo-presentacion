@@ -1,0 +1,14 @@
+{
+  "name": "catalogo-recursos",
+  "private": true,
+  "type": "module",
+  "description": "Herramientas de desarrollo (build de producción) para los módulos del Catálogo de Recursos — el sitio en sí no tiene dependencias en runtime.",
+  "scripts": {
+    "dist": "node scripts/build.mjs",
+    "prod": "node scripts/build.mjs --prod"
+  },
+  "devDependencies": {
+    "esbuild": "0.24.2",
+    "lightningcss": "1.33.0"
+  }
+}

@@ -1,0 +1,748 @@
+/* ===================================
+   BASE
+=================================== */
+* {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+/* --- Bootstrap --- */
+/* --- Texto --- */
+.fs-7 {
+    font-size: 0.9rem; /* 14px */
+}
+
+.fs-8 {
+    font-size: 0.75rem; /* 12px */
+}
+
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
+.text-secondary {
+  color: var(--color-secondary) !important;
+}
+
+.text-success {
+  color: var(--color-success) !important;
+}
+
+.text-danger {
+  color: var(--color-danger) !important;
+}
+
+.text-dark {
+  color: var(--color-black) !important;
+}
+
+.text-light {
+  color: var(--color-soft-gray) !important;
+}
+
+.text-white {
+  color: var(--color-white) !important;
+}
+
+.text-gray {
+  color: var(--color-gray) !important;
+}
+
+/* Sobrescribir bordes Bootstrap */
+.border-primary {
+  border-color: var(--color-primary) !important;
+}
+
+.border-secondary {
+  border-color: var(--color-secondary) !important;
+}
+
+.border-success {
+  border-color: var(--color-success) !important;
+}
+
+.border-danger {
+  border-color: var(--color-danger) !important;
+}
+
+.border-dark {
+  border-color: var(--color-black) !important;
+}
+
+.border-light {
+  border-color: var(--color-soft-gray) !important;
+}
+
+.border-white {
+  border-color: var(--color-white) !important;
+}
+
+.border-gray {
+  border-color: var(--color-gray) !important;
+}
+
+/* backgrounds */
+.bg-secondary {
+  background-color: var(--color-secondary) !important;
+}
+
+.bg-success {
+  background-color: var(--color-success) !important;
+}
+
+.bg-danger {
+  background-color: var(--color-danger) !important;
+}
+
+.bg-white {
+  background-color: var(--color-white) !important;
+}
+
+.bg-softblack {
+  background-color: var(--color-soft-black) !important;
+}
+
+.bg-gray {
+  background-color: var(--color-gray) !important;
+}
+
+.bg-softgray {
+  background-color: var(--color-soft-gray) !important;
+}
+
+.bg-darkgray {
+  background-color: #e9ecef !important;
+}
+
+.bg-gray-lighter {
+  background-color: rgb(233, 242, 245) !important;
+}
+
+/* textos */
+.text-primary {
+  color: var(--color-primary) !important;
+}
+.text-secondary {
+  color: var(--color-secondary) !important;
+}
+.text-success {
+  color: var(--color-success) !important;
+}
+.text-danger {
+  color: var(--color-danger) !important;
+}
+.text-gray {
+  color: var(--color-gray) !important;
+}
+
+.alert i.text-warning,
+.alert i.text-primary {
+  -webkit-text-stroke: 2px var(--color-secondary);
+  paint-order: stroke fill;
+  font-size: 16px;
+  padding-left: 2px;
+  text-shadow: 0px 0 2px var(--color-secondary);
+}
+
+/* botones */
+.btn-outline {
+  color: var(--color-white);
+  border: 1px solid var(--color-white) !important;
+}
+
+.btn-outline-primary {
+  color: var(--color-secondary);
+  border: 1px solid var(--color-primary) !important;
+}
+
+.btn-outline-primary:hover {
+  color: var(--color-white) !important;
+  background: var(--color-secondary);
+}
+
+.btn-outline-primary:active {
+  color: var(--color-white) !important;
+  background: var(--color-secondary) !important;
+}
+
+.btn-outline-secondary {
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary) !important;
+}
+
+.btn-outline-secondary:hover {
+  color: var(--color-white) !important;
+  background: var(--color-secondary);
+}
+
+.btn-primary {
+  color: var(--color-secondary);
+  background: var(--color-primary);
+  border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+  color: var(--color-secondary) !important;
+  background: inherit;
+  border: 1px solid var(--color-secondary) !important;
+}
+
+.text-white .btn-primary:hover {
+  color: var(--color-white);
+  background: inherit;
+  border: 1px solid var(--color-primary) !important;
+}
+
+.btn-secondary {
+  color: var(--color-white);
+  background: var(--color-secondary);
+  border: 1px solid transparent;
+}
+
+.btn-secondary:hover {
+  color: var(--color-secondary);
+  background: inherit;
+  border: 1px solid var(--color-secondary);
+}
+
+.btn-tertiary {
+  color: var(--color-black);
+  background: var(--color-soft-gray);
+}
+
+.btn-tertiary:hover {
+  color: var(--color-secondary);
+  background: var(--color-gray);
+  border: 1px solid var(--color-secondary);
+}
+
+.btn-success {
+  color: var(--color-white);
+  background: var(--color-success);
+  border: 1px solid transparent;
+}
+
+.btn-success:hover {
+  color: var(--color-success);
+  background: transparent !important;
+  border: 1px solid var(--color-success);
+}
+
+.btn-danger {
+  color: var(--color-white);
+  background: var(--color-danger);
+  border: 1px solid transparent;
+}
+
+.btn-danger:hover {
+  color: var(--color-danger);
+  background: inherit;
+  border: 1px solid var(--color-danger);
+}
+
+.btn-warning {
+  color: var(--color-secondary);
+  background: var(--color-primary);
+  border: 1px solid transparent;
+}
+
+.btn-warning:hover {
+  color: var(--color-secondary) !important;
+  background: inherit !important;
+  border: 1px solid var(--color-primary) !important;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #444;
+}
+
+a,
+.nav-link {
+    color: #003A5B;
+}
+
+.constrained-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ===================================
+   FILTROS
+=================================== */
+.search-filters-section {
+    background: #F2F2F2;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 1rem;
+}
+
+.search-filters-sticky {
+    position: sticky;
+    top: var(--form-toolbar-top, 0px);
+    z-index: 20;
+}
+
+.search-input-group {
+    width: 100%;
+}
+
+.search-input-group .form-control {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    border-radius: 50px;
+    height: 40px;
+    font-size: 0.875rem;
+    border: 1px solid #DEE2E6;
+}
+
+.search-input-group .btn {
+    z-index: 5;
+    color: #595C5F;
+}
+
+.search-input-group .btn.start-0 {
+    left: 0.25rem;
+}
+
+.search-clear-btn {
+    right: 0.25rem;
+}
+
+.filter-select-wrap {
+    min-width: 150px;
+    flex: 1;
+}
+
+.filter-select-wrap .form-select {
+    font-size: 0.875rem;
+    border-radius: 10px;
+    height: 40px;
+    color: #595C5F;
+    border: 1px solid #DEE2E6;
+    padding: 2px 10px;
+}
+
+.filter-select-wrap .form-select .item {
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.btn-icon {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* ===================================
+   TOM-SELECT — Overrides IDECA (base: tema bootstrap5)
+=================================== */
+
+/* Ancho completo dentro del wrapper */
+.filter-select-wrap .ts-wrapper {
+    width: 100%;
+}
+
+/* Fuente y forma consistente con tokens Figma */
+.filter-select-wrap .ts-wrapper .ts-control {
+    font-size: 0.875rem;
+    font-family: "Nunito Sans", sans-serif;
+    border-radius: 10px;
+    min-height: 40px;
+    border: 1px solid #DEE2E6;
+    color: #595C5F;
+    padding: 2px 10px;
+}
+
+.filter-select-wrap .ts-wrapper .ts-dropdown {
+    font-size: 0.875rem;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+/* Focus — color IDECA */
+.filter-select-wrap .ts-wrapper.focus .ts-control {
+    border-color: #003A5B;
+    box-shadow: 0 0 0 0.2rem rgba(0, 58, 91, 0.15);
+}
+
+/* Tags seleccionados — azul IDECA */
+.filter-select-wrap .ts-wrapper.multi .ts-control .item {
+    background-color: #003A5B;
+    border-color: #003A5B;
+    color: #fff;
+    font-size: 0.72rem;
+}
+
+.filter-select-wrap .ts-wrapper.multi .ts-control .item .remove {
+    border-left-color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Opción activa/hover en dropdown — azul IDECA */
+.filter-select-wrap .ts-dropdown .option.active {
+    background-color: #003A5B;
+    color: #fff;
+}
+
+/* Checkbox accent */
+.filter-select-wrap .ts-dropdown .option input[type="checkbox"] {
+    accent-color: #003A5B;
+}
+
+/* Dropdown max-height */
+.filter-select-wrap .ts-dropdown .ts-dropdown-content {
+    max-height: 220px;
+}
+
+
+/* ===================================
+   RESULTADOS — LISTA (panel izquierdo)
+=================================== */
+.results-container {
+    min-height: 500px;
+}
+
+.data-section {
+    min-height: 400px;
+}
+
+.card-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #003A5B;
+}
+
+/* Ítem de lista — mismo patrón que .ideca-menu a de la plantilla */
+.result-item {
+    width: 100%;
+    padding: 12px 15px;
+    min-height: 48px;
+    cursor: pointer;
+    background-color: #EAEAEA;
+    color: #000;
+    border-radius: 5px;
+    margin: 0 0 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.result-item:hover {
+    background-color: #FEB400;
+}
+
+.result-item.selected,
+#lista-resultados .gridjs-tr:nth-child(even) .result-item.selected {
+    background-color: #FEB400 !important;
+    color: #000;
+    font-weight: 600;
+}
+
+.result-item-title {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #000;
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.result-item.selected .result-item-title {
+    color: #000;
+    font-weight: 600;
+}
+
+/* GridJS overrides para lista */
+#lista-resultados .gridjs-wrapper {
+    border: none;
+    box-shadow: none;
+    overflow-x: hidden;
+}
+
+#lista-resultados .gridjs-table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+}
+
+#lista-resultados .gridjs-thead {
+    display: none;
+}
+
+#lista-resultados .gridjs-tbody,
+#lista-resultados .gridjs-tr {
+    border: none;
+}
+
+.gridjs-tbody, td.gridjs-td {
+  background-color: transparent !important;
+}
+
+#lista-resultados .gridjs-td {
+    padding: 0;
+    border: none;
+}
+
+#lista-resultados .gridjs-footer {
+  background: transparent;
+  box-shadow: inherit;
+  display: flex;
+  justify-content: center;
+}
+
+#lista-resultados .gridjs-pagination {
+    font-size: 1rem;
+}
+
+.gridjs-pagination .gridjs-pages {
+    float: right;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#lista-resultados .gridjs-pages button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    border: none;
+    background: transparent;
+    color: #444444;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+#lista-resultados .gridjs-pagination .gridjs-pages button:first-child,
+#lista-resultados .gridjs-pagination .gridjs-pages button:last-child {
+    font-size: 1.5rem !important;
+}
+
+#lista-resultados .gridjs-pagination .gridjs-pages button:first-child {
+    font-size: 3rem !important;
+}
+
+#lista-resultados .gridjs-pages button.gridjs-currentPage {
+    background-color: #FEB400;
+    color: #003A5B;
+    font-weight: 700;
+}
+
+#lista-resultados .gridjs-pages button:hover:not(.gridjs-currentPage) {
+    background-color: #F2F2F2;
+}
+
+/* Tarjeta de aplicación */
+.app-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    background: #EAEAEA;
+    border-radius: 5px;
+}
+
+.app-card-nombre {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #003A5B;
+    margin: 0;
+}
+
+.app-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+    margin-top: 0.35rem;
+}
+
+.app-card-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background-color: #f5f7f8;
+    border: 1px solid #e5e8ea;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+}
+
+.app-card-meta-label {
+    color: #003A5B;
+    font-weight: 600;
+}
+
+.app-card-meta-value {
+    color: #595C5F;
+}
+
+.app-card-date {
+    font-size: 1rem;
+    color: #003A5B;
+    font-weight: 600;
+    padding-top: 0.5rem;
+    margin-top: 0.25rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.app-card-body {
+    padding: 8px 0;
+}
+
+/* Fila etiqueta-valor: etiqueta arriba, valor debajo (igual que Descripción/Necesidad) */
+.info-row {
+    display: flex;
+    flex-direction: column;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #F6F6F6;
+    font-size: 0.9rem;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-weight: 700;
+    color: #003A5B;
+    margin-bottom: 0.25rem;
+}
+
+i[data-schema-field] {
+    cursor: pointer;
+}
+
+i[data-schema-field].hint-active {
+    color: #003A5B !important;
+}
+
+/* Ayuda contextual de campo (hint inline), igual que en el formulario CRUD */
+.field-hint {
+    font-size: 0.82rem;
+    color: #495057;
+    background: #f0f4f8;
+    border-left: 3px solid #003A5B;
+    padding: 0.4rem 0.75rem;
+    margin-top: 0.3rem;
+    border-radius: 0 4px 4px 0;
+    line-height: 1.4;
+}
+
+.info-value {
+    color: #444444;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    padding: 0.5rem 0.75rem;
+    background: #fff;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    font-size: 0.9rem;
+}
+
+.table th {
+  background: var(--color-secondary) !important;
+  font-size: 0.9rem;
+}
+/* Solo para valores de texto libre largo (Descripción, Observaciones, etc.):
+   se comporta como un textarea de solo lectura de ~4 líneas con scroll interno. */
+.info-value-texto {
+    display: block;
+    white-space: pre-wrap;
+    line-height: 1.4;
+    max-height: calc(1.4em * 4 + 1rem);
+    overflow-y: auto;
+}
+
+.info-value a {
+    color: #003A5B;
+    text-decoration: underline;
+    word-break: break-all;
+}
+
+/* Lista de URLs de acceso (una o varias): scroll a partir de 4 líneas, sin forzar alto mínimo. */
+.portales-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-height: calc(1.4em * 4);
+    overflow-y: auto;
+}
+.portales-lista a { color: #003A5B; text-decoration: underline; font-size: 0.85rem; line-height: 1.4; }
+.portales-lista span { line-height: 1.4; }
+
+.form-control, .form-select {
+    font-size: 0.875rem;
+    border-color: #ced4da;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #003A5B;
+    box-shadow: 0 0 0 0.2rem rgba(0, 58, 91, 0.15);
+}
+
+/* Botones */
+.btn-outline-secondary {
+    color: #003A5B;
+    border: 1px solid #003A5B !important;
+}
+
+.btn-outline-secondary:hover {
+    background: #003A5B;
+}
+
+/* ===================================
+   TOAST
+=================================== */
+#toast-guardado {
+    border-left: 5px solid #208637;
+}
+
+/* ===================================
+   LOADING / ERROR / EMPTY
+=================================== */
+.loading-state,
+.error-state,
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    color: #6c757d;
+    text-align: center;
+}
+
+.loading-state .spinner-border {
+    width: 2rem;
+    height: 2rem;
+    color: #003A5B;
+}
+
+.rounded-20 {
+    border-radius: 20px;
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+@media (max-width: 768px) {
+    .data-section { min-height: 300px; }
+    .filter-select-wrap { min-width: 100%; max-width: 100%; }
+}

@@ -1,0 +1,1288 @@
+<div id="co_div_formcontainer_[ID_REGISTRO]" class="catalogacion-container">
+    <!-- Inputs hidden para mantener referencias -->
+    <input type="hidden" id="co_input_hieeSrigId_[ID_REGISTRO]" name="co_input_hieeSrigId_[ID_REGISTRO]"
+        class="hiee-srig-id" value="[SRIG_ID]" />
+    <input type="hidden" id="co_input_hieeIdRegistro_[ID_REGISTRO]" name="co_input_hieeIdRegistro_[ID_REGISTRO]"
+        class="hiee-id-registro" value="[ID_REGISTRO]" />
+
+    <div class="hiee-contenedor-botones-co">
+        <!-- Botones Catalogación -->
+        <div class="form-buttons catalogacion-buttons">
+            <div class="tools gap-2 align-items-center">
+                <span class="span-validacion" id="co_span_validacionCaptura_[ID_REGISTRO]"
+                    data-id-registro="[ID_REGISTRO]"></span>
+                <span class="span-validacion" id="co_span_validacionPersistencia_[ID_REGISTRO]"
+                    data-id-registro="[ID_REGISTRO]"></span>
+                <!-- Switch Vista Previa / Editar -->
+                <div class="edit-mode-switch-container d-flex align-items-center">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input edit-mode-switch" type="checkbox"
+                            id="co_input_switchEditar_[ID_REGISTRO]" data-srig-id="[SRIG_ID]"
+                            data-id-registro="[ID_REGISTRO]" data-no-preview="true" />
+                    </div>
+                    <label class="switch-label ms-2" id="co_lbl_editar_[ID_REGISTRO]">Entrar en edición</label>
+                </div>
+                <button type="button" id="co_btn_publicar_[ID_REGISTRO]" data-srig-id="[SRIG_ID]"
+                    data-id-registro="[ID_REGISTRO]" class="btn btn-success rounded-pill btn-lg oculto">
+                    <i class="fa-solid fa-upload"></i> Publicar
+                </button>
+                <!-- Botón de crear hijo - Oculto para implementación futura
+ <button type="button" id="co_btn_crearHijo_[ID_REGISTRO]" class="btn btn-info btn-lg preview-mode-button d-none">
+ <i class="fa-solid fa-plus-circle"></i> Crear hijo
+ </button>
+ -->
+                <button type="button" id="co_btn_guardar_[ID_REGISTRO]" data-srig-id="[SRIG_ID]"
+                    data-id-registro="[ID_REGISTRO]" class="btn btn-lg edit-mode-button rounded-pill oculto">
+                    <i class="fa-solid fa-save"></i> Guardar
+                </button>
+                <button type="button" id="co_btn_pdf_[ID_REGISTRO]" data-srig-id="[SRIG_ID]"
+                    data-id-registro="[ID_REGISTRO]" class="btn btn-secondary rounded-pill btn-lg">
+                    <i class="fa-solid fa-file"></i> PDF
+                </button>
+                <button type="button" id="co_btn_resetearFormulario_[ID_REGISTRO]" data-srig-id="[SRIG_ID]"
+                    data-id-registro="[ID_REGISTRO]" class="btn btn-sm btn-outline-danger edit-mode-button oculto"
+                    title="Limpiar formulario">
+                    <i class="fa-solid fa-broom"></i>
+                </button>
+                <button type="button" data-test="btn-colapsar-formularios-co-[ID_REGISTRO]" class="btn btn-sm"
+                    title="Colapsar formularios">
+                    <div class="collapseall">
+                        <img src="./assets/icons/collapseall.svg" alt="" />
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Acordeones para todos los elementos -->
+    <div class="contenedor-acordeones">
+        <div class="accordion" id="co_acordeon_[ID_REGISTRO]">
+            <!-- Acordeón Información Básica -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button py-2 bg-softgray" type="button" data-test="btn-acordeon-infobasica-[ID_REGISTRO]"
+                        data-bs-toggle="collapse" data-bs-target="#co_acordeon_informacionBasica_[ID_REGISTRO]">
+                        Información básica del objeto geográfico
+                    </button>
+                </h2>
+                <div id="co_acordeon_informacionBasica_[ID_REGISTRO]" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+                        <!-- Campos readOnly como etiquetas con inputs hidden -->
+                        <div class="row mb-3">
+                            <!-- Campo ID oculto pero mantiene input hidden para funcionalidad -->
+                            <input type="hidden" id="co_input_id_[ID_REGISTRO]" name="ID" />
+                            <!-- Campo IDENTIFICADOR_PADRE para registros hijo -->
+                            <input type="hidden" id="co_input_identificadorPadre_[ID_REGISTRO]"
+                                name="IDENTIFICADOR_PADRE" />
+
+                            <div class="col-md-5">
+                                <label class="form-label">Nombre del objeto</label>
+                                <span id="co_nombre_[ID_REGISTRO]" class="form-control-plaintext">-</span>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Nombre alternativo</label>
+                                <span id="co_nombresAlternativos_[ID_REGISTRO]" class="form-control-plaintext">-</span>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="co_version_[ID_REGISTRO]" class="form-label">Versión del documento
+                                    <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" autocomplete="off" id="co_version_[ID_REGISTRO]"
+                                    name="version" title="Versión del documento" />
+                            </div>
+                            <div class="col-md-1 d-none">
+                                <label class="form-label">Código identificador del objeto</label>
+                                <span id="co_identificadorRecursoUniforme_[ID_REGISTRO]"
+                                    class="form-control-plaintext">-</span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label class="form-label">Definición</label>
+                                <span id="co_definicion_[ID_REGISTRO]"
+                                    class="always-show-scrollbar definicion form-control-plaintext">-</span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Campo de aplicación</label>
+                                <span id="co_campoAplicacion_[ID_REGISTRO]" class="form-control-plaintext">-</span>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="co_esDocumentacionPublica_[ID_REGISTRO]" class="form-label">Tipo de
+                                    Documentación
+                                    <span class="text-danger">*</span></label>
+                                <select class="form-select" id="co_esDocumentacionPublica_[ID_REGISTRO]"
+                                    name="esDocumentacionPublica" title="Tipo de documentación">
+                                    <option value="">Seleccione...</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="co_tematica_[ID_REGISTRO]" class="form-label">Temática asociada
+                                    <span class="text-danger">*</span></label>
+                                <select class="form-select" id="co_tematica_[ID_REGISTRO]" name="tematica"
+                                    title="Temática asociada">
+                                    <option value="">Seleccione...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acordeón Conjunto de Datos -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button py-2 bg-softgray collapsed" data-test="btn-acordeon-conjuntosdatos-[ID_REGISTRO]"
+                        type="button" data-bs-toggle="collapse"
+                        data-bs-target="#co_acordeon_seccionConjuntoDatos_[ID_REGISTRO]">
+                        Conjunto de datos
+                        <span class="badge bg-secondary ms-2" id="co_badge_conjuntoDatos_[ID_REGISTRO]">0</span>
+                    </button>
+                </h2>
+                <div id="co_acordeon_seccionConjuntoDatos_[ID_REGISTRO]" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <!-- Template de conjunto de datos para generar dinámicamente -->
+                        <template id="template-conjuntoDatos">
+                            <div class="accordion-item" data-index="">
+                                <h2 class="accordion-header d-flex">
+                                    <button class="accordion-button py-2 bg-softgray collapsed flex-grow-1" type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#co_acordeon_conjuntoDatos_[ID_REGISTRO]">
+                                        <span class="me-2">
+                                            <i class="fa-solid fa-database me-1"></i>Conjunto de datos #<span
+                                                class="item-number"></span>
+                                        </span>
+                                        <span class="badge bg-info ms-2 conjuntodatos-name-badge">Sin nombre</span>
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-outline-danger ms-2 my-1 me-1 edit-mode-element"
+                                        data-form="co" data-srig="[SRIG_ID]" data-id_registro="[ID_REGISTRO]"
+                                        data-test="btn-eliminar-conjuntodatos-[ID_REGISTRO]">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </h2>
+                                <div id="co_acordeon_conjuntoDatos_[ID_REGISTRO]" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Nombre del conjunto de datos</label>
+                                                <span class="form-control-plaintext fw-medium"
+                                                    id="co_conjuntoDatos_nombre_[ID_REGISTRO]">N/A</span>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <!-- Gap/Spacing -->
+                                            </div>
+                                            <div class="col-md-8">
+                                                <label class="form-label">Definición</label>
+                                                <span id="co_conjuntoDatos_definicion_[ID_REGISTRO]"
+                                                    class="form-control-plaintext text-muted small scroll-definicion">Sin
+                                                    descripción disponible</span>
+                                            </div>
+                                            <div class="d-none">
+                                                <label class="form-label">ID_SRIG</label>
+                                                <span class="form-control-plaintext"
+                                                    id="co_conjuntoDatos_id_srig_[ID_REGISTRO]">N/A</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <div id="co_conjuntoDatos_[ID_REGISTRO]" class="items-container"></div>
+                        <div class="edit-mode-element"
+                            id="co_conjuntoDatos_controls_[ID_REGISTRO]" data-form="co" data-srig="[SRIG_ID]">
+                            <div id="co_contenedor_select_conjuntodatos_[ID_REGISTRO]" class="flex-grow-1 max-w-400">
+                                <label class="form-label">Seleccionar conjunto de datos:</label>
+                                <select class="form-select" id="co_conjuntoDatos_selector_[ID_REGISTRO]"
+                                    data-srig="[SRIG_ID]">
+                                    <option value="">
+                                        Cargando conjuntos de datos...
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-center w-100">
+                                <button type="button" class="btn btn-sm btn-success rounded-pill edit-mode-button"
+                                    id="co_conjuntoDatos_agregar_btn_[ID_REGISTRO]" data-form="co" data-srig="[SRIG_ID]"
+                                    data-test="btn-agregar-conjuntodatos-[ID_REGISTRO]" disabled>
+                                    <i class="fa-solid fa-database me-1"></i>
+                                    Agregar conjunto de datos
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acordeón Atributos -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button py-2 bg-softgray collapsed" data-test="btn-acordeon-atributos-[ID_REGISTRO]"
+                        type="button" data-bs-toggle="collapse"
+                        data-bs-target="#co_acordeon_seccionAtributos_[ID_REGISTRO]">
+                        Atributos
+                        <span class="badge bg-secondary ms-2" id="co_badge_atributos_[ID_REGISTRO]">0</span>
+                    </button>
+                </h2>
+                <div id="co_acordeon_seccionAtributos_[ID_REGISTRO]" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <!-- Template de atributo para generar dinámicamente -->
+                        <template id="template-atributo">
+                            <div class="accordion-item" data-index="">
+                                <h2 class="accordion-header d-flex">
+                                    <button class="accordion-button py-2 bg-softgray collapsed flex-grow-1" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#co_acordeon_atributo_[ID_REGISTRO]">
+                                        <span class="me-2">
+                                            <i class="fa-solid fa-tag me-1"></i>Atributo #<span
+                                                class="item-number"></span>
+                                        </span>
+                                        <span class="badge bg-info ms-2 attribute-name-badge">Sin nombre</span>
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-outline-danger ms-2 my-1 me-1 edit-mode-element"
+                                        data-form="co" data-srig="[SRIG_ID]" data-id_registro="[ID_REGISTRO]"
+                                        data-test="btn-eliminar-atributo-[ID_REGISTRO]">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </h2>
+                                <div id="co_acordeon_atributo_[ID_REGISTRO]" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <!-- Row 1: Nombre -> Definición -->
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Nombre del atributo
+                                                    <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    id="co_atributos_nombre_[ID_REGISTRO]" name="atributos[][nombre]"
+                                                    title="Nombre del atributo" required />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Definición del atributo
+                                                    <span class="text-danger">*</span></label>
+                                                <textarea class="form-control"
+                                                    id="co_atributos_definicion_[ID_REGISTRO]"
+                                                    name="atributos[][definicion]" rows="2"
+                                                    title="Definición del atributo" maxlength="900" required></textarea>
+                                            </div>
+                                            <div class="col-md-6 d-none">
+                                                <label class="form-label">Código de identificación del atributo</label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    id="co_atributos_identificador_[ID_REGISTRO]"
+                                                    name="atributos[][identificador]"
+                                                    title="Código de identificación del atributo" required />
+                                            </div>
+                                        </div>
+
+                                        <!-- Row 2: Tipo de dato <- Alias -->
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Alias del atributo</label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    id="co_atributos_alias_[ID_REGISTRO]" name="atributos[][alias]"
+                                                    title="Alias del atributo" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Tipo de dato del atributo
+                                                    <span class="text-danger">*</span></label>
+                                                <select class="form-select" id="co_atributos_tipoDato_[ID_REGISTRO]"
+                                                    name="atributos[][tipoDato]" title="Tipo de dato del atributo"
+                                                    required>
+                                                    <option value="">
+                                                        Seleccione...
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Row 3: Unidad de medida -> Es subtipo -->
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Unidad de medida del atributo</label>
+                                                <select class="form-select" id="co_atributos_unidadMedida_[ID_REGISTRO]"
+                                                    name="atributos[][unidadMedida]"
+                                                    title="Unidad de medida del atributo">
+                                                    <option value="">
+                                                        Seleccione...
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Es subtipo</label>
+                                                <div class="form-check form-switch edit-mode-element">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="co_atributos_esSubtipo_[ID_REGISTRO]"
+                                                        name="atributos[][esSubtipo]" value="true" role="switch" />
+                                                    <label class="form-check-label"
+                                                        for="co_atributos_esSubtipo_[ID_REGISTRO]"></label>
+                                                </div>
+                                                <span id="co_atributos_esSubtipo_display_[ID_REGISTRO]"
+                                                    class="form-control-plaintext preview-mode-element">—</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-12">
+                                                <label class="form-label">Citaciones del atributo<span
+                                                        class="edit-mode-element d-none text-success">
+                                                        (En la pestaña Citaciones, puede crear nuevas referencias)</span></label>
+                                                <div class="citation-picker" data-field="atributos[][citaciones]"
+                                                    data-base-name="atributos[][citaciones]">
+                                                    <div
+                                                        class="citation-search-container position-relative edit-mode-element">
+                                                        <input type="text" class="form-control citation-search"
+                                                            autocomplete="off"
+                                                            data-test="input-buscar-citaciones-co-atributo-[ID_REGISTRO]"
+                                                            placeholder="Buscar y seleccionar citaciones..." />
+                                                        <div class="citation-dropdown"></div>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <span class="citation-count">0 citaciones seleccionadas</span>
+                                                    </div>
+                                                    <div class="selected-citations mt-2"></div>
+                                                    <div class="citation-inputs"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Dominio del atributo - Acordeón colapsado -->
+                                        <div class="accordion mb-3" id="co_acordeon_dominioAtributo_[ID_REGISTRO]">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header d-flex"
+                                                    id="co_acordeon_dominioAtributo_heading_[ID_REGISTRO]">
+                                                    <button class="accordion-button py-2 bg-softgray collapsed flex-grow-1"
+                                                        data-test="btn-acordeon-dominio-[ID_REGISTRO]" type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#co_acordeon_dominioAtributo_collapse_[ID_REGISTRO]"
+                                                        aria-expanded="false"
+                                                        aria-controls="co_acordeon_dominioAtributo_collapse_[ID_REGISTRO]">
+                                                        <i class="fa-solid fa-list me-2"></i>Dominio del atributo
+                                                    </button>
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-outline-danger ms-2 my-1 me-1 edit-mode-element"
+                                                        data-test="btn-limpiar-dominio-[ID_REGISTRO]"
+                                                        title="Limpiar dominio del atributo">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </h2>
+                                                <div id="co_acordeon_dominioAtributo_collapse_[ID_REGISTRO]"
+                                                    class="accordion-collapse collapse"
+                                                    aria-labelledby="co_acordeon_dominioAtributo_heading_[ID_REGISTRO]"
+                                                    data-bs-parent="#co_acordeon_dominioAtributo_[ID_REGISTRO]">
+                                                    <div class="accordion-body">
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-5">
+                                                                <label class="form-label">Nombre de lista de dominio
+                                                                </label>
+                                                                <input type="text" class="form-control"
+                                                                    autocomplete="off"
+                                                                    id="co_atributos_dominio_nombre_[ID_REGISTRO]"
+                                                                    name="atributos[][dominio][nombre]"
+                                                                    title="Nombre de lista de dominio" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-6">
+                                                                <label class="form-label">Definición de lista de dominio
+                                                                </label>
+                                                                <textarea class="form-control"
+                                                                    id="co_atributos_dominio_definicion_[ID_REGISTRO]"
+                                                                    name="atributos[][dominio][definicion]" rows="2"
+                                                                    title="Definición del dominio"
+                                                                    maxlength="900"></textarea>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="form-label">Citaciones del dominio<span
+                                                                        class="edit-mode-element d-none text-success">
+                                                                        (En la pestaña Citaciones, puede crear nuevas referencias)</span></label>
+                                                                <div class="citation-picker"
+                                                                    data-field="atributos[][dominio][citaciones]"
+                                                                    data-base-name="atributos[][dominio][citaciones]">
+                                                                    <div
+                                                                        class="citation-search-container position-relative edit-mode-element">
+                                                                        <input type="text"
+                                                                            class="form-control citation-search"
+                                                                            autocomplete="off"
+                                                                            data-test="input-buscar-citaciones-co-dominio-[ID_REGISTRO]"
+                                                                            placeholder="Buscar y seleccionar citaciones..." />
+                                                                        <div class="citation-dropdown"></div>
+                                                                    </div>
+                                                                    <div class="mt-2">
+                                                                        <span class="citation-count">0 citaciones
+                                                                            seleccionadas</span>
+                                                                    </div>
+                                                                    <div class="selected-citations mt-2"></div>
+                                                                    <div class="citation-inputs"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Valores del Dominio -->
+                                                        <div class="border rounded p-3 bg-white">
+                                                            <div
+                                                                class="d-flex justify-content-between align-items-center mb-3">
+                                                                <h6 class="mb-0">
+                                                                    <i class="fa-solid fa-tags me-1"></i>Valores del
+                                                                    dominio
+                                                                    <span
+                                                                        class="badge bg-secondary ms-1 badge-valores-dominio">0</span>
+                                                                </h6>
+                                                            </div>
+
+                                                            <div class="valores-dominio-table-container">
+                                                                <table
+                                                                    class="table table-sm table-bordered align-middle mb-0 valores-dominio-table valores-dominio-head">
+                                                                    <colgroup>
+                                                                        <col class="col-w-8" />
+                                                                        <col class="col-w-10" />
+                                                                        <col class="col-w-22" />
+                                                                        <col class="col-w-53" />
+                                                                        <col class="col-w-7" />
+                                                                    </colgroup>
+                                                                    <thead class="table-light">
+                                                                        <tr>
+                                                                            <th scope="col" class="text-center">
+                                                                                <div class="d-flex align-items-center justify-content-center gap-2 edit-mode-element"
+                                                                                    data-no-preview="true">
+                                                                                    <input type="checkbox"
+                                                                                        title="Seleccionar / deseleccionar todos"
+                                                                                        class="form-check-input valor-dominio-master-check input-checkbox-tree" />
+                                                                                    <button type="button"
+                                                                                        class="btn btn-sm btn-outline-danger"
+                                                                                        data-form="co"
+                                                                                        data-srig="[SRIG_ID]"
+                                                                                        data-test="btn-eliminar-valoresdominio-seleccionados-[ID_REGISTRO]"
+                                                                                        title="Eliminar seleccionados">
+                                                                                        <i
+                                                                                            class="fa-solid fa-trash"></i>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </th>
+                                                                            <th scope="col" class="th-sortable-codigo"
+                                                                                style=" cursor: pointer; user-select: none; "
+                                                                                title="Ordenar por código">
+                                                                                <div class="d-flex">
+                                                                                    Código
+                                                                                    <span class="sort-icon">⇅</span>
+                                                                                </div>
+                                                                            </th>
+                                                                            <th scope="col">
+                                                                                Etiqueta
+                                                                            </th>
+                                                                            <th scope="col">
+                                                                                Definición
+                                                                            </th>
+                                                                            <th scope="col" class="text-center"></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                </table>
+
+                                                                <div class="valores-dominio-scroll">
+                                                                    <table id="co_table_valoresDominio_[ID_REGISTRO]"
+                                                                        class="table table-sm table-bordered align-middle mb-0 valores-dominio-table valores-dominio-body">
+                                                                        <colgroup>
+                                                                            <col class="col-w-8" />
+                                                                            <col class="col-w-10" />
+                                                                            <col class="col-w-22" />
+                                                                            <col class="col-w-53" />
+                                                                            <col class="col-w-7" />
+                                                                        </colgroup>
+                                                                        <tbody class="valores-dominio-container">
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="valores-dominio-paginacion d-flex align-items-center justify-content-between mt-2 px-1 small text-muted"
+                                                                style=" display: none; "></div>
+
+                                                            <div
+                                                                class="mt-3 d-flex flex-wrap align-items-center gap-2 valores-dominio-actions">
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-success rounded-pill edit-mode-button"
+                                                                    data-form="co" data-srig="[SRIG_ID]"
+                                                                    data-test="btn-agregar-valordominio-[ID_REGISTRO]">
+                                                                    <i class="fa-solid fa-plus"></i>
+                                                                    Agregar valor
+                                                                </button>
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-outline-secondary edit-mode-button"
+                                                                    data-form="co" data-srig="[SRIG_ID]"
+                                                                    data-test="btn-importar-csv-valordominio-[ID_REGISTRO]">
+                                                                    <i class="fa-solid fa-file-csv"></i>
+                                                                    Importar CSV
+                                                                </button>
+                                                                <input type="file" accept=".csv"
+                                                                    class="d-none csv-valores-dominio-input" />
+                                                                <div
+                                                                    class="d-flex flex-wrap align-items-center gap-2 controles-autoagregar">
+                                                                    <select
+                                                                        id="co_select_autoagregacionValoresDominio_[ID_REGISTRO]"
+                                                                        data-form="co" data-srig="[SRIG_ID]"
+                                                                        data-test="select-autoagregar-valores-dominio-[ID_REGISTRO]"
+                                                                        class="form-select form-select-sm edit-mode-button min-w-190-max-w-260">
+                                                                        <option value="" selected>
+                                                                            Auto-agregar valores
+                                                                        </option>
+                                                                    </select>
+                                                                    <button
+                                                                        id="co_btn_autoagregacionValoresDominio_[ID_REGISTRO]"
+                                                                        type="button"
+                                                                        class="btn btn-sm btn-success rounded-pill edit-mode-button"
+                                                                        data-form="co" data-srig="[SRIG_ID]"
+                                                                        data-test="btn-autoagregar-valoresdominio-[ID_REGISTRO]">
+                                                                        <i class="fa-solid fa-plus"></i>
+                                                                        Auto-agregar valores seleccionados
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!-- Template para valores de dominio -->
+                        <template id="template-valorDominio">
+                            <tr class="valor-dominio-item" data-valor-index="">
+                                <td class="text-center">
+                                    <input type="checkbox"
+                                        class="form-check-input valor-dominio-check edit-mode-element"
+                                        aria-label="Seleccionar valor de dominio" data-no-preview="true" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" autocomplete="off"
+                                        id="co_atributos_dominio_valoresDominio_codigo_[ID_REGISTRO]"
+                                        name="atributos[][dominio][valoresDominio][][codigo]" title="Código"
+                                        placeholder="Código" required />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" autocomplete="off"
+                                        id="co_atributos_dominio_valoresDominio_etiqueta_[ID_REGISTRO]"
+                                        name="atributos[][dominio][valoresDominio][][etiqueta]" title="Etiqueta"
+                                        placeholder="Etiqueta" required />
+                                </td>
+                                <td>
+                                    <textarea class="form-control form-control-sm definicion-valor-dominio"
+                                        id="co_atributos_dominio_valoresDominio_definicion_[ID_REGISTRO]"
+                                        name="atributos[][dominio][valoresDominio][][definicion]" rows="2"
+                                        title="Definición" placeholder="Definición" maxlength="330" required></textarea>
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-sm btn-outline-danger edit-mode-element"
+                                        data-form="co" data-srig="[SRIG_ID]"
+                                        data-test="btn-eliminar-valordominio-[ID_REGISTRO]"
+                                        title="Eliminar valor de dominio">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </template>
+
+                        <div id="co_atributos_[ID_REGISTRO]" class="accordion items-container"></div>
+                        <div class="mt-3 text-center">
+                            <button type="button" class="btn btn-sm btn-success rounded-pill edit-mode-button" data-form="co"
+                                data-test="btn-agregar-atributo-[ID_REGISTRO]" data-srig="[SRIG_ID]"
+                                data-id-registro="[ID_REGISTRO]">
+                                <i class="fa-solid fa-plus"></i> Agregar
+                                atributo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acordeón Asociaciones -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button py-2 bg-softgray collapsed" data-test="btn-acordeon-asociaciones-[ID_REGISTRO]"
+                        type="button" data-bs-toggle="collapse"
+                        data-bs-target="#co_acordeon_seccionAsociaciones_[ID_REGISTRO]">
+                        Asociaciones
+                        <span class="badge bg-secondary ms-2" id="co_badge_asociaciones_[ID_REGISTRO]">0</span>
+                    </button>
+                </h2>
+                <div id="co_acordeon_seccionAsociaciones_[ID_REGISTRO]" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <!-- Template de asociación para generar dinámicamente -->
+                        <template id="template-asociacion">
+                            <div class="accordion-item" data-index="">
+                                <h2 class="accordion-header d-flex">
+                                    <button class="accordion-button py-2 bg-softgray collapsed flex-grow-1" type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#co_acordeon_asociacion_[ID_REGISTRO]">
+                                        <span class="me-2">
+                                            <i class="fa-solid fa-link me-1"></i>Asociación #<span
+                                                class="item-number"></span>
+                                        </span>
+                                        <span class="badge bg-info ms-2 asociacion-nombre-badge">Sin nombre</span>
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-outline-danger ms-2 my-1 me-1 edit-mode-element"
+                                        data-form="co" data-srig="[SRIG_ID]" data-id_registro="[ID_REGISTRO]"
+                                        data-test="btn-eliminar-asociacion-[ID_REGISTRO]">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </h2>
+                                <div id="co_acordeon_asociacion_[ID_REGISTRO]" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <!-- Información básica de la asociación -->
+                                        <div class="row mb-3">
+                                            <div class="col-md-5">
+                                                <label class="form-label"
+                                                    for="co_asociaciones_nombre_[ID_REGISTRO]">Nombre de la asociación
+                                                    <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    id="co_asociaciones_nombre_[ID_REGISTRO]"
+                                                    name="asociaciones[][nombre]" title="Nombre de la asociación"
+                                                    required />
+                                            </div>
+                                            <div class="col-md-5 d-none">
+                                                <label class="form-label">Código de la asociación</label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    id="co_asociaciones_identificador_[ID_REGISTRO]"
+                                                    name="asociaciones[][identificador]"
+                                                    title="Código de la asociación" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label"
+                                                    for="co_asociaciones_definicion_[ID_REGISTRO]">Definición de la
+                                                    asociación
+                                                    <span class="text-danger">*</span></label>
+                                                <textarea class="form-control"
+                                                    id="co_asociaciones_definicion_[ID_REGISTRO]"
+                                                    name="asociaciones[][definicion]" rows="2"
+                                                    title="Definición de la asociación" maxlength="900"
+                                                    required></textarea>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Citaciones<span
+                                                        class="edit-mode-element d-none text-success">
+                                                        (En la pestaña Citaciones, puede crear nuevas referencias)</span></label>
+                                                <div class="citation-picker" data-field="asociaciones[][citacion]"
+                                                    data-base-name="asociaciones[][citacion]">
+                                                    <div
+                                                        class="citation-search-container position-relative edit-mode-element">
+                                                        <input type="text" class="form-control citation-search"
+                                                            autocomplete="off"
+                                                            data-test="input-buscar-citaciones-co-asociacion-[ID_REGISTRO]"
+                                                            placeholder="Buscar y seleccionar citaciones..." />
+                                                        <div class="citation-dropdown"></div>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <span class="citation-count">0 citaciones seleccionadas</span>
+                                                    </div>
+                                                    <div class="selected-citations mt-2"></div>
+                                                    <div class="citation-inputs"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Rol 1 -->
+                                        <div class="border rounded p-3 mb-3 bg-light">
+                                            <h6 class="mb-3">
+                                                <i class="fa-solid fa-user-tag me-1"></i>Rol principal
+                                            </h6>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label"
+                                                        for="co_asociaciones_rol1_nombre_[ID_REGISTRO]">Nombre del rol
+                                                        asociado
+                                                        <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="co_asociaciones_rol1_nombre_[ID_REGISTRO]"
+                                                        name="asociaciones[][rol1_nombre]"
+                                                        title="Nombre del rol asociado" required />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label"
+                                                        for="co_asociaciones_rol1_tipoRol_[ID_REGISTRO]">Tipo de rol
+                                                        asociado<span class="text-danger">*</span></label>
+                                                    <select class="form-select"
+                                                        id="co_asociaciones_rol1_tipoRol_[ID_REGISTRO]"
+                                                        name="asociaciones[][rol1_tipoRol]" title="Tipo de rol asociado"
+                                                        required>
+                                                        <option value="">
+                                                            Seleccione...
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-12">
+                                                    <label class="form-label"
+                                                        for="co_asociaciones_rol1_definicion_[ID_REGISTRO]">Definición
+                                                        del rol asociado
+                                                        <span class="text-danger">*</span></label>
+                                                    <textarea class="form-control"
+                                                        id="co_asociaciones_rol1_definicion_[ID_REGISTRO]"
+                                                        name="asociaciones[][rol1_definicion]" rows="2"
+                                                        title="Definición del rol asociado" maxlength="450"
+                                                        required></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-12">
+                                                    <label class="form-label">Citaciones del rol asociado<span
+                                                            class="edit-mode-element d-none text-success">
+                                                            (En la pestaña Citaciones, puede crear nuevas referencias)</span></label>
+                                                    <div class="citation-picker"
+                                                        data-field="asociaciones[][rol1_citaciones]"
+                                                        data-base-name="asociaciones[][rol1_citaciones]">
+                                                        <div
+                                                            class="citation-search-container position-relative edit-mode-element">
+                                                            <input type="text" class="form-control citation-search"
+                                                                autocomplete="off"
+                                                                data-test="input-buscar-citaciones-co-rol1-[ID_REGISTRO]"
+                                                                placeholder="Buscar y seleccionar citaciones..." />
+                                                            <div class="citation-dropdown"></div>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <span class="citation-count">0 citaciones
+                                                                seleccionadas</span>
+                                                        </div>
+                                                        <div class="selected-citations mt-2"></div>
+                                                        <div class="citation-inputs"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label fw-bold"
+                                                        for="co_asociaciones_rol1_esOrdenado_[ID_REGISTRO]">
+                                                        Es ordenado el rol asociado
+                                                    </label>
+                                                    <div class="form-check form-switch edit-mode-element">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="co_asociaciones_rol1_esOrdenado_[ID_REGISTRO]"
+                                                            name="asociaciones[][rol1_esOrdenado]" value="true"
+                                                            role="switch" />
+                                                    </div>
+                                                    <span id="co_asociaciones_rol1_esOrdenado_display_[ID_REGISTRO]"
+                                                        class="form-control-plaintext preview-mode-element">—</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label fw-bold"
+                                                        for="co_asociaciones_rol1_esNavegable_[ID_REGISTRO]">
+                                                        Es navegable el rol asociado
+                                                    </label>
+                                                    <div class="form-check form-switch edit-mode-element">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="co_asociaciones_rol1_esNavegable_[ID_REGISTRO]"
+                                                            name="asociaciones[][rol1_esNavegable]" value="true"
+                                                            role="switch" />
+                                                    </div>
+                                                    <span id="co_asociaciones_rol1_esNavegable_display_[ID_REGISTRO]"
+                                                        class="form-control-plaintext preview-mode-element">—</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Rol Socio -->
+                                        <div class="border rounded p-3 mb-3 bg-opacity-10">
+                                            <h6 class="mb-3">
+                                                <i class="fa-solid fa-handshake me-1"></i>Rol del objeto asociado
+                                            </h6>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label"
+                                                        for="co_asociaciones_rolsocio_objeto_[ID_REGISTRO]">Objeto con
+                                                        el que se asocia
+                                                        <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="co_asociaciones_rolsocio_objeto_[ID_REGISTRO]"
+                                                        name="asociaciones[][rolsocio_objeto]"
+                                                        title="Objeto con el que se asocia" required />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label"
+                                                        for="co_asociaciones_rolsocio_nombre_[ID_REGISTRO]">Nombre del
+                                                        rol asociado
+                                                        <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="co_asociaciones_rolsocio_nombre_[ID_REGISTRO]"
+                                                        name="asociaciones[][rolsocio_nombre]"
+                                                        title="Nombre del rol del objeto asociado" required />
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label"
+                                                        for="co_asociaciones_rolsocio_tipoRol_[ID_REGISTRO]">Tipo de rol
+                                                        asociado
+                                                        <span class="text-danger">*</span></label>
+                                                    <select class="form-select"
+                                                        id="co_asociaciones_rolsocio_tipoRol_[ID_REGISTRO]"
+                                                        name="asociaciones[][rolsocio_tipoRol]"
+                                                        title="Tipo de rol del objeto asociado" required>
+                                                        <option value="">
+                                                            Seleccione...
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Citaciones del rol asociado<span
+                                                            class="edit-mode-element d-none text-success">
+                                                            (En la pestaña Citaciones, puede crear nuevas referencias)</span></label>
+                                                    <div class="citation-picker"
+                                                        data-field="asociaciones[][rolsocio_citaciones]"
+                                                        data-base-name="asociaciones[][rolsocio_citaciones]">
+                                                        <div
+                                                            class="citation-search-container position-relative edit-mode-element">
+                                                            <input type="text" class="form-control citation-search"
+                                                                autocomplete="off"
+                                                                data-test="input-buscar-citaciones-co-rolsocio-[ID_REGISTRO]"
+                                                                placeholder="Buscar y seleccionar citaciones..." />
+                                                            <div class="citation-dropdown"></div>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <span class="citation-count">0 citaciones
+                                                                seleccionadas</span>
+                                                        </div>
+                                                        <div class="selected-citations mt-2"></div>
+                                                        <div class="citation-inputs"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-12">
+                                                    <label class="form-label"
+                                                        for="co_asociaciones_rolsocio_definicion_[ID_REGISTRO]">Definición
+                                                        del rol asociado
+                                                        <span class="text-danger">*</span></label>
+                                                    <textarea class="form-control"
+                                                        id="co_asociaciones_rolsocio_definicion_[ID_REGISTRO]"
+                                                        name="asociaciones[][rolsocio_definicion]" rows="2"
+                                                        title="Definición del rol del objeto asociado" maxlength="450"
+                                                        required></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label fw-bold"
+                                                        for="co_asociaciones_rolsocio_esOrdenado_[ID_REGISTRO]">
+                                                        Es ordenado el rol asociado
+                                                    </label>
+                                                    <div class="form-check form-switch edit-mode-element">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="co_asociaciones_rolsocio_esOrdenado_[ID_REGISTRO]"
+                                                            name="asociaciones[][rolsocio_esOrdenado]" value="true"
+                                                            role="switch" />
+                                                    </div>
+                                                    <span id="co_asociaciones_rolsocio_esOrdenado_display_[ID_REGISTRO]"
+                                                        class="form-control-plaintext preview-mode-element">—</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label fw-bold"
+                                                        for="co_asociaciones_rolsocio_esNavegable_[ID_REGISTRO]">
+                                                        Es navegable el rol asociado
+                                                    </label>
+                                                    <div class="form-check form-switch edit-mode-element">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="co_asociaciones_rolsocio_esNavegable_[ID_REGISTRO]"
+                                                            name="asociaciones[][rolsocio_esNavegable]" value="true"
+                                                            role="switch" />
+                                                    </div>
+                                                    <span
+                                                        id="co_asociaciones_rolsocio_esNavegable_display_[ID_REGISTRO]"
+                                                        class="form-control-plaintext preview-mode-element">—</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <div id="co_asociaciones_[ID_REGISTRO]" class="items-container accordion"></div>
+                        <div class="mt-3 text-center">
+                            <button type="button" class="btn btn-sm btn-success rounded-pill edit-mode-button" data-form="co"
+                                data-srig="[SRIG_ID]" data-test="btn-agregar-asociacion-[ID_REGISTRO]">
+                                <i class="fa-solid fa-plus"></i> Agregar
+                                Asociación
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acordeón Herencias -->
+            <div class="accordion-item seccion-herencia">
+                <h2 class="accordion-header">
+                    <button class="accordion-button py-2 bg-softgray collapsed" data-test="btn-acordeon-herencias-[ID_REGISTRO]"
+                        type="button" data-bs-toggle="collapse"
+                        data-bs-target="#co_acordeon_seccionHerencias_[ID_REGISTRO]">
+                        Herencia
+                        <span class="badge bg-secondary ms-2" id="co_badge_herencias_[ID_REGISTRO]">0</span>
+                    </button>
+                </h2>
+                <div id="co_acordeon_seccionHerencias_[ID_REGISTRO]" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <!-- Template de herencia para generar dinámicamente -->
+                        <template id="template-herencia">
+                            <div class="border rounded p-3 mb-3" data-index="">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h6 class="mb-0">
+                                        Herencia #<span class="item-number"></span>
+                                    </h6>
+                                    <button type="button" class="btn btn-sm btn-outline-danger edit-mode-element"
+                                        data-form="co" data-srig="[SRIG_ID]" data-id_registro="[ID_REGISTRO]"
+                                        data-test="btn-eliminar-herencia-[ID_REGISTRO]">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-5">
+                                        <label class="form-label">Código de herencia</label>
+                                        <input type="text" class="form-control" autocomplete="off"
+                                            id="co_herencias_identificador_[ID_REGISTRO]"
+                                            name="herencias[][identificador]" title="Código de herencia" />
+                                    </div>
+                                    <div class="col-md-5">
+                                        <label class="form-label">Nombre de la herencia
+                                            <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" autocomplete="off"
+                                            id="co_herencias_nombre_[ID_REGISTRO]" name="herencias[][nombre]"
+                                            title="Nombre de la herencia" required />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Definición de la herencia
+                                            <span class="text-danger">*</span></label>
+                                        <textarea class="form-control" id="co_herencias_definicion_[ID_REGISTRO]"
+                                            name="herencias[][definicion]" rows="2" title="Definición de la herencia"
+                                            required></textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Objeto padre
+                                            <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" autocomplete="off"
+                                            id="co_herencias_nombrePadre_[ID_REGISTRO]" name="herencias[][nombrePadre]"
+                                            title="Objeto padre" required />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox"
+                                                id="co_herencias_instanciaUnica_[ID_REGISTRO]"
+                                                name="herencias[][instanciaUnica]" value="true" role="switch" />
+                                            <label class="form-check-label"
+                                                for="co_herencias_instanciaUnica_[ID_REGISTRO]">
+                                                Es instancia única
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Citaciones<span
+                                                class="edit-mode-element d-none text-success">
+                                                (En la pestaña Citaciones, puede crear nuevas referencias)</span></label>
+                                        <div class="citation-picker" data-field="herencias[][citaciones]"
+                                            data-base-name="herencias[][citaciones]">
+                                            <div class="citation-search-container position-relative edit-mode-element">
+                                                <input type="text" class="form-control citation-search"
+                                                    autocomplete="off"
+                                                    data-test="input-buscar-citaciones-co-herencia-[ID_REGISTRO]"
+                                                    placeholder="Buscar y seleccionar citaciones..." />
+                                                <div class="citation-dropdown"></div>
+                                            </div>
+                                            <div class="mt-2">
+                                                <span class="citation-count">0 citaciones seleccionadas</span>
+                                            </div>
+                                            <div class="selected-citations mt-2"></div>
+                                            <!-- Hidden inputs will be generated dynamically for each selected citation -->
+                                            <div class="citation-inputs"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <div id="co_herencias_[ID_REGISTRO]" class="items-container"></div>
+                        <div class="mt-3 text-center">
+                            <button type="button" class="btn btn-sm btn-success rounded-pill edit-mode-button" data-form="co"
+                                data-srig="[SRIG_ID]" data-test="btn-agregar-herencia-[ID_REGISTRO]">
+                                <i class="fa-solid fa-plus"></i> Agregar
+                                Herencia
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acordeón Relación conceptual -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button py-2 bg-softgray collapsed" data-test="btn-acordeon-relaciones-[ID_REGISTRO]"
+                        type="button" data-bs-toggle="collapse"
+                        data-bs-target="#co_acordeon_seccionRelacionConceptos_[ID_REGISTRO]">
+                        Relación conceptual
+                        <span class="badge bg-secondary ms-2" id="co_badge_relacionConceptos_[ID_REGISTRO]">0</span>
+                    </button>
+                </h2>
+                <div id="co_acordeon_seccionRelacionConceptos_[ID_REGISTRO]" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <!-- Template de relación conceptual para generar dinámicamente -->
+                        <template id="template-relacionConcepto">
+                            <div class="accordion-item" data-index="">
+                                <h2 class="accordion-header d-flex">
+                                    <button class="accordion-button py-2 bg-softgray collapsed flex-grow-1" type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#co_acordeon_relacionConcepto_[ID_REGISTRO]">
+                                        <span class="me-2">
+                                            <i class="fa-solid fa-project-diagram me-1"></i>Relación conceptual #<span
+                                                class="item-number"></span>
+                                        </span>
+                                        <span class="badge bg-purple ms-2 relacion-nombre-badge">Sin nombre</span>
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-outline-danger ms-2 my-1 me-1 edit-mode-element"
+                                        data-form="co" data-srig="[SRIG_ID]" data-id_registro="[ID_REGISTRO]"
+                                        data-test="btn-eliminar-relacion-[ID_REGISTRO]">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </h2>
+                                <div id="co_acordeon_relacionConcepto_[ID_REGISTRO]"
+                                    class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <div class="row mb-3">
+                                            <div class="col-md-5 d-none">
+                                                <label class="form-label">Código de la relación</label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    id="co_relacionConceptos_identificador_[ID_REGISTRO]"
+                                                    name="relacionConceptos[][identificador]"
+                                                    title="Código de la relación" />
+                                            </div>
+                                            <div class="col-md-5">
+                                                <label class="form-label">Nombre de la relación
+                                                    <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    id="co_relacionConceptos_nombre_[ID_REGISTRO]"
+                                                    name="relacionConceptos[][nombre]" title="Nombre de la relación"
+                                                    required />
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Definición de la relación
+                                                    <span class="text-danger">*</span></label>
+                                                <textarea class="form-control"
+                                                    id="co_relacionConceptos_definicion_[ID_REGISTRO]"
+                                                    name="relacionConceptos[][definicion]" rows="2"
+                                                    title="Definición de la relación" maxlength="900"
+                                                    required></textarea>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Explicación de la relación
+                                                    <span class="text-danger">*</span></label>
+                                                <textarea class="form-control"
+                                                    id="co_relacionConceptos_explicacion_[ID_REGISTRO]"
+                                                    name="relacionConceptos[][explicacion]" rows="2"
+                                                    title="Explicación de la relación" maxlength="900"
+                                                    required></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Tipo de relación
+                                                    <span class="text-danger">*</span></label>
+                                                <select class="form-select"
+                                                    id="co_relacionConceptos_tipoRelacion_[ID_REGISTRO]"
+                                                    name="relacionConceptos[][tipoRelacion]"
+                                                    title="Tipo de relación de concepto" required>
+                                                    <option value="">
+                                                        Seleccione...
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Nombre del objeto relacionado
+                                                    <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    id="co_relacionConceptos_nombreObjRelacionado_[ID_REGISTRO]"
+                                                    name="relacionConceptos[][nombreObjRelacionado]"
+                                                    title="Nombre del objeto relacionado" required />
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-12">
+                                                <label class="form-label">Citaciones<span
+                                                        class="edit-mode-element d-none text-success">
+                                                        (En la pestaña Citaciones, puede crear nuevas referencias)</span></label>
+                                                <div class="citation-picker"
+                                                    data-field="relacionConceptos[][citaciones]"
+                                                    data-base-name="relacionConceptos[][citaciones]">
+                                                    <div
+                                                        class="citation-search-container position-relative edit-mode-element">
+                                                        <input type="text" class="form-control citation-search"
+                                                            autocomplete="off"
+                                                            data-test="input-buscar-citaciones-co-relacion-[ID_REGISTRO]"
+                                                            placeholder="Buscar y seleccionar citaciones..." />
+                                                        <div class="citation-dropdown"></div>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <span class="citation-count">0 citaciones seleccionadas</span>
+                                                    </div>
+                                                    <div class="selected-citations mt-2"></div>
+                                                    <div class="citation-inputs"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <div id="co_relacionConceptos_[ID_REGISTRO]" class="items-container accordion"></div>
+                        <div class="mt-3 text-center">
+                            <button type="button" class="btn btn-sm btn-success rounded-pill edit-mode-button" data-form="co"
+                                data-srig="[SRIG_ID]" data-test="btn-agregar-relacion-[ID_REGISTRO]">
+                                <i class="fa-solid fa-plus"></i> Agregar
+                                Relación conceptual
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acordeón Operaciones -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button py-2 bg-softgray collapsed" data-test="btn-acordeon-operaciones-[ID_REGISTRO]"
+                        type="button" data-bs-toggle="collapse"
+                        data-bs-target="#co_acordeon_seccionOperaciones_[ID_REGISTRO]">
+                        Operaciones del objeto
+                        <span class="badge bg-secondary ms-2" id="co_badge_operaciones_[ID_REGISTRO]">0</span>
+                    </button>
+                </h2>
+                <div id="co_acordeon_seccionOperaciones_[ID_REGISTRO]" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <!-- Template de operación para generar dinámicamente -->
+                        <template id="template-operacion">
+                            <div class="accordion-item" data-index="">
+                                <h2 class="accordion-header d-flex">
+                                    <button class="accordion-button py-2 bg-softgray collapsed flex-grow-1" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#co_acordeon_operacion_[ID_REGISTRO]">
+                                        <span class="me-2">
+                                            <i class="fa-solid fa-calculator me-1"></i>Operación #<span
+                                                class="item-number"></span>
+                                        </span>
+                                        <span class="badge bg-success ms-2 operacion-nombre-badge">Sin nombre</span>
+                                    </button>
+                                    <button type="button" id="btn-eliminar-operacion-[ID_REGISTRO]_[index]"
+                                        class="btn btn-sm btn-outline-danger ms-2 my-1 me-1 edit-mode-element"
+                                        data-form="co" data-srig="[SRIG_ID]" data-id_registro="[ID_REGISTRO]"
+                                        data-test="btn-eliminar-operacion-[ID_REGISTRO]_[index]">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </h2>
+                                <div id="co_acordeon_operacion_[ID_REGISTRO]" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <div class="row mb-3">
+                                            <div class="col-md-5 d-none">
+                                                <label class="form-label">Código de la operación</label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    id="co_operaciones_identificador_[ID_REGISTRO]"
+                                                    name="operaciones[][identificador]"
+                                                    title="Código de la operación" />
+                                            </div>
+                                            <div class="col-md-5">
+                                                <label class="form-label">Nombre de la operación
+                                                    <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    id="co_operaciones_nombre_[ID_REGISTRO]"
+                                                    name="operaciones[][nombre]" title="Nombre de la operación"
+                                                    required />
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Definición de la operación
+                                                    <span class="text-danger">*</span></label>
+                                                <textarea class="form-control"
+                                                    id="co_operaciones_definicion_[ID_REGISTRO]"
+                                                    name="operaciones[][definicion]" rows="2"
+                                                    title="Definición de la operación" maxlength="900"
+                                                    required></textarea>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Atributos de la operación
+                                                    <span class="text-danger">*</span></label>
+                                                <div class="attribute-picker"
+                                                    data-field="operaciones[][firmaAtributos]">
+                                                    <select class="attribute-select edit-mode-element" multiple
+                                                        data-test="input-buscar-atributos-co-[ID_REGISTRO]_"
+                                                        placeholder="Seleccionar atributos..."></select>
+                                                    <div class="attribute-inputs"></div>
+                                                    <div
+                                                        class="attribute-preview preview-mode-element text-muted fst-italic">
+                                                        —
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-12">
+                                                <label class="form-label">Citaciones<span
+                                                        class="edit-mode-element d-none text-success">
+                                                        (En la pestaña Citaciones, puede crear nuevas referencias)</span></label>
+                                                <div class="citation-picker" data-field="operaciones[][citaciones]"
+                                                    data-base-name="operaciones[][citaciones]">
+                                                    <div
+                                                        class="citation-search-container position-relative edit-mode-element">
+                                                        <input type="text" class="form-control citation-search"
+                                                            autocomplete="off"
+                                                            data-test="input-buscar-citaciones-co-operacion-[ID_REGISTRO]"
+                                                            placeholder="Buscar y seleccionar citaciones..." />
+                                                        <div class="citation-dropdown"></div>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <span class="citation-count">0 citaciones seleccionadas</span>
+                                                    </div>
+                                                    <div class="selected-citations mt-2"></div>
+                                                    <div class="citation-inputs"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <div id="co_operaciones_[ID_REGISTRO]" class="items-container accordion"></div>
+                        <div class="mt-3 text-center">
+                            <button type="button" class="btn btn-sm btn-success edit-mode-button" data-form="co"
+                                data-srig="[SRIG_ID]" data-test="btn-agregar-operacion-[ID_REGISTRO]">
+                                <i class="fa-solid fa-plus"></i> Agregar operación
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+/* ===========================================
+   PERSONALIZACIÓN DE FIREBASEUI
+   =========================================== */
+
+.firebaseui-container {
+  background: transparent !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+}
+
+.firebaseui-card-content {
+  padding: 0 !important;
+}
+
+.firebaseui-idp-button {
+  border-radius: var(--border-radius-sm) !important;
+  margin-bottom: var(--spacing-md) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.firebaseui-idp-button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md) !important;
+}
+
+.firebaseui-idp-text {
+  font-size: 15px !important;
+}
+

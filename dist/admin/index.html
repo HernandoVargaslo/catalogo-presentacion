@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YLXSRBCCE3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YLXSRBCCE3');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="description" content="Módulo de administración del catalogo de recursos - UAECD" />
+  <meta name="theme-color" content="#3366CC" />
+  <title>Modulo de Administración</title>
+
+  <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    crossorigin="anonymous" />
+  <!-- Font Awesome 6 Free CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- FirebaseUI CSS -->
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.css" />
+
+  <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/estilos-202610041725.min.css">
+    <script src="https://cdn.userway.org/widget.js" data-account="YxU09HPa9Z"></script>
+    <script
+      src="https://js.sentry-cdn.com/39ad5fd34ee63ef87f9d96cec708a316.min.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+
+<body>
+
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="visually-hidden-focusable btn btn-primary position-absolute top-0 start-0 m-2">Saltar
+    al contenido principal</a>
+  <header class="header-container" role="banner">
+    <!-- Barra superior GOV.CO (patrón diseñador gov-bar) -->
+    <div class="gov-bar border-bottom">
+      <div class="container-fluid-md container-lg d-flex justify-content-between align-items-center">
+        <div class="govco-top-logo">
+          <a href="https://www.gov.co/" target="_blank" rel="noopener noreferrer">
+            <img src="https://cdn.www.gov.co/assets/images/logo.png" alt="Logo Gov.co" height="30" class="logo-gov-co">
+          </a>
+        </div>
+        <div class="d-flex justify-content-center gap-2 my-2">
+          <a href="https://www.gov.co/" target="_blank" rel="noopener noreferrer" class="govco-top-link-a">Ir a Govco</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navbar principal (patrón diseñador navbar) — logos + sesión -->
+    <nav id="cabecera-app" class="navbar navbar-expand-lg flex-wrap p-0 sticky-top" aria-label="Navegación principal">
+      <div class="bg-light w-100">
+        <div class="container-fluid-md container-lg position-relative d-flex flex-wrap justify-content-between align-items-center my-2">
+          <div class="d-flex flex-wrap align-items-center">
+            <a href="./">
+              <img id="logo-ideca" src="./assets/img/logo.svg" alt="Inicio">
+            </a>
+            <div id="logo-entidad" class="me-3"></div>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2 flex-wrap user-space">
+              <!-- Nombre del usuario (oculto hasta validar sesión) -->
+              <div id="nombre-usuario-header" class="user-info d-flex align-items-center flex-column flex-nowrap oculto">
+                <b class="text-truncate text-secondary mb-0" id="texto-nombre-usuario"></b>
+                <p class="text-truncate mb-0" id="texto-rol-usuario"></p>
+              </div>
+              <!-- botón para cerrar sesión -->
+              <button id="btn-cerrar-sesion" type="button"
+                class="border border-2 border-danger bg-transparent rounded-circle text-danger shadow-none oculto"
+                aria-label="Cerrar sesión" title="Cerrar sesión">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              </button>
+            </div>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+              aria-label="Menú de navegación">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="container-md-fluid container-lg px-0 mx-0 px-lg-3 mx-md-auto">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+          <ul class="navbar-nav w-100 text-center">
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Inicio</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Quiénes somos</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Recursos</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Herramientas</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Uso de datos</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Aprendizaje</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Actualidad</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.catastrobogota.gov.co/" target="_blank" rel="noopener noreferrer">Catastro</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Ayuda</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="vista-principal" role="main">
+    <!-- Banner hero (patrón diseñador breadcrumb-container) -->
+    <div class="breadcrumb-container d-flex align-items-center mt-2 mx-2 p-0"
+         style="background: url('./assets/img/ide_bogota.png') center/cover no-repeat;">
+      <div class="container-md-fluid container-lg breadcrumb-content w-100 py-3">
+        <div class="col-md-8">
+          <h1 id="span_titulo_aplicacion" class="breadcrumb-title mb-1">
+            Modulo de Administración de Usuarios
+          </h1>
+        </div>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="https://www.ideca.gov.co/"><i class="fa-solid fa-house"></i></a></li>
+            <li class="breadcrumb-item"><a href="../index.html">Catálogo de recursos</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Administración</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <div id="main-content" tabindex="-1">
+      <section id="seccion-admin" class="container seccion oculto p-0">
+        <!-- Área Permisos -->
+        <div id="admin-permisos" class="admin-area card">
+          <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Usuarios y Permisos</h5>
+            <div class="d-flex gap-2">
+              <button id="btn-nuevo-usuario" class="btn btn-outline-light">
+                + Nuevo Usuario
+              </button>
+              <p id="contador-permisos" class="text-white mb-0 d-flex align-items-center"></p>
+            </div>
+          </div>
+
+          <!-- Indicador de carga -->
+          <div class="card-body">
+            <div id="permisos-cargando" class="text-center mb-3 d-none">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
+              <p>Cargando permisos...</p>
+            </div>
+
+            <!-- Campo de filtro personalizado -->
+            <div class="mb-3">
+              <div class="d-flex align-items-center flex-wrap position-relative">
+                <div class="d-flex w-100">
+                  <span class="input-group-text"><i class="fa-solid fa-search"></i></span>
+                  <input type="text" id="filtro-permisos" class="form-control w-100"
+                    placeholder="Buscar por usuario, entidad, módulo o tipo...">
+                </div>
+                <button type="button" id="btn-limpiar-filtro-permisos"
+                  class="btn btn-outline-secondary position-absolute end-0">
+                  <i class="fas fa-times"></i> Limpiar filtro
+                </button>
+              </div>
+            </div>
+
+            <div id="gridjs-usuarios"></div>
+          </div>
+        </div>
+
+
+
+
+      </section>
+
+      <div id="div_frontpage_container" class="div_frontpage_container">
+        <div id="div-logo-entidad-login" class="w-100 text-center div-logo-entidad">
+          <img src="assets/img/logon_0.png" alt="Logo UAECD" class="img-fluid" />
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <form id="form-permiso" class="position-absolute d-none col-md-6 form-show m-auto z-3 mb-4 z-1">
+    <h4 id="titulo-form-permiso" class="text-center">
+      Nuevo Usuario
+    </h4>
+
+    <!-- Campo ID permiso (oculto) -->
+    <input type="hidden" id="input-id-permiso" />
+
+    <!-- Campo Usuario con Autocomplete -->
+    <div class="mb-3">
+      <label for="input-texto-usuario-permiso" class="form-label">Usuario</label>
+      <div class="autocomplete-container">
+        <input type="text" id="input-texto-usuario-permiso" class="form-control"
+          placeholder="Escriba para buscar usuario..." autocomplete="off" />
+        <input type="hidden" id="input-id-usuario-permiso" value="" />
+        <div id="sugerencias-usuarios" class="autocomplete-items"></div>
+        <div class="autocomplete-spinner autocomplete-spinner-usuario">
+          <div class="spinner-border spinner-border-sm text-primary" role="status">
+            <span class="visually-hidden">Buscando...</span>
+          </div>
+        </div>
+      </div>
+      <small class="form-text text-muted">Ingrese nombre o correo del usuario</small>
+    </div>
+
+    <!-- Campo Entidad con Autocomplete -->
+    <div class="mb-3">
+      <label for="input-texto-entidad-permiso" class="form-label">Entidad</label>
+      <div class="autocomplete-container">
+        <input type="text" id="input-texto-entidad-permiso" class="form-control"
+          placeholder="Escriba para buscar entidad..." autocomplete="off" />
+        <input type="hidden" id="input-id-entidad-permiso" value="" />
+        <div id="sugerencias-entidades" class="autocomplete-items"></div>
+        <div class="autocomplete-spinner autocomplete-spinner-entidad">
+          <div class="spinner-border spinner-border-sm text-primary" role="status">
+            <span class="visually-hidden">Buscando...</span>
+          </div>
+        </div>
+      </div>
+      <small class="form-text text-muted">Ingrese el nombre de la entidad</small>
+    </div>
+
+    <!-- Módulos del nuevo usuario (filas dinámicas) -->
+    <div class="mb-1">
+      <label class="form-label">Módulos y roles</label>
+      <div id="filas-modulos-form"></div>
+      <button type="button" id="btn-agregar-modulo-form" class="btn btn-outline-secondary btn-sm mt-2">
+        <i class="fas fa-plus me-1"></i> Agregar módulo
+      </button>
+    </div>
+
+    <!-- Botones (no cambian) -->
+    <div class="d-flex justify-content-end">
+      <button type="button" id="btn-cancelar-permiso" class="btn btn-outline-secondary me-2">
+        Cancelar
+      </button>
+      <button type="button" id="btn-guardar-permiso" class="btn btn-primary">
+        Guardar
+      </button>
+    </div>
+  </form>
+
+  <!-- Modal: Gestionar permisos de un usuario -->
+  <div class="modal fade" id="modal-permisos" tabindex="-1" aria-labelledby="modalPermisosLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <h5 class="modal-title mb-0" id="modal-permisos-titulo">Permisos de usuario</h5>
+            <small id="modal-permisos-entidad" class="text-muted"></small>
+          </div>
+          <i class="fa-solid fa-triangle-exclamation text-warning ms-2"></i>
+          <button type="button" class="btn-close ms-2" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-sm align-middle" id="tabla-modal-permisos">
+            <thead class="table-light">
+              <tr>
+                <th style="width:35%">Módulo</th>
+                <th style="width:40%">Rol</th>
+                <th style="width:15%;text-align:center">Activo</th>
+                <th style="width:10%"></th>
+              </tr>
+            </thead>
+            <tbody id="tbody-modal-permisos"></tbody>
+          </table>
+          <button type="button" id="btn-agregar-modulo-modal" class="btn btn-outline-secondary btn-sm mt-1">
+            <i class="fas fa-plus me-1"></i> Agregar módulo
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" id="btn-guardar-cambios-permisos" class="btn btn-primary">
+            <i class="fas fa-save me-1"></i> Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Cambiar entidad de un usuario -->
+  <div class="modal fade" id="modal-cambiar-entidad" tabindex="-1" aria-labelledby="modalCambiarEntidadLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCambiarEntidadLabel">Cambiar Entidad</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted small mb-3">Usuario: <strong id="cambiar-entidad-usuario"></strong></p>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Entidad actual</label>
+            <p id="cambiar-entidad-actual" class="mb-0 ps-1"></p>
+          </div>
+          <div class="mb-3">
+            <label for="cambiar-entidad-texto" class="form-label fw-semibold">Nueva entidad</label>
+            <div class="autocomplete-container" style="position:relative;">
+              <input type="text" id="cambiar-entidad-texto" class="form-control"
+                placeholder="Escriba para buscar entidad..." autocomplete="off" />
+              <input type="hidden" id="cambiar-entidad-id" />
+            </div>
+            <small class="form-text text-muted">Ingrese el nombre de la entidad</small>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" id="btn-guardar-cambio-entidad" class="btn btn-primary">
+            <i class="fas fa-save me-1"></i> Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de confirmación para eliminar permiso -->
+  <div id="modal-confirmar-eliminar" class="modal fade" tabindex="-1" aria-labelledby="modalConfirmarLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalConfirmarLabel">Confirmar Eliminación</h5>
+          <i class="fa-solid fa-triangle-exclamation text-warning ms-2"></i>
+          <button type="button" class="btn-close ms-2" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-2"><strong>¿Está seguro de eliminar este permiso?</strong></p>
+          <div id="detalle-permiso-eliminar" class="mt-3 p-3 bg-light rounded">
+            <!-- Los detalles se llenarán dinámicamente -->
+          </div>
+          <p class="text-danger mt-3 mb-0">
+            <i class="fas fa-info-circle me-1"></i>Esta acción no se puede deshacer.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" id="btn-confirmar-eliminar">
+            <i class="fas fa-trash me-1"></i>Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Avisos tipo "toast" -->
+  <div id="aviso-global" class="oculto"></div>
+
+  <div id="backDropAdmin" class="modal-backdrop modal fade" style="display: none;"></div>
+
+  <div id="backDropForms" class="modal-backdrop modal fade" style="display: none;"></div>
+
+  <!-- Footer institucional (patrón diseñador footer) -->
+  <footer class="footer">
+    <div class="px-2 px-md-0">
+      <div class="container-fluid container-md border rounded-20 p-4 pt-5 pb-3 mb-3 bg-light">
+        <div class="row">
+          <div class="col-md-6">
+            <h2 class="h5 fw-bold">Unidad Administrativa Especial de Catastro Distrital</h2>
+            <p>Ideca: Infraestructura de Datos Espaciales para el Distrito Capital</p>
+            <address class="mb-2">
+              Dirección: Av. Carrera 30 No. 25 - 90, Torre B Piso 2 <br>
+              Código postal: 111311 <br>
+              Horario de atención: Lunes a Viernes de 8:00 am a 4:30 pm <br>
+              Teléfono conmutador: +57 601 234 7600<br>
+              Línea de servicio a la ciudadanía: +57 601 234 7600 - Ext. 7600 <br>
+              Línea Gratuita Nacional: 01 8000 9104887 <br>
+              Información general: Línea 195 <br>
+              Notificaciones judiciales:
+              <a href="mailto:notificaciones@catastrobogota.gov.co">notificaciones@catastrobogota.gov.co</a>
+            </address>
+          </div>
+          <div class="col-md-6 d-flex flex-wrap justify-content-md-end gap-4 mb-3 footer-logos mt-0">
+            <img src="./assets/img/logo.svg" alt="Logo Ideca" class="footer-logo">
+          </div>
+        </div>
+        <nav aria-label="Redes sociales" class="mb-3">
+          <ul class="list-inline footer-social">
+            <li class="list-inline-item">
+              <a href="https://www.instagram.com/catastrobogota_" target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/img/instagram.svg" alt=""> @catastrobogota_
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.facebook.com/CatastroBogota/" target="_blank" rel="noopener noreferrer"
+                aria-label="Facebook Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/img/facebook.svg" alt=""> @CatastroBogota
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://twitter.com/CatastroBogota" target="_blank" rel="noopener noreferrer"
+                aria-label="X (Twitter) Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/img/twitter.svg" alt=""> @CatastroBogota
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.youtube.com/@catastrobogota3985" target="_blank" rel="noopener noreferrer"
+                aria-label="YouTube Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/img/youtube.svg" alt=""> Catastro Bogotá
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <nav aria-label="Enlaces institucionales" class="mb-3">
+          <ul class="list-inline footer-links flex-wrap">
+            <li class="list-inline-item me-3"><a href="/sitemap">Mapa del sitio</a></li>
+            <li class="list-inline-item me-3"><a href="https://outlook.office.com/owa/" target="_blank" rel="noopener noreferrer">Correo institucional</a></li>
+            <li class="list-inline-item me-3"><a href="http://intranet.catastrobogota.gov.co/" target="_blank" rel="noopener noreferrer">Intranet</a></li>
+            <li class="list-inline-item me-3"><a href="https://mesadeservicio.catastrobogota.gov.co/CAisd/pdmweb.exe" target="_blank" rel="noopener noreferrer">Mesa de servicio</a></li>
+            <li class="list-inline-item me-3"><a href="https://www.catastrobogota.gov.co/declaracion-de-accesibilidad" target="_blank" rel="noopener noreferrer">Accesibilidad</a></li>
+            <li class="list-inline-item w-100"><a href="http://www.catastrobogota.gov.co/contacto/politicas-de-seguridad-privacidad-condiciones-de-uso-y-proteccion-de-datos-personales" target="_blank" rel="noopener noreferrer">Políticas de seguridad, privacidad, condiciones de uso y protección de datos personales</a></li>
+            <li class="list-inline-item w-100"><a href="http://www.catastrobogota.gov.co/transparencia-y-acceso-a-la-informacion-publica" target="_blank" rel="noopener noreferrer">Transparencia y acceso a la información pública</a></li>
+            <li class="list-inline-item"><a href="https://mesacomisionideca.gitbook.io/manual-de-usuario-pig/" target="_blank" rel="noopener noreferrer">Manual de usuario de la Plataforma de Información</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="container d-flex gap-2 justify-content-between align-items-center py-2">
+        <div class="d-flex gap-2 align-items-center">
+          <img src="https://cdn.www.gov.co/assets/images/logo.png" style="width: 112px;" alt="Logo GOV.CO" class="footer-bottom-logo">
+          <img src="assets/img/logo-colombia.svg" style="width: 40px;" alt="Logo Colombia" class="footer-bottom-logo">
+        </div>
+        <p class="d-flex justify-content-md-end text-start text-white mb-0">
+          &copy; <span id="current-year" class="me-1"></span> Ideca. Todos los derechos reservados.
+        </p>
+        <script>
+          document.getElementById("current-year").textContent = new Date().getFullYear();
+        </script>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal para mensajes -->
+  <div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" style="z-index: 1070;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title d-flex justify-content-between align-items-center w-100">
+            <h5 class="mb-0" id="mensajeModalLabel">Mensaje</h5>
+            <i class="fa-solid fa-exclamation-circle me-2"></i>
+          </div>
+        </div>
+        <div class="modal-body" id="mensajeModalBody">
+          <!-- Contenido del mensaje -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth__es_419.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+
+  <script src="js/app-202610041725.min.js"></script>
+</body>
+
+</html>

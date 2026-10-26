@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KBDZPPJJR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1KBDZPPJJR');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="description" content="Módulo de administración de datos geográficos - UAECD" />
+  <meta name="theme-color" content="#3366CC" />
+  <title>Modulo de Datos - Administración</title>
+
+  <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    crossorigin="anonymous" />
+  <!-- Font Awesome 6 Free CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- FirebaseUI CSS -->
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.css" />
+
+  <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/tom-select@2.5.1/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/auth-modal.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/view-transitions.css">
+    <script src="https://cdn.userway.org/widget.js" data-account="YxU09HPa9Z"></script>
+    <script
+      src="https://js.sentry-cdn.com/39ad5fd34ee63ef87f9d96cec708a316.min.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+
+<body>
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="visually-hidden-focusable btn btn-primary position-absolute top-0 start-0 m-2">Saltar
+    al contenido principal</a>
+  <header class="header-container" role="banner">
+    <!-- Barra superior GOV.CO (patrón diseñador gov-bar) -->
+    <div class="gov-bar border-bottom">
+      <div class="container-fluid-md container-lg d-flex justify-content-between align-items-center">
+        <div class="govco-top-logo">
+          <a href="https://www.gov.co/" target="_blank" rel="noopener noreferrer">
+            <img src="https://cdn.www.gov.co/assets/images/logo.png" alt="Logo Gov.co" height="30" class="logo-gov-co">
+          </a>
+        </div>
+        <div class="d-flex justify-content-center gap-2 my-2">
+          <a href="https://www.gov.co/" target="_blank" rel="noopener noreferrer" class="govco-top-link-a">Ir a Govco</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navbar principal (patrón diseñador navbar) — logos + sesión -->
+    <nav id="cabecera-app" class="navbar navbar-expand-lg flex-wrap p-0 sticky-top" aria-label="Navegación principal">
+      <div class="bg-light w-100">
+        <div class="container-fluid-md container-lg position-relative d-flex flex-wrap justify-content-between align-items-center my-2">
+          <div class="d-flex flex-wrap align-items-center">
+            <a href="./">
+              <img id="logo-ideca" src="./assets/img/logo.svg" alt="Inicio">
+            </a>
+            <div id="logo-entidad" class="me-3"></div>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2 flex-wrap user-space">
+              <!-- Nombre del usuario (oculto hasta validar sesión) -->
+              <div id="nombre-usuario-header" class="user-info d-flex align-items-center flex-column flex-nowrap oculto">
+                <b class="text-truncate text-secondary mb-0" id="texto-nombre-usuario"></b>
+                <p class="text-truncate mb-0" id="texto-rol-usuario"></p>
+              </div>
+              <!-- botón para cerrar sesión -->
+              <button id="btn-cerrar-sesion" type="button"
+                class="border border-2 border-danger bg-transparent rounded-circle text-danger shadow-none oculto"
+                aria-label="Cerrar sesión" title="Cerrar sesión">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              </button>
+            </div>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+              aria-label="Menú de navegación">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="container-md-fluid container-lg px-0 mx-0 px-lg-3 mx-md-auto">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+          <ul class="navbar-nav w-100 text-center">
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Inicio</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Quiénes somos</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Recursos</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Herramientas</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Uso de datos</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Aprendizaje</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Actualidad</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.catastrobogota.gov.co/" target="_blank" rel="noopener noreferrer">Catastro</a></li>
+            <li class="nav-item flex-fill"><a class="nav-link" href="https://www.ideca.gov.co/" target="_blank" rel="noopener noreferrer">Ayuda</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="vista-principal" role="main">
+    <!-- Banner hero (patrón diseñador breadcrumb-container) -->
+    <div class="breadcrumb-container d-flex align-items-center mt-2 mx-2 p-0"
+         style="background: url('./assets/img/ide_bogota.png') center/cover no-repeat;">
+      <div class="container-md-fluid container-lg breadcrumb-content w-100 py-3">
+        <div class="col-md-8">
+          <h1 id="span_titulo_aplicacion" class="breadcrumb-title mb-1 h4">
+            Modulo de Datos - Administración
+          </h1>
+        </div>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="https://www.ideca.gov.co/"><i class="fa-solid fa-house"></i></a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="https://www.ideca.gov.co/recursos/">Recursos</a></li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <div id="main-content" tabindex="-1"></div>
+    <div id="div_frontpage_container" class="div_frontpage_container">
+      <div id="div-logo-entidad-login" class="w-100 text-center div-logo-entidad">
+        <img src="assets/img/logon_0.png" alt="Logo UAECD" class="img-fluid" />
+      </div>
+
+      <!-- Tabla de administración de datos (oculta hasta login) -->
+      <div id="divTablaDatos" class="container-fluid mt-4 oculto">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header bg-primary text-white header-global-entidad">
+                <h5 class="d-flex justify-content-between align-items-center mb-0">
+                  Administración del Módulo de Datos
+                </h5>
+              </div>
+              <div class="card-body">
+                <!-- Criterios de búsqueda -->
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <div class="row mb-3">
+                      <div class="col-md-4">
+                        <h6>Criterios de búsqueda</h6>
+                        <input type="text" id="customSearch" class="form-control" placeholder="Escribe para filtrar...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="d-flex align-items-end gap-3">
+                          <div class="w-50">
+                            <label for="sectorAdministrativo" class="form-label small">Sector administrativo: <span
+                                class="text-danger" aria-label="requerido">*</span></label>
+                            <select id="sectorAdministrativo" class="form-select form-select-sm" aria-required="true"
+                              aria-describedby="sector-help">
+                            </select>
+                            <div id="sector-help" class="form-text visually-hidden">Seleccione el sector administrativo
+                              para
+                              filtrar las entidades</div>
+                          </div>
+                          <div class="w-50">
+                            <label for="entidadResponsable" class="form-label small">Entidad Responsable: <span
+                                class="text-danger" aria-label="requerido">*</span></label>
+                            <select id="entidadResponsable" class="form-select form-select-sm" aria-required="true"
+                              aria-describedby="entidad-help" disabled>
+                            </select>
+                            <div id="entidad-help" class="form-text visually-hidden">Seleccione primero un sector
+                              administrativo</div>
+                          </div>
+                          <div class="col">
+                            <button id="btnLimpiar" class="btn btn-secondary btn-sm">Limpiar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12 d-flex justify-content-end align-items-center">
+                        <div class="d-flex gap-2">
+                          <button id="btnRefrescarTabla" class="btn btn-outline-primary btn-sm"
+                            title="Actualizar datos de la tabla">
+                            <i class="fas fa-sync-alt me-1"></i>Refrescar
+                          </button>
+                          <button id="btnAgregarDato" class="btn btn-success btn-sm">
+                            <i class="fas fa-plus me-1"></i>Agregar Nuevo Dato
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- GridJS -->
+                <div class="table-responsive" role="region" aria-labelledby="tabla-title"
+                  aria-describedby="tabla-descripcion">
+                  <h3 id="tabla-title" class="visually-hidden">Tabla de datos geográficos</h3>
+                  <p id="tabla-descripcion" class="visually-hidden">Tabla con la información de los datos geográficos
+                    registrados en el sistema</p>
+                  <div id="tablaDatos"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer institucional (patrón diseñador footer) -->
+  <footer class="footer">
+    <div class="px-2 px-md-0">
+      <div class="container-fluid container-md border rounded-20 p-4 pt-5 pb-3 mb-3 bg-light">
+        <div class="row">
+          <div class="col-md-6">
+            <h2 class="h5 fw-bold">Unidad Administrativa Especial de Catastro Distrital</h2>
+            <p>Ideca: Infraestructura de Datos Espaciales para el Distrito Capital</p>
+            <address class="mb-2">
+              Dirección: Av. Carrera 30 No. 25 - 90, Torre B Piso 2 <br>
+              Código postal: 111311 <br>
+              Horario de atención: Lunes a Viernes de 8:00 am a 4:30 pm <br>
+              Teléfono conmutador: +57 601 234 7600<br>
+              Línea de servicio a la ciudadanía: +57 601 234 7600 - Ext. 7600 <br>
+              Línea Gratuita Nacional: 01 8000 9104887 <br>
+              Información general: Línea 195 <br>
+              Notificaciones judiciales:
+              <a href="mailto:notificaciones@catastrobogota.gov.co">notificaciones@catastrobogota.gov.co</a>
+            </address>
+          </div>
+          <div class="col-md-6 d-flex flex-wrap justify-content-md-end gap-4 mb-3 footer-logos mt-0">
+            <img src="./assets/img/logo.svg" alt="Logo Ideca" class="footer-logo">
+          </div>
+        </div>
+        <nav aria-label="Redes sociales" class="mb-3">
+          <ul class="list-inline footer-social">
+            <li class="list-inline-item">
+              <a href="https://www.instagram.com/catastrobogota_" target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/img/instagram.svg" alt=""> @catastrobogota_
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.facebook.com/CatastroBogota/" target="_blank" rel="noopener noreferrer"
+                aria-label="Facebook Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/img/facebook.svg" alt=""> @CatastroBogota
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://twitter.com/CatastroBogota" target="_blank" rel="noopener noreferrer"
+                aria-label="X (Twitter) Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/img/twitter.svg" alt=""> @CatastroBogota
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.youtube.com/@catastrobogota3985" target="_blank" rel="noopener noreferrer"
+                aria-label="YouTube Catastro Bogotá" class="d-flex align-items-center">
+                <img class="me-1" src="./assets/img/youtube.svg" alt=""> Catastro Bogotá
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <nav aria-label="Enlaces institucionales" class="mb-3">
+          <ul class="list-inline footer-links flex-wrap">
+            <li class="list-inline-item me-3"><a href="/sitemap">Mapa del sitio</a></li>
+            <li class="list-inline-item me-3"><a href="https://outlook.office.com/owa/" target="_blank" rel="noopener noreferrer">Correo institucional</a></li>
+            <li class="list-inline-item me-3"><a href="http://intranet.catastrobogota.gov.co/" target="_blank" rel="noopener noreferrer">Intranet</a></li>
+            <li class="list-inline-item me-3"><a href="https://mesadeservicio.catastrobogota.gov.co/CAisd/pdmweb.exe" target="_blank" rel="noopener noreferrer">Mesa de servicio</a></li>
+            <li class="list-inline-item me-3"><a href="https://www.catastrobogota.gov.co/declaracion-de-accesibilidad" target="_blank" rel="noopener noreferrer">Accesibilidad</a></li>
+            <li class="list-inline-item w-100"><a href="http://www.catastrobogota.gov.co/contacto/politicas-de-seguridad-privacidad-condiciones-de-uso-y-proteccion-de-datos-personales" target="_blank" rel="noopener noreferrer">Políticas de seguridad, privacidad, condiciones de uso y protección de datos personales</a></li>
+            <li class="list-inline-item w-100"><a href="http://www.catastrobogota.gov.co/transparencia-y-acceso-a-la-informacion-publica" target="_blank" rel="noopener noreferrer">Transparencia y acceso a la información pública</a></li>
+            <li class="list-inline-item"><a href="https://mesacomisionideca.gitbook.io/manual-de-usuario-pig/" target="_blank" rel="noopener noreferrer">Manual de usuario de la Plataforma de Información</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="container d-flex gap-2 justify-content-between align-items-center py-2">
+        <div class="d-flex gap-2 align-items-center">
+          <img src="https://cdn.www.gov.co/assets/images/logo.png" style="width: 112px;" alt="Logo GOV.CO" class="footer-bottom-logo">
+          <img src="./assets/img/logo-colombia.svg" style="width: 40px;" alt="Logo Colombia" class="footer-bottom-logo">
+        </div>
+        <p class="d-flex justify-content-md-end text-start text-white mb-0">
+          &copy; <span id="current-year" class="me-1"></span> Ideca. Todos los derechos reservados.
+        </p>
+        <script>
+          document.getElementById("current-year").textContent = new Date().getFullYear();
+        </script>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal para mensajes -->
+  <div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" style="z-index: 1070;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title d-flex justify-content-between align-items-center w-100">
+            <h5 class="mb-0" id="mensajeModalLabel">Mensaje</h5>
+            <i class="fa-solid fa-exclamation-circle me-2"></i>
+          </div>
+        </div>
+        <div class="modal-body" id="mensajeModalBody">
+          <!-- Contenido del mensaje -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de confirmación para eliminar dato -->
+  <div class="modal fade" id="confirmarEliminarModal" tabindex="-1" aria-labelledby="confirmarEliminarModalLabel"
+    style="z-index: 1070;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header text-white">
+          <div class="modal-title d-flex justify-content-between align-items-center w-100">
+            <h5 class="mb-0">Confirmar Eliminación</h5>
+            <i class="fas fa-trash-alt fa-3x text-danger"></i>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex align-items-center mb-3">
+            <div>
+              <h6 class="mb-1">¿Está seguro de que desea eliminar este dato?</h6>
+              <p class="text-muted mb-0">Esta acción no se puede deshacer.</p>
+            </div>
+          </div>
+          <hr>
+          <strong>Dato a eliminar:</strong><br>
+          <span id="datoEliminarNombre" class="fw-bold"></span><br>
+          <small class="text-muted">ID: <span id="datoEliminarId"></span></small>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            <i class="fas fa-times me-1"></i>Cancelar
+          </button>
+          <button type="button" class="btn btn-danger" id="btnConfirmarEliminar">
+            <i class="fas fa-trash me-1"></i>Eliminar Definitivamente
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para agregar/editar dato -->
+  <div class="modal fade" id="agregarDatoModal" tabindex="-1" aria-labelledby="agregarDatoModalLabel"
+    aria-describedby="form-descripcion" style="z-index: 1060;">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header header-global-entidad">
+          <h5 class="modal-title" id="agregarDatoModalLabel">
+            Editar Dato Geográfico
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+            aria-label="Cerrar modal"></button>
+        </div>
+        <div class="modal-body">
+          <p id="form-descripcion" class="visually-hidden">Formulario para agregar o editar información de datos
+            geográficos</p>
+          <form id="formAgregarDato" novalidate>
+            <div class="d-flex gap-4">
+              <div class="w-100">
+                <div class="mb-3">
+                  <label for="identificadorSRIG" class="form-label">Identificador SRIG: <span class="text-danger"
+                      aria-label="requerido">*</span></label>
+                  <input type="url" class="form-control form-control-sm" id="identificadorSRIG"
+                    name="IDENTIFICADOR_SRIG" placeholder="https://geoitems.ideca.gov.co/diccionario/xxxx"
+                    aria-required="true" aria-describedby="srig-help">
+                  <div id="srig-help" class="form-text">URL del recurso en el Sistema de Registro de Información
+                    Geográfica</div>
+                </div>
+              </div>
+              <div class="col mb-3">
+                <div class="d-flex justify-content-center align-items-center h-100 flex-wrap">
+                  <button type="button" class="btn btn-primary" id="btnBuscarDato"
+                    aria-describedby="buscar-help">Buscar</button>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="nombreDato" class="form-label">Nombre del Dato: <span class="text-danger"
+                      aria-label="requerido">*</span></label>
+                  <input type="text" class="form-control form-control-sm" id="nombreDato" name="NOMBRE" required
+                    aria-required="true" aria-describedby="nombre-help">
+                  <div id="nombre-help" class="form-text">Nombre descriptivo del conjunto de datos geográficos</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="entidadDato" class="form-label">Entidad: <span class="text-danger"
+                      aria-label="requerido">*</span></label>
+                  <input type="text" class="form-control form-control-sm" id="entidadDato" name="ENTIDAD" required
+                    aria-required="true" aria-describedby="entidad-dato-help">
+                  <div id="entidad-dato-help" class="form-text">Entidad responsable de la generación y mantenimiento de
+                    los datos</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <label for="descripcionDato" class="form-label">Descripción del Dato: <span class="text-danger"
+                      aria-label="requerido">*</span></label>
+                  <textarea class="form-control form-control-sm" id="descripcionDato" name="DESCRIPCION" rows="3"
+                    aria-required="true" aria-describedby="descripcion-help"></textarea>
+                  <div id="descripcion-help" class="form-text">Descripción detallada del contenido y propósito de los
+                    datos</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="tipoDato" class="form-label">Tipo de Dato:</label>
+                  <select class="form-select form-select-sm" id="tipoDato" name="TIPO_DATO">
+                    <option value="Geoespacial">Geoespacial</option>
+                    <option value="Alfanumérico">Alfanumérico</option>
+                    <option value="Mixto">Mixto</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="identificadorHIE" class="form-label">Identificador HIE (Herramienta Integral de
+                    Estándares):</label>
+                  <input type="text" class="form-control form-control-sm" id="identificadorHIE" name="IDENTIFICADOR_HIE"
+                    placeholder="Integer, por ejemplo: 663" pattern="[0-9]+" inputmode="numeric"
+                    aria-describedby="hie-help">
+                  <div id="hie-help" class="form-text">Identificador numérico del recurso en la Herramienta Integral de
+                    Estándares</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="identificadorPDA" class="form-label">Identificador PDA (Portal de Datos
+                    Abiertos):</label>
+                  <input type="text" class="form-control form-control-sm" id="identificadorPDA" name="IDENTIFICADOR_PDA"
+                    placeholder="Formato UUID, por ejemplo: 780d9d1d-bafa-4956-8cdc-eda5063e72b2"
+                    aria-describedby="pda-help"
+                    pattern="[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}">
+                  <div id="pda-help" class="form-text">Identificador único del dataset en el Portal de Datos Abiertos
+                    (formato UUID)</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="identificadorPMB" class="form-label">Identificador PMB (Portal de Mapas de
+                    Bogotá):</label>
+                  <input type="text" class="form-control form-control-sm" id="identificadorPMB" name="IDENTIFICADOR_PMB"
+                    placeholder="Integer, por ejemplo: 2563" pattern="[0-9]+" inputmode="numeric"
+                    aria-describedby="pmb-help">
+                  <div id="pmb-help" class="form-text">Identificador numérico del layer en el Portal de Mapas de Bogotá
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-9">
+                <div class="mb-3">
+                  <label for="identificadorMetadatos" class="form-label">Identificador de Metadatos:</label>
+                  <input type="text" class="form-control form-control-sm" id="identificadorMetadatos"
+                    name="IDENTIFICADOR_METADATOS" placeholder="NULL o URL, por ejemplo: https://..."
+                    aria-describedby="metadatos-help">
+                  <div id="metadatos-help" class="form-text">URL del documento de metadatos del dataset</div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="mb-3">
+                  <label for="activo" class="form-label">Estado:</label>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="activo" name="ACTIVO" checked
+                      aria-describedby="activo-help">
+                    <label class="form-check-label" for="activo">
+                      Activo
+                    </label>
+                    <div id="activo-help" class="form-text">Determina si el dato está disponible públicamente</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer justify-content-end flex-nowrap">
+          <button type="button" class="btn btn-danger" id="btnEliminarDato"
+            aria-describedby="eliminar-help">Eliminar</button>
+          <div id="eliminar-help" class="visually-hidden">Elimina permanentemente este dato del sistema</div>
+          <div class="w-100 d-flex gap-2 justify-content-end">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+              aria-describedby="cancelar-help">Cancelar</button>
+            <div id="cancelar-help" class="visually-hidden">Cierra el formulario sin guardar cambios</div>
+            <button type="button" class="btn btn-primary" id="btnEditarDato" aria-describedby="guardar-help">Guardar
+              cambios</button>
+            <button type="button" class="btn btn-primary" id="btnGuardarDato"
+              aria-describedby="guardar-help">Guardar</button>
+            <div id="guardar-help" class="visually-hidden">Guarda los cambios realizados en el formulario</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase, Bootstrap, tu app.js -->
+
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth__es_419.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.5.1/dist/js/tom-select.complete.min.js"></script>
+
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1230 @@
+
+/* ===========================================
+   VARIABLES Y CONFIGURACIÓN GLOBAL
+   =========================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  /* Estados */
+  --color-success: #198754;
+  /* Bootstrap Success */
+  --color-danger: #dc3545;
+  /* Bootstrap Danger */
+  --color-warning: #ffc107;
+  /* Bootstrap Warning */
+  --color-info: #0dcaf0;
+  /* Bootstrap Info */
+  --color-primary: #0d6efd;
+  /* Bootstrap Primary */
+  --color-disabled: #e2e3e5;
+  --color-white-text: #fff;
+  /* White text */
+  --color-secondary: #003A5B;
+  --color-accent: #36C;
+  --color-gray: #c4c4c4;
+  --color-black: #444444;
+  --color-text-muted: #6c757d;
+
+  /* Espaciado */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 3rem;
+
+  /* Tipografía */
+  --font-family-primary: "Nunito Sans", Arial, Helvetica, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+
+  /* Transiciones */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+
+  /* Sombras */
+  --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --shadow-md: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+  /* Border radius */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.375rem;
+  --border-radius-lg: 0.5rem;
+  --border-radius-xl: 1rem;
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-gray: #000;
+    --color-text-muted: #000;
+  }
+}
+
+/* Fallback font for better performance */
+body {
+  font-family: var(--font-family-primary);
+}
+
+a,
+.nav-link {
+  color: #003A5B;
+}
+
+.bg-primary {
+  background-color: #053a5b !important;
+}
+
+/* ===========================================
+   UTILIDADES GLOBALES
+   =========================================== */
+
+/* ----------------------------------------------
+   Enhanced Toast global
+   ---------------------------------------------- */
+#aviso-global {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #000;
+  padding: 8px 16px;
+  border-radius: 20px;
+  z-index: 9999;
+  font-size: 0.9em;
+  text-align: left;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  max-width: 50vw;
+  min-width: 300px;
+  max-height: 50vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(2px);
+  word-wrap: break-word;
+}
+
+#aviso-global.mostrar {
+  opacity: 1 !important;
+}
+
+#aviso-global.oculto {
+  display: none !important;
+}
+
+/* Aviso type variations */
+#aviso-global.aviso-error {
+  background: #f8d7da;
+  border-left: 4px solid #f5c6cb;
+}
+
+#aviso-global.aviso-success {
+  background: #d4edda;
+  border-left: 4px solid #c3e6cb;
+}
+
+#aviso-global.aviso-warning {
+  background: #fff3cd;
+  border-left: 4px solid #ffeeba;
+}
+
+#aviso-global.aviso-info {
+  background: #cce5ff;
+  border: 4px solid #b8daff;
+}
+
+#aviso-global.aviso-default {
+  background: #e2e3e5;
+  border-left: 4px solid #d6d8db;
+}
+
+/* Aviso content structure */
+.aviso-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.aviso-icon {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.aviso-text {
+  flex: 1;
+}
+
+.aviso-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.aviso-close-btn {
+  background: transparent;
+  border: inherit;
+  border-radius: 5px;
+  color: #000;
+  font-size: 1.3rem;
+  padding: 0;
+  line-height: normal;
+  cursor: pointer;
+  margin-left: 10px;
+  flex-shrink: 0;
+}
+
+/* Hover states for aviso */
+#aviso-global:hover {
+  transform: translateX(-50%) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  opacity: 0.98;
+}
+
+/* Paused state for aviso */
+#aviso-global.paused {
+  transform: translateX(-50%) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  opacity: 0.98;
+}
+
+.nav-link {
+  height: 100%;
+  align-items: center;
+  color: #003a5b;
+  font-size: 0.9rem;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.nav-link span {
+  font-size: 0.8rem;
+  line-height: 0.9rem;
+}
+
+.invalid-feedback {
+  font-size: 0.8rem !important;
+}
+
+.btn {
+  font-size: 0.8rem;
+  white-space: nowrap;
+  width: auto !important;
+}
+
+.form-control {
+  font-size: 0.8rem;
+}
+
+.text-info {
+  color: #36c !important;
+}
+
+.btn-sm {
+  font-size: 0.8rem !important;
+}
+
+.btn-primary {
+  background: var(--color-secondary);
+  border: 0;
+}
+
+.bg-info {
+  color: #053a5b;
+}
+
+.btn-info {
+  background: #003a5b;
+  border: 0;
+  color: #fff;
+}
+
+.btn-info:hover {
+  color: #fff;
+  background: #003a5ccc;
+}
+
+
+
+.btn-danger {
+  background: var(--color-danger);
+}
+
+.form-select {
+  font-size: 0.8rem;
+  width: 100% !important;
+  min-width: 100px;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.form-check {
+  gap: 10px;
+  padding-left: 0 !important;
+}
+
+.form-check-label {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+.form-control-plaintext {
+  font-size: 0.8rem;
+}
+
+.btn-outline-primary {
+  border-color: #053a5b !important;
+  --bs-btn-hover-bg: #053a5b;
+  --bs-btn-color: #053a5b;
+}
+
+.btn-outline-danger {
+  --bs-btn-color: #eb0a2a;
+  --bs-btn-border-color: #eb0a2a;
+  --bs-btn-hover-bg: #eb0a2a;
+  --bs-btn-hover-border-color: #eb0a2a;
+  --bs-btn-active-bg: #eb0a2a;
+  --bs-btn-active-border-color: #eb0a2a;
+  --bs-btn-disabled-color: #eb0a2a;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #eb0a2a;
+}
+
+.oculto {
+  display: none !important;
+}
+
+/* Focus styles for accessibility */
+.visually-hidden-focusable:not(:focus):not(:focus-within) {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Loading states */
+.loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 1rem;
+  margin: -0.5rem 0 0 -0.5rem;
+  border: 2px solid transparent;
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilo para el fondo de la página de login */
+/* ===========================================
+   ESTILOS DE FONDO Y BODY
+   =========================================== */
+
+body {
+  background-image: url('../assets/img/fondo-mapa-bogota-gris.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: background-image var(--transition-normal);
+}
+
+/* Optimización para dispositivos móviles */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+body.authenticated.content-visible {
+  background-image: url('../assets/img/fondo-mapa-bogota-gris-in.png');
+}
+
+/* ===========================================
+   ESTILOS DE LOGOS Y BRANDING
+   =========================================== */
+
+#logo-ideca {
+  width: auto;
+  height: 30px;
+  margin-right: var(--spacing-sm);
+  transition: transform var(--transition-fast);
+}
+
+#logo-ideca:hover {
+  transform: scale(1.05);
+}
+
+#logo-entidad {
+  background-image: url("../assets/img/logo_catastro.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 30px;
+  width: 90px;
+  min-width: 90px;
+}
+
+#span_titulo_aplicacion {
+  font-size: var(--font-size-sm);
+  line-height: normal;
+}
+
+@media (max-width: 1240px) {
+  #span_titulo_aplicacion {
+    max-width: 300px;
+  }
+}
+
+.div_frontpage_container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  width: 100%;
+  min-height: calc(100vh - 160px);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.div_frontpage_container::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: -60px;
+  z-index: -1;
+  background: linear-gradient(180deg, #FFFFFF00 65%, #ffffffcc 80%, #ffffffcc 100%);
+}
+
+/* Ocultar el contenedor de frontpage cuando la sección admin está visible */
+#seccion-admin:not(.oculto)~.div_frontpage_container {
+  display: none;
+}
+
+
+
+/* ----------------------------------------------
+     Nuevo estilo para la estructura de headers
+     ---------------------------------------------- */
+.header-container {
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-white-text);
+}
+
+/* Contenedor centrado (patrón diseñador) */
+.constrained-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+
+#cabecera-app {
+  position: relative;
+  top: 0;
+  width: 100%;
+}
+
+#cabecera-app img {
+  width: auto;
+  height: 30px;
+}
+
+#cabecera-app #logo-ideca {
+  height: 30px;
+}
+
+#cabecera-app .btn {
+  font-size: 0.8rem;
+}
+
+
+/* Ajuste para el main contenido para compensar la altura de los dos headers */
+#vista-principal {
+  height: auto;
+  padding-top: 0 !important;
+  transition: background-color 0.3s ease;
+}
+
+
+/* modal */
+.modal-header {
+  text-align: center;
+  background: #C8C8C8;
+  color: #003A5B !important;
+}
+
+.modal-body {
+  max-height: calc(100vh - 300px);
+  overflow: auto;
+}
+
+.modal-title,
+.modal-title h5 {
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+.modal-title,
+h2,
+h3,
+h4 {
+  color: #003a5b !important;
+}
+
+.modal-title {
+  font-size: 1.2rem !important;
+}
+
+.modal-title i {
+  font-size: 1.1rem;
+}
+
+
+.rounded-20 {
+  border-radius: 20px;
+}
+/* ==========================================
+   ESTILOS PARA FORMULARIOS MODALES
+   ========================================== */
+
+/* Estilos para los formularios de Proceso y Job como modales */
+#form-proceso:not(.d-none),
+#form-job:not(.d-none),
+#form-permiso:not(.d-none) {
+  z-index: 10000 !important;
+  position: fixed;
+  display: block !important;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  left: 0;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  border: 1px solid #939393;
+  width: 60%;
+  max-height: 85%;
+}
+
+#form-proceso {
+  z-index: 3;
+}
+
+#form-job {
+  z-index: 3;
+}
+
+#form-permiso {
+  z-index: 3;
+}
+
+#form-permiso h4 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+#form-permiso .form-check {
+  display: flex;
+  gap: 10px;
+}
+
+#form-permiso .form-check .form-check-input {
+  margin-left: 0;
+}
+
+/* Asegurarse de que el z-index sea adecuado */
+#seccion-admin:not(.oculto) {
+  background-color: var(--color-white-text);
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  margin: 20px auto;
+}
+
+#admin-permisos .table-responsive-admin {
+  height: calc(100vh - 430px);
+  font-size: 0.8rem;
+}
+
+/* DataTables custom styling */
+#tabla-permisos_wrapper {
+  font-size: 0.8rem;
+}
+
+#tabla-permisos_wrapper .dataTables_length,
+#tabla-permisos_wrapper .dataTables_filter {
+  margin-bottom: 1rem;
+}
+
+#tabla-permisos_wrapper .dataTables_filter input {
+  margin-left: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+#tabla-permisos_wrapper .dataTables_length select {
+  padding: 0.375rem 2rem 0.375rem 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  margin: 0 0.5rem;
+}
+
+#tabla-permisos_wrapper .dt-column-title {
+  text-align: left;
+}
+
+#tabla-permisos_wrapper td.dt-type-numeric {
+  text-align: center;
+}
+
+#filtro-permisos {
+  border-radius: 0;
+  border-left: 0;
+}
+
+#btn-limpiar-filtro-permisos {
+  border: 0 !important;
+}
+
+.input-group-text {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Asegurar tamaño consistente de badges en la tabla */
+#tabla-permisos .badge {
+  min-width: 40px;
+  min-height: 25px;
+  padding: 0.35em 0.65em;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+/* Estilos para modal de confirmación */
+#modal-confirmar-eliminar .modal-header .modal-title {
+  color: #003A5B !important;
+}
+
+/* Modal overlay para formulario de permisos */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  backdrop-filter: blur(2px);
+}
+
+.modal-overlay.d-none {
+  display: none !important;
+}
+
+.modal-container {
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-container .card {
+  margin: 0;
+}
+
+.modal-container .card-header {
+  padding: 1rem 1.5rem;
+}
+
+.modal-container .card-body {
+  padding: 1.5rem;
+}
+
+.modal-container .card-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.modal-container .form-label.fw-bold {
+  color: #2c3e50;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-container .form-control,
+.modal-container .form-select {
+  border-radius: 0.375rem;
+  border: 1px solid #ced4da;
+  padding: 0.5rem 0.75rem;
+}
+
+.modal-container .form-control:focus,
+.modal-container .form-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.modal-container .btn-close-white {
+  filter: brightness(0) invert(1);
+}
+
+/* Estilo para el botón de cerrar en el formulario */
+#form-proceso .btn-close-form,
+#form-job .btn-close-form {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* ==========================================
+   ESTILOS PARA AUTOCOMPLETE
+   ========================================== */
+
+/* Estilos para el componente de autocompletado */
+.autocomplete-container {
+  position: relative;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #ddd;
+  border-top: none;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 4px 4px;
+  display: none;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autocomplete-items div:hover {
+  background-color: #e9ecef;
+}
+
+.autocomplete-active {
+  background-color: #003A5B !important;
+  color: var(--color-white-text);
+}
+
+.autocomplete-item-highlight {
+  font-weight: bold;
+  color: #003A5B;
+}
+
+.autocomplete-spinner {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: none;
+}
+
+/* Estilos para selección ya realizada */
+.autocomplete-selected {
+  background-color: #e8f4ff;
+  border: 1px solid #b8daff;
+  border-radius: 4px;
+}
+
+/* Estilos para campos con selección completada */
+.autocomplete-selected {
+  background-color: #e8eef4;
+  border-color: #9eb8cf;
+  color: #003A5B;
+  font-weight: 500;
+}
+
+/* Estilos para el spinner de carga */
+.autocomplete-spinner {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 5;
+  display: none;
+}
+
+/* ==========================================
+   ESTILOS PARA ADMINISTRACIÓN
+   ========================================== */
+
+.admin-area {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.admin-area .card-header h5 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* Estado activo del botón de administración */
+.btn-admin-activo {
+  background-color: #003a5ccc !important;
+}
+
+/* Estilos para el modal de metadatos */
+#tabla-metadatos {
+  font-size: 0.9rem;
+}
+
+#tabla-metadatos th {
+  background-color: #f0f0f0;
+}
+
+.btn-metadatos {
+  margin-right: 5px;
+}
+
+#metadatos-contenedor {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* Estilos para la consola de administración como modal */
+#seccion-admin h3,
+#seccion-admin h4 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+#seccion-admin .btn {
+  font-size: 0.9rem;
+}
+
+#seccion-admin #btn-nuevo-permiso.btn {
+  font-size: 0.8rem;
+}
+
+.admin-btn {
+  border-radius: 0.375rem 0.375rem 0 0;
+  border: 0;
+  background: #f5f5f5;
+  color: #212529;
+}
+
+.admin-btn.active {
+  color: #212529;
+  border: 1px solid #6c757d;
+  background: #fff;
+}
+
+.always-show-scrollbar {
+  overflow-y: auto;
+  max-height: 150px;
+  scrollbar-width: auto;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+/* WebKit Browsers (Safari/Chrome) */
+.always-show-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.always-show-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.always-show-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Columnas visibles solo para administradores */
+body:not(.role-admin) .admin-only-column {
+  display: none !important;
+}
+
+body.role-admin .admin-only-column {
+  display: table-cell;
+}
+
+/* ==========================================
+   ESTILOS PARA LA TABLA DE ADMINISTRACIÓN
+   ========================================== */
+.dt-search {
+  display: none;
+}
+
+#divTablaDatos {
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 200px);
+}
+
+#divTablaDatos .card {
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+#divTablaDatos .card-header h5 {
+  font-size: 1rem;
+  font-weight: 400;
+  height: 30px;
+}
+
+#divTablaDatos .badge {
+  font-size: 0.7rem;
+  padding: 0.35em 0.65em;
+  min-width: 113px;
+}
+
+/* Estilos para los criterios de búsqueda */
+.criterios-busqueda {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+#tablaDatos_wrapper>div.row {
+  padding-bottom: 10px;
+}
+
+/* Estilos específicos para DataTables */
+#tablaDatos {
+  font-size: 0.875rem;
+}
+
+#tablaDatos thead th {
+  background-color: #EAEAEA !important;
+  color: var(--color-secondary);
+  border: none;
+  font-weight: 500;
+  font-size: 0.8rem;
+  vertical-align: middle;
+  padding: 0.5rem 0.5rem;
+}
+
+#tablaDatos tbody td {
+  vertical-align: middle;
+  padding: 0.5rem;
+  border-top: 1px solid #dee2e6;
+  font-size: 0.8rem;
+}
+
+/* Botones específicos de la tabla */
+#tablaDatos .btn-sm {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.2rem;
+}
+
+#tablaDatos .btn-link {
+  color: #0066cc;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+#tablaDatos .btn-link:hover {
+  color: #004499;
+}
+
+.table-tools {
+  font-size: 0.9rem !important;
+}
+
+.dt-paging-button.current {
+  background: var(--color-warning) !important;
+}
+
+.dt-paging-button.current {
+  background-color: var(--color-warning);
+}
+
+/* Estilos para los controles de DataTables */
+.dataTables_wrapper .dataTables_length select {
+  padding: 0.25rem 1.5rem 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  margin-left: 0.5rem;
+}
+
+.dataTables_wrapper .dataTables_info {
+  font-size: 0.875rem;
+  color: #6c757d;
+  padding-top: 0.5rem;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0.375rem 0.75rem;
+  margin-left: 0.125rem;
+  font-size: 0.875rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  background: white;
+  color: #495057;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #003A5B;
+  border-color: #003A5B;
+  color: white;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  background: #f8f9fa;
+  border-color: #dee2e6;
+  color: #6c757d;
+}
+
+.dt-info {
+  margin-top: 15px;
+}
+
+.dt-paging {
+  margin-bottom: 15px;
+}
+
+/* Paginación */
+.dt-paging-button {
+  padding: 1.3em !important;
+  font-size: 1rem !important;
+  border: inherit !important;
+  border-radius: 0 !important;
+  width: 60px;
+  opacity: 0.3;
+  margin-right: 10px;
+}
+
+div.dt-container .dt-paging .dt-paging-button:hover {
+  opacity: 1;
+  color: #000 !important;
+  background: transparent !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button {
+  color: #ababab !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button.disabled, div.dt-container .dt-paging .dt-paging-button.disabled:hover, div.dt-container .dt-paging .dt-paging-button.disabled:active {
+  color: #ababab !important;
+}
+
+.dt-paging-button.current {
+  background: var(--color-white-text) !important;
+  border-bottom: 3px solid #003A5B !important;
+  opacity: 1;
+}
+
+div.dt-container .dt-paging .dt-paging-button:nth-child(-n+2),
+div.dt-container .dt-paging .dt-paging-button:nth-last-child(-n+2) {
+  background: #e7e7e7;
+  width: 25px;
+  height: 25px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #ababab !important;
+  border-radius: 20px !important;
+  padding: 5px !important;
+  opacity: 0.9;
+  aspect-ratio: 1/1;
+  font-size: 0.8rem !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button.disabled:nth-child(-n+2),
+div.dt-container .dt-paging .dt-paging-button.disabled:nth-last-child(-n+2) {
+  background: transparent;
+}
+
+div.dt-container .dt-paging .dt-paging-button:not(.disabled):nth-child(-n+2):hover,
+div.dt-container .dt-paging .dt-paging-button:not(.disabled):nth-last-child(-n+2):hover {
+  border: 0;
+  background: #e7e7e7 !important;
+  opacity: 1;
+  color: #000;
+}
+
+/* Insignias para el estado de estándares */
+.badge {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.badge-available {
+  background-color: var(--color-success);
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.badge-not-available {
+  background-color: var(--color-danger);
+  color: var(--color-white);
+  cursor: not-allowed;
+}
+
+.badge-disable {
+  background-color: var(--color-gray);
+  color: var(--color-black) !important;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.badge-default {
+  background-color: var(--color-muted);
+  color: var(--color-white);
+}
+
+
+/* Responsive para tabla */
+@media (max-width: 768px) {
+  #tablaDatos {
+    font-size: 0.75rem;
+  }
+
+  #tablaDatos thead th {
+    font-size: 0.7rem;
+    padding: 0.5rem 0.25rem;
+  }
+
+  #tablaDatos tbody td {
+    padding: 0.4rem 0.25rem;
+  }
+
+  #tablaDatos .btn-sm {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
+
+/* Asegurar que el modal de mensajes esté siempre encima de todo */
+#mensajeModal {
+  z-index: 10050 !important;
+}
+
+/* Autocomplete Styles */
+.autocomplete-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 2000;
+  display: none;
+  width: 100%;
+}
+
+.autocomplete-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.autocomplete-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    font-size: 0.85rem;
+    background: transparent;
+    padding: 0;
+    margin-bottom: 0.75rem;
+}
+
+.breadcrumb-item a {
+    color: #003A5B;
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+}

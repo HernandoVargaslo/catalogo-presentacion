@@ -1,0 +1,465 @@
+<div id="cr_div_formcontainer_[ID_REGISTRO]" class="catalogorepresentacion-container">
+    <!-- Inputs hidden para mantener referencias -->
+    <input type="hidden" id="cr_input_hieeSrigId_[ID_REGISTRO]" name="cr_input_hieeSrigId_[ID_REGISTRO]"
+        class="hiee-srig-id" value="[SRIG_ID]" />
+    <input type="hidden" id="cr_input_hieeIdRegistro_[ID_REGISTRO]" name="cr_input_hieeIdRegistro_[ID_REGISTRO]"
+        class="hiee-id-registro" value="[ID_REGISTRO]" />
+
+    <!-- Campo IDENTIFICADOR_PADRE para registros hijo -->
+    <input type="hidden" id="cr_input_identificadorPadre_[ID_REGISTRO]" name="IDENTIFICADOR_PADRE" />
+
+    <div class="hiee-contenedor-botones-cr">
+        <!-- Botones Catálogo de Representación -->
+        <div class="form-buttons catalogorepresentacion-buttons">
+            <div class="tools gap-2 align-items-center">
+                <span class="span-validacion" id="cr_span_validacionCaptura_[ID_REGISTRO]"
+                    data-id-registro="[ID_REGISTRO]"></span>
+                <span class="span-validacion" id="cr_span_validacionPersistencia_[ID_REGISTRO]"
+                    data-id-registro="[ID_REGISTRO]"></span>
+                <!-- Switch Vista Previa / Editar -->
+                <div class="edit-mode-switch-container d-flex align-items-center">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input edit-mode-switch" type="checkbox"
+                            id="cr_input_switchEditar_[ID_REGISTRO]" data-srig-id="[SRIG_ID]"
+                            data-id-registro="[ID_REGISTRO]" data-no-preview="true" />
+                    </div>
+                    <label class="switch-label ms-2" id="cr_lbl_editar_[ID_REGISTRO]">Entrar en edición</label>
+                </div>
+                <button type="button" id="cr_btn_publicar_[ID_REGISTRO]" data-srig-id="[SRIG_ID]"
+                    data-id-registro="[ID_REGISTRO]" class="btn btn-success rounded-pill btn-lg oculto">
+                    <i class="fa-solid fa-upload"></i> Publicar
+                </button>
+                <button type="button" id="cr_btn_guardar_[ID_REGISTRO]" data-srig-id="[SRIG_ID]"
+                    data-id-registro="[ID_REGISTRO]" class="btn btn-lg edit-mode-button oculto">
+                    <i class="fa-solid fa-save"></i> Guardar
+                </button>
+                <button type="button" id="cr_btn_pdf_[ID_REGISTRO]" data-srig-id="[SRIG_ID]"
+                    data-id-registro="[ID_REGISTRO]" class="btn btn-secondary btn-lg">
+                    <i class="fa-solid fa-file"></i> PDF
+                </button>
+                <button type="button" id="cr_btn_resetearFormulario_[ID_REGISTRO]" data-srig-id="[SRIG_ID]"
+                    data-id-registro="[ID_REGISTRO]" class="btn btn-sm btn-outline-danger edit-mode-button oculto"
+                    title="Limpiar formulario">
+                    <i class="fa-solid fa-broom"></i>
+                </button>
+                <button type="button" data-test="btn-colapsar-formularios-cr-[ID_REGISTRO]" class="btn btn-sm"
+                    title="Colapsar formularios">
+                    <div class="collapseall">
+                        <img src="./assets/icons/collapseall.svg" alt="" />
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Acordeones para todos los elementos -->
+    <div class="contenedor-acordeones">
+        <div class="accordion" id="cr_acordeon_[ID_REGISTRO]">
+            <!-- Acordeón Información Básica -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button py-2 bg-softgray" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#cr_acordeon_informacionBasica_[ID_REGISTRO]">
+                        Información Básica del Catálogo de Representación
+                    </button>
+                </h2>
+                <div id="cr_acordeon_informacionBasica_[ID_REGISTRO]" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+                        <!-- Campos readOnly como etiquetas con inputs hidden -->
+                        <div class="row mb-3">
+                            <!-- Campo ID oculto pero mantiene input hidden para funcionalidad -->
+                            <input type="hidden" id="cr_input_id_[ID_REGISTRO]" name="id" />
+
+                            <div class="col-md-6 d-none">
+                                <label class="form-label">Identificador del objeto</label>
+                                <span id="cr_identificadorRecursoUniforme_[ID_REGISTRO]"
+                                    class="form-control-plaintext">-</span>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Alcance del Catálogo de Representación</label>
+                                <span id="cr_nivelAlcance_[ID_REGISTRO]" class="form-control-plaintext">-</span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Nombre del Objeto</label>
+                                <span id="cr_nombre_[ID_REGISTRO]" class="form-control-plaintext">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acordeón Funciones -->
+            <div class="accordion-item" data-test="acordeon-funciones-[ID_REGISTRO]" data-srig-id="[SRIG_ID]"
+                data-id-registro="[ID_REGISTRO]">
+                <h2 class="accordion-header">
+                    <button class="accordion-button py-2 bg-softgray collapsed" data-test="btn-acordeon-funciones-[ID_REGISTRO]"
+                        data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#cr_acordeon_seccionFunciones_[ID_REGISTRO]">
+                        Funciones <span class="text-danger">*</span>
+                        <span class="badge bg-secondary ms-2" id="cr_badge_funciones_[ID_REGISTRO]">0</span>
+                    </button>
+                </h2>
+                <div id="cr_acordeon_seccionFunciones_[ID_REGISTRO]" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <p class="mb-3">
+                            Funciones de representación del catálogo
+                        </p>
+
+                        <!-- Template para funciones -->
+                        <template id="cr_template_funcion_[ID_REGISTRO]">
+                            <div class="accordion-item" data-index="">
+                                <h2 class="accordion-header d-flex">
+                                    <button class="accordion-button py-2 bg-softgray collapsed flex-grow-1" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#cr_acordeon_funcion_[ID_REGISTRO]">
+                                        <span class="me-2">
+                                            <i class="fa-solid fa-cogs me-1"></i>Función #<span
+                                                class="item-number"></span>
+                                        </span>
+                                        <span class="badge bg-warning ms-2 funcion-nombre-badge">Sin nombre</span>
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-outline-danger ms-2 my-1 me-1 edit-mode-element"
+                                        data-form="cr" data-srig="[ID_REGISTRO]"
+                                        data-test="btn-eliminar-funcion-[ID_REGISTRO]">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </h2>
+                                <div id="cr_acordeon_funcion_[ID_REGISTRO]" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <div class="row mb-3"></div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Tipo de función
+                                                    <span class="text-danger">*</span></label>
+                                                <select class="form-select" id="cr_funciones_tipo_[ID_REGISTRO]"
+                                                    name="funciones[][tipo]" title="Tipo de función" required>
+                                                    <option value="">
+                                                        Seleccione...
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Nombre de la función
+                                                    <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    id="cr_funciones_nombre_[ID_REGISTRO]" name="funciones[][nombre]"
+                                                    title="Nombre de la función" required />
+                                            </div>
+                                        </div>
+
+                                        <!-- Acordeón anidado para especificaciones -->
+                                        <div class="border rounded p-2 bg-light">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h6 class="mb-0">
+                                                    Especificaciones
+                                                    <span class="text-danger">*</span>
+                                                    <span class="badge bg-primary"
+                                                        id="cr_badge_especificaciones_[ID_REGISTRO]">0</span>
+                                                </h6>
+                                            </div>
+
+                                            <div id="cr_funciones_especificaciones_[ID_REGISTRO]"
+                                                class="especificaciones-container accordion">
+                                                <!-- Especificaciones aparecerán aquí -->
+                                            </div>
+
+                                            <div class="mt-3 text-center">
+                                                <button type="button" class="btn btn-sm btn-success rounded-pill edit-mode-button"
+                                                    data-form="cr" data-srig="[SRIG_ID]"
+                                                    data-test="btn-agregar-especificacion-[ID_REGISTRO]">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                    Agregar Especificación
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!-- Template para especificaciones -->
+                        <template id="cr_template_especificacion_[ID_REGISTRO]">
+                            <div class="accordion-item" data-spec-index="">
+                                <h2 class="accordion-header d-flex">
+                                    <button class="accordion-button py-2 bg-softgray collapsed flex-grow-1" type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#cr_acordeon_especificacion_[ID_REGISTRO]">
+                                        <span class="me-2">
+                                            <i class="fa-solid fa-cog me-1"></i>Especificación #<span
+                                                class="spec-number"></span>
+                                        </span>
+                                        <span class="badge bg-success ms-2 especificacion-valor-badge">Sin valor</span>
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-outline-danger ms-2 my-1 me-1 edit-mode-element"
+                                        data-form="cr" data-srig="[SRIG_ID]"
+                                        data-test="btn-eliminar-especificacion-[ID_REGISTRO]">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </h2>
+                                <div id="cr_acordeon_especificacion_[ID_REGISTRO]" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <div class="row mb-3"></div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Valor
+                                                    <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    id="cr_funciones_especificaciones_valor_[ID_REGISTRO]"
+                                                    name="funciones[][especificaciones][][valor]" title="Valor"
+                                                    required />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Etiqueta de la leyenda
+                                                    <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    id="cr_funciones_especificaciones_etiquetaLeyenda_[ID_REGISTRO]"
+                                                    name="funciones[][especificaciones][][etiquetaLeyenda]"
+                                                    title="Etiqueta de la leyenda" required />
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-12">
+                                                <label class="form-label">Descripción
+                                                    <span class="text-danger">*</span></label>
+                                                <textarea class="form-control"
+                                                    id="cr_funciones_especificaciones_descripcion_[ID_REGISTRO]"
+                                                    name="funciones[][especificaciones][][descripcion]" rows="2"
+                                                    title="Descripción" required></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Geometría
+                                                    <span class="text-danger">*</span></label>
+                                                <select class="form-select"
+                                                    id="cr_funciones_especificaciones_geometria_[ID_REGISTRO]"
+                                                    name="funciones[][especificaciones][][geometria]" title="Geometría"
+                                                    required>
+                                                    <option value="">
+                                                        Seleccione...
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Muestra Gráfica
+                                                    <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" autocomplete="off"
+                                                    id="cr_funciones_especificaciones_muestraGrafica_[ID_REGISTRO]"
+                                                    name="funciones[][especificaciones][][muestraGrafica]"
+                                                    title="Muestra Gráfica" required />
+                                            </div>
+                                        </div>
+
+                                        <!-- Propiedades específicas por geometría -->
+
+                                        <!-- Propiedades de Punto -->
+                                        <div class="punto-props d-none">
+                                            <h6 class="text-primary">
+                                                Propiedades de Punto
+                                            </h6>
+                                            <div class="row mb-3">
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Ícono Punto</label>
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="cr_funciones_especificaciones_iconoPunto_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][iconoPunto]"
+                                                        title="Ícono Punto" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Color Punto</label>
+                                                    <input type="color" class="form-control form-control-color"
+                                                        id="cr_funciones_especificaciones_colorPunto_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][colorPunto]"
+                                                        title="Color Punto" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Tamaño Punto</label>
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="cr_funciones_especificaciones_tamanoPunto_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][tamanoPunto]"
+                                                        title="Tamaño Punto" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Ángulo del ícono</label>
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="cr_funciones_especificaciones_anguloPunto_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][anguloPunto]"
+                                                        title="Ángulo del ícono" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Propiedades de Línea -->
+                                        <div class="linea-props d-none">
+                                            <h6 class="text-success">
+                                                Propiedades de Línea
+                                            </h6>
+                                            <div class="row mb-3">
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Color de la línea</label>
+                                                    <input type="color" class="form-control form-control-color"
+                                                        id="cr_funciones_especificaciones_colorLinea_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][colorLinea]"
+                                                        title="Color de la línea" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Ancho de la Línea</label>
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="cr_funciones_especificaciones_ancholinea_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][ancholinea]"
+                                                        title="Ancho de la Línea" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Estilo de la línea</label>
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="cr_funciones_especificaciones_estiloLinea_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][estiloLinea]"
+                                                        title="Estilo de la línea" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Propiedades de Polígono -->
+                                        <div class="poligono-props d-none">
+                                            <h6 class="text-warning">
+                                                Propiedades de Polígono
+                                            </h6>
+                                            <div class="row mb-3">
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Color del borde</label>
+                                                    <input type="color" class="form-control form-control-color"
+                                                        id="cr_funciones_especificaciones_colorLineaBorde_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][colorLineaBorde]"
+                                                        title="Color del borde (Polígono)" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Ancho del borde</label>
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="cr_funciones_especificaciones_anchoLineaBorde_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][anchoLineaBorde]"
+                                                        title="Ancho del borde (Polígono)" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Estilo del borde</label>
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="cr_funciones_especificaciones_estiloLineaBorde_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][estiloLineaBorde]"
+                                                        title="Estilo del borde (Polígono)" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Color del relleno</label>
+                                                    <input type="color" class="form-control form-control-color"
+                                                        id="cr_funciones_especificaciones_colorRelleno_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][colorRelleno]"
+                                                        title="Color del relleno (Polígono)" />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-12">
+                                                    <label class="form-label">Estilo del relleno</label>
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="cr_funciones_especificaciones_estiloRelleno_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][estiloRelleno]"
+                                                        title="Estilo del relleno (Polígono)" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Propiedades de Fuente -->
+                                        <div class="fuente-props">
+                                            <h6 class="text-info">
+                                                Propiedades de Fuente
+                                            </h6>
+                                            <div class="row mb-3">
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Fuente</label>
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="cr_funciones_especificaciones_fuente_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][fuente]" title="Fuente" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Tamaño de la Fuente</label>
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="cr_funciones_especificaciones_tamanoFuente_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][tamanoFuente]"
+                                                        title="Tamaño de la Fuente" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Estilo de la Fuente</label>
+                                                    <input type="text" class="form-control" autocomplete="off"
+                                                        id="cr_funciones_especificaciones_estiloFuente_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][estiloFuente]"
+                                                        title="Estilo de la Fuente" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Color de la Fuente</label>
+                                                    <input type="color" class="form-control form-control-color"
+                                                        id="cr_funciones_especificaciones_colorFuente_[ID_REGISTRO]"
+                                                        name="funciones[][especificaciones][][colorFuente]"
+                                                        title="Color de la Fuente" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <div id="cr_funciones_[ID_REGISTRO]" class="items-container accordion"></div>
+                        <div class="mt-3 text-center">
+                            <button type="button" id="cr_btn_agregarFuncion_[ID_REGISTRO]"
+                                class="btn btn-sm btn-success rounded-pill edit-mode-button" data-form="cr" data-srig="[SRIG_ID]"
+                                data-srig-id="[SRIG_ID]" data-id-registro="[ID_REGISTRO]"
+                                data-test="btn-agregar-funcion-[ID_REGISTRO]">
+                                <i class="fa-solid fa-plus"></i> Agregar Función
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acordeón Citaciones -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button py-2 bg-softgray collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#cr_acordeon_seccionCitaciones_[ID_REGISTRO]">
+                        Citaciones
+                    </button>
+                </h2>
+                <div id="cr_acordeon_seccionCitaciones_[ID_REGISTRO]" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label class="form-label">Citaciones<span class="edit-mode-element d-none text-success">
+                                        (En la pestaña Citaciones, puede crear nuevas referencias)</span></label>
+                                <div class="citation-picker" data-field="citaciones">
+                                    <div class="citation-search-container position-relative edit-mode-element">
+                                        <input type="text" class="form-control citation-search" autocomplete="off"
+                                            data-test="input-buscar-citaciones-cr-[ID_REGISTRO]"
+                                            placeholder="Buscar citaciones..." />
+                                        <div class="citation-dropdown"></div>
+                                    </div>
+                                    <div id="cr_div_citacionesSeleccionadas_[ID_REGISTRO]"
+                                        class="selected-citations mt-2">
+                                        <!-- Selected citations will appear here -->
+                                    </div>
+                                    <div id="cr_div_citacionesInputs_[ID_REGISTRO]" class="citation-inputs">
+                                        <!-- Hidden inputs for form submission -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
